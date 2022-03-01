@@ -21,6 +21,10 @@
 		861DAE3A27CDD59F00AFE972 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0C27CDD59D00AFE972 /* Persistence.swift */; };
 		861DAE3B27CDD59F00AFE972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861DAE0D27CDD59F00AFE972 /* Assets.xcassets */; };
 		861DAE3C27CDD59F00AFE972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861DAE0D27CDD59F00AFE972 /* Assets.xcassets */; };
+		861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE4D27CDDAD700AFE972 /* Sentry */; };
+		861DAE5127CDDAEB00AFE972 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE5027CDDAEB00AFE972 /* Sentry */; };
+		861DAE5427CDDCFC00AFE972 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE5327CDDCFC00AFE972 /* Sparkle */; };
+		861DAE5627CDE24900AFE972 /* CheckForUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE5527CDE24900AFE972 /* CheckForUpdatesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +59,8 @@
 		861DAE2B27CDD59F00AFE972 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		861DAE2F27CDD59F00AFE972 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		861DAE3127CDD59F00AFE972 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		861DAE5527CDE24900AFE972 /* CheckForUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesView.swift; sourceTree = "<group>"; };
+		861DAE5727CDE53C00AFE972 /* Fleetbox--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fleetbox--macOS--Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +76,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				861DAE5127CDDAEB00AFE972 /* Sentry in Frameworks */,
+				861DAE5427CDDCFC00AFE972 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,11 +101,13 @@
 		861DAE0227CDD59D00AFE972 = {
 			isa = PBXGroup;
 			children = (
+				861DAE5727CDE53C00AFE972 /* Fleetbox--macOS--Info.plist */,
 				861DAE0727CDD59D00AFE972 /* Shared */,
 				861DAE1927CDD59F00AFE972 /* macOS */,
 				861DAE2227CDD59F00AFE972 /* Tests iOS */,
 				861DAE2E27CDD59F00AFE972 /* Tests macOS */,
 				861DAE1327CDD59F00AFE972 /* Products */,
+				861DAE4F27CDDAEB00AFE972 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				861DAE1A27CDD59F00AFE972 /* macOS.entitlements */,
+				861DAE5527CDE24900AFE972 /* CheckForUpdatesView.swift */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -149,6 +161,13 @@
 			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
+		861DAE4F27CDDAEB00AFE972 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -165,6 +184,9 @@
 			dependencies = (
 			);
 			name = "Fleetbox (iOS)";
+			packageProductDependencies = (
+				861DAE4D27CDDAD700AFE972 /* Sentry */,
+			);
 			productName = "Fleetbox (iOS)";
 			productReference = 861DAE1227CDD59F00AFE972 /* Fleetbox.app */;
 			productType = "com.apple.product-type.application";
@@ -182,6 +204,10 @@
 			dependencies = (
 			);
 			name = "Fleetbox (macOS)";
+			packageProductDependencies = (
+				861DAE5027CDDAEB00AFE972 /* Sentry */,
+				861DAE5327CDDCFC00AFE972 /* Sparkle */,
+			);
 			productName = "Fleetbox (macOS)";
 			productReference = 861DAE1827CDD59F00AFE972 /* Fleetbox.app */;
 			productType = "com.apple.product-type.application";
@@ -257,6 +283,10 @@
 				Base,
 			);
 			mainGroup = 861DAE0227CDD59D00AFE972;
+			packageReferences = (
+				861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+				861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */,
+			);
 			productRefGroup = 861DAE1327CDD59F00AFE972 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,6 +351,7 @@
 				861DAE3627CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
 				861DAE3A27CDD59F00AFE972 /* Persistence.swift in Sources */,
 				861DAE3427CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */,
+				861DAE5627CDE24900AFE972 /* CheckForUpdatesView.swift in Sources */,
 				861DAE3827CDD59F00AFE972 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,6 +571,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fleetbox--macOS--Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -566,6 +598,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fleetbox--macOS--Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -705,6 +738,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		861DAE4D27CDDAD700AFE972 /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+		861DAE5027CDDAEB00AFE972 /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+		861DAE5327CDDCFC00AFE972 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */ = {
