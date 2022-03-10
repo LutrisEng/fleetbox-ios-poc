@@ -13,15 +13,11 @@ struct LineItemView: View {
     @ObservedObject var lineItem: LineItem
     
     var body: some View {
-        VStack {
-            Form {
-                ForEach(lineItem.allFields) { field in
-                    EditLineItemFieldView(field: field)
-                }
+        Form {
+            ForEach(lineItem.allFields) { field in
+                EditLineItemFieldView(field: field)
             }
-            Spacer()
         }
-        .padding()
         .navigationTitle(lineItem.type?.displayName ?? "Unknown Line Item")
     }
 }
@@ -29,6 +25,7 @@ struct LineItemView: View {
 struct LineItemView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
+            EmptyView()
             LineItemView(lineItem: PersistenceController.preview.fixtures.lineItem)
         }
         .environment(\.managedObjectContext, PersistenceController.preview.viewContext)

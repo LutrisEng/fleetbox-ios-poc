@@ -42,8 +42,24 @@ struct FleetboxApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            TabView {
+                VehiclesView()
+                    .tabItem {
+                        Image(systemName: "car.2")
+                        Text("Vehicles")
+                    }
+                Text("Tire sets")
+                    .tabItem {
+                        Image(systemName: "circle.circle")
+                        Text("Tire sets")
+                    }
+                Text("Shops")
+                    .tabItem {
+                        Image(systemName: "building.2")
+                        Text("Shops")
+                    }
+            }
+            .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

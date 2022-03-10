@@ -10,7 +10,7 @@
 		861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
 		861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */; };
 		861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */; };
-		861DAE3727CDD59F00AFE972 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0B27CDD59D00AFE972 /* ContentView.swift */; };
+		861DAE3727CDD59F00AFE972 /* VehiclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0B27CDD59D00AFE972 /* VehiclesView.swift */; };
 		861DAE3927CDD59F00AFE972 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0C27CDD59D00AFE972 /* Persistence.swift */; };
 		861DAE3B27CDD59F00AFE972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861DAE0D27CDD59F00AFE972 /* Assets.xcassets */; };
 		861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE4D27CDDAD700AFE972 /* Sentry */; };
@@ -84,7 +84,7 @@
 		861BA8FE27D8546700DD729A /* LineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemView.swift; sourceTree = "<group>"; };
 		861DAE0927CDD59D00AFE972 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetboxApp.swift; sourceTree = "<group>"; };
-		861DAE0B27CDD59D00AFE972 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		861DAE0B27CDD59D00AFE972 /* VehiclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesView.swift; sourceTree = "<group>"; };
 		861DAE0C27CDD59D00AFE972 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		861DAE0D27CDD59F00AFE972 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		861DAE1227CDD59F00AFE972 /* Fleetbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleetbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,7 +273,7 @@
 		86D2DA7527D087D20083254E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				861DAE0B27CDD59D00AFE972 /* ContentView.swift */,
+				861DAE0B27CDD59D00AFE972 /* VehiclesView.swift */,
 				8683930E27D1450B00D91D96 /* VehicleView.swift */,
 				86B17F9D27D48D14001E52C6 /* LogItemView.swift */,
 				861BA8FE27D8546700DD729A /* LineItemView.swift */,
@@ -447,7 +447,7 @@
 				86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */,
 				86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */,
 				8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */,
-				861DAE3727CDD59F00AFE972 /* ContentView.swift in Sources */,
+				861DAE3727CDD59F00AFE972 /* VehiclesView.swift in Sources */,
 				8690C7AD27D9AA260042F543 /* OdometerReadingView.swift in Sources */,
 				864C732427D06B8C00047165 /* Shop.swift in Sources */,
 				86638D2327D970F400149689 /* LogItemLabelView.swift in Sources */,

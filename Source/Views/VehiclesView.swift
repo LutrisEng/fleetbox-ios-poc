@@ -10,7 +10,7 @@ import CoreData
 import CoreSpotlight
 import Sentry
 
-struct ContentView: View {
+struct VehiclesView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -106,8 +106,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct VehiclesView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.viewContext)
+        VehiclesView().environment(\.managedObjectContext, PersistenceController.preview.viewContext)
     }
 }
