@@ -15,4 +15,9 @@ jobs:
       - name: Install tools
         run: brew install yq
       - name: Run tests
-        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" clean test
+        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" -resultBundlePath TestResults clean test
+      - name: Export tests results
+        uses: kishikawakatsumi/xcresulttool@v1
+        with:
+          path: TestResults.xcresult
+        if: success() || failure()
