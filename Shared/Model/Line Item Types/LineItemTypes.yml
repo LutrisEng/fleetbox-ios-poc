@@ -1,0 +1,168 @@
+# yaml-language-server: $schema=LineItemTypes.schema.json
+
+categories:
+    inspection:
+        displayName: Inspections
+        icon:
+            sfsymbols: magnifyingglass
+        subcategories:
+            government:
+                displayName: Government-mandated
+                icon:
+                    sfsymbols: building.columns
+                types:
+                    safetyInspection:
+                        displayName: Safety inspection
+                        description: A mandatory state safety inspection was performed.
+                        fields:
+                            state:
+                                shortDisplayName: State
+                                longDisplayName: Which state was this inspection for?
+                                type: string
+                                example: Texas
+                                defaultValueFrom: vehicle.registrationState
+                    emissionsInspection:
+                        displayName: Emissions inspection
+                        description: A mandatory state emissions inspection was performed.
+                        fields:
+                            state:
+                                shortDisplayName: State
+                                longDisplayName: Which state was this inspection for?
+                                type: string
+                                example: Texas
+                                defaultValueFrom: vehicle.registrationState
+    maintenance:
+        displayName: Maintenance
+        icon:
+            sfsymbols: wrench.and.screwdriver
+        subcategories:
+            fluids:
+                displayName: Fluids
+                icon:
+                    sfsymbols: drop.triangle
+                types:
+                    engineOilChange:
+                        displayName: Engine oil changed
+                        description: Engine oil was drained and refilled.
+                        fields:
+                            viscosity:
+                                shortDisplayName: Viscosity
+                                longDisplayName: What is the new oil's viscosity?
+                                type: string
+                                example: 5W-40
+                                defaultValueFrom: vehicle.oilViscosity
+                            brand:
+                                shortDisplayName: Brand
+                                longDisplayName: What is the new oil's brand?
+                                type: string
+                                example: Mobil One
+                                defaultValueFrom: vehicle.make
+                            partNumber:
+                                shortDisplayName: Part number
+                                longDisplayName: What is the new oil's part number?
+                                type: string
+            filters:
+                displayName: Filters
+                subcategories:
+                    fluidFilters:
+                        displayName: Fluid filters
+                        icon:
+                            sfsymbols: drop.triangle
+                        types:
+                            engineOilFilterChange:
+                                displayName: Engine oil filter replaced
+                                fields:
+                                    brand:
+                                        shortDisplayName: Brand
+                                        longDisplayName: What is the new oil filter's brand?
+                                        type: string
+                                        example: MicroGard
+                                        defaultValueFrom: vehicle.make
+                                    partNumber:
+                                        shortDisplayName: Part number
+                                        longDisplayName: What is the new oil filter's part number?
+                                        type: string
+                    airFilters:
+                        displayName: Air filters
+                        icon:
+                            sfsymbols: wind
+                        types:
+                            engineAirFilterChange:
+                                displayName: Engine air filter replaced
+                                fields:
+                                    brand:
+                                        shortDisplayName: Brand
+                                        longDisplayName: What is the new air filter's brand?
+                                        type: string
+                                        example: MicroGard
+                                        defaultValueFrom: vehicle.make
+                                    partNumber:
+                                        shortDisplayName: Part number
+                                        longDisplayName: What is the new air filter's part number?
+                                        type: string
+                            cabinAirFilterChange:
+                                displayName: Cabin air filter replaced
+                                fields:
+                                    brand:
+                                        shortDisplayName: Brand
+                                        longDisplayName: What is the new air filter's brand?
+                                        type: string
+                                        example: MicroGard
+                                        defaultValueFrom: vehicle.make
+                                    partNumber:
+                                        shortDisplayName: Part number
+                                        longDisplayName: What is the new air filter's part number?
+                                        type: string
+            tires:
+                displayName: Tires
+                icon:
+                    sfsymbols: circle.circle
+                types:
+                    tireRotation:
+                        displayName: Tires rotated
+                        icon:
+                            sfsymbols: repeat.circle
+                        fields:
+                            tireSet:
+                                shortDisplayName: Tire set
+                                longDisplayName: Which tire set was rotated?
+                                type: tireSet
+                                defaultValueFrom: vehicle.currentTires
+                            pattern:
+                                shortDisplayName: Pattern
+                                longDisplayName: Which pattern was used to rotate the tires?
+                                type: enum
+                                enumValues:
+                                    forwardCross:
+                                        displayName: Forward cross
+                                        description: Typically used for front-wheel drive vehicles. Front tires moved to rear, and rear tires moved to opposite sides of front axle.
+                                    cross:
+                                        displayName: Cross
+                                        description: Typically used for front-wheel drive vehicles. Front tires moved to opposite sides of rear axle, and rear tires moved to opposite sides of front axle.
+                                    rearwardCross:
+                                        displayName: Rearward cross
+                                        description: Typically used for rear-wheel drive and all-wheel drive vehicles. Front tires moved to opposite sides of rear axle, and rear tires moved to front.
+                    mountedTires:
+                        displayName: Tire set mounted
+                        description: A set of tires was mounted on the car
+                        fields:
+                            tireSet:
+                                shortDisplayName: Tire set
+                                longDisplayName: Which tire set was mounted?
+                                type: tireSet
+                    dismountedTires:
+                        displayName: Tire set dismounted
+                        description: The current set of tires was dismounted from the car
+                        fields:
+                            tireSet:
+                                shortDisplayName: Tire set
+                                longDisplayName: Which tire set was dismounted?
+                                type: tireSet
+
+    misc:
+        displayName: Miscellaneous
+        icon:
+            sfsymbols: questionmark.circle
+        types:
+            misc:
+                displayName: Miscellaneous

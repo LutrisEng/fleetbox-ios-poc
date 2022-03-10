@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
+		861BA90027D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
 		861DAE2427CDD59F00AFE972 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE2327CDD59F00AFE972 /* Tests_iOS.swift */; };
 		861DAE2627CDD59F00AFE972 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE2527CDD59F00AFE972 /* Tests_iOSLaunchTests.swift */; };
 		861DAE3027CDD59F00AFE972 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE2F27CDD59F00AFE972 /* Tests_macOS.swift */; };
@@ -25,6 +27,58 @@
 		861DAE5127CDDAEB00AFE972 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE5027CDDAEB00AFE972 /* Sentry */; };
 		861DAE5427CDDCFC00AFE972 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE5327CDDCFC00AFE972 /* Sparkle */; };
 		861DAE5627CDE24900AFE972 /* CheckForUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE5527CDE24900AFE972 /* CheckForUpdatesView.swift */; };
+		864C731B27CDF54E00047165 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731A27CDF54E00047165 /* Vehicle.swift */; };
+		864C731C27CDF54E00047165 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731A27CDF54E00047165 /* Vehicle.swift */; };
+		864C731E27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */; };
+		864C731F27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */; };
+		864C732127D06A7F00047165 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732027D06A7F00047165 /* LogItem.swift */; };
+		864C732227D06A7F00047165 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732027D06A7F00047165 /* LogItem.swift */; };
+		864C732427D06B8C00047165 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732327D06B8C00047165 /* Shop.swift */; };
+		864C732527D06B8C00047165 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732327D06B8C00047165 /* Shop.swift */; };
+		864C732727D06C6800047165 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
+		864C732827D06C6800047165 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
+		86638D2327D970F400149689 /* LogItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2227D970F300149689 /* LogItemLabelView.swift */; };
+		86638D2427D970F400149689 /* LogItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2227D970F300149689 /* LogItemLabelView.swift */; };
+		86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2527D9721500149689 /* LineItemLabelView.swift */; };
+		86638D2727D9721500149689 /* LineItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2527D9721500149689 /* LineItemLabelView.swift */; };
+		86638D3127D9870700149689 /* AppIcon.afdesign in Resources */ = {isa = PBXBuildFile; fileRef = 86638D2C27D9870700149689 /* AppIcon.afdesign */; };
+		86638D3227D9870700149689 /* AppIcon.afdesign in Resources */ = {isa = PBXBuildFile; fileRef = 86638D2C27D9870700149689 /* AppIcon.afdesign */; };
+		86638D3827D994B200149689 /* TireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D3727D994B200149689 /* TireSet.swift */; };
+		86638D3927D994B200149689 /* TireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D3727D994B200149689 /* TireSet.swift */; };
+		8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
+		8683931027D1450B00D91D96 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
+		8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */; };
+		8690C7A527D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */; };
+		8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */; };
+		8690C7A827D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */; };
+		8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A927D9A9170042F543 /* OdometerReading.swift */; };
+		8690C7AB27D9A9180042F543 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A927D9A9170042F543 /* OdometerReading.swift */; };
+		8690C7AD27D9AA260042F543 /* OdometerReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */; };
+		8690C7AE27D9AA260042F543 /* OdometerReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */; };
+		869745DA27D9617F00D16762 /* EditVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869745D927D9617F00D16762 /* EditVehicleView.swift */; };
+		869745DB27D9617F00D16762 /* EditVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869745D927D9617F00D16762 /* EditVehicleView.swift */; };
+		86B17F8927D45E0D001E52C6 /* LineItemTypes.yml in Resources */ = {isa = PBXBuildFile; fileRef = 86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */; };
+		86B17F8A27D45E17001E52C6 /* LineItemTypes.yml in Resources */ = {isa = PBXBuildFile; fileRef = 86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */; };
+		86B17F8C27D45EDF001E52C6 /* LineItemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */; };
+		86B17F8D27D45EDF001E52C6 /* LineItemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */; };
+		86B17F9127D46924001E52C6 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 86B17F9027D46924001E52C6 /* Yams */; };
+		86B17F9327D46930001E52C6 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 86B17F9227D46930001E52C6 /* Yams */; };
+		86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9427D47270001E52C6 /* LineItemField.swift */; };
+		86B17F9627D47270001E52C6 /* LineItemField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9427D47270001E52C6 /* LineItemField.swift */; };
+		86B17F9E27D48D14001E52C6 /* LogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9D27D48D14001E52C6 /* LogItemView.swift */; };
+		86B17F9F27D48D14001E52C6 /* LogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9D27D48D14001E52C6 /* LogItemView.swift */; };
+		86B5D08027D075320040399C /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 86B5D07F27D075320040399C /* Sentry */; };
+		86B5D08227D075340040399C /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 86B5D08127D075340040399C /* Sparkle */; };
+		86B5D08427D075380040399C /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 86B5D08327D075380040399C /* Sentry */; };
+		86B5D09527D076B70040399C /* LineItemTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5D09427D076B70040399C /* LineItemTypeTests.swift */; };
+		86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
+		86D2DA6927D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
+		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
+		86D2DA6C27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
+		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
+		86D2DA6F27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
+		86D2DA7227D081490083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7127D081490083254E /* Alamofire */; };
+		86D2DA7427D081540083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7327D081540083254E /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,9 +96,18 @@
 			remoteGlobalIDString = 861DAE1727CDD59F00AFE972;
 			remoteInfo = "Fleetbox (macOS)";
 		};
+		86B5D08F27D076A30040399C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 861DAE0327CDD59D00AFE972 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 861DAE1727CDD59F00AFE972;
+			remoteInfo = "Fleetbox (macOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		861BA8FD27D8537100DD729A /* Fleetbox (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fleetbox (iOS).entitlements"; sourceTree = "<group>"; };
+		861BA8FE27D8546700DD729A /* LineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemView.swift; sourceTree = "<group>"; };
 		861DAE0927CDD59D00AFE972 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetboxApp.swift; sourceTree = "<group>"; };
 		861DAE0B27CDD59D00AFE972 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +124,31 @@
 		861DAE3127CDD59F00AFE972 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		861DAE5527CDE24900AFE972 /* CheckForUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesView.swift; sourceTree = "<group>"; };
 		861DAE5727CDE53C00AFE972 /* Fleetbox--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fleetbox--macOS--Info.plist"; sourceTree = "<group>"; };
+		864C731A27CDF54E00047165 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
+		864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleSpotlightDelegate.swift; sourceTree = "<group>"; };
+		864C732027D06A7F00047165 /* LogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
+		864C732327D06B8C00047165 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
+		864C732627D06C6800047165 /* LineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
+		86638D2227D970F300149689 /* LogItemLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemLabelView.swift; sourceTree = "<group>"; };
+		86638D2527D9721500149689 /* LineItemLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemLabelView.swift; sourceTree = "<group>"; };
+		86638D2C27D9870700149689 /* AppIcon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppIcon.afdesign; sourceTree = "<group>"; };
+		86638D3727D994B200149689 /* TireSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSet.swift; sourceTree = "<group>"; };
+		8683930E27D1450B00D91D96 /* VehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
+		8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLineItemFieldView.swift; sourceTree = "<group>"; };
+		8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemFieldLabelView.swift; sourceTree = "<group>"; };
+		8690C7A927D9A9170042F543 /* OdometerReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReading.swift; sourceTree = "<group>"; };
+		8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReadingView.swift; sourceTree = "<group>"; };
+		869745D927D9617F00D16762 /* EditVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVehicleView.swift; sourceTree = "<group>"; };
+		86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LineItemTypes.yml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.yaml; };
+		86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypes.swift; sourceTree = "<group>"; };
+		86B17F8E27D467EF001E52C6 /* LineItemTypes.schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LineItemTypes.schema.json; sourceTree = "<group>"; };
+		86B17F9427D47270001E52C6 /* LineItemField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemField.swift; sourceTree = "<group>"; };
+		86B17F9D27D48D14001E52C6 /* LogItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemView.swift; sourceTree = "<group>"; };
+		86B5D08B27D076A30040399C /* Tests Shared.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests Shared.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		86B5D09427D076B70040399C /* LineItemTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeTests.swift; sourceTree = "<group>"; };
+		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
+		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
+		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +157,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */,
+				86B17F9127D46924001E52C6 /* Yams in Frameworks */,
+				86D2DA7227D081490083254E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,7 +166,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86D2DA7427D081540083254E /* Alamofire in Frameworks */,
 				861DAE5127CDDAEB00AFE972 /* Sentry in Frameworks */,
+				86B17F9327D46930001E52C6 /* Yams in Frameworks */,
 				861DAE5427CDDCFC00AFE972 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,10 +177,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86B5D08427D075380040399C /* Sentry in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		861DAE2827CDD59F00AFE972 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86B5D08027D075320040399C /* Sentry in Frameworks */,
+				86B5D08227D075340040399C /* Sparkle in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		86B5D08827D076A30040399C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -101,11 +203,14 @@
 		861DAE0227CDD59D00AFE972 = {
 			isa = PBXGroup;
 			children = (
+				86638D2B27D9870700149689 /* Design */,
+				861BA8FD27D8537100DD729A /* Fleetbox (iOS).entitlements */,
 				861DAE5727CDE53C00AFE972 /* Fleetbox--macOS--Info.plist */,
 				861DAE0727CDD59D00AFE972 /* Shared */,
 				861DAE1927CDD59F00AFE972 /* macOS */,
 				861DAE2227CDD59F00AFE972 /* Tests iOS */,
 				861DAE2E27CDD59F00AFE972 /* Tests macOS */,
+				86B5D08C27D076A30040399C /* Tests Shared */,
 				861DAE1327CDD59F00AFE972 /* Products */,
 				861DAE4F27CDDAEB00AFE972 /* Frameworks */,
 			);
@@ -114,11 +219,11 @@
 		861DAE0727CDD59D00AFE972 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				86D2DA7527D087D20083254E /* Views */,
+				86D2DA6627D07E3E0083254E /* VIN Decoder */,
+				864C731927CDF54000047165 /* Model */,
 				861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */,
-				861DAE0B27CDD59D00AFE972 /* ContentView.swift */,
-				861DAE0C27CDD59D00AFE972 /* Persistence.swift */,
 				861DAE0D27CDD59F00AFE972 /* Assets.xcassets */,
-				861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -130,6 +235,7 @@
 				861DAE1827CDD59F00AFE972 /* Fleetbox.app */,
 				861DAE1F27CDD59F00AFE972 /* Tests iOS.xctest */,
 				861DAE2B27CDD59F00AFE972 /* Tests macOS.xctest */,
+				86B5D08B27D076A30040399C /* Tests Shared.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -168,6 +274,77 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		864C731927CDF54000047165 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				86B17F8727D45DF1001E52C6 /* Line Item Types */,
+				861DAE0C27CDD59D00AFE972 /* Persistence.swift */,
+				861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */,
+				864C731A27CDF54E00047165 /* Vehicle.swift */,
+				864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */,
+				864C732027D06A7F00047165 /* LogItem.swift */,
+				864C732327D06B8C00047165 /* Shop.swift */,
+				864C732627D06C6800047165 /* LineItem.swift */,
+				86B17F9427D47270001E52C6 /* LineItemField.swift */,
+				86638D3727D994B200149689 /* TireSet.swift */,
+				8690C7A927D9A9170042F543 /* OdometerReading.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		86638D2B27D9870700149689 /* Design */ = {
+			isa = PBXGroup;
+			children = (
+				86638D2C27D9870700149689 /* AppIcon.afdesign */,
+			);
+			path = Design;
+			sourceTree = "<group>";
+		};
+		86B17F8727D45DF1001E52C6 /* Line Item Types */ = {
+			isa = PBXGroup;
+			children = (
+				86B17F8E27D467EF001E52C6 /* LineItemTypes.schema.json */,
+				86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */,
+				86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */,
+			);
+			path = "Line Item Types";
+			sourceTree = "<group>";
+		};
+		86B5D08C27D076A30040399C /* Tests Shared */ = {
+			isa = PBXGroup;
+			children = (
+				86B5D09427D076B70040399C /* LineItemTypeTests.swift */,
+			);
+			path = "Tests Shared";
+			sourceTree = "<group>";
+		};
+		86D2DA6627D07E3E0083254E /* VIN Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */,
+				86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */,
+				86D2DA6D27D080AF0083254E /* VINDecoder.swift */,
+			);
+			path = "VIN Decoder";
+			sourceTree = "<group>";
+		};
+		86D2DA7527D087D20083254E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				861DAE0B27CDD59D00AFE972 /* ContentView.swift */,
+				8683930E27D1450B00D91D96 /* VehicleView.swift */,
+				86B17F9D27D48D14001E52C6 /* LogItemView.swift */,
+				861BA8FE27D8546700DD729A /* LineItemView.swift */,
+				869745D927D9617F00D16762 /* EditVehicleView.swift */,
+				86638D2227D970F300149689 /* LogItemLabelView.swift */,
+				86638D2527D9721500149689 /* LineItemLabelView.swift */,
+				8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */,
+				8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */,
+				8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,6 +363,8 @@
 			name = "Fleetbox (iOS)";
 			packageProductDependencies = (
 				861DAE4D27CDDAD700AFE972 /* Sentry */,
+				86D2DA7127D081490083254E /* Alamofire */,
+				86B17F9027D46924001E52C6 /* Yams */,
 			);
 			productName = "Fleetbox (iOS)";
 			productReference = 861DAE1227CDD59F00AFE972 /* Fleetbox.app */;
@@ -207,6 +386,8 @@
 			packageProductDependencies = (
 				861DAE5027CDDAEB00AFE972 /* Sentry */,
 				861DAE5327CDDCFC00AFE972 /* Sparkle */,
+				86D2DA7327D081540083254E /* Alamofire */,
+				86B17F9227D46930001E52C6 /* Yams */,
 			);
 			productName = "Fleetbox (macOS)";
 			productReference = 861DAE1827CDD59F00AFE972 /* Fleetbox.app */;
@@ -226,6 +407,9 @@
 				861DAE2127CDD59F00AFE972 /* PBXTargetDependency */,
 			);
 			name = "Tests iOS";
+			packageProductDependencies = (
+				86B5D08327D075380040399C /* Sentry */,
+			);
 			productName = "Tests iOS";
 			productReference = 861DAE1F27CDD59F00AFE972 /* Tests iOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -244,9 +428,31 @@
 				861DAE2D27CDD59F00AFE972 /* PBXTargetDependency */,
 			);
 			name = "Tests macOS";
+			packageProductDependencies = (
+				86B5D07F27D075320040399C /* Sentry */,
+				86B5D08127D075340040399C /* Sparkle */,
+			);
 			productName = "Tests macOS";
 			productReference = 861DAE2B27CDD59F00AFE972 /* Tests macOS.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		86B5D08A27D076A30040399C /* Tests Shared */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86B5D09127D076A30040399C /* Build configuration list for PBXNativeTarget "Tests Shared" */;
+			buildPhases = (
+				86B5D08727D076A30040399C /* Sources */,
+				86B5D08827D076A30040399C /* Frameworks */,
+				86B5D08927D076A30040399C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				86B5D09027D076A30040399C /* PBXTargetDependency */,
+			);
+			name = "Tests Shared";
+			productName = "Tests Shared";
+			productReference = 86B5D08B27D076A30040399C /* Tests Shared.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -272,6 +478,10 @@
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 861DAE1727CDD59F00AFE972;
 					};
+					86B5D08A27D076A30040399C = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = 861DAE1727CDD59F00AFE972;
+					};
 				};
 			};
 			buildConfigurationList = 861DAE0627CDD59D00AFE972 /* Build configuration list for PBXProject "Fleetbox" */;
@@ -286,6 +496,8 @@
 			packageReferences = (
 				861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 				861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */,
 			);
 			productRefGroup = 861DAE1327CDD59F00AFE972 /* Products */;
 			projectDirPath = "";
@@ -295,6 +507,7 @@
 				861DAE1727CDD59F00AFE972 /* Fleetbox (macOS) */,
 				861DAE1E27CDD59F00AFE972 /* Tests iOS */,
 				861DAE2A27CDD59F00AFE972 /* Tests macOS */,
+				86B5D08A27D076A30040399C /* Tests Shared */,
 			);
 		};
 /* End PBXProject section */
@@ -304,7 +517,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86638D3127D9870700149689 /* AppIcon.afdesign in Resources */,
 				861DAE3B27CDD59F00AFE972 /* Assets.xcassets in Resources */,
+				86B17F8927D45E0D001E52C6 /* LineItemTypes.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +527,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86638D3227D9870700149689 /* AppIcon.afdesign in Resources */,
 				861DAE3C27CDD59F00AFE972 /* Assets.xcassets in Resources */,
+				86B17F8A27D45E17001E52C6 /* LineItemTypes.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,6 +547,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		86B5D08927D076A30040399C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -337,10 +561,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */,
+				864C731E27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */,
+				8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */,
+				864C732727D06C6800047165 /* LineItem.swift in Sources */,
 				861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
 				861DAE3927CDD59F00AFE972 /* Persistence.swift in Sources */,
+				8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */,
+				86B17F8C27D45EDF001E52C6 /* LineItemTypes.swift in Sources */,
+				86638D3827D994B200149689 /* TireSet.swift in Sources */,
 				861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */,
+				86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */,
+				86B17F9E27D48D14001E52C6 /* LogItemView.swift in Sources */,
+				861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */,
+				864C731B27CDF54E00047165 /* Vehicle.swift in Sources */,
+				86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */,
+				864C732127D06A7F00047165 /* LogItem.swift in Sources */,
+				86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */,
+				86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */,
+				86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */,
+				8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */,
 				861DAE3727CDD59F00AFE972 /* ContentView.swift in Sources */,
+				8690C7AD27D9AA260042F543 /* OdometerReadingView.swift in Sources */,
+				864C732427D06B8C00047165 /* Shop.swift in Sources */,
+				86638D2327D970F400149689 /* LogItemLabelView.swift in Sources */,
+				869745DA27D9617F00D16762 /* EditVehicleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,11 +593,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				864C731F27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */,
+				864C731C27CDF54E00047165 /* Vehicle.swift in Sources */,
+				8690C7A527D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */,
+				86638D2727D9721500149689 /* LineItemLabelView.swift in Sources */,
 				861DAE3627CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
 				861DAE3A27CDD59F00AFE972 /* Persistence.swift in Sources */,
+				864C732827D06C6800047165 /* LineItem.swift in Sources */,
+				86638D3927D994B200149689 /* TireSet.swift in Sources */,
+				869745DB27D9617F00D16762 /* EditVehicleView.swift in Sources */,
+				8690C7A827D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */,
+				8690C7AB27D9A9180042F543 /* OdometerReading.swift in Sources */,
 				861DAE3427CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */,
 				861DAE5627CDE24900AFE972 /* CheckForUpdatesView.swift in Sources */,
+				864C732527D06B8C00047165 /* Shop.swift in Sources */,
 				861DAE3827CDD59F00AFE972 /* ContentView.swift in Sources */,
+				86638D2427D970F400149689 /* LogItemLabelView.swift in Sources */,
+				8690C7AE27D9AA260042F543 /* OdometerReadingView.swift in Sources */,
+				86B17F9627D47270001E52C6 /* LineItemField.swift in Sources */,
+				86B17F8D27D45EDF001E52C6 /* LineItemTypes.swift in Sources */,
+				86D2DA6C27D07F260083254E /* VINDecoderResponse.swift in Sources */,
+				864C732227D06A7F00047165 /* LogItem.swift in Sources */,
+				86D2DA6F27D080AF0083254E /* VINDecoder.swift in Sources */,
+				8683931027D1450B00D91D96 /* VehicleView.swift in Sources */,
+				861BA90027D8546800DD729A /* LineItemView.swift in Sources */,
+				86D2DA6927D07E5A0083254E /* VINDecoderResult.swift in Sources */,
+				86B17F9F27D48D14001E52C6 /* LogItemView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,6 +640,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		86B5D08727D076A30040399C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86B5D09527D076B70040399C /* LineItemTypeTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -386,6 +660,11 @@
 			isa = PBXTargetDependency;
 			target = 861DAE1727CDD59F00AFE972 /* Fleetbox (macOS) */;
 			targetProxy = 861DAE2C27CDD59F00AFE972 /* PBXContainerItemProxy */;
+		};
+		86B5D09027D076A30040399C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 861DAE1727CDD59F00AFE972 /* Fleetbox (macOS) */;
+			targetProxy = 86B5D08F27D076A30040399C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -506,6 +785,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Fleetbox (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
@@ -525,6 +805,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.ios;
 				PRODUCT_NAME = Fleetbox;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -536,6 +818,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Fleetbox (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
@@ -555,6 +838,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.ios;
 				PRODUCT_NAME = Fleetbox;
 				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -699,6 +984,42 @@
 			};
 			name = Release;
 		};
+		86B5D09227D076A30040399C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "engineering.lutris.Tests-Shared";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fleetbox.app/Contents/MacOS/Fleetbox";
+			};
+			name = Debug;
+		};
+		86B5D09327D076A30040399C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "engineering.lutris.Tests-Shared";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fleetbox.app/Contents/MacOS/Fleetbox";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -747,6 +1068,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		86B5D09127D076A30040399C /* Build configuration list for PBXNativeTarget "Tests Shared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86B5D09227D076A30040399C /* Debug */,
+				86B5D09327D076A30040399C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -766,6 +1096,22 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jpsim/Yams.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -783,6 +1129,41 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
+		};
+		86B17F9027D46924001E52C6 /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+		86B17F9227D46930001E52C6 /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+		86B5D07F27D075320040399C /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+		86B5D08127D075340040399C /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
+		};
+		86B5D08327D075380040399C /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+		86D2DA7127D081490083254E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		86D2DA7327D081540083254E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 

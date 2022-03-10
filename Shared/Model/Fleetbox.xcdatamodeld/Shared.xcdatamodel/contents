@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="LineItem" representedClassName="LineItem" syncable="YES" codeGenerationType="class">
+        <attribute name="notes" optional="YES" attributeType="String"/>
+        <attribute name="sortOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="typeId" optional="YES" attributeType="String"/>
+        <relationship name="fieldsNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LineItemField" inverseName="lineItem" inverseEntity="LineItemField"/>
+        <relationship name="logItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LogItem" inverseName="lineItemsNs" inverseEntity="LogItem"/>
+    </entity>
+    <entity name="LineItemField" representedClassName="LineItemField" syncable="YES" codeGenerationType="class">
+        <attribute name="stringValue" optional="YES" attributeType="String"/>
+        <attribute name="typeId" optional="YES" attributeType="String"/>
+        <relationship name="lineItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LineItem" inverseName="fieldsNs" inverseEntity="LineItem"/>
+        <relationship name="tireSetValue" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TireSet" inverseName="lineItemFieldsNs" inverseEntity="TireSet"/>
+    </entity>
+    <entity name="LogItem" representedClassName="LogItem" syncable="YES" codeGenerationType="class">
+        <attribute name="performedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="lineItemsNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LineItem" inverseName="logItem" inverseEntity="LineItem"/>
+        <relationship name="odometerReading" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="OdometerReading" inverseName="logItem" inverseEntity="OdometerReading"/>
+        <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" inverseName="logItemsNs" inverseEntity="Shop"/>
+        <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="logItemsNs" inverseEntity="Vehicle"/>
+    </entity>
+    <entity name="OdometerReading" representedClassName="OdometerReading" syncable="YES" codeGenerationType="class">
+        <attribute name="at" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="reading" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="logItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LogItem" inverseName="odometerReading" inverseEntity="LogItem"/>
+        <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="odometerReadingsNs" inverseEntity="Vehicle"/>
+    </entity>
+    <entity name="Shop" representedClassName="Shop" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String" defaultValueString="Maintenance Shop"/>
+        <relationship name="logItemsNs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LogItem" inverseName="shop" inverseEntity="LogItem"/>
+    </entity>
+    <entity name="TireSet" representedClassName="TireSet" syncable="YES" codeGenerationType="class">
+        <attribute name="aspectRatio" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="construction" optional="YES" attributeType="String"/>
+        <attribute name="diameter" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="loadIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="make" optional="YES" attributeType="String"/>
+        <attribute name="model" optional="YES" attributeType="String"/>
+        <attribute name="sortOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="speedRating" optional="YES" attributeType="String"/>
+        <attribute name="vehicleType" optional="YES" attributeType="String"/>
+        <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="lineItemFieldsNs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LineItemField" inverseName="tireSetValue" inverseEntity="LineItemField"/>
+    </entity>
+    <entity name="Vehicle" representedClassName="Vehicle" syncable="YES" codeGenerationType="class">
+        <attribute name="displayName" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="make" optional="YES" attributeType="String"/>
+        <attribute name="model" optional="YES" attributeType="String"/>
+        <attribute name="sortOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="vin" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <relationship name="logItemsNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LogItem" inverseName="vehicle" inverseEntity="LogItem"/>
+        <relationship name="odometerReadingsNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OdometerReading" inverseName="vehicle" inverseEntity="OdometerReading"/>
+    </entity>
+    <elements>
+        <element name="LineItem" positionX="288" positionY="63" width="128" height="104"/>
+        <element name="LineItemField" positionX="270" positionY="36" width="128" height="89"/>
+        <element name="LogItem" positionX="406.38671875" positionY="-9.95703125" width="128" height="104"/>
+        <element name="OdometerReading" positionX="270" positionY="108" width="128" height="89"/>
+        <element name="Shop" positionX="279" positionY="45" width="128" height="59"/>
+        <element name="TireSet" positionX="279" positionY="63" width="128" height="194"/>
+        <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="149"/>
+    </elements>
+</model>

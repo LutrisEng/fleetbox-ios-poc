@@ -14,6 +14,12 @@ import Sentry
     let debug = false
 #endif
 
+#if AUTOUPDATER
+    let autoupdater = true
+#else
+    let autoupdater = false
+#endif
+
 func getInfoDictionaryKey(key: String) -> String {
     Bundle.main.object(forInfoDictionaryKey: key) as! String
 }
@@ -22,7 +28,7 @@ func getSentryRelease() -> String {
     let package = getInfoDictionaryKey(key: "CFBundleIdentifier")
     let version = getInfoDictionaryKey(key: "CFBundleShortVersionString")
     let buildIdentifier = getInfoDictionaryKey(key: "CFBundleVersion")
-    return "\(package)@\(version)+\(buildIdentifier)"
+    return "\(package)@\(version)+\(buildIdentifier)\(autoupdater ? "-AU" : "")"
 }
 
 @main
