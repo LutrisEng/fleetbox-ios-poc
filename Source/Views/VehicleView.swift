@@ -93,7 +93,9 @@ struct VehicleView: View {
                         viewContext.delete(r)
                     }
                 } else {
-                    try? viewContext.save()
+                    ignoreErrors {
+                        try viewContext.save()
+                    }
                 }
             }) {
                 if let reading = odometerReadingSheetOdometerReading {
@@ -102,7 +104,9 @@ struct VehicleView: View {
                             reading.vehicle = vehicle
                             shouldDeleteOdometerReading = false
                             odometerReadingSheetPresented = false
-                            try? viewContext.save()
+                            ignoreErrors {
+                                try viewContext.save()
+                            }
                         }
                     }.padding()
                 }

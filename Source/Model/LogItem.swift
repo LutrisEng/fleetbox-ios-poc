@@ -42,7 +42,7 @@ extension LogItem {
     var addedTireSets: [TireSet] {
         lineItems.compactMap { lineItem in
             lineItem.typeId == "mountedTires"
-            ? try? lineItem.getFieldValueTireSet("tireSet")
+            ? (ignoreErrors { try lineItem.getFieldValueTireSet("tireSet") } ?? nil)
             : nil
         }
     }
@@ -50,7 +50,7 @@ extension LogItem {
     var removedTireSets: [TireSet] {
         lineItems.compactMap { lineItem in
             lineItem.typeId == "dismountedTires"
-            ? try? lineItem.getFieldValueTireSet("tireSet")
+            ? (ignoreErrors { try lineItem.getFieldValueTireSet("tireSet") } ?? nil)
             : nil
         }
     }

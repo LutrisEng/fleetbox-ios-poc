@@ -21,6 +21,7 @@
 		864C732127D06A7F00047165 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732027D06A7F00047165 /* LogItem.swift */; };
 		864C732427D06B8C00047165 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732327D06B8C00047165 /* Shop.swift */; };
 		864C732727D06C6800047165 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
+		865D028527D9F1B3006C815D /* Error Handling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865D028427D9F1B3006C815D /* Error Handling.swift */; };
 		86638D2327D970F400149689 /* LogItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2227D970F300149689 /* LogItemLabelView.swift */; };
 		86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2527D9721500149689 /* LineItemLabelView.swift */; };
 		86638D3827D994B200149689 /* TireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D3727D994B200149689 /* TireSet.swift */; };
@@ -79,6 +80,7 @@
 		864C732027D06A7F00047165 /* LogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
 		864C732327D06B8C00047165 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		864C732627D06C6800047165 /* LineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
+		865D028427D9F1B3006C815D /* Error Handling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error Handling.swift"; sourceTree = "<group>"; };
 		86638D2227D970F300149689 /* LogItemLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemLabelView.swift; sourceTree = "<group>"; };
 		86638D2527D9721500149689 /* LineItemLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemLabelView.swift; sourceTree = "<group>"; };
 		86638D2C27D9870700149689 /* AppIcon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppIcon.afdesign; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				86D2DA6627D07E3E0083254E /* VIN Decoder */,
 				864C731927CDF54000047165 /* Model */,
 				861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */,
+				865D028427D9F1B3006C815D /* Error Handling.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				86B17F9E27D48D14001E52C6 /* LogItemView.swift in Sources */,
 				861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */,
 				864C731B27CDF54E00047165 /* Vehicle.swift in Sources */,
+				865D028527D9F1B3006C815D /* Error Handling.swift in Sources */,
 				86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */,
 				864C732127D06A7F00047165 /* LogItem.swift in Sources */,
 				86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */,

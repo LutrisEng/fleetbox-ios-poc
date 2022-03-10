@@ -56,7 +56,9 @@ struct OdometerReadingView: View {
     
     private func saveReading() {
         odometerReading.reading = editingReading.numericValue
-        try? viewContext.save()
+        ignoreErrors {
+            try viewContext.save()
+        }
         onSave()
     }
 }

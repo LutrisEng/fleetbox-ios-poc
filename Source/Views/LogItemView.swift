@@ -91,12 +91,16 @@ struct LogItemView: View {
         }
             .navigationTitle(logItem.formattedDate ?? "Log item")
             .sheet(isPresented: $odometerReadingSheetPresented, onDismiss: {
-                try? viewContext.save()
+                ignoreErrors {
+                    try viewContext.save()
+                }
             }) {
                 if let reading = odometerReadingSheetOdometerReading {
                     OdometerReadingView(odometerReading: reading) {
                         odometerReadingSheetPresented = false
-                        try? viewContext.save()
+                        ignoreErrors {
+                            try viewContext.save()
+                        }
                     }
                 }
             }
@@ -107,7 +111,9 @@ struct LogItemView: View {
                         Button(action: {
                             let lineItem = createLineItem()
                             lineItem.type = t
-                            try? viewContext.save()
+                            ignoreErrors {
+                                try viewContext.save()
+                            }
                             newLineItemSheetPresented = false
                         }) {
                             LineItemTypeLabelView(type: t)
