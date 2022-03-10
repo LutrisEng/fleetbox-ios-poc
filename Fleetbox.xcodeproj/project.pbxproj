@@ -55,6 +55,35 @@
 		8690C7AB27D9A9180042F543 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A927D9A9170042F543 /* OdometerReading.swift */; };
 		8690C7AD27D9AA260042F543 /* OdometerReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */; };
 		8690C7AE27D9AA260042F543 /* OdometerReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */; };
+		8690C7B427D9E6290042F543 /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7B327D9E6290042F543 /* TestEnvironment.swift */; };
+		8690C7B627D9E72A0042F543 /* VehicleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7B527D9E72A0042F543 /* VehicleTest.swift */; };
+		8690C7B727D9E84D0042F543 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0B27CDD59D00AFE972 /* ContentView.swift */; };
+		8690C7B827D9E84D0042F543 /* EditVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869745D927D9617F00D16762 /* EditVehicleView.swift */; };
+		8690C7B927D9E84D0042F543 /* LogItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2227D970F300149689 /* LogItemLabelView.swift */; };
+		8690C7BA27D9E84D0042F543 /* LineItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2527D9721500149689 /* LineItemLabelView.swift */; };
+		8690C7BB27D9E84D0042F543 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
+		8690C7BC27D9E84D0042F543 /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
+		8690C7BD27D9E84D0042F543 /* LineItemFieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */; };
+		8690C7BE27D9E84D0042F543 /* OdometerReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */; };
+		8690C7BF27D9E84D0042F543 /* LogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9D27D48D14001E52C6 /* LogItemView.swift */; };
+		8690C7C027D9E84D0042F543 /* EditLineItemFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */; };
+		8690C7C127D9E8520042F543 /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
+		8690C7C227D9E8520042F543 /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
+		8690C7C327D9E8520042F543 /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
+		8690C7C427D9E8550042F543 /* LineItemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */; };
+		8690C7C527D9E85D0042F543 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732027D06A7F00047165 /* LogItem.swift */; };
+		8690C7C627D9E85D0042F543 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731A27CDF54E00047165 /* Vehicle.swift */; };
+		8690C7C727D9E85D0042F543 /* TireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D3727D994B200149689 /* TireSet.swift */; };
+		8690C7C827D9E85D0042F543 /* FleetboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */; };
+		8690C7C927D9E85D0042F543 /* VehicleSpotlightDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */; };
+		8690C7CA27D9E85D0042F543 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0C27CDD59D00AFE972 /* Persistence.swift */; };
+		8690C7CB27D9E85D0042F543 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732327D06B8C00047165 /* Shop.swift */; };
+		8690C7CC27D9E85D0042F543 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
+		8690C7CD27D9E85D0042F543 /* LineItemField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9427D47270001E52C6 /* LineItemField.swift */; };
+		8690C7CE27D9E85D0042F543 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A927D9A9170042F543 /* OdometerReading.swift */; };
+		8690C7CF27D9E8800042F543 /* Fleetbox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */; };
+		8690C7D327D9E8A60042F543 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8690C7D227D9E8A60042F543 /* Alamofire */; };
+		8690C7D527D9E8A80042F543 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8690C7D427D9E8A80042F543 /* Yams */; };
 		869745DA27D9617F00D16762 /* EditVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869745D927D9617F00D16762 /* EditVehicleView.swift */; };
 		869745DB27D9617F00D16762 /* EditVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869745D927D9617F00D16762 /* EditVehicleView.swift */; };
 		86B17F8927D45E0D001E52C6 /* LineItemTypes.yml in Resources */ = {isa = PBXBuildFile; fileRef = 86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */; };
@@ -138,6 +167,8 @@
 		8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemFieldLabelView.swift; sourceTree = "<group>"; };
 		8690C7A927D9A9170042F543 /* OdometerReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReading.swift; sourceTree = "<group>"; };
 		8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReadingView.swift; sourceTree = "<group>"; };
+		8690C7B327D9E6290042F543 /* TestEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
+		8690C7B527D9E72A0042F543 /* VehicleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTest.swift; sourceTree = "<group>"; };
 		869745D927D9617F00D16762 /* EditVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVehicleView.swift; sourceTree = "<group>"; };
 		86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LineItemTypes.yml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.yaml; };
 		86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypes.swift; sourceTree = "<group>"; };
@@ -178,6 +209,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				86B5D08427D075380040399C /* Sentry in Frameworks */,
+				8690C7D527D9E8A80042F543 /* Yams in Frameworks */,
+				8690C7D327D9E8A60042F543 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +287,8 @@
 			children = (
 				861DAE2327CDD59F00AFE972 /* Tests_iOS.swift */,
 				861DAE2527CDD59F00AFE972 /* Tests_iOSLaunchTests.swift */,
+				8690C7B327D9E6290042F543 /* TestEnvironment.swift */,
+				8690C7B527D9E72A0042F543 /* VehicleTest.swift */,
 			);
 			path = "Tests iOS";
 			sourceTree = "<group>";
@@ -409,6 +444,8 @@
 			name = "Tests iOS";
 			packageProductDependencies = (
 				86B5D08327D075380040399C /* Sentry */,
+				8690C7D227D9E8A60042F543 /* Alamofire */,
+				8690C7D427D9E8A80042F543 /* Yams */,
 			);
 			productName = "Tests iOS";
 			productReference = 861DAE1F27CDD59F00AFE972 /* Tests iOS.xctest */;
@@ -626,8 +663,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8690C7CC27D9E85D0042F543 /* LineItem.swift in Sources */,
+				8690C7CE27D9E85D0042F543 /* OdometerReading.swift in Sources */,
+				8690C7B627D9E72A0042F543 /* VehicleTest.swift in Sources */,
+				8690C7BB27D9E84D0042F543 /* VehicleView.swift in Sources */,
+				8690C7B727D9E84D0042F543 /* ContentView.swift in Sources */,
+				8690C7B427D9E6290042F543 /* TestEnvironment.swift in Sources */,
+				8690C7B927D9E84D0042F543 /* LogItemLabelView.swift in Sources */,
+				8690C7C227D9E8520042F543 /* VINDecoderResponse.swift in Sources */,
+				8690C7C827D9E85D0042F543 /* FleetboxApp.swift in Sources */,
+				8690C7C127D9E8520042F543 /* VINDecoderResult.swift in Sources */,
+				8690C7CF27D9E8800042F543 /* Fleetbox.xcdatamodeld in Sources */,
+				8690C7CD27D9E85D0042F543 /* LineItemField.swift in Sources */,
+				8690C7C727D9E85D0042F543 /* TireSet.swift in Sources */,
+				8690C7CA27D9E85D0042F543 /* Persistence.swift in Sources */,
+				8690C7BA27D9E84D0042F543 /* LineItemLabelView.swift in Sources */,
+				8690C7C627D9E85D0042F543 /* Vehicle.swift in Sources */,
+				8690C7C427D9E8550042F543 /* LineItemTypes.swift in Sources */,
+				8690C7C027D9E84D0042F543 /* EditLineItemFieldView.swift in Sources */,
 				861DAE2627CDD59F00AFE972 /* Tests_iOSLaunchTests.swift in Sources */,
+				8690C7BD27D9E84D0042F543 /* LineItemFieldLabelView.swift in Sources */,
+				8690C7C527D9E85D0042F543 /* LogItem.swift in Sources */,
+				8690C7BE27D9E84D0042F543 /* OdometerReadingView.swift in Sources */,
+				8690C7CB27D9E85D0042F543 /* Shop.swift in Sources */,
+				8690C7BC27D9E84D0042F543 /* LineItemView.swift in Sources */,
 				861DAE2427CDD59F00AFE972 /* Tests_iOS.swift in Sources */,
+				8690C7C927D9E85D0042F543 /* VehicleSpotlightDelegate.swift in Sources */,
+				8690C7B827D9E84D0042F543 /* EditVehicleView.swift in Sources */,
+				8690C7BF27D9E84D0042F543 /* LogItemView.swift in Sources */,
+				8690C7C327D9E8520042F543 /* VINDecoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1131,6 +1195,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
+		};
+		8690C7D227D9E8A60042F543 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		8690C7D427D9E8A80042F543 /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
 		};
 		86B17F9027D46924001E52C6 /* Yams */ = {
 			isa = XCSwiftPackageProductDependency;
