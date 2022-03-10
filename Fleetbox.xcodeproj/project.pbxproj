@@ -37,6 +37,7 @@
 		8664C24E27DAAA8200AE9ADB /* ExportableOdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24D27DAAA8200AE9ADB /* ExportableOdometerReading.swift */; };
 		8664C25027DAAB7800AE9ADB /* ExportableLineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24F27DAAB7800AE9ADB /* ExportableLineItem.swift */; };
 		8664C25227DAABE300AE9ADB /* ExportableLineItemField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C25127DAABE300AE9ADB /* ExportableLineItemField.swift */; };
+		8664C25427DAB14000AE9ADB /* ExportableAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C25327DAB14000AE9ADB /* ExportableAttachment.swift */; };
 		8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
 		8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */; };
 		8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */; };
@@ -125,6 +126,7 @@
 		8664C24D27DAAA8200AE9ADB /* ExportableOdometerReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableOdometerReading.swift; sourceTree = "<group>"; };
 		8664C24F27DAAB7800AE9ADB /* ExportableLineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableLineItem.swift; sourceTree = "<group>"; };
 		8664C25127DAABE300AE9ADB /* ExportableLineItemField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableLineItemField.swift; sourceTree = "<group>"; };
+		8664C25327DAB14000AE9ADB /* ExportableAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableAttachment.swift; sourceTree = "<group>"; };
 		8683930E27D1450B00D91D96 /* VehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
 		8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLineItemFieldView.swift; sourceTree = "<group>"; };
 		8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemFieldLabelView.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				8664C24D27DAAA8200AE9ADB /* ExportableOdometerReading.swift */,
 				8664C24F27DAAB7800AE9ADB /* ExportableLineItem.swift */,
 				8664C25127DAABE300AE9ADB /* ExportableLineItemField.swift */,
+				8664C25327DAB14000AE9ADB /* ExportableAttachment.swift */,
 			);
 			path = Export;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				8664C25227DAABE300AE9ADB /* ExportableLineItemField.swift in Sources */,
 				861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
 				861DAE3927CDD59F00AFE972 /* Persistence.swift in Sources */,
+				8664C25427DAB14000AE9ADB /* ExportableAttachment.swift in Sources */,
 				8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */,
 				8664C25027DAAB7800AE9ADB /* ExportableLineItem.swift in Sources */,
 				86B17F8C27D45EDF001E52C6 /* LineItemTypes.swift in Sources */,

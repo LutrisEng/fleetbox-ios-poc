@@ -14,6 +14,7 @@ struct ExportableLogItem : Codable {
     let lineItems: [ExportableLineItem]
     let odometerReading: ExportableOdometerReading?
     let shop: String?
+    let attachments: [ExportableAttachment]
     
     init(logItem: LogItem) {
         self.displayName = logItem.displayName
@@ -25,6 +26,7 @@ struct ExportableLogItem : Codable {
             self.odometerReading = nil
         }
         self.shop = logItem.shop?.name
+        self.attachments = logItem.attachments.map { ExportableAttachment(attachment: $0) }
     }
     
     func importLogItem(context: NSManagedObjectContext, vehicle: Vehicle) -> LogItem {
@@ -39,6 +41,11 @@ struct ExportableLogItem : Codable {
             _ = odometerReading.importOdometerReading(context: context, logItem: logItem)
         }
         // TODO: shop
+        for attachment in attachments {
+            let obj = attachment.importAttachment(context: context)
+            obj.logItem = logItem
+            
+        }
         return logItem
     }
 }
