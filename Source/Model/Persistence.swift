@@ -44,6 +44,24 @@ struct PersistenceController {
             let factoryTireLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
             factoryTireLineItem.typeId = "mountedTires"
             try! factoryTireLineItem.setFieldValue("tireSet", value: tireSet)
+            let factoryOilLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
+            factoryOilLineItem.typeId = "engineOilChange"
+            let factoryOilFilterLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
+            factoryOilFilterLineItem.typeId = "engineOilFilterChange"
+            let factoryTransmissionFluidLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
+            factoryTransmissionFluidLineItem.typeId = "transmissionFluidChange"
+            let factoryTransmissionFluidFilterLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
+            factoryTransmissionFluidFilterLineItem.typeId = "transmissionFluidFilterChange"
+            let factoryCoolantLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
+            factoryCoolantLineItem.typeId = "coolantChange"
+            let factoryBrakeFluidLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
+            factoryBrakeFluidLineItem.typeId = "brakeFluidChange"
+            let factoryEngineAirFilterLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
+            factoryEngineAirFilterLineItem.typeId = "engineAirFilterChange"
+            let factoryCabinAirFilterLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
+            factoryCabinAirFilterLineItem.typeId = "cabinAirFilterChange"
+            let factoryBatteryLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
+            factoryBatteryLineItem.typeId = "batteryReplacement"
             shop = Shop(context: viewContext)
             shop.name = "BMW of West Houston"
             logItem = LogItem(context: viewContext)

@@ -23,11 +23,131 @@ struct VehicleView: View {
         return reading
     }
     
+    struct VehicleDetail: View {
+        @Environment(\.managedObjectContext) private var viewContext
+        
+        @Binding var value: String?
+        @State var focused: Bool = false
+        let name: LocalizedStringKey
+        let example: String
+        
+        var body: some View {
+            HStack {
+                Text(name)
+                    .font(.body.bold())
+                    .frame(width: 60, alignment: .trailing)
+                ZStack(alignment: .trailing) {
+                    TextField(
+                        example,
+                        text: Binding(
+                            get: {
+                                value ?? ""
+                            },
+                            set: { newValue in
+                                value = newValue
+                                ignoreErrors {
+                                    try viewContext.save()
+                                }
+                            }
+                        ),
+                        onEditingChanged: { editingChanged in
+                            if editingChanged {
+                                focused = true
+                            } else {
+                                focused = false
+                            }
+                        }
+                    )
+                    if let value = value, focused && !value.isEmpty {
+                        Button(action: { self.value = "" }) {
+                            Image(systemName: "xmark.circle")
+                                .foregroundColor(Color(UIColor.opaqueSeparator))
+                        }
+                        .padding(.trailing, 8)
+                        .buttonStyle(BorderlessButtonStyle())
+                    }
+                }
+            }
+        }
+    }
+    
+    enum ReadOdometer : Identifiable {
+        case lineItem(lineItemType: String, name: String)
+        case fluidFilter(fluidLineItemType: String, filterLineItemType: String, fluidName: String)
+        
+        var id: String {
+            switch self {
+            case .lineItem(let t, let n): return "lineItem:\(t):\(n)"
+            case .fluidFilter(let ta, let tb, let n): return "lineItem:\(ta):\(tb):\(n)"
+            }
+        }
+    }
+    
+    struct LineItemOdometerReading: View {
+        @ObservedObject var vehicle: Vehicle
+        let lineItemType: String
+        let name: String
+        
+        var body: some View {
+            if let milesSince = vehicle.milesSince(lineItemType: lineItemType) {
+                Text("\(name): \(milesSince) miles")
+            }
+        }
+    }
+    
+    struct FluidFilterLineItemOdometerReading: View {
+        @ObservedObject var vehicle: Vehicle
+        let fluidLineItemType: String
+        let filterLineItemType: String
+        let fluidName: String
+        
+        var body: some View {
+            let milesSinceFluid = vehicle.milesSince(lineItemType: fluidLineItemType)
+            let milesSinceFilter = vehicle.milesSince(lineItemType: filterLineItemType)
+            if let milesSinceFluid = milesSinceFluid, let milesSinceFilter = milesSinceFilter, milesSinceFluid == milesSinceFilter {
+                Text("\(fluidName) & filter: \(milesSinceFluid) miles")
+            } else {
+                if let milesSinceFluid = milesSinceFluid {
+                    Text("\(fluidName): \(milesSinceFluid) miles")
+                }
+                if let milesSinceFilter = milesSinceFilter {
+                    Text("\(fluidName) filter: \(milesSinceFilter) miles")
+                }
+            }
+        }
+    }
+    
     var body: some View {
         VStack {
-            List {
-                if vehicle.displayName != nil {
-                    Text(vehicle.fullModelName)
+            Form {
+                Section(header: Text("Vehicle details")) {
+                    VehicleDetail(value: $vehicle.displayName, name: "Name", example: dummyData.vehicleName)
+                    HStack {
+                        VehicleDetail(value: $vehicle.vin, name: "VIN", example: dummyData.vin)
+                        if let vin = vehicle.vin, vin != "" {
+                            Button(
+                                action: {
+                                    Task.init {
+                                        await ignoreErrors {
+                                            // TODO: error dialog
+                                            let decoderResult = try await decodeVIN(vin)
+                                            if let modelYear = decoderResult.modelYear {
+                                                vehicle.year = Int64(modelYear)
+                                            }
+                                            vehicle.make = decoderResult.make ?? vehicle.make
+                                            vehicle.model = decoderResult.model ?? vehicle.model
+                                        }
+                                    }
+                                }
+                            ) {
+                                Image(systemName: "square.and.arrow.down")
+                            }
+                            .padding(.trailing, 8)
+                            .buttonStyle(BorderlessButtonStyle())
+                        }
+                    }
+                    VehicleDetail(value: $vehicle.make, name: "Make", example: dummyData.vehicleMake)
+                    VehicleDetail(value: $vehicle.model, name: "Model", example: dummyData.vehicleModel)
                 }
                 Section(header: Text("Odometer")) {
                     Button("Record odometer reading") {
@@ -39,16 +159,52 @@ struct VehicleView: View {
                     if let tires = vehicle.currentTireSet {
                         Text("Tires: \(tires.odometer) miles")
                     }
-                    let milesSinceOilChange = vehicle.milesSince(lineItemType: "engineOilChange")
-                    let milesSinceOilFilterChange = vehicle.milesSince(lineItemType: "engineOilFilterChange")
-                    if let milesSinceOilChange = milesSinceOilChange, let milesSinceOilFilterChange = milesSinceOilFilterChange, milesSinceOilChange == milesSinceOilFilterChange {
-                        Text("Oil & filter: \(milesSinceOilChange) miles")
-                    } else {
-                        if let milesSinceOilChange = milesSinceOilChange {
-                            Text("Oil: \(milesSinceOilChange)")
-                        }
-                        if let milesSinceOilFilterChange = milesSinceOilFilterChange {
-                            Text("Oil filter: \(milesSinceOilFilterChange)")
+                    let odometers: [ReadOdometer] = [
+                        .fluidFilter(
+                            fluidLineItemType: "engineOilChange",
+                            filterLineItemType: "engineOilFilterChange",
+                            fluidName: "Oil"
+                        ),
+                        .fluidFilter(
+                            fluidLineItemType: "transmissionFluidChange",
+                            filterLineItemType: "transmissionFluidFilterChange",
+                            fluidName: "Transmission fluid"
+                        ),
+                        .lineItem(
+                            lineItemType: "brakeFluidChange",
+                            name: "Brake fluid"
+                        ),
+                        .lineItem(
+                            lineItemType: "coolantChange",
+                            name: "Coolant"
+                        ),
+                        .lineItem(
+                            lineItemType: "sparkPlugReplacement",
+                            name: "Spark plugs"
+                        ),
+                        .lineItem(
+                            lineItemType: "batteryReplacement",
+                            name: "12V battery"
+                        ),
+                        .lineItem(
+                            lineItemType: "hvBatteryReplacement",
+                            name: "High-voltage battery"
+                        ),
+                        .lineItem(
+                            lineItemType: "engineAirFilterChange",
+                            name: "Engine air filter"
+                        ),
+                        .lineItem(
+                            lineItemType: "cabinAirFilterChange",
+                            name: "Cabin air filter"
+                        )
+                    ]
+                    ForEach(odometers) { x in
+                        switch x {
+                        case .lineItem(let lineItemType, let name):
+                            LineItemOdometerReading(vehicle: vehicle, lineItemType: lineItemType, name: name)
+                        case .fluidFilter(let fluidLineItemType, let filterLineItemType, let fluidName):
+                            FluidFilterLineItemOdometerReading(vehicle: vehicle, fluidLineItemType: fluidLineItemType, filterLineItemType: filterLineItemType, fluidName: fluidName)
                         }
                     }
                 }
@@ -75,13 +231,13 @@ struct VehicleView: View {
                     }
                 }
             }
-        }.navigationTitle(vehicle.displayNameWithFallback)
+        }.navigationTitle(vehicle.fullModelName)
             .toolbar {
-                ToolbarItem(placement: .primaryAction) {
-                    NavigationLink("Edit") {
-                        Text("test")
-                    }
-                }
+//                ToolbarItem(placement: .primaryAction) {
+//                    NavigationLink("Edit") {
+//                        Text("test")
+//                    }
+//                }
             }
             .sheet(isPresented: $odometerReadingSheetPresented, onDismiss: {
                 if shouldDeleteOdometerReading {

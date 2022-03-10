@@ -19,6 +19,7 @@
 		864C732127D06A7F00047165 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732027D06A7F00047165 /* LogItem.swift */; };
 		864C732427D06B8C00047165 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732327D06B8C00047165 /* Shop.swift */; };
 		864C732727D06C6800047165 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
+		8652AA7727DAB5F300D8D56D /* Dummy Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8652AA7627DAB5F300D8D56D /* Dummy Data.swift */; };
 		865D028527D9F1B3006C815D /* Error Handling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865D028427D9F1B3006C815D /* Error Handling.swift */; };
 		865D028827D9F622006C815D /* LineItemTypes.yml in Resources */ = {isa = PBXBuildFile; fileRef = 86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */; };
 		865D029027D9F9A2006C815D /* BaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865D028F27D9F9A2006C815D /* BaseUITests.swift */; };
@@ -105,6 +106,7 @@
 		864C732027D06A7F00047165 /* LogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
 		864C732327D06B8C00047165 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		864C732627D06C6800047165 /* LineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
+		8652AA7627DAB5F300D8D56D /* Dummy Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dummy Data.swift"; sourceTree = "<group>"; };
 		865D028427D9F1B3006C815D /* Error Handling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error Handling.swift"; sourceTree = "<group>"; };
 		865D028D27D9F9A2006C815D /* Fleetbox UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fleetbox UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		865D028F27D9F9A2006C815D /* BaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITests.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */,
 				865D028427D9F1B3006C815D /* Error Handling.swift */,
 				8664C24627DA987800AE9ADB /* NumbersOnly.swift */,
+				8652AA7627DAB5F300D8D56D /* Dummy Data.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				8664C24E27DAAA8200AE9ADB /* ExportableOdometerReading.swift in Sources */,
 				861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */,
 				86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */,
+				8652AA7727DAB5F300D8D56D /* Dummy Data.swift in Sources */,
 				86B17F9E27D48D14001E52C6 /* LogItemView.swift in Sources */,
 				861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */,
 				864C731B27CDF54E00047165 /* Vehicle.swift in Sources */,

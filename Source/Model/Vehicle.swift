@@ -100,7 +100,7 @@ extension Vehicle {
     }
     
     var displayNameWithFallback: String {
-        if let displayName = displayName {
+        if let displayName = displayName, displayName != "" {
             return displayName
         } else {
             return fullModelName

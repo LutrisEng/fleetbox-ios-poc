@@ -206,6 +206,26 @@ categories:
                                 shortDisplayName: Serial number
                                 longDisplayName: What is the new battery's serial number?
                                 type: string
+                    hvBatteryReplacement:
+                        displayName: HV battery replacement
+                        description: The high-voltage (e.g. hybrid/traction) battery was replaced.
+                        icon:
+                            sfsymbols: minus.plus.batteryblock
+                        fields:
+                            brand:
+                                shortDisplayName: Brand
+                                longDisplayName: What is the new battery's brand?
+                                type: string
+                                example: PartCo
+                                defaultValueFrom: vehicle.make
+                            partNumber:
+                                shortDisplayName: Part number
+                                longDisplayName: What is the new battery's part number?
+                                type: string
+                            serialNumber:
+                                shortDisplayName: Serial number
+                                longDisplayName: What is the new battery's serial number?
+                                type: string
             fluids:
                 displayName: Fluids
                 icon:

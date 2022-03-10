@@ -8,10 +8,10 @@
 import Foundation
 
 struct VINDecoderResponseResult: Codable {
-    let value: String
-    let valueId: String
-    let variable: String
-    let variableId: String
+    let value: String?
+    let valueId: String?
+    let variable: String?
+    let variableId: Int?
     
     enum CodingKeys: String, CodingKey {
         case value = "Value"
@@ -37,12 +37,14 @@ struct VINDecoderResponse: Codable {
     func toResult() -> VINDecoderResult {
         var result = VINDecoderResult()
         for r in results {
-            switch r.variableId {
-            case "143": result.errorCode = Int(r.value) ?? result.errorCode
-            case "26": result.make = r.value
-            case "28": result.model = r.value
-            case "29": result.modelYear = Int(r.value) ?? result.modelYear
-            default: break
+            if let value = r.value {
+                switch r.variableId {
+                case 143: result.errorCode = Int(value) ?? result.errorCode
+                case 26: result.make = value
+                case 28: result.model = value
+                case 29: result.modelYear = Int(value) ?? result.modelYear
+                default: break
+                }
             }
         }
         return result
