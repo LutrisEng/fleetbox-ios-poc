@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
-		861DAE2427CDD59F00AFE972 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE2327CDD59F00AFE972 /* Tests_iOS.swift */; };
-		861DAE2627CDD59F00AFE972 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE2527CDD59F00AFE972 /* Tests_iOSLaunchTests.swift */; };
 		861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */; };
 		861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */; };
 		861DAE3727CDD59F00AFE972 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0B27CDD59D00AFE972 /* ContentView.swift */; };
@@ -23,6 +21,8 @@
 		864C732727D06C6800047165 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
 		865D028527D9F1B3006C815D /* Error Handling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865D028427D9F1B3006C815D /* Error Handling.swift */; };
 		865D028827D9F622006C815D /* LineItemTypes.yml in Resources */ = {isa = PBXBuildFile; fileRef = 86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */; };
+		865D029027D9F9A2006C815D /* BaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865D028F27D9F9A2006C815D /* BaseUITests.swift */; };
+		865D029227D9F9A2006C815D /* UILaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865D029127D9F9A2006C815D /* UILaunchTests.swift */; };
 		86638D2327D970F400149689 /* LogItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2227D970F300149689 /* LogItemLabelView.swift */; };
 		86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2527D9721500149689 /* LineItemLabelView.swift */; };
 		86638D3827D994B200149689 /* TireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D3727D994B200149689 /* TireSet.swift */; };
@@ -31,7 +31,6 @@
 		8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */; };
 		8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A927D9A9170042F543 /* OdometerReading.swift */; };
 		8690C7AD27D9AA260042F543 /* OdometerReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */; };
-		8690C7CF27D9E8800042F543 /* Fleetbox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */; };
 		8690C7F027D9EBE90042F543 /* VehicleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7B527D9E72A0042F543 /* VehicleTest.swift */; };
 		8690C7F127D9EBE90042F543 /* LineItemTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5D09427D076B70040399C /* LineItemTypeTest.swift */; };
 		8690C7F227D9EBE90042F543 /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7B327D9E6290042F543 /* TestEnvironment.swift */; };
@@ -49,7 +48,7 @@
 		865D028727D9F553006C815D /* PBXBuildRule */ = {
 			isa = PBXBuildRule;
 			compilerSpec = com.apple.compilers.proxy.script;
-			filePatterns = /LineItemTypes.yml;
+			filePatterns = "*/LineItemTypes.yml";
 			fileType = pattern.proxy;
 			inputFiles = (
 			);
@@ -59,17 +58,17 @@
 				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).json",
 			);
 			runOncePerArchitecture = 0;
-			script = "#!/bin/sh\nset -euxo pipefail\nexport PATH=\"/opt/homebrew/bin:$PATH\"\nyq -o=json eval \"$SCRIPT_INPUT_FILE\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			script = "#!/bin/sh\nset -euxo pipefail\nexport PATH=\"/opt/homebrew/bin:$PATH\"\nyq -o=json eval \"$SCRIPT_INPUT_FILE\" | jq -c . > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 		};
 /* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
-		861DAE2027CDD59F00AFE972 /* PBXContainerItemProxy */ = {
+		865D029327D9F9A2006C815D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 861DAE0327CDD59D00AFE972 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 861DAE1127CDD59F00AFE972;
-			remoteInfo = "Fleetbox (iOS)";
+			remoteInfo = Fleetbox;
 		};
 		8690C7EB27D9EBD90042F543 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -89,15 +88,15 @@
 		861DAE0C27CDD59D00AFE972 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		861DAE0D27CDD59F00AFE972 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		861DAE1227CDD59F00AFE972 /* Fleetbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleetbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		861DAE1F27CDD59F00AFE972 /* UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		861DAE2327CDD59F00AFE972 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		861DAE2527CDD59F00AFE972 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
 		864C731A27CDF54E00047165 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleSpotlightDelegate.swift; sourceTree = "<group>"; };
 		864C732027D06A7F00047165 /* LogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
 		864C732327D06B8C00047165 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		864C732627D06C6800047165 /* LineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
 		865D028427D9F1B3006C815D /* Error Handling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error Handling.swift"; sourceTree = "<group>"; };
+		865D028D27D9F9A2006C815D /* Fleetbox UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fleetbox UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		865D028F27D9F9A2006C815D /* BaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUITests.swift; sourceTree = "<group>"; };
+		865D029127D9F9A2006C815D /* UILaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILaunchTests.swift; sourceTree = "<group>"; };
 		86638D2227D970F300149689 /* LogItemLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemLabelView.swift; sourceTree = "<group>"; };
 		86638D2527D9721500149689 /* LineItemLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemLabelView.swift; sourceTree = "<group>"; };
 		86638D2C27D9870700149689 /* AppIcon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppIcon.afdesign; sourceTree = "<group>"; };
@@ -110,7 +109,7 @@
 		8690C7B327D9E6290042F543 /* TestEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
 		8690C7B527D9E72A0042F543 /* VehicleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTest.swift; sourceTree = "<group>"; };
 		8690C7E227D9EB780042F543 /* Fleetbox.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = Fleetbox.xctestplan; path = Fleetbox.xcodeproj/Fleetbox.xctestplan; sourceTree = "<group>"; };
-		8690C7E727D9EBD90042F543 /* Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8690C7E727D9EBD90042F543 /* Fleetbox Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fleetbox Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		869745D927D9617F00D16762 /* EditVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVehicleView.swift; sourceTree = "<group>"; };
 		86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LineItemTypes.yml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.yaml; };
 		86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypes.swift; sourceTree = "<group>"; };
@@ -133,7 +132,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		861DAE1C27CDD59F00AFE972 /* Frameworks */ = {
+		865D028A27D9F9A2006C815D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -157,8 +156,8 @@
 				86638D2B27D9870700149689 /* Design */,
 				861BA8FD27D8537100DD729A /* Fleetbox.entitlements */,
 				861DAE0727CDD59D00AFE972 /* Source */,
-				861DAE2227CDD59F00AFE972 /* UI Tests */,
 				8690C7E827D9EBD90042F543 /* Unit Tests */,
+				865D028E27D9F9A2006C815D /* UI Tests */,
 				861DAE1327CDD59F00AFE972 /* Products */,
 				861DAE4F27CDDAEB00AFE972 /* Frameworks */,
 			);
@@ -180,19 +179,10 @@
 			isa = PBXGroup;
 			children = (
 				861DAE1227CDD59F00AFE972 /* Fleetbox.app */,
-				861DAE1F27CDD59F00AFE972 /* UI Tests.xctest */,
-				8690C7E727D9EBD90042F543 /* Unit Tests.xctest */,
+				8690C7E727D9EBD90042F543 /* Fleetbox Unit Tests.xctest */,
+				865D028D27D9F9A2006C815D /* Fleetbox UI Tests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		861DAE2227CDD59F00AFE972 /* UI Tests */ = {
-			isa = PBXGroup;
-			children = (
-				861DAE2327CDD59F00AFE972 /* Tests_iOS.swift */,
-				861DAE2527CDD59F00AFE972 /* Tests_iOSLaunchTests.swift */,
-			);
-			path = "UI Tests";
 			sourceTree = "<group>";
 		};
 		861DAE4F27CDDAEB00AFE972 /* Frameworks */ = {
@@ -218,6 +208,15 @@
 				8690C7A927D9A9170042F543 /* OdometerReading.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		865D028E27D9F9A2006C815D /* UI Tests */ = {
+			isa = PBXGroup;
+			children = (
+				865D028F27D9F9A2006C815D /* BaseUITests.swift */,
+				865D029127D9F9A2006C815D /* UILaunchTests.swift */,
+			);
+			path = "UI Tests";
 			sourceTree = "<group>";
 		};
 		86638D2B27D9870700149689 /* Design */ = {
@@ -301,29 +300,27 @@
 			productReference = 861DAE1227CDD59F00AFE972 /* Fleetbox.app */;
 			productType = "com.apple.product-type.application";
 		};
-		861DAE1E27CDD59F00AFE972 /* UI Tests */ = {
+		865D028C27D9F9A2006C815D /* Fleetbox UI Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 861DAE4527CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "UI Tests" */;
+			buildConfigurationList = 865D029527D9F9A2006C815D /* Build configuration list for PBXNativeTarget "Fleetbox UI Tests" */;
 			buildPhases = (
-				861DAE1B27CDD59F00AFE972 /* Sources */,
-				861DAE1C27CDD59F00AFE972 /* Frameworks */,
-				861DAE1D27CDD59F00AFE972 /* Resources */,
+				865D028927D9F9A2006C815D /* Sources */,
+				865D028A27D9F9A2006C815D /* Frameworks */,
+				865D028B27D9F9A2006C815D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				861DAE2127CDD59F00AFE972 /* PBXTargetDependency */,
+				865D029427D9F9A2006C815D /* PBXTargetDependency */,
 			);
-			name = "UI Tests";
-			packageProductDependencies = (
-			);
-			productName = "Tests iOS";
-			productReference = 861DAE1F27CDD59F00AFE972 /* UI Tests.xctest */;
+			name = "Fleetbox UI Tests";
+			productName = "UI Tests";
+			productReference = 865D028D27D9F9A2006C815D /* Fleetbox UI Tests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		8690C7E627D9EBD90042F543 /* Unit Tests */ = {
+		8690C7E627D9EBD90042F543 /* Fleetbox Unit Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8690C7ED27D9EBD90042F543 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
+			buildConfigurationList = 8690C7ED27D9EBD90042F543 /* Build configuration list for PBXNativeTarget "Fleetbox Unit Tests" */;
 			buildPhases = (
 				8690C7E327D9EBD90042F543 /* Sources */,
 				8690C7E427D9EBD90042F543 /* Frameworks */,
@@ -334,9 +331,9 @@
 			dependencies = (
 				8690C7EC27D9EBD90042F543 /* PBXTargetDependency */,
 			);
-			name = "Unit Tests";
+			name = "Fleetbox Unit Tests";
 			productName = FleetboxUnitTests;
-			productReference = 8690C7E727D9EBD90042F543 /* Unit Tests.xctest */;
+			productReference = 8690C7E727D9EBD90042F543 /* Fleetbox Unit Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -352,7 +349,7 @@
 					861DAE1127CDD59F00AFE972 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
-					861DAE1E27CDD59F00AFE972 = {
+					865D028C27D9F9A2006C815D = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 861DAE1127CDD59F00AFE972;
 					};
@@ -380,8 +377,8 @@
 			projectRoot = "";
 			targets = (
 				861DAE1127CDD59F00AFE972 /* Fleetbox */,
-				861DAE1E27CDD59F00AFE972 /* UI Tests */,
-				8690C7E627D9EBD90042F543 /* Unit Tests */,
+				8690C7E627D9EBD90042F543 /* Fleetbox Unit Tests */,
+				865D028C27D9F9A2006C815D /* Fleetbox UI Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -396,7 +393,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		861DAE1D27CDD59F00AFE972 /* Resources */ = {
+		865D028B27D9F9A2006C815D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -446,13 +443,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		861DAE1B27CDD59F00AFE972 /* Sources */ = {
+		865D028927D9F9A2006C815D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8690C7CF27D9E8800042F543 /* Fleetbox.xcdatamodeld in Sources */,
-				861DAE2627CDD59F00AFE972 /* Tests_iOSLaunchTests.swift in Sources */,
-				861DAE2427CDD59F00AFE972 /* Tests_iOS.swift in Sources */,
+				865D029227D9F9A2006C815D /* UILaunchTests.swift in Sources */,
+				865D029027D9F9A2006C815D /* BaseUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,10 +465,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		861DAE2127CDD59F00AFE972 /* PBXTargetDependency */ = {
+		865D029427D9F9A2006C815D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 861DAE1127CDD59F00AFE972 /* Fleetbox */;
-			targetProxy = 861DAE2027CDD59F00AFE972 /* PBXContainerItemProxy */;
+			targetProxy = 865D029327D9F9A2006C815D /* PBXContainerItemProxy */;
 		};
 		8690C7EC27D9EBD90042F543 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -662,43 +658,41 @@
 			};
 			name = Release;
 		};
-		861DAE4627CDD59F00AFE972 /* Debug */ = {
+		865D029627D9F9A2006C815D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "engineering.lutris.Tests-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.tests.ui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Fleetbox (iOS)";
+				TEST_TARGET_NAME = Fleetbox;
 			};
 			name = Debug;
 		};
-		861DAE4727CDD59F00AFE972 /* Release */ = {
+		865D029727D9F9A2006C815D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "engineering.lutris.Tests-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.tests.ui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "Fleetbox (iOS)";
+				TEST_TARGET_NAME = Fleetbox;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -713,7 +707,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.FleetboxUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.tests.unit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -733,7 +727,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.FleetboxUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.tests.unit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -765,16 +759,16 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		861DAE4527CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "UI Tests" */ = {
+		865D029527D9F9A2006C815D /* Build configuration list for PBXNativeTarget "Fleetbox UI Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				861DAE4627CDD59F00AFE972 /* Debug */,
-				861DAE4727CDD59F00AFE972 /* Release */,
+				865D029627D9F9A2006C815D /* Debug */,
+				865D029727D9F9A2006C815D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8690C7ED27D9EBD90042F543 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
+		8690C7ED27D9EBD90042F543 /* Build configuration list for PBXNativeTarget "Fleetbox Unit Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8690C7EE27D9EBD90042F543 /* Debug */,

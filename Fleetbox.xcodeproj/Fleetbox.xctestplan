@@ -2,7 +2,7 @@
   "configurations" : [
     {
       "id" : "AC5CA901-C877-4D0C-9DDE-F9DBBC348E6B",
-      "name" : "Configuration 1",
+      "name" : "Default",
       "options" : {
 
       }
@@ -21,16 +21,15 @@
       "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Fleetbox.xcodeproj",
-        "identifier" : "861DAE1E27CDD59F00AFE972",
-        "name" : "Tests iOS"
+        "identifier" : "8690C7E627D9EBD90042F543",
+        "name" : "Fleetbox Unit Tests"
       }
     },
     {
-      "parallelizable" : true,
       "target" : {
         "containerPath" : "container:Fleetbox.xcodeproj",
-        "identifier" : "8690C7E627D9EBD90042F543",
-        "name" : "FleetboxUnitTests"
+        "identifier" : "865D028C27D9F9A2006C815D",
+        "name" : "Fleetbox UI Tests"
       }
     }
   ],

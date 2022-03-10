@@ -38,9 +38,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "861DAE1E27CDD59F00AFE972"
-               BuildableName = "UI Tests.xctest"
-               BlueprintName = "UI Tests"
+               BlueprintIdentifier = "865D028C27D9F9A2006C815D"
+               BuildableName = "Fleetbox UI Tests.xctest"
+               BlueprintName = "Fleetbox UI Tests"
                ReferencedContainer = "container:Fleetbox.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -49,8 +49,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8690C7E627D9EBD90042F543"
-               BuildableName = "Unit Tests.xctest"
-               BlueprintName = "Unit Tests"
+               BuildableName = "Fleetbox Unit Tests.xctest"
+               BlueprintName = "Fleetbox Unit Tests"
                ReferencedContainer = "container:Fleetbox.xcodeproj">
             </BuildableReference>
          </TestableReference>
