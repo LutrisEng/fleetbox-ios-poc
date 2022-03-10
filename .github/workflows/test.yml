@@ -13,4 +13,4 @@ jobs:
       - name: Checkout LFS objects
         run: git lfs checkout
       - name: Run tests
-        run: set -o pipefail && xcodebuild -scheme Fleetbox clean test | xcpretty
+        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" clean test
