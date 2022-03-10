@@ -9,14 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Run tests
-        run: set -o pipefail && xcodebuild -scheme "Fleetbox (iOS)" -destination "platform=iOS Simulator,OS=15.3.1,name=iPhone 13" clean test | xcpretty
+        run: set -o pipefail && xcodebuild -scheme "Fleetbox (iOS)" -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" clean test | xcpretty
   ipados:
     name: iPadOS
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
       - name: Run tests
-        run: set -o pipefail && xcodebuild -scheme "Fleetbox (iOS)" -destination "platform=iOS Simulator,OS=15.3.1,name=iPad (9th generation)" clean test | xcpretty
+        run: set -o pipefail && xcodebuild -scheme "Fleetbox (iOS)" -destination "platform=iOS Simulator,OS=15.2,name=iPad (9th generation)" clean test | xcpretty
   macos:
     name: macOS
     runs-on: macos-latest
