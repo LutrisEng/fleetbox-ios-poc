@@ -10,6 +10,6 @@ import XCTest
 
 class LineItemTypeTest: XCTestCase {
     func testDeserializes() throws {
-        XCTAssertNotNil(lineItemTypes)
+        _ = try LineItemTypes()
     }
 }

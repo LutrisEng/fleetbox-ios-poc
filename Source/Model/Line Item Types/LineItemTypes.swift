@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Yams
 
 let lineItemTypes = try! LineItemTypes()
 let lineItemDefaultIcon = "wrench.and.screwdriver"
@@ -194,8 +193,8 @@ struct LineItemTypes {
         let categories: [ String : YamlCategory ]
     }
     
-    private let filePath = Bundle.main.url(forResource: "LineItemTypes", withExtension: "yml")!
-    private let decoder = YAMLDecoder()
+    private let filePath = Bundle.main.url(forResource: "LineItemTypes", withExtension: "json")!
+    private let decoder = JSONDecoder()
     private let yamlContents: YamlContents
     public let topLevelCategories: [LineItemTypeCategory]
     public let allCategories: [LineItemTypeCategory]
@@ -205,7 +204,7 @@ struct LineItemTypes {
     public let hierarchyItems: [LineItemTypeHierarchyItem]
     
     init() throws {
-        yamlContents = try decoder.decode(from: try Data(contentsOf: filePath))
+        yamlContents = try decoder.decode(YamlContents.self, from: try Data(contentsOf: filePath))
         topLevelCategories = try yamlContents.categories.map { (id, c) in
             try LineItemTypeCategory(id: id, categoryPath: [], yaml: c)
         }

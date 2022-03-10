@@ -22,6 +22,7 @@
 		864C732427D06B8C00047165 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732327D06B8C00047165 /* Shop.swift */; };
 		864C732727D06C6800047165 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
 		865D028527D9F1B3006C815D /* Error Handling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865D028427D9F1B3006C815D /* Error Handling.swift */; };
+		865D028827D9F622006C815D /* LineItemTypes.yml in Resources */ = {isa = PBXBuildFile; fileRef = 86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */; };
 		86638D2327D970F400149689 /* LogItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2227D970F300149689 /* LogItemLabelView.swift */; };
 		86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2527D9721500149689 /* LineItemLabelView.swift */; };
 		86638D3827D994B200149689 /* TireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D3727D994B200149689 /* TireSet.swift */; };
@@ -35,9 +36,7 @@
 		8690C7F127D9EBE90042F543 /* LineItemTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5D09427D076B70040399C /* LineItemTypeTest.swift */; };
 		8690C7F227D9EBE90042F543 /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7B327D9E6290042F543 /* TestEnvironment.swift */; };
 		869745DA27D9617F00D16762 /* EditVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869745D927D9617F00D16762 /* EditVehicleView.swift */; };
-		86B17F8927D45E0D001E52C6 /* LineItemTypes.yml in Resources */ = {isa = PBXBuildFile; fileRef = 86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */; };
 		86B17F8C27D45EDF001E52C6 /* LineItemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */; };
-		86B17F9127D46924001E52C6 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 86B17F9027D46924001E52C6 /* Yams */; };
 		86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9427D47270001E52C6 /* LineItemField.swift */; };
 		86B17F9E27D48D14001E52C6 /* LogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9D27D48D14001E52C6 /* LogItemView.swift */; };
 		86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
@@ -45,6 +44,23 @@
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
 		86D2DA7227D081490083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7127D081490083254E /* Alamofire */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		865D028727D9F553006C815D /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.yml";
+			fileType = pattern.proxy;
+			inputFiles = (
+			);
+			isEditable = 1;
+			name = "Convert YAML files to JSON";
+			outputFiles = (
+				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).json",
+			);
+			script = "#!/bin/sh\nset -euxo pipefail\nexport PATH=\"/opt/homebrew/bin:$PATH\"\nyq -o=json eval \"$SCRIPT_INPUT_FILE\" > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		861DAE2027CDD59F00AFE972 /* PBXContainerItemProxy */ = {
@@ -112,7 +128,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */,
-				86B17F9127D46924001E52C6 /* Yams in Frameworks */,
 				86D2DA7227D081490083254E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +287,7 @@
 				861DAE1027CDD59F00AFE972 /* Resources */,
 			);
 			buildRules = (
+				865D028727D9F553006C815D /* PBXBuildRule */,
 			);
 			dependencies = (
 			);
@@ -279,7 +295,6 @@
 			packageProductDependencies = (
 				861DAE4D27CDDAD700AFE972 /* Sentry */,
 				86D2DA7127D081490083254E /* Alamofire */,
-				86B17F9027D46924001E52C6 /* Yams */,
 			);
 			productName = "Fleetbox (iOS)";
 			productReference = 861DAE1227CDD59F00AFE972 /* Fleetbox.app */;
@@ -358,7 +373,6 @@
 			packageReferences = (
 				861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 				86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */,
-				86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */,
 			);
 			productRefGroup = 861DAE1327CDD59F00AFE972 /* Products */;
 			projectDirPath = "";
@@ -376,8 +390,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				865D028827D9F622006C815D /* LineItemTypes.yml in Resources */,
 				861DAE3B27CDD59F00AFE972 /* Assets.xcassets in Resources */,
-				86B17F8927D45E0D001E52C6 /* LineItemTypes.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -779,14 +793,6 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/jpsim/Yams.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -802,11 +808,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
 			productName = Sentry;
-		};
-		86B17F9027D46924001E52C6 /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
 		};
 		86D2DA7127D081490083254E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
