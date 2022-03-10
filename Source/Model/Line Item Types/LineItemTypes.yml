@@ -166,13 +166,15 @@ categories:
             sfsymbols: wrench.and.screwdriver
         subcategories:
             mechanical:
-                displayName: mechanical
+                displayName: Mechanical
                 icon:
                     sfsymbols: wrench.and.screwdriver
                 types:
                     sparkPlugReplacement:
                         displayName: Spark plug replacement
                         description: Spark plugs were replaced.
+                        icon:
+                            sfsymbols: bolt
                         fields:
                             brand:
                                 shortDisplayName: Brand
@@ -187,6 +189,8 @@ categories:
                     batteryReplacement:
                         displayName: Battery replacement
                         description: The main 12V battery was replaced.
+                        icon:
+                            sfsymbols: minus.plus.batteryblock
                         fields:
                             brand:
                                 shortDisplayName: Brand
