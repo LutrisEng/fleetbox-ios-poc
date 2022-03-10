@@ -42,13 +42,37 @@ extension LineItemField {
             }
             return type?.enumValues[stringValue]?.displayName
         case .tireSet: return tireSetValue?.displayName
+        case .boolean:
+            if let booleanFormat = type?.booleanFormat {
+                if booleanValue {
+                    return booleanFormat.trueFormat
+                } else {
+                    return booleanFormat.falseFormat
+                }
+            } else {
+                if booleanValue {
+                    return "Yes"
+                } else {
+                    return "No"
+                }
+            }
         case nil: return nil
         }
     }
     
     func setDefaultValue(vehicle: Vehicle?) {
         if let defaultValue = type?.defaultValue {
-            stringValue = defaultValue
+            switch type?.type {
+            case .boolean:
+                switch defaultValue {
+                case "true":
+                    booleanValue = true
+                default:
+                    booleanValue = false
+                }
+            default:
+                stringValue = defaultValue
+            }
         } else if let defaultFrom = type?.defaultValueFrom {
             switch defaultFrom {
             case .vehicleMake:

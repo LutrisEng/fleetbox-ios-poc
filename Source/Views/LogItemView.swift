@@ -14,17 +14,6 @@ struct LogItemView: View {
     
     @ObservedObject var logItem: LogItem
     
-    @State private var odometerReadingSheetPresented = false
-    @State private var odometerReadingSheetOdometerReading: OdometerReading? = nil
-    
-    func createOdometerReading() -> OdometerReading {
-        let reading = OdometerReading(context: viewContext)
-        reading.logItem = logItem
-        reading.vehicle = logItem.vehicle
-        reading.at = Date.now
-        return reading
-    }
-    
     @State private var newLineItemSheetPresented = false
     
     func createLineItem() -> LineItem {
@@ -33,11 +22,11 @@ struct LogItemView: View {
     
     var body: some View {
         VStack {
-            List {
+            Form {
                 Section(header: Text("Shop")) {
                     if let shop = logItem.shop {
-                        NavigationLink(shop.name ?? "Performed by shop") {
-                            Text("This is a page for a shop, k?")
+                        NavigationLink("Performed by \(shop.name ?? "a shop")") {
+                            ShopView(shop: shop)
                         }
                         Button ("Remove shop") {
                             logItem.shop = nil
@@ -51,14 +40,35 @@ struct LogItemView: View {
                 }
                 Section(header: Text("Odometer reading")) {
                     if let odometerReading = logItem.odometerReading {
-                        Button("\(odometerReading.reading) miles") {
-                            odometerReadingSheetPresented = true
-                            odometerReadingSheetOdometerReading = odometerReading
+                        HStack {
+                            TextField(
+                                "Odometer reading at time of service",
+                                text: Binding(
+                                    get: {
+                                        String(odometerReading.reading)
+                                    },
+                                    set: { value in
+                                        let filtered = value.filter { $0.isNumber }
+                                        odometerReading.reading = Int64(filtered) ?? 0
+                                        ignoreErrors {
+                                            try viewContext.save()
+                                        }
+                                    }
+                                )
+                            )
+                                .keyboardType(.decimalPad)
+                            Spacer()
+                            Text("miles")
+                        }
+                        Button("Remove odometer reading") {
+                            viewContext.delete(odometerReading)
                         }
                     } else {
                         Button("Add odometer reading") {
-                            odometerReadingSheetPresented = true
-                            odometerReadingSheetOdometerReading = createOdometerReading()
+                            _ = OdometerReading(context: viewContext, logItem: logItem)
+                            ignoreErrors {
+                                try viewContext.save()
+                            }
                         }
                     }
                 }
@@ -66,7 +76,7 @@ struct LogItemView: View {
                     let lineItems = logItem.lineItems
                     ForEach(Array(lineItems)) { lineItem in
                         NavigationLink(destination: LineItemView(lineItem: lineItem)) {
-                            LineItemLabelView(lineItem: lineItem).details()
+                            LineItemLabelView(lineItem: lineItem).details().padding([.top, .bottom], 10)
                         }
                     }.onDelete { offsets in
                         withAnimation {
@@ -89,21 +99,7 @@ struct LogItemView: View {
                 }
             }
         }
-            .navigationTitle(logItem.formattedDate ?? "Log item")
-            .sheet(isPresented: $odometerReadingSheetPresented, onDismiss: {
-                ignoreErrors {
-                    try viewContext.save()
-                }
-            }) {
-                if let reading = odometerReadingSheetOdometerReading {
-                    OdometerReadingView(odometerReading: reading) {
-                        odometerReadingSheetPresented = false
-                        ignoreErrors {
-                            try viewContext.save()
-                        }
-                    }
-                }
-            }
+        .navigationTitle(logItem.displayName ?? logItem.formattedDate ?? "Log item")
             .sheet(isPresented: $newLineItemSheetPresented) {
                 List(lineItemTypes.hierarchyItems, children: \.children) { item in
                     switch item {
@@ -128,9 +124,8 @@ struct LogItemView: View {
 
 struct LogItemView_Previews: PreviewProvider {
     static var previews: some View {
-        return NavigationView {
+        PreviewWrapper {
             LogItemView(logItem: PersistenceController.preview.fixtures.logItem)
         }
-        .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
     }
 }

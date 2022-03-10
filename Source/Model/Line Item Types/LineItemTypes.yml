@@ -6,6 +6,135 @@ categories:
         icon:
             sfsymbols: magnifyingglass
         subcategories:
+            predrive:
+                displayName: Pre-drive
+                icon:
+                    sfsymbols: car
+                types:
+                    basicPreDrive:
+                        displayName: Basic pre-drive inspection
+                        description: A basic inspection intended to be completed in a couple minutes
+                        fields:
+                            lowBeams:
+                                shortDisplayName: Low beams
+                                longDisplayName: Are the low beams functional?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                    true: Pass
+                                    false: Fail
+                            highBeams:
+                                shortDisplayName: High beams
+                                longDisplayName: Are the high beams functional?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            brakes:
+                                shortDisplayName: Brakes
+                                longDisplayName: Does the brake pedal feel normal?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            brakeLights:
+                                shortDisplayName: Brake lights
+                                longDisplayName: Are the brake lights functional?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            tailLights:
+                                shortDisplayName: Tail lights
+                                longDisplayName: Are the tail lights functional?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            hazards:
+                                shortDisplayName: Hazards
+                                longDisplayName: Are the hazards functional?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            visibility:
+                                shortDisplayName: Visibility
+                                longDisplayName: Is there adequate visibility out of the windshield, front windows, and mirrors?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            wiperBlades:
+                                shortDisplayName: Wiper blades
+                                longDisplayName: Are the wiper blades in adequate condition?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            washerFluid:
+                                shortDisplayName: Washer fluid
+                                longDisplayName: Is the washer fluid sprayer functional?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            tireInflation:
+                                shortDisplayName: Tire inflation
+                                longDisplayName: Are the tires adequately inflated?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            leaks:
+                                shortDisplayName: Leaks
+                                longDisplayName: Are there any leaks under the vehicle?
+                                type: boolean
+                                defaultValue: "true"
+                                booleanFormat:
+                                  true: Fail
+                                  false: Pass
+                            sound:
+                                shortDisplayName: Sound
+                                longDisplayName: Does the vehicle make abnormal sounds while running?
+                                type: boolean
+                                defaultValue: "true"
+                                booleanFormat:
+                                  true: Fail
+                                  false: Pass
+                            steering:
+                                shortDisplayName: Steering
+                                longDisplayName: Does the steering feel normal?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            horn:
+                                shortDisplayName: Horn
+                                longDisplayName: Is the horn functional?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
+                            fuel:
+                                shortDisplayName: Fuel
+                                longDisplayName: Is there adequate fuel?
+                                type: boolean
+                                defaultValue: "false"
+                                booleanFormat:
+                                  true: Pass
+                                  false: Fail
             government:
                 displayName: Government-mandated
                 icon:
@@ -36,6 +165,43 @@ categories:
         icon:
             sfsymbols: wrench.and.screwdriver
         subcategories:
+            mechanical:
+                displayName: mechanical
+                icon:
+                    sfsymbols: wrench.and.screwdriver
+                types:
+                    sparkPlugReplacement:
+                        displayName: Spark plug replacement
+                        description: Spark plugs were replaced.
+                        fields:
+                            brand:
+                                shortDisplayName: Brand
+                                longDisplayName: What is the new spark plugs' brand?
+                                type: string
+                                example: PartCo
+                                defaultValueFrom: vehicle.make
+                            partNumber:
+                                shortDisplayName: Part number
+                                longDisplayName: What is the new spark plugs' part number?
+                                type: string
+                    batteryReplacement:
+                        displayName: Battery replacement
+                        description: The main 12V battery was replaced.
+                        fields:
+                            brand:
+                                shortDisplayName: Brand
+                                longDisplayName: What is the new battery's brand?
+                                type: string
+                                example: PartCo
+                                defaultValueFrom: vehicle.make
+                            partNumber:
+                                shortDisplayName: Part number
+                                longDisplayName: What is the new battery's part number?
+                                type: string
+                            serialNumber:
+                                shortDisplayName: Serial number
+                                longDisplayName: What is the new battery's serial number?
+                                type: string
             fluids:
                 displayName: Fluids
                 icon:
@@ -55,11 +221,53 @@ categories:
                                 shortDisplayName: Brand
                                 longDisplayName: What is the new oil's brand?
                                 type: string
-                                example: Mobil One
+                                example: OilCo
                                 defaultValueFrom: vehicle.make
                             partNumber:
                                 shortDisplayName: Part number
                                 longDisplayName: What is the new oil's part number?
+                                type: string
+                    transmissionFluidChange:
+                        displayName: Transmission fluid changed
+                        description: Transmission fluid was drained and refilled.
+                        fields:
+                            brand:
+                                shortDisplayName: Brand
+                                longDisplayName: What is the new fluid's brand?
+                                type: string
+                                example: FluidCo
+                                defaultValueFrom: vehicle.make
+                            partNumber:
+                                shortDisplayName: Part number
+                                longDisplayName: What is the new fluid's part number?
+                                type: string
+                    brakeFluidChange:
+                        displayName: Brake fluid changed
+                        description: Brake fluid was drained and refilled.
+                        fields:
+                            brand:
+                                shortDisplayName: Brand
+                                longDisplayName: What is the new fluid's brand?
+                                type: string
+                                example: FluidCo
+                                defaultValueFrom: vehicle.make
+                            partNumber:
+                                shortDisplayName: Part number
+                                longDisplayName: What is the new fluid's part number?
+                                type: string
+                    coolantChange:
+                        displayName: Coolant flushed
+                        description: Engine coolant was drained and refilled.
+                        fields:
+                            brand:
+                                shortDisplayName: Brand
+                                longDisplayName: What is the new coolant's brand?
+                                type: string
+                                example: FluidCo
+                                defaultValueFrom: vehicle.make
+                            partNumber:
+                                shortDisplayName: Part number
+                                longDisplayName: What is the new coolant's part number?
                                 type: string
             filters:
                 displayName: Filters
@@ -76,11 +284,24 @@ categories:
                                         shortDisplayName: Brand
                                         longDisplayName: What is the new oil filter's brand?
                                         type: string
-                                        example: MicroGard
+                                        example: FilterCo
                                         defaultValueFrom: vehicle.make
                                     partNumber:
                                         shortDisplayName: Part number
                                         longDisplayName: What is the new oil filter's part number?
+                                        type: string
+                            transmissionFluidFilterChange:
+                                displayName: Transmission fluid filter replaced
+                                fields:
+                                    brand:
+                                        shortDisplayName: Brand
+                                        longDisplayName: What is the new filter's brand?
+                                        type: string
+                                        example: FilterCo
+                                        defaultValueFrom: vehicle.make
+                                    partNumber:
+                                        shortDisplayName: Part number
+                                        longDisplayName: What is the new filter's part number?
                                         type: string
                     airFilters:
                         displayName: Air filters
@@ -94,7 +315,7 @@ categories:
                                         shortDisplayName: Brand
                                         longDisplayName: What is the new air filter's brand?
                                         type: string
-                                        example: MicroGard
+                                        example: FilterCo
                                         defaultValueFrom: vehicle.make
                                     partNumber:
                                         shortDisplayName: Part number
@@ -107,7 +328,7 @@ categories:
                                         shortDisplayName: Brand
                                         longDisplayName: What is the new air filter's brand?
                                         type: string
-                                        example: MicroGard
+                                        example: FilterCo
                                         defaultValueFrom: vehicle.make
                                     partNumber:
                                         shortDisplayName: Part number

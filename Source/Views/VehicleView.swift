@@ -25,14 +25,10 @@ struct VehicleView: View {
     
     var body: some View {
         VStack {
-            if vehicle.displayName != nil {
-                VStack {
-                    Text(vehicle.fullModelName)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .font(.subheadline)
-                }.padding()
-            }
             List {
+                if vehicle.displayName != nil {
+                    Text(vehicle.fullModelName)
+                }
                 Section(header: Text("Odometer")) {
                     Button("Record odometer reading") {
                         odometerReadingSheetOdometerReading = createOdometerReading()
@@ -60,7 +56,7 @@ struct VehicleView: View {
                     let logItems = vehicle.logItemsInverseChrono
                     ForEach(logItems, id: \.self) { logItem in
                         NavigationLink(destination: LogItemView(logItem: logItem)) {
-                            LogItemLabelView(logItem: logItem)
+                            LogItemLabelView(logItem: logItem).padding([.top, .bottom], 10)
                         }
                     }.onDelete { offsets in
                         withAnimation {
@@ -116,9 +112,8 @@ struct VehicleView: View {
 
 struct VehicleView_Previews: PreviewProvider {
     static var previews: some View {
-        return NavigationView {
+        PreviewWrapper {
             VehicleView(vehicle: PersistenceController.preview.fixtures.vehicle)
         }
-        .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
     }
 }

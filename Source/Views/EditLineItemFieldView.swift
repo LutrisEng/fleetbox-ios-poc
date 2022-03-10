@@ -13,6 +13,7 @@ struct EditLineItemFieldView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var field: LineItemField
     @State private var stringValue: String = ""
+    @State private var booleanValue: Bool = false
     
     struct EditTireSetLineItemFieldView: View {
         @Environment(\.managedObjectContext) private var viewContext
@@ -73,6 +74,10 @@ struct EditLineItemFieldView: View {
                         .onAppear(perform: setupString)
                         .onDisappear(perform: saveString)
                 case .tireSet: EditTireSetLineItemFieldView(field: field, type: type)
+                case .boolean:
+                    Toggle(type.shortDisplayName, isOn: $booleanValue)
+                        .onAppear(perform: setupBool)
+                        .onDisappear(perform: saveBool)
                 }
             }
         }
@@ -84,6 +89,20 @@ struct EditLineItemFieldView: View {
     
     private func saveString() {
         field.stringValue = stringValue
+        field.objectWillChange.send()
+        do {
+            try viewContext.save()
+        } catch {
+            SentrySDK.capture(error: error)
+        }
+    }
+    
+    private func setupBool() {
+        booleanValue = field.booleanValue
+    }
+    
+    private func saveBool() {
+        field.booleanValue = booleanValue
         field.objectWillChange.send()
         do {
             try viewContext.save()

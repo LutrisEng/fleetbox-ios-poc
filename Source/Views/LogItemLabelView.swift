@@ -12,9 +12,26 @@ struct LogItemLabelView: View {
     
     var body: some View {
         VStack {
-            Text(logItem.formattedDate ?? "Log item")
-                .font(.body.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
+            if let displayName = logItem.displayName {
+                Text(displayName)
+                    .font(.body.bold())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                if let formattedDate = logItem.formattedDate {
+                    Text(formattedDate)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            } else {
+                Text(logItem.formattedDate ?? "Log item")
+                    .font(.body.bold())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            if let shop = logItem.shop {
+                Text("Performed by \(shop.name ?? "a shop")")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            } else {
+                Text("Performed by owner")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
             ForEach(logItem.lineItems) { lineItem in
                 LineItemLabelView(lineItem: lineItem).mini
             }

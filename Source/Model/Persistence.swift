@@ -21,6 +21,7 @@ struct PersistenceController {
         
         init(viewContext: NSManagedObjectContext) {
             vehicle = Vehicle(context: viewContext)
+            vehicle.displayName = "The Mazda CX-5"
             vehicle.year = 2022
             vehicle.make = "BMW"
             vehicle.model = "M340i"
@@ -28,6 +29,7 @@ struct PersistenceController {
             let factory = Shop(context: viewContext)
             factory.name = "BMW"
             let factoryLogItem = LogItem(context: viewContext)
+            factoryLogItem.displayName = "Vehicle manufactured"
             factoryLogItem.vehicle = vehicle
             factoryLogItem.performedAt = Date(timeIntervalSince1970: 1641452583)
             factoryLogItem.shop = factory
@@ -45,6 +47,7 @@ struct PersistenceController {
             shop = Shop(context: viewContext)
             shop.name = "BMW of West Houston"
             logItem = LogItem(context: viewContext)
+            logItem.displayName = "Break-in oil change"
             logItem.vehicle = vehicle
             logItem.performedAt = Date(timeIntervalSince1970: 1643007783)
             logItem.shop = shop

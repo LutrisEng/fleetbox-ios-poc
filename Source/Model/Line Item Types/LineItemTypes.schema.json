@@ -70,8 +70,21 @@
                   "enum": [
                       "string",
                       "tireSet",
-                      "enum"
+                      "enum",
+                      "boolean"
                   ]
+              },
+              "booleanFormat": {
+                  "type": "object",
+                  "properties": {
+                      "true": {
+                          "type": "string"
+                      },
+                      "false": {
+                          "type": "string"
+                      }
+                  },
+                  "required": ["true", "false"]
               },
               "enumValues": {
                   "type": "object",

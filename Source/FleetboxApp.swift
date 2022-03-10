@@ -48,12 +48,12 @@ struct FleetboxApp: App {
                         Image(systemName: "car.2")
                         Text("Vehicles")
                     }
-                Text("Tire sets")
+                TireSetsView()
                     .tabItem {
                         Image(systemName: "circle.circle")
                         Text("Tire sets")
                     }
-                Text("Shops")
+                ShopsView()
                     .tabItem {
                         Image(systemName: "building.2")
                         Text("Shops")

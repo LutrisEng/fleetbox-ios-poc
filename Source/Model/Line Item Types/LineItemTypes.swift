@@ -15,7 +15,7 @@ enum LineItemTypesParseError : Error {
 }
 
 enum LineItemTypeFieldType {
-    case string, tireSet, enumeration
+    case string, tireSet, enumeration, boolean
 }
 
 struct LineItemTypeEnumValue : Identifiable {
@@ -30,6 +30,11 @@ struct LineItemTypeEnumValue : Identifiable {
     }
 }
 
+struct LineItemTypeBooleanFormat {
+    let trueFormat: String
+    let falseFormat: String
+}
+
 enum LineItemTypeFetcher {
     case vehicleMake, vehicleRegistrationState, vehicleOilViscosity, vehicleCurrentTires
 }
@@ -39,6 +44,7 @@ class LineItemTypeField : Identifiable {
     let shortDisplayName: String
     let longDisplayName: String
     let type: LineItemTypeFieldType
+    let booleanFormat: LineItemTypeBooleanFormat?
     let enumValues: [ String : LineItemTypeEnumValue ]
     let example: String?
     let defaultValue: String?
@@ -52,7 +58,13 @@ class LineItemTypeField : Identifiable {
         case "string": self.type = .string
         case "tireSet": self.type = .tireSet
         case "enum": self.type = .enumeration
+        case "boolean": self.type = .boolean
         default: throw LineItemTypesParseError.invalidFieldType(statedType: yaml.type)
+        }
+        if let booleanFormat = yaml.booleanFormat {
+            self.booleanFormat = LineItemTypeBooleanFormat(trueFormat: booleanFormat.trueFormat, falseFormat: booleanFormat.falseFormat)
+        } else {
+            self.booleanFormat = nil
         }
         var enumValues: [ String : LineItemTypeEnumValue ] = [:]
         for (id, ev) in yaml.enumValues ?? [:] {
@@ -161,10 +173,21 @@ struct LineItemTypes {
         let description: String?
     }
     
+    struct YamlBooleanFormat : Codable {
+        let trueFormat: String
+        let falseFormat: String
+        
+        enum CodingKeys: String, CodingKey {
+            case trueFormat = "true"
+            case falseFormat = "false"
+        }
+    }
+    
     struct YamlField : Codable {
         let shortDisplayName: String
         let longDisplayName: String
         let type: String
+        let booleanFormat: YamlBooleanFormat?
         let enumValues: [ String : YamlEnumValue ]?
         let example: String?
         let defaultValue: String?

@@ -14,27 +14,6 @@ struct OdometerReadingView: View {
     
     let onSave: () -> ()
     
-    class NumbersOnly: ObservableObject {
-        @Published var value = "0" {
-            didSet {
-                let filtered = value.filter { $0.isNumber }
-                if value != filtered {
-                    value = filtered
-                }
-            }
-        }
-        
-        var numericValue: Int64 {
-            get {
-                Int64(value)!
-            }
-            
-            set(newValue) {
-                value = String(newValue)
-            }
-        }
-    }
-    
     @ObservedObject private var editingReading = NumbersOnly()
     
     var body: some View {
@@ -65,9 +44,8 @@ struct OdometerReadingView: View {
 
 struct OdometerReadingView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        PreviewWrapper {
             OdometerReadingView(odometerReading: PersistenceController.preview.fixtures.odometerReading) {}
         }
-        .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
     }
 }

@@ -24,10 +24,8 @@ struct LineItemView: View {
 
 struct LineItemView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            EmptyView()
+        PreviewWrapper {
             LineItemView(lineItem: PersistenceController.preview.fixtures.lineItem)
         }
-        .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
     }
 }
