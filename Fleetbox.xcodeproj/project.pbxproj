@@ -8,106 +8,42 @@
 
 /* Begin PBXBuildFile section */
 		861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
-		861BA90027D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
 		861DAE2427CDD59F00AFE972 /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE2327CDD59F00AFE972 /* Tests_iOS.swift */; };
 		861DAE2627CDD59F00AFE972 /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE2527CDD59F00AFE972 /* Tests_iOSLaunchTests.swift */; };
-		861DAE3027CDD59F00AFE972 /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE2F27CDD59F00AFE972 /* Tests_macOS.swift */; };
-		861DAE3227CDD59F00AFE972 /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE3127CDD59F00AFE972 /* Tests_macOSLaunchTests.swift */; };
 		861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */; };
-		861DAE3427CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */; };
 		861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */; };
-		861DAE3627CDD59F00AFE972 /* FleetboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */; };
 		861DAE3727CDD59F00AFE972 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0B27CDD59D00AFE972 /* ContentView.swift */; };
-		861DAE3827CDD59F00AFE972 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0B27CDD59D00AFE972 /* ContentView.swift */; };
 		861DAE3927CDD59F00AFE972 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0C27CDD59D00AFE972 /* Persistence.swift */; };
-		861DAE3A27CDD59F00AFE972 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0C27CDD59D00AFE972 /* Persistence.swift */; };
 		861DAE3B27CDD59F00AFE972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861DAE0D27CDD59F00AFE972 /* Assets.xcassets */; };
-		861DAE3C27CDD59F00AFE972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861DAE0D27CDD59F00AFE972 /* Assets.xcassets */; };
 		861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE4D27CDDAD700AFE972 /* Sentry */; };
-		861DAE5127CDDAEB00AFE972 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE5027CDDAEB00AFE972 /* Sentry */; };
-		861DAE5427CDDCFC00AFE972 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE5327CDDCFC00AFE972 /* Sparkle */; };
-		861DAE5627CDE24900AFE972 /* CheckForUpdatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE5527CDE24900AFE972 /* CheckForUpdatesView.swift */; };
 		864C731B27CDF54E00047165 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731A27CDF54E00047165 /* Vehicle.swift */; };
-		864C731C27CDF54E00047165 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731A27CDF54E00047165 /* Vehicle.swift */; };
 		864C731E27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */; };
-		864C731F27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */; };
 		864C732127D06A7F00047165 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732027D06A7F00047165 /* LogItem.swift */; };
-		864C732227D06A7F00047165 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732027D06A7F00047165 /* LogItem.swift */; };
 		864C732427D06B8C00047165 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732327D06B8C00047165 /* Shop.swift */; };
-		864C732527D06B8C00047165 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732327D06B8C00047165 /* Shop.swift */; };
 		864C732727D06C6800047165 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
-		864C732827D06C6800047165 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
 		86638D2327D970F400149689 /* LogItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2227D970F300149689 /* LogItemLabelView.swift */; };
-		86638D2427D970F400149689 /* LogItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2227D970F300149689 /* LogItemLabelView.swift */; };
 		86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2527D9721500149689 /* LineItemLabelView.swift */; };
-		86638D2727D9721500149689 /* LineItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2527D9721500149689 /* LineItemLabelView.swift */; };
 		86638D3127D9870700149689 /* AppIcon.afdesign in Resources */ = {isa = PBXBuildFile; fileRef = 86638D2C27D9870700149689 /* AppIcon.afdesign */; };
-		86638D3227D9870700149689 /* AppIcon.afdesign in Resources */ = {isa = PBXBuildFile; fileRef = 86638D2C27D9870700149689 /* AppIcon.afdesign */; };
 		86638D3827D994B200149689 /* TireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D3727D994B200149689 /* TireSet.swift */; };
-		86638D3927D994B200149689 /* TireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D3727D994B200149689 /* TireSet.swift */; };
 		8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
-		8683931027D1450B00D91D96 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
 		8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */; };
-		8690C7A527D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */; };
 		8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */; };
-		8690C7A827D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */; };
 		8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A927D9A9170042F543 /* OdometerReading.swift */; };
-		8690C7AB27D9A9180042F543 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A927D9A9170042F543 /* OdometerReading.swift */; };
 		8690C7AD27D9AA260042F543 /* OdometerReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */; };
-		8690C7AE27D9AA260042F543 /* OdometerReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */; };
-		8690C7B427D9E6290042F543 /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7B327D9E6290042F543 /* TestEnvironment.swift */; };
-		8690C7B627D9E72A0042F543 /* VehicleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7B527D9E72A0042F543 /* VehicleTest.swift */; };
-		8690C7B727D9E84D0042F543 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0B27CDD59D00AFE972 /* ContentView.swift */; };
-		8690C7B827D9E84D0042F543 /* EditVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869745D927D9617F00D16762 /* EditVehicleView.swift */; };
-		8690C7B927D9E84D0042F543 /* LogItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2227D970F300149689 /* LogItemLabelView.swift */; };
-		8690C7BA27D9E84D0042F543 /* LineItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2527D9721500149689 /* LineItemLabelView.swift */; };
-		8690C7BB27D9E84D0042F543 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
-		8690C7BC27D9E84D0042F543 /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
-		8690C7BD27D9E84D0042F543 /* LineItemFieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */; };
-		8690C7BE27D9E84D0042F543 /* OdometerReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */; };
-		8690C7BF27D9E84D0042F543 /* LogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9D27D48D14001E52C6 /* LogItemView.swift */; };
-		8690C7C027D9E84D0042F543 /* EditLineItemFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */; };
-		8690C7C127D9E8520042F543 /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
-		8690C7C227D9E8520042F543 /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
-		8690C7C327D9E8520042F543 /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
-		8690C7C427D9E8550042F543 /* LineItemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */; };
-		8690C7C527D9E85D0042F543 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732027D06A7F00047165 /* LogItem.swift */; };
-		8690C7C627D9E85D0042F543 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731A27CDF54E00047165 /* Vehicle.swift */; };
-		8690C7C727D9E85D0042F543 /* TireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D3727D994B200149689 /* TireSet.swift */; };
-		8690C7C827D9E85D0042F543 /* FleetboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */; };
-		8690C7C927D9E85D0042F543 /* VehicleSpotlightDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */; };
-		8690C7CA27D9E85D0042F543 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0C27CDD59D00AFE972 /* Persistence.swift */; };
-		8690C7CB27D9E85D0042F543 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732327D06B8C00047165 /* Shop.swift */; };
-		8690C7CC27D9E85D0042F543 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
-		8690C7CD27D9E85D0042F543 /* LineItemField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9427D47270001E52C6 /* LineItemField.swift */; };
-		8690C7CE27D9E85D0042F543 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A927D9A9170042F543 /* OdometerReading.swift */; };
 		8690C7CF27D9E8800042F543 /* Fleetbox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */; };
-		8690C7D327D9E8A60042F543 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 8690C7D227D9E8A60042F543 /* Alamofire */; };
-		8690C7D527D9E8A80042F543 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 8690C7D427D9E8A80042F543 /* Yams */; };
+		8690C7F027D9EBE90042F543 /* VehicleTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7B527D9E72A0042F543 /* VehicleTest.swift */; };
+		8690C7F127D9EBE90042F543 /* LineItemTypeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5D09427D076B70040399C /* LineItemTypeTest.swift */; };
+		8690C7F227D9EBE90042F543 /* TestEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7B327D9E6290042F543 /* TestEnvironment.swift */; };
 		869745DA27D9617F00D16762 /* EditVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869745D927D9617F00D16762 /* EditVehicleView.swift */; };
-		869745DB27D9617F00D16762 /* EditVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869745D927D9617F00D16762 /* EditVehicleView.swift */; };
 		86B17F8927D45E0D001E52C6 /* LineItemTypes.yml in Resources */ = {isa = PBXBuildFile; fileRef = 86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */; };
-		86B17F8A27D45E17001E52C6 /* LineItemTypes.yml in Resources */ = {isa = PBXBuildFile; fileRef = 86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */; };
 		86B17F8C27D45EDF001E52C6 /* LineItemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */; };
-		86B17F8D27D45EDF001E52C6 /* LineItemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */; };
 		86B17F9127D46924001E52C6 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 86B17F9027D46924001E52C6 /* Yams */; };
-		86B17F9327D46930001E52C6 /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 86B17F9227D46930001E52C6 /* Yams */; };
 		86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9427D47270001E52C6 /* LineItemField.swift */; };
-		86B17F9627D47270001E52C6 /* LineItemField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9427D47270001E52C6 /* LineItemField.swift */; };
 		86B17F9E27D48D14001E52C6 /* LogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9D27D48D14001E52C6 /* LogItemView.swift */; };
-		86B17F9F27D48D14001E52C6 /* LogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9D27D48D14001E52C6 /* LogItemView.swift */; };
-		86B5D08027D075320040399C /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 86B5D07F27D075320040399C /* Sentry */; };
-		86B5D08227D075340040399C /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 86B5D08127D075340040399C /* Sparkle */; };
-		86B5D08427D075380040399C /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 86B5D08327D075380040399C /* Sentry */; };
-		86B5D09527D076B70040399C /* LineItemTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5D09427D076B70040399C /* LineItemTypeTests.swift */; };
 		86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
-		86D2DA6927D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
 		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
-		86D2DA6C27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
-		86D2DA6F27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
 		86D2DA7227D081490083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7127D081490083254E /* Alamofire */; };
-		86D2DA7427D081540083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7327D081540083254E /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,24 +54,17 @@
 			remoteGlobalIDString = 861DAE1127CDD59F00AFE972;
 			remoteInfo = "Fleetbox (iOS)";
 		};
-		861DAE2C27CDD59F00AFE972 /* PBXContainerItemProxy */ = {
+		8690C7EB27D9EBD90042F543 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 861DAE0327CDD59D00AFE972 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 861DAE1727CDD59F00AFE972;
-			remoteInfo = "Fleetbox (macOS)";
-		};
-		86B5D08F27D076A30040399C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 861DAE0327CDD59D00AFE972 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 861DAE1727CDD59F00AFE972;
-			remoteInfo = "Fleetbox (macOS)";
+			remoteGlobalIDString = 861DAE1127CDD59F00AFE972;
+			remoteInfo = "Fleetbox (iOS)";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		861BA8FD27D8537100DD729A /* Fleetbox (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Fleetbox (iOS).entitlements"; sourceTree = "<group>"; };
+		861BA8FD27D8537100DD729A /* Fleetbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleetbox.entitlements; sourceTree = "<group>"; };
 		861BA8FE27D8546700DD729A /* LineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemView.swift; sourceTree = "<group>"; };
 		861DAE0927CDD59D00AFE972 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetboxApp.swift; sourceTree = "<group>"; };
@@ -143,16 +72,9 @@
 		861DAE0C27CDD59D00AFE972 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		861DAE0D27CDD59F00AFE972 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		861DAE1227CDD59F00AFE972 /* Fleetbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleetbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		861DAE1827CDD59F00AFE972 /* Fleetbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fleetbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		861DAE1A27CDD59F00AFE972 /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		861DAE1F27CDD59F00AFE972 /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		861DAE1F27CDD59F00AFE972 /* UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		861DAE2327CDD59F00AFE972 /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
 		861DAE2527CDD59F00AFE972 /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
-		861DAE2B27CDD59F00AFE972 /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		861DAE2F27CDD59F00AFE972 /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		861DAE3127CDD59F00AFE972 /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
-		861DAE5527CDE24900AFE972 /* CheckForUpdatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckForUpdatesView.swift; sourceTree = "<group>"; };
-		861DAE5727CDE53C00AFE972 /* Fleetbox--macOS--Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fleetbox--macOS--Info.plist"; sourceTree = "<group>"; };
 		864C731A27CDF54E00047165 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleSpotlightDelegate.swift; sourceTree = "<group>"; };
 		864C732027D06A7F00047165 /* LogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
@@ -169,14 +91,15 @@
 		8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReadingView.swift; sourceTree = "<group>"; };
 		8690C7B327D9E6290042F543 /* TestEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
 		8690C7B527D9E72A0042F543 /* VehicleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTest.swift; sourceTree = "<group>"; };
+		8690C7E227D9EB780042F543 /* Fleetbox.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = Fleetbox.xctestplan; path = Fleetbox.xcodeproj/Fleetbox.xctestplan; sourceTree = "<group>"; };
+		8690C7E727D9EBD90042F543 /* Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		869745D927D9617F00D16762 /* EditVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVehicleView.swift; sourceTree = "<group>"; };
 		86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LineItemTypes.yml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.yaml; };
 		86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypes.swift; sourceTree = "<group>"; };
 		86B17F8E27D467EF001E52C6 /* LineItemTypes.schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LineItemTypes.schema.json; sourceTree = "<group>"; };
 		86B17F9427D47270001E52C6 /* LineItemField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemField.swift; sourceTree = "<group>"; };
 		86B17F9D27D48D14001E52C6 /* LogItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemView.swift; sourceTree = "<group>"; };
-		86B5D08B27D076A30040399C /* Tests Shared.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests Shared.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		86B5D09427D076B70040399C /* LineItemTypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeTests.swift; sourceTree = "<group>"; };
+		86B5D09427D076B70040399C /* LineItemTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeTest.swift; sourceTree = "<group>"; };
 		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
 		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
@@ -193,37 +116,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		861DAE1527CDD59F00AFE972 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				86D2DA7427D081540083254E /* Alamofire in Frameworks */,
-				861DAE5127CDDAEB00AFE972 /* Sentry in Frameworks */,
-				86B17F9327D46930001E52C6 /* Yams in Frameworks */,
-				861DAE5427CDDCFC00AFE972 /* Sparkle in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		861DAE1C27CDD59F00AFE972 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86B5D08427D075380040399C /* Sentry in Frameworks */,
-				8690C7D527D9E8A80042F543 /* Yams in Frameworks */,
-				8690C7D327D9E8A60042F543 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		861DAE2827CDD59F00AFE972 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				86B5D08027D075320040399C /* Sentry in Frameworks */,
-				86B5D08227D075340040399C /* Sparkle in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		86B5D08827D076A30040399C /* Frameworks */ = {
+		8690C7E427D9EBD90042F543 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -236,20 +136,18 @@
 		861DAE0227CDD59D00AFE972 = {
 			isa = PBXGroup;
 			children = (
+				8690C7E227D9EB780042F543 /* Fleetbox.xctestplan */,
 				86638D2B27D9870700149689 /* Design */,
-				861BA8FD27D8537100DD729A /* Fleetbox (iOS).entitlements */,
-				861DAE5727CDE53C00AFE972 /* Fleetbox--macOS--Info.plist */,
-				861DAE0727CDD59D00AFE972 /* Shared */,
-				861DAE1927CDD59F00AFE972 /* macOS */,
-				861DAE2227CDD59F00AFE972 /* Tests iOS */,
-				861DAE2E27CDD59F00AFE972 /* Tests macOS */,
-				86B5D08C27D076A30040399C /* Tests Shared */,
+				861BA8FD27D8537100DD729A /* Fleetbox.entitlements */,
+				861DAE0727CDD59D00AFE972 /* Source */,
+				861DAE2227CDD59F00AFE972 /* UI Tests */,
+				8690C7E827D9EBD90042F543 /* Unit Tests */,
 				861DAE1327CDD59F00AFE972 /* Products */,
 				861DAE4F27CDDAEB00AFE972 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		861DAE0727CDD59D00AFE972 /* Shared */ = {
+		861DAE0727CDD59D00AFE972 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				86D2DA7527D087D20083254E /* Views */,
@@ -258,48 +156,26 @@
 				861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */,
 				861DAE0D27CDD59F00AFE972 /* Assets.xcassets */,
 			);
-			path = Shared;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		861DAE1327CDD59F00AFE972 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				861DAE1227CDD59F00AFE972 /* Fleetbox.app */,
-				861DAE1827CDD59F00AFE972 /* Fleetbox.app */,
-				861DAE1F27CDD59F00AFE972 /* Tests iOS.xctest */,
-				861DAE2B27CDD59F00AFE972 /* Tests macOS.xctest */,
-				86B5D08B27D076A30040399C /* Tests Shared.xctest */,
+				861DAE1F27CDD59F00AFE972 /* UI Tests.xctest */,
+				8690C7E727D9EBD90042F543 /* Unit Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		861DAE1927CDD59F00AFE972 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				861DAE1A27CDD59F00AFE972 /* macOS.entitlements */,
-				861DAE5527CDE24900AFE972 /* CheckForUpdatesView.swift */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
-		861DAE2227CDD59F00AFE972 /* Tests iOS */ = {
+		861DAE2227CDD59F00AFE972 /* UI Tests */ = {
 			isa = PBXGroup;
 			children = (
 				861DAE2327CDD59F00AFE972 /* Tests_iOS.swift */,
 				861DAE2527CDD59F00AFE972 /* Tests_iOSLaunchTests.swift */,
-				8690C7B327D9E6290042F543 /* TestEnvironment.swift */,
-				8690C7B527D9E72A0042F543 /* VehicleTest.swift */,
 			);
-			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		861DAE2E27CDD59F00AFE972 /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				861DAE2F27CDD59F00AFE972 /* Tests_macOS.swift */,
-				861DAE3127CDD59F00AFE972 /* Tests_macOSLaunchTests.swift */,
-			);
-			path = "Tests macOS";
+			path = "UI Tests";
 			sourceTree = "<group>";
 		};
 		861DAE4F27CDDAEB00AFE972 /* Frameworks */ = {
@@ -335,6 +211,16 @@
 			path = Design;
 			sourceTree = "<group>";
 		};
+		8690C7E827D9EBD90042F543 /* Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8690C7B327D9E6290042F543 /* TestEnvironment.swift */,
+				8690C7B527D9E72A0042F543 /* VehicleTest.swift */,
+				86B5D09427D076B70040399C /* LineItemTypeTest.swift */,
+			);
+			path = "Unit Tests";
+			sourceTree = "<group>";
+		};
 		86B17F8727D45DF1001E52C6 /* Line Item Types */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,14 +229,6 @@
 				86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */,
 			);
 			path = "Line Item Types";
-			sourceTree = "<group>";
-		};
-		86B5D08C27D076A30040399C /* Tests Shared */ = {
-			isa = PBXGroup;
-			children = (
-				86B5D09427D076B70040399C /* LineItemTypeTests.swift */,
-			);
-			path = "Tests Shared";
 			sourceTree = "<group>";
 		};
 		86D2DA6627D07E3E0083254E /* VIN Decoder */ = {
@@ -383,9 +261,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		861DAE1127CDD59F00AFE972 /* Fleetbox (iOS) */ = {
+		861DAE1127CDD59F00AFE972 /* Fleetbox */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 861DAE3F27CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Fleetbox (iOS)" */;
+			buildConfigurationList = 861DAE3F27CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Fleetbox" */;
 			buildPhases = (
 				861DAE0E27CDD59F00AFE972 /* Sources */,
 				861DAE0F27CDD59F00AFE972 /* Frameworks */,
@@ -395,7 +273,7 @@
 			);
 			dependencies = (
 			);
-			name = "Fleetbox (iOS)";
+			name = Fleetbox;
 			packageProductDependencies = (
 				861DAE4D27CDDAD700AFE972 /* Sentry */,
 				86D2DA7127D081490083254E /* Alamofire */,
@@ -405,32 +283,9 @@
 			productReference = 861DAE1227CDD59F00AFE972 /* Fleetbox.app */;
 			productType = "com.apple.product-type.application";
 		};
-		861DAE1727CDD59F00AFE972 /* Fleetbox (macOS) */ = {
+		861DAE1E27CDD59F00AFE972 /* UI Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 861DAE4227CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Fleetbox (macOS)" */;
-			buildPhases = (
-				861DAE1427CDD59F00AFE972 /* Sources */,
-				861DAE1527CDD59F00AFE972 /* Frameworks */,
-				861DAE1627CDD59F00AFE972 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Fleetbox (macOS)";
-			packageProductDependencies = (
-				861DAE5027CDDAEB00AFE972 /* Sentry */,
-				861DAE5327CDDCFC00AFE972 /* Sparkle */,
-				86D2DA7327D081540083254E /* Alamofire */,
-				86B17F9227D46930001E52C6 /* Yams */,
-			);
-			productName = "Fleetbox (macOS)";
-			productReference = 861DAE1827CDD59F00AFE972 /* Fleetbox.app */;
-			productType = "com.apple.product-type.application";
-		};
-		861DAE1E27CDD59F00AFE972 /* Tests iOS */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 861DAE4527CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Tests iOS" */;
+			buildConfigurationList = 861DAE4527CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "UI Tests" */;
 			buildPhases = (
 				861DAE1B27CDD59F00AFE972 /* Sources */,
 				861DAE1C27CDD59F00AFE972 /* Frameworks */,
@@ -441,54 +296,29 @@
 			dependencies = (
 				861DAE2127CDD59F00AFE972 /* PBXTargetDependency */,
 			);
-			name = "Tests iOS";
+			name = "UI Tests";
 			packageProductDependencies = (
-				86B5D08327D075380040399C /* Sentry */,
-				8690C7D227D9E8A60042F543 /* Alamofire */,
-				8690C7D427D9E8A80042F543 /* Yams */,
 			);
 			productName = "Tests iOS";
-			productReference = 861DAE1F27CDD59F00AFE972 /* Tests iOS.xctest */;
+			productReference = 861DAE1F27CDD59F00AFE972 /* UI Tests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		861DAE2A27CDD59F00AFE972 /* Tests macOS */ = {
+		8690C7E627D9EBD90042F543 /* Unit Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 861DAE4827CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Tests macOS" */;
+			buildConfigurationList = 8690C7ED27D9EBD90042F543 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
 			buildPhases = (
-				861DAE2727CDD59F00AFE972 /* Sources */,
-				861DAE2827CDD59F00AFE972 /* Frameworks */,
-				861DAE2927CDD59F00AFE972 /* Resources */,
+				8690C7E327D9EBD90042F543 /* Sources */,
+				8690C7E427D9EBD90042F543 /* Frameworks */,
+				8690C7E527D9EBD90042F543 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				861DAE2D27CDD59F00AFE972 /* PBXTargetDependency */,
+				8690C7EC27D9EBD90042F543 /* PBXTargetDependency */,
 			);
-			name = "Tests macOS";
-			packageProductDependencies = (
-				86B5D07F27D075320040399C /* Sentry */,
-				86B5D08127D075340040399C /* Sparkle */,
-			);
-			productName = "Tests macOS";
-			productReference = 861DAE2B27CDD59F00AFE972 /* Tests macOS.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		86B5D08A27D076A30040399C /* Tests Shared */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 86B5D09127D076A30040399C /* Build configuration list for PBXNativeTarget "Tests Shared" */;
-			buildPhases = (
-				86B5D08727D076A30040399C /* Sources */,
-				86B5D08827D076A30040399C /* Frameworks */,
-				86B5D08927D076A30040399C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				86B5D09027D076A30040399C /* PBXTargetDependency */,
-			);
-			name = "Tests Shared";
-			productName = "Tests Shared";
-			productReference = 86B5D08B27D076A30040399C /* Tests Shared.xctest */;
+			name = "Unit Tests";
+			productName = FleetboxUnitTests;
+			productReference = 8690C7E727D9EBD90042F543 /* Unit Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -504,20 +334,13 @@
 					861DAE1127CDD59F00AFE972 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
-					861DAE1727CDD59F00AFE972 = {
-						CreatedOnToolsVersion = 13.2.1;
-					};
 					861DAE1E27CDD59F00AFE972 = {
 						CreatedOnToolsVersion = 13.2.1;
 						TestTargetID = 861DAE1127CDD59F00AFE972;
 					};
-					861DAE2A27CDD59F00AFE972 = {
+					8690C7E627D9EBD90042F543 = {
 						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = 861DAE1727CDD59F00AFE972;
-					};
-					86B5D08A27D076A30040399C = {
-						CreatedOnToolsVersion = 13.2.1;
-						TestTargetID = 861DAE1727CDD59F00AFE972;
+						TestTargetID = 861DAE1127CDD59F00AFE972;
 					};
 				};
 			};
@@ -532,7 +355,6 @@
 			mainGroup = 861DAE0227CDD59D00AFE972;
 			packageReferences = (
 				861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
-				861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */,
 				86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */,
 			);
@@ -540,11 +362,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				861DAE1127CDD59F00AFE972 /* Fleetbox (iOS) */,
-				861DAE1727CDD59F00AFE972 /* Fleetbox (macOS) */,
-				861DAE1E27CDD59F00AFE972 /* Tests iOS */,
-				861DAE2A27CDD59F00AFE972 /* Tests macOS */,
-				86B5D08A27D076A30040399C /* Tests Shared */,
+				861DAE1127CDD59F00AFE972 /* Fleetbox */,
+				861DAE1E27CDD59F00AFE972 /* UI Tests */,
+				8690C7E627D9EBD90042F543 /* Unit Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -560,16 +380,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		861DAE1627CDD59F00AFE972 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				86638D3227D9870700149689 /* AppIcon.afdesign in Resources */,
-				861DAE3C27CDD59F00AFE972 /* Assets.xcassets in Resources */,
-				86B17F8A27D45E17001E52C6 /* LineItemTypes.yml in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		861DAE1D27CDD59F00AFE972 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -577,14 +387,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		861DAE2927CDD59F00AFE972 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		86B5D08927D076A30040399C /* Resources */ = {
+		8690C7E527D9EBD90042F543 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -626,89 +429,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		861DAE1427CDD59F00AFE972 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				864C731F27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */,
-				864C731C27CDF54E00047165 /* Vehicle.swift in Sources */,
-				8690C7A527D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */,
-				86638D2727D9721500149689 /* LineItemLabelView.swift in Sources */,
-				861DAE3627CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
-				861DAE3A27CDD59F00AFE972 /* Persistence.swift in Sources */,
-				864C732827D06C6800047165 /* LineItem.swift in Sources */,
-				86638D3927D994B200149689 /* TireSet.swift in Sources */,
-				869745DB27D9617F00D16762 /* EditVehicleView.swift in Sources */,
-				8690C7A827D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */,
-				8690C7AB27D9A9180042F543 /* OdometerReading.swift in Sources */,
-				861DAE3427CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */,
-				861DAE5627CDE24900AFE972 /* CheckForUpdatesView.swift in Sources */,
-				864C732527D06B8C00047165 /* Shop.swift in Sources */,
-				861DAE3827CDD59F00AFE972 /* ContentView.swift in Sources */,
-				86638D2427D970F400149689 /* LogItemLabelView.swift in Sources */,
-				8690C7AE27D9AA260042F543 /* OdometerReadingView.swift in Sources */,
-				86B17F9627D47270001E52C6 /* LineItemField.swift in Sources */,
-				86B17F8D27D45EDF001E52C6 /* LineItemTypes.swift in Sources */,
-				86D2DA6C27D07F260083254E /* VINDecoderResponse.swift in Sources */,
-				864C732227D06A7F00047165 /* LogItem.swift in Sources */,
-				86D2DA6F27D080AF0083254E /* VINDecoder.swift in Sources */,
-				8683931027D1450B00D91D96 /* VehicleView.swift in Sources */,
-				861BA90027D8546800DD729A /* LineItemView.swift in Sources */,
-				86D2DA6927D07E5A0083254E /* VINDecoderResult.swift in Sources */,
-				86B17F9F27D48D14001E52C6 /* LogItemView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		861DAE1B27CDD59F00AFE972 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8690C7CC27D9E85D0042F543 /* LineItem.swift in Sources */,
-				8690C7CE27D9E85D0042F543 /* OdometerReading.swift in Sources */,
-				8690C7B627D9E72A0042F543 /* VehicleTest.swift in Sources */,
-				8690C7BB27D9E84D0042F543 /* VehicleView.swift in Sources */,
-				8690C7B727D9E84D0042F543 /* ContentView.swift in Sources */,
-				8690C7B427D9E6290042F543 /* TestEnvironment.swift in Sources */,
-				8690C7B927D9E84D0042F543 /* LogItemLabelView.swift in Sources */,
-				8690C7C227D9E8520042F543 /* VINDecoderResponse.swift in Sources */,
-				8690C7C827D9E85D0042F543 /* FleetboxApp.swift in Sources */,
-				8690C7C127D9E8520042F543 /* VINDecoderResult.swift in Sources */,
 				8690C7CF27D9E8800042F543 /* Fleetbox.xcdatamodeld in Sources */,
-				8690C7CD27D9E85D0042F543 /* LineItemField.swift in Sources */,
-				8690C7C727D9E85D0042F543 /* TireSet.swift in Sources */,
-				8690C7CA27D9E85D0042F543 /* Persistence.swift in Sources */,
-				8690C7BA27D9E84D0042F543 /* LineItemLabelView.swift in Sources */,
-				8690C7C627D9E85D0042F543 /* Vehicle.swift in Sources */,
-				8690C7C427D9E8550042F543 /* LineItemTypes.swift in Sources */,
-				8690C7C027D9E84D0042F543 /* EditLineItemFieldView.swift in Sources */,
 				861DAE2627CDD59F00AFE972 /* Tests_iOSLaunchTests.swift in Sources */,
-				8690C7BD27D9E84D0042F543 /* LineItemFieldLabelView.swift in Sources */,
-				8690C7C527D9E85D0042F543 /* LogItem.swift in Sources */,
-				8690C7BE27D9E84D0042F543 /* OdometerReadingView.swift in Sources */,
-				8690C7CB27D9E85D0042F543 /* Shop.swift in Sources */,
-				8690C7BC27D9E84D0042F543 /* LineItemView.swift in Sources */,
 				861DAE2427CDD59F00AFE972 /* Tests_iOS.swift in Sources */,
-				8690C7C927D9E85D0042F543 /* VehicleSpotlightDelegate.swift in Sources */,
-				8690C7B827D9E84D0042F543 /* EditVehicleView.swift in Sources */,
-				8690C7BF27D9E84D0042F543 /* LogItemView.swift in Sources */,
-				8690C7C327D9E8520042F543 /* VINDecoder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		861DAE2727CDD59F00AFE972 /* Sources */ = {
+		8690C7E327D9EBD90042F543 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				861DAE3227CDD59F00AFE972 /* Tests_macOSLaunchTests.swift in Sources */,
-				861DAE3027CDD59F00AFE972 /* Tests_macOS.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		86B5D08727D076A30040399C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				86B5D09527D076B70040399C /* LineItemTypeTests.swift in Sources */,
+				8690C7F027D9EBE90042F543 /* VehicleTest.swift in Sources */,
+				8690C7F227D9EBE90042F543 /* TestEnvironment.swift in Sources */,
+				8690C7F127D9EBE90042F543 /* LineItemTypeTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -717,18 +454,13 @@
 /* Begin PBXTargetDependency section */
 		861DAE2127CDD59F00AFE972 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 861DAE1127CDD59F00AFE972 /* Fleetbox (iOS) */;
+			target = 861DAE1127CDD59F00AFE972 /* Fleetbox */;
 			targetProxy = 861DAE2027CDD59F00AFE972 /* PBXContainerItemProxy */;
 		};
-		861DAE2D27CDD59F00AFE972 /* PBXTargetDependency */ = {
+		8690C7EC27D9EBD90042F543 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 861DAE1727CDD59F00AFE972 /* Fleetbox (macOS) */;
-			targetProxy = 861DAE2C27CDD59F00AFE972 /* PBXContainerItemProxy */;
-		};
-		86B5D09027D076A30040399C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 861DAE1727CDD59F00AFE972 /* Fleetbox (macOS) */;
-			targetProxy = 86B5D08F27D076A30040399C /* PBXContainerItemProxy */;
+			target = 861DAE1127CDD59F00AFE972 /* Fleetbox */;
+			targetProxy = 8690C7EB27D9EBD90042F543 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -849,7 +581,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Fleetbox (iOS).entitlements";
+				CODE_SIGN_ENTITLEMENTS = Fleetbox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
@@ -883,7 +615,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = "Fleetbox (iOS).entitlements";
+				CODE_SIGN_ENTITLEMENTS = Fleetbox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
@@ -910,64 +642,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		861DAE4327CDD59F00AFE972 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79A4SD8C3M;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Fleetbox--macOS--Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.macos;
-				PRODUCT_NAME = Fleetbox;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		861DAE4427CDD59F00AFE972 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79A4SD8C3M;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Fleetbox--macOS--Info.plist";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.macos;
-				PRODUCT_NAME = Fleetbox;
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -1012,77 +686,44 @@
 			};
 			name = Release;
 		};
-		861DAE4927CDD59F00AFE972 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79A4SD8C3M;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "engineering.lutris.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Fleetbox (macOS)";
-			};
-			name = Debug;
-		};
-		861DAE4A27CDD59F00AFE972 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79A4SD8C3M;
-				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "engineering.lutris.Tests-macOS";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = "Fleetbox (macOS)";
-			};
-			name = Release;
-		};
-		86B5D09227D076A30040399C /* Debug */ = {
+		8690C7EE27D9EBD90042F543 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 79A4SD8C3M;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "engineering.lutris.Tests-Shared";
+				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.FleetboxUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fleetbox.app/Contents/MacOS/Fleetbox";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fleetbox.app/Fleetbox";
 			};
 			name = Debug;
 		};
-		86B5D09327D076A30040399C /* Release */ = {
+		8690C7EF27D9EBD90042F543 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 79A4SD8C3M;
 				GENERATE_INFOPLIST_FILE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "engineering.lutris.Tests-Shared";
+				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.FleetboxUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fleetbox.app/Contents/MacOS/Fleetbox";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fleetbox.app/Fleetbox";
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1098,7 +739,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		861DAE3F27CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Fleetbox (iOS)" */ = {
+		861DAE3F27CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Fleetbox" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				861DAE4027CDD59F00AFE972 /* Debug */,
@@ -1107,16 +748,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		861DAE4227CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Fleetbox (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				861DAE4327CDD59F00AFE972 /* Debug */,
-				861DAE4427CDD59F00AFE972 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		861DAE4527CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Tests iOS" */ = {
+		861DAE4527CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "UI Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				861DAE4627CDD59F00AFE972 /* Debug */,
@@ -1125,20 +757,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		861DAE4827CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Tests macOS" */ = {
+		8690C7ED27D9EBD90042F543 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				861DAE4927CDD59F00AFE972 /* Debug */,
-				861DAE4A27CDD59F00AFE972 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		86B5D09127D076A30040399C /* Build configuration list for PBXNativeTarget "Tests Shared" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				86B5D09227D076A30040399C /* Debug */,
-				86B5D09327D076A30040399C /* Release */,
+				8690C7EE27D9EBD90042F543 /* Debug */,
+				8690C7EF27D9EBD90042F543 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1152,14 +775,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 7.0.0;
-			};
-		};
-		861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sparkle-project/Sparkle";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
 			};
 		};
 		86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */ = {
@@ -1186,57 +801,12 @@
 			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
 			productName = Sentry;
 		};
-		861DAE5027CDDAEB00AFE972 /* Sentry */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
-			productName = Sentry;
-		};
-		861DAE5327CDDCFC00AFE972 /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
-		};
-		8690C7D227D9E8A60042F543 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		8690C7D427D9E8A80042F543 /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
-		};
 		86B17F9027D46924001E52C6 /* Yams */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */;
 			productName = Yams;
 		};
-		86B17F9227D46930001E52C6 /* Yams */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 86B17F8F27D46924001E52C6 /* XCRemoteSwiftPackageReference "Yams" */;
-			productName = Yams;
-		};
-		86B5D07F27D075320040399C /* Sentry */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
-			productName = Sentry;
-		};
-		86B5D08127D075340040399C /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 861DAE5227CDDCFC00AFE972 /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
-		};
-		86B5D08327D075380040399C /* Sentry */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
-			productName = Sentry;
-		};
 		86D2DA7127D081490083254E /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		86D2DA7327D081540083254E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;

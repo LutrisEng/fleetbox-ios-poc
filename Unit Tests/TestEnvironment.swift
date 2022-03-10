@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+@testable import Fleetbox
 
 struct TestEnvironment {
     let controller: PersistenceController

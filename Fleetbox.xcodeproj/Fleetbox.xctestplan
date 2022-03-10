@@ -1,0 +1,38 @@
+{
+  "configurations" : [
+    {
+      "id" : "AC5CA901-C877-4D0C-9DDE-F9DBBC348E6B",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : false,
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Fleetbox.xcodeproj",
+      "identifier" : "861DAE1127CDD59F00AFE972",
+      "name" : "Fleetbox (iOS)"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Fleetbox.xcodeproj",
+        "identifier" : "861DAE1E27CDD59F00AFE972",
+        "name" : "Tests iOS"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Fleetbox.xcodeproj",
+        "identifier" : "8690C7E627D9EBD90042F543",
+        "name" : "FleetboxUnitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

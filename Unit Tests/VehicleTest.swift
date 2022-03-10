@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import Fleetbox
 
 class VehicleTest: XCTestCase {
     var env: TestEnvironment = TestEnvironment()
