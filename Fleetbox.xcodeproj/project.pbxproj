@@ -23,7 +23,6 @@
 		864C732727D06C6800047165 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
 		86638D2327D970F400149689 /* LogItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2227D970F300149689 /* LogItemLabelView.swift */; };
 		86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D2527D9721500149689 /* LineItemLabelView.swift */; };
-		86638D3127D9870700149689 /* AppIcon.afdesign in Resources */ = {isa = PBXBuildFile; fileRef = 86638D2C27D9870700149689 /* AppIcon.afdesign */; };
 		86638D3827D994B200149689 /* TireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86638D3727D994B200149689 /* TireSet.swift */; };
 		8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
 		8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */; };
@@ -154,7 +153,6 @@
 				86D2DA6627D07E3E0083254E /* VIN Decoder */,
 				864C731927CDF54000047165 /* Model */,
 				861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */,
-				861DAE0D27CDD59F00AFE972 /* Assets.xcassets */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -206,6 +204,7 @@
 		86638D2B27D9870700149689 /* Design */ = {
 			isa = PBXGroup;
 			children = (
+				861DAE0D27CDD59F00AFE972 /* Assets.xcassets */,
 				86638D2C27D9870700149689 /* AppIcon.afdesign */,
 			);
 			path = Design;
@@ -374,7 +373,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86638D3127D9870700149689 /* AppIcon.afdesign in Resources */,
 				861DAE3B27CDD59F00AFE972 /* Assets.xcassets in Resources */,
 				86B17F8927D45E0D001E52C6 /* LineItemTypes.yml in Resources */,
 			);
