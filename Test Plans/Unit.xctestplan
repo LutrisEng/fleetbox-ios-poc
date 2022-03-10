@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "0FE7D5F4-AAE5-403E-8995-444239A07E19",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Fleetbox.xcodeproj",
+        "identifier" : "8690C7E627D9EBD90042F543",
+        "name" : "Fleetbox Unit Tests"
+      }
+    }
+  ],
+  "version" : 1
+}

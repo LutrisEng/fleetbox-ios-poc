@@ -29,8 +29,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:Fleetbox.xcodeproj/Fleetbox.xctestplan"
+            reference = "container:Test Plans/Everything.xctestplan"
             default = "YES">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:Test Plans/UI.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:Test Plans/Unit.xctestplan">
          </TestPlanReference>
       </TestPlans>
       <Testables>

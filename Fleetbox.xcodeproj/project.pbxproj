@@ -101,6 +101,8 @@
 		86638D2527D9721500149689 /* LineItemLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemLabelView.swift; sourceTree = "<group>"; };
 		86638D2C27D9870700149689 /* AppIcon.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = AppIcon.afdesign; sourceTree = "<group>"; };
 		86638D3727D994B200149689 /* TireSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSet.swift; sourceTree = "<group>"; };
+		8664C23A27D9FEFB00AE9ADB /* UI.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UI.xctestplan; sourceTree = "<group>"; };
+		8664C23B27D9FF1600AE9ADB /* Unit.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Unit.xctestplan; sourceTree = "<group>"; };
 		8683930E27D1450B00D91D96 /* VehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
 		8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLineItemFieldView.swift; sourceTree = "<group>"; };
 		8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemFieldLabelView.swift; sourceTree = "<group>"; };
@@ -108,7 +110,7 @@
 		8690C7AC27D9AA260042F543 /* OdometerReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReadingView.swift; sourceTree = "<group>"; };
 		8690C7B327D9E6290042F543 /* TestEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestEnvironment.swift; sourceTree = "<group>"; };
 		8690C7B527D9E72A0042F543 /* VehicleTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleTest.swift; sourceTree = "<group>"; };
-		8690C7E227D9EB780042F543 /* Fleetbox.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; name = Fleetbox.xctestplan; path = Fleetbox.xcodeproj/Fleetbox.xctestplan; sourceTree = "<group>"; };
+		8690C7E227D9EB780042F543 /* Everything.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Everything.xctestplan; sourceTree = "<group>"; };
 		8690C7E727D9EBD90042F543 /* Fleetbox Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fleetbox Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		869745D927D9617F00D16762 /* EditVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditVehicleView.swift; sourceTree = "<group>"; };
 		86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = LineItemTypes.yml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.yaml; };
@@ -152,12 +154,11 @@
 		861DAE0227CDD59D00AFE972 = {
 			isa = PBXGroup;
 			children = (
-				8690C7E227D9EB780042F543 /* Fleetbox.xctestplan */,
-				86638D2B27D9870700149689 /* Design */,
-				861BA8FD27D8537100DD729A /* Fleetbox.entitlements */,
 				861DAE0727CDD59D00AFE972 /* Source */,
+				8664C23927D9FED600AE9ADB /* Test Plans */,
 				8690C7E827D9EBD90042F543 /* Unit Tests */,
 				865D028E27D9F9A2006C815D /* UI Tests */,
+				86638D2B27D9870700149689 /* Design */,
 				861DAE1327CDD59F00AFE972 /* Products */,
 				861DAE4F27CDDAEB00AFE972 /* Frameworks */,
 			);
@@ -166,6 +167,7 @@
 		861DAE0727CDD59D00AFE972 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				861BA8FD27D8537100DD729A /* Fleetbox.entitlements */,
 				86D2DA7527D087D20083254E /* Views */,
 				86D2DA6627D07E3E0083254E /* VIN Decoder */,
 				864C731927CDF54000047165 /* Model */,
@@ -226,6 +228,16 @@
 				86638D2C27D9870700149689 /* AppIcon.afdesign */,
 			);
 			path = Design;
+			sourceTree = "<group>";
+		};
+		8664C23927D9FED600AE9ADB /* Test Plans */ = {
+			isa = PBXGroup;
+			children = (
+				8690C7E227D9EB780042F543 /* Everything.xctestplan */,
+				8664C23B27D9FF1600AE9ADB /* Unit.xctestplan */,
+				8664C23A27D9FEFB00AE9ADB /* UI.xctestplan */,
+			);
+			path = "Test Plans";
 			sourceTree = "<group>";
 		};
 		8690C7E827D9EBD90042F543 /* Unit Tests */ = {
@@ -594,7 +606,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Fleetbox.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Source/Fleetbox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
@@ -628,7 +640,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = Fleetbox.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Source/Fleetbox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
