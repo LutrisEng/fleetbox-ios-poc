@@ -15,6 +15,7 @@ struct LogItemView: View {
     @ObservedObject var logItem: LogItem
     
     @State private var newLineItemSheetPresented = false
+    @State private var newAttachmentSheetPresented = false
     
     func createLineItem() -> LineItem {
         LineItem(context: viewContext, logItem: logItem)
@@ -95,6 +96,14 @@ struct LogItemView: View {
                     }
                     Button("Add line item") {
                         newLineItemSheetPresented = true
+                    }
+                }
+                Section(header: Text("Attachments")) {
+                    ForEach(logItem.attachments) { attachment in
+                        Text(attachment.fileName ?? "Attachment")
+                    }
+                    Button("Add attachment") {
+                        newAttachmentSheetPresented = true
                     }
                 }
             }

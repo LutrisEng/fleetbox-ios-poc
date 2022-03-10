@@ -3,6 +3,7 @@
     <entity name="Attachment" representedClassName="Attachment" syncable="YES" codeGenerationType="class">
         <attribute name="fileContents" optional="YES" attributeType="Binary"/>
         <attribute name="fileName" optional="YES" attributeType="String"/>
+        <attribute name="sortOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="logItem" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="LogItem" inverseName="attachmentsNs" inverseEntity="LogItem"/>
     </entity>
     <entity name="LineItem" representedClassName="LineItem" syncable="YES" codeGenerationType="class">
@@ -63,6 +64,7 @@
         <relationship name="odometerReadingsNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OdometerReading" inverseName="vehicle" inverseEntity="OdometerReading"/>
     </entity>
     <elements>
+        <element name="Attachment" positionX="270" positionY="108" width="128" height="89"/>
         <element name="LineItem" positionX="288" positionY="63" width="128" height="104"/>
         <element name="LineItemField" positionX="270" positionY="36" width="128" height="104"/>
         <element name="LogItem" positionX="406.38671875" positionY="-9.95703125" width="128" height="134"/>
@@ -70,6 +72,5 @@
         <element name="Shop" positionX="279" positionY="45" width="128" height="74"/>
         <element name="TireSet" positionX="279" positionY="63" width="128" height="194"/>
         <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="149"/>
-        <element name="Attachment" positionX="270" positionY="108" width="128" height="74"/>
     </elements>
 </model>

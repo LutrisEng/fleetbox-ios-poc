@@ -17,8 +17,12 @@ extension LogItem {
         lineItemsUnordered.sorted { $0.sortOrder < $1.sortOrder }
     }
     
-    var attachments: Set<Attachment> {
+    var attachmentsUnordered: Set<Attachment> {
         attachmentsNs as? Set<Attachment> ?? []
+    }
+    
+    var attachments: [Attachment] {
+        attachmentsUnordered.sorted { $0.sortOrder < $1.sortOrder }
     }
     
     var formattedDate: String? {
