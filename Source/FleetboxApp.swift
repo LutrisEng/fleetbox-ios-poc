@@ -14,12 +14,6 @@ import Sentry
     let debug = false
 #endif
 
-#if AUTOUPDATER
-    let autoupdater = true
-#else
-    let autoupdater = false
-#endif
-
 func getInfoDictionaryKey(key: String) -> String {
     Bundle.main.object(forInfoDictionaryKey: key) as! String
 }
@@ -28,15 +22,12 @@ func getSentryRelease() -> String {
     let package = getInfoDictionaryKey(key: "CFBundleIdentifier")
     let version = getInfoDictionaryKey(key: "CFBundleShortVersionString")
     let buildIdentifier = getInfoDictionaryKey(key: "CFBundleVersion")
-    return "\(package)@\(version)+\(buildIdentifier)\(autoupdater ? "-AU" : "")"
+    return "\(package)@\(version)+\(buildIdentifier)"
 }
 
 @main
 struct FleetboxApp: App {
     let persistenceController = PersistenceController.shared
-    #if os(macOS)
-    @StateObject var updaterViewModel = UpdaterViewModel()
-    #endif
     
     init() {
         if (!debug) {
@@ -54,12 +45,5 @@ struct FleetboxApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
-        #if os(macOS)
-        .commands {
-            CommandGroup(after: .appInfo) {
-                CheckForUpdatesView(updaterViewModel: updaterViewModel)
-            }
-        }
-        #endif
     }
 }
