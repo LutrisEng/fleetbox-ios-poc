@@ -40,8 +40,10 @@ struct ShopPickerView: View {
 
 struct ShopPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        ShopPickerView(selected: nil) {
-            print($0.name ?? "Unknown shop")
+        PreviewWrapper { fixtures in
+            ShopPickerView(selected: nil) {
+                print($0.name ?? "Unknown shop")
+            }
         }
     }
 }

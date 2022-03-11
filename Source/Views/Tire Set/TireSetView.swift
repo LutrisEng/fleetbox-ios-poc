@@ -25,8 +25,8 @@ struct TireSetView: View {
 
 struct TireSetView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper {
-            TireSetView(tireSet: PersistenceController.preview.fixtures.tireSet)
+        PreviewWrapper { fixtures in
+            TireSetView(tireSet: fixtures.tireSet)
         }
     }
 }

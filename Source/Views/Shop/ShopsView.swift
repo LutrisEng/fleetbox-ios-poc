@@ -60,6 +60,8 @@ struct ShopsView: View {
 
 struct ShopsView_Previews: PreviewProvider {
     static var previews: some View {
-        ShopsView().environment(\.managedObjectContext, PersistenceController.preview.viewContext)
+        PreviewWrapper { fixtures in
+            ShopsView()
+        }.withoutNavigation()
     }
 }

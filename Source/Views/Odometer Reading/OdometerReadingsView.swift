@@ -23,8 +23,8 @@ struct OdometerReadingsView: View {
 
 struct OdometerReadingsView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper {
-            OdometerReadingsView(vehicle: PersistenceController.preview.fixtures.vehicle)
+        PreviewWrapper { fixtures in
+            OdometerReadingsView(vehicle: fixtures.vehicle)
         }
     }
 }

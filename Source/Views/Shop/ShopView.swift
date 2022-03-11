@@ -23,8 +23,8 @@ struct ShopView: View {
 
 struct ShopView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper {
-            ShopView(shop: PersistenceController.preview.fixtures.shop)
+        PreviewWrapper { fixtures in
+            ShopView(shop: fixtures.shop)
         }
     }
 }

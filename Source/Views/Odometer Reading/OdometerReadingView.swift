@@ -32,8 +32,8 @@ struct OdometerReadingView: View {
 
 struct OdometerReadingView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper {
-            OdometerReadingView(odometerReading: PersistenceController.preview.fixtures.odometerReading)
+        PreviewWrapper { fixtures in
+            OdometerReadingView(odometerReading: fixtures.odometerReading)
         }
     }
 }

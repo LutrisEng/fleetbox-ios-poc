@@ -88,7 +88,7 @@ struct LogItemView: View {
                     let lineItems = logItem.lineItems
                     ForEach(Array(lineItems)) { lineItem in
                         NavigationLink(destination: LineItemView(lineItem: lineItem)) {
-                            LineItemLabelView(lineItem: lineItem).details().padding([.top, .bottom], 10)
+                            LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
                         }
                     }.onDelete { offsets in
                         withAnimation {
@@ -137,8 +137,8 @@ struct LogItemView: View {
 
 struct LogItemView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper {
-            LogItemView(logItem: PersistenceController.preview.fixtures.logItem)
+        PreviewWrapper { fixtures in
+            LogItemView(logItem: fixtures.logItem)
         }
     }
 }

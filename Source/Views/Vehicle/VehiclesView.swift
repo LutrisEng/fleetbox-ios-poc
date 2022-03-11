@@ -96,6 +96,8 @@ struct VehiclesView: View {
 
 struct VehiclesView_Previews: PreviewProvider {
     static var previews: some View {
-        VehiclesView().environment(\.managedObjectContext, PersistenceController.preview.viewContext)
+        PreviewWrapper { fixtures in
+            VehiclesView()
+        }.withoutNavigation()
     }
 }

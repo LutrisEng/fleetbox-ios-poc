@@ -60,6 +60,8 @@ struct TireSetsView: View {
 
 struct TireSetsView_Previews: PreviewProvider {
     static var previews: some View {
-        TireSetsView().environment(\.managedObjectContext, PersistenceController.preview.viewContext)
+        PreviewWrapper { fixtures in
+            TireSetsView()
+        }.withoutNavigation()
     }
 }

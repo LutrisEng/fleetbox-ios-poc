@@ -7,30 +7,6 @@
 
 import SwiftUI
 
-struct LineItemTypeLabelView: View {
-    let type: LineItemType?
-    let font: Font
-    let iconWidth: CGFloat?
-    let iconHeight: CGFloat?
-    
-    init(type: LineItemType?, font: Font = .body, iconWidth: CGFloat? = 30, iconHeight: CGFloat? = nil) {
-        self.type = type
-        self.font = font
-        self.iconWidth = iconWidth
-        self.iconHeight = iconHeight
-    }
-    
-    var body: some View {
-        HStack {
-            Image(systemName: type?.icon ?? "wrench.and.screwdriver")
-                .frame(width: iconWidth, height: iconHeight, alignment: .center)
-            Text(type?.displayName ?? "Unknown line item")
-                .font(font)
-            Spacer()
-        }
-    }
-}
-
 struct LineItemLabelView: View {
     @ObservedObject var lineItem: LineItem
     var showDetails: Bool = false
@@ -39,7 +15,7 @@ struct LineItemLabelView: View {
     var iconWidth: CGFloat? = 30
     var iconHeight: CGFloat? = nil
     
-    func details() -> LineItemLabelView {
+    var details: LineItemLabelView {
         var newView = self
         newView.showDetails = true
         return newView
@@ -82,26 +58,28 @@ struct LineItemLabelView: View {
 
 struct LineItemLabelView_Previews: PreviewProvider {
     static var previews: some View {
-        let lineItems = PersistenceController.preview.fixtures.logItem.lineItems
         return Group {
-            List {
-                ForEach(lineItems) { lineItem in
-                    LineItemLabelView(lineItem: lineItem)
+            PreviewWrapper { fixtures in
+                List {
+                    ForEach(fixtures.logItem.lineItems) { lineItem in
+                        LineItemLabelView(lineItem: lineItem)
+                    }
                 }
             }
-            List {
-                ForEach(lineItems) { lineItem in
-                    LineItemLabelView(lineItem: lineItem).details()
+            PreviewWrapper { fixtures in
+                List {
+                    ForEach(fixtures.logItem.lineItems) { lineItem in
+                        LineItemLabelView(lineItem: lineItem).details
+                    }
                 }
             }
-            List {
-                VStack {
-                    ForEach(lineItems) { lineItem in
+            PreviewWrapper { fixtures in
+                List {
+                    ForEach(fixtures.logItem.lineItems) { lineItem in
                         LineItemLabelView(lineItem: lineItem).mini
                     }
                 }
             }
         }
-        .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
     }
 }

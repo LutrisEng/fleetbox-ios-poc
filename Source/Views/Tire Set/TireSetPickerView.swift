@@ -51,8 +51,10 @@ struct TireSetPickerView: View {
 
 struct TireSetPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        TireSetPickerView(selected: nil) {
-            print($0?.displayName ?? "None")
+        PreviewWrapper { fixtures in
+            TireSetPickerView(selected: nil) {
+                print($0?.displayName ?? "None")
+            }
         }
     }
 }

@@ -41,9 +41,10 @@ struct LogItemLabelView: View {
 
 struct LogItemLabelView_Previews: PreviewProvider {
     static var previews: some View {
-        return List {
-            LogItemLabelView(logItem: PersistenceController.preview.fixtures.logItem)
+        PreviewWrapper { fixtures in
+            List {
+                LogItemLabelView(logItem: fixtures.logItem)
+            }
         }
-        .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
     }
 }

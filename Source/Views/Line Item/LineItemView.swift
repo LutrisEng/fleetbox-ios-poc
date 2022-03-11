@@ -24,8 +24,8 @@ struct LineItemView: View {
 
 struct LineItemView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper {
-            LineItemView(lineItem: PersistenceController.preview.fixtures.lineItem)
+        PreviewWrapper { fixtures in
+            LineItemView(lineItem: fixtures.lineItem)
         }
     }
 }
