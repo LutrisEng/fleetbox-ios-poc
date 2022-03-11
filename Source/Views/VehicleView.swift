@@ -16,59 +16,12 @@ struct VehicleView: View {
     @State private var odometerReadingSheetPresented = false
     @State private var shouldDeleteOdometerReading = false
     @State private var odometerReadingSheetOdometerReading: OdometerReading? = nil
+    @State private var vinLoading = false
     
     func createOdometerReading() -> OdometerReading {
         let reading = OdometerReading(context: viewContext)
         reading.at = Date.now
         return reading
-    }
-    
-    struct VehicleDetail: View {
-        @Environment(\.managedObjectContext) private var viewContext
-        
-        @Binding var value: String?
-        @State var focused: Bool = false
-        let name: LocalizedStringKey
-        let example: String
-        
-        var body: some View {
-            HStack {
-                Text(name)
-                    .font(.body.bold())
-                    .frame(width: 60, alignment: .trailing)
-                ZStack(alignment: .trailing) {
-                    TextField(
-                        example,
-                        text: Binding(
-                            get: {
-                                value ?? ""
-                            },
-                            set: { newValue in
-                                value = newValue
-                                ignoreErrors {
-                                    try viewContext.save()
-                                }
-                            }
-                        ),
-                        onEditingChanged: { editingChanged in
-                            if editingChanged {
-                                focused = true
-                            } else {
-                                focused = false
-                            }
-                        }
-                    )
-                    if let value = value, focused && !value.isEmpty {
-                        Button(action: { self.value = "" }) {
-                            Image(systemName: "xmark.circle")
-                                .foregroundColor(Color(UIColor.opaqueSeparator))
-                        }
-                        .padding(.trailing, 8)
-                        .buttonStyle(BorderlessButtonStyle())
-                    }
-                }
-            }
-        }
     }
     
     enum ReadOdometer : Identifiable {
@@ -121,33 +74,39 @@ struct VehicleView: View {
         VStack {
             Form {
                 Section(header: Text("Vehicle details")) {
-                    VehicleDetail(value: $vehicle.displayName, name: "Name", example: dummyData.vehicleName)
+                    FleetboxTextField(value: $vehicle.displayName, name: "Name", example: dummyData.vehicleName)
                     HStack {
-                        VehicleDetail(value: $vehicle.vin, name: "VIN", example: dummyData.vin)
+                        FleetboxTextField(value: $vehicle.vin, name: "VIN", example: dummyData.vin)
                         if let vin = vehicle.vin, vin != "" {
-                            Button(
-                                action: {
-                                    Task.init {
-                                        await ignoreErrors {
-                                            // TODO: error dialog
-                                            let decoderResult = try await decodeVIN(vin)
-                                            if let modelYear = decoderResult.modelYear {
-                                                vehicle.year = Int64(modelYear)
+                            if vinLoading {
+                                ProgressView().progressViewStyle(CircularProgressViewStyle())
+                            } else {
+                                Button(
+                                    action: {
+                                        Task.init {
+                                            vinLoading = true
+                                            await ignoreErrors {
+                                                // TODO: error dialog
+                                                let decoderResult = try await decodeVIN(vin)
+                                                if let modelYear = decoderResult.modelYear {
+                                                    vehicle.year = Int64(modelYear)
+                                                }
+                                                vehicle.make = decoderResult.make ?? vehicle.make
+                                                vehicle.model = decoderResult.model ?? vehicle.model
                                             }
-                                            vehicle.make = decoderResult.make ?? vehicle.make
-                                            vehicle.model = decoderResult.model ?? vehicle.model
+                                            vinLoading = false
                                         }
                                     }
+                                ) {
+                                    Image(systemName: "square.and.arrow.down")
                                 }
-                            ) {
-                                Image(systemName: "square.and.arrow.down")
+                                .padding(.trailing, 8)
+                                .buttonStyle(BorderlessButtonStyle())
                             }
-                            .padding(.trailing, 8)
-                            .buttonStyle(BorderlessButtonStyle())
                         }
                     }
-                    VehicleDetail(value: $vehicle.make, name: "Make", example: dummyData.vehicleMake)
-                    VehicleDetail(value: $vehicle.model, name: "Model", example: dummyData.vehicleModel)
+                    FleetboxTextField(value: $vehicle.make, name: "Make", example: dummyData.vehicleMake)
+                    FleetboxTextField(value: $vehicle.model, name: "Model", example: dummyData.vehicleModel)
                 }
                 Section(header: Text("Odometer")) {
                     Button("Record odometer reading") {

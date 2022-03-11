@@ -19,6 +19,7 @@
 		864C732127D06A7F00047165 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732027D06A7F00047165 /* LogItem.swift */; };
 		864C732427D06B8C00047165 /* Shop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732327D06B8C00047165 /* Shop.swift */; };
 		864C732727D06C6800047165 /* LineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732627D06C6800047165 /* LineItem.swift */; };
+		86500C7027DAD84F00A5111E /* FleetboxTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86500C6F27DAD84F00A5111E /* FleetboxTextField.swift */; };
 		8652AA7727DAB5F300D8D56D /* Dummy Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8652AA7627DAB5F300D8D56D /* Dummy Data.swift */; };
 		865D028527D9F1B3006C815D /* Error Handling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865D028427D9F1B3006C815D /* Error Handling.swift */; };
 		865D028827D9F622006C815D /* LineItemTypes.yml in Resources */ = {isa = PBXBuildFile; fileRef = 86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */; };
@@ -106,6 +107,7 @@
 		864C732027D06A7F00047165 /* LogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
 		864C732327D06B8C00047165 /* Shop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shop.swift; sourceTree = "<group>"; };
 		864C732627D06C6800047165 /* LineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItem.swift; sourceTree = "<group>"; };
+		86500C6F27DAD84F00A5111E /* FleetboxTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetboxTextField.swift; sourceTree = "<group>"; };
 		8652AA7627DAB5F300D8D56D /* Dummy Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dummy Data.swift"; sourceTree = "<group>"; };
 		865D028427D9F1B3006C815D /* Error Handling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error Handling.swift"; sourceTree = "<group>"; };
 		865D028D27D9F9A2006C815D /* Fleetbox UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fleetbox UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +332,7 @@
 				8664C24027DA91BB00AE9ADB /* ShopsView.swift */,
 				8664C24227DA91C200AE9ADB /* ShopView.swift */,
 				8664C24427DA91E100AE9ADB /* PreviewWrapper.swift */,
+				86500C6F27DAD84F00A5111E /* FleetboxTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */,
 				8664C25027DAAB7800AE9ADB /* ExportableLineItem.swift in Sources */,
 				86B17F8C27D45EDF001E52C6 /* LineItemTypes.swift in Sources */,
+				86500C7027DAD84F00A5111E /* FleetboxTextField.swift in Sources */,
 				86638D3827D994B200149689 /* TireSet.swift in Sources */,
 				8664C24727DA987900AE9ADB /* NumbersOnly.swift in Sources */,
 				8664C24A27DAAA2600AE9ADB /* ExportableVehicle.swift in Sources */,

@@ -12,7 +12,7 @@ struct LogItemLabelView: View {
     
     var body: some View {
         VStack {
-            if let displayName = logItem.displayName {
+            if let displayName = logItem.displayName, !displayName.isEmpty {
                 Text(displayName)
                     .font(.body.bold())
                     .frame(maxWidth: .infinity, alignment: .leading)

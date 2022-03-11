@@ -24,6 +24,24 @@ struct LogItemView: View {
     var body: some View {
         VStack {
             Form {
+                FleetboxTextField(
+                    value: $logItem.displayName,
+                    name: nil,
+                    example: "Display name"
+                )
+                DatePicker(
+                    "Performed",
+                    selection: Binding(
+                        get: { logItem.performedAt ?? Date.distantPast },
+                        set: {
+                            logItem.performedAt = $0
+                            ignoreErrors {
+                                try viewContext.save()
+                            }
+                        }
+                    ),
+                    displayedComponents: [.date]
+                )
                 Section(header: Text("Shop")) {
                     if let shop = logItem.shop {
                         NavigationLink("Performed by \(shop.name ?? "a shop")") {
@@ -108,7 +126,7 @@ struct LogItemView: View {
                 }
             }
         }
-        .navigationTitle(logItem.displayName ?? logItem.formattedDate ?? "Log item")
+        .navigationTitle("Log item")
             .sheet(isPresented: $newLineItemSheetPresented) {
                 List(lineItemTypes.hierarchyItems, children: \.children) { item in
                     switch item {
