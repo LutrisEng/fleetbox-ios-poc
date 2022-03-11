@@ -7,17 +7,6 @@
 
 import XCTest
 
-extension XCUIElement {
-    func forceTapElement() {
-         if self.isHittable {
-              self.tap()
-         } else {
-              let coordinate = self.coordinateWithNormalizedOffset(CGVectorMake(0.0, 0.0))
-              coordinate.tap()
-         }
-    }
-}
-
 class UILaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
@@ -60,7 +49,11 @@ class UILaunchTests: XCTestCase {
         }
         app.tables/*@START_MENU_TOKEN@*/.buttons["The Mazda CX-5"]/*[[".cells[\"The Mazda CX-5\"].buttons[\"The Mazda CX-5\"]",".buttons[\"The Mazda CX-5\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
         let predicate = NSPredicate(format: "label CONTAINS 'Vehicle manufactured'")
-        app.tables.buttons.containing(predicate).element.forceTapElement()
+        let button = app.tables.buttons.containing(predicate).element
+        while !button.isHittable {
+            app.scrollViews.element(boundBy: 0).swipeUp()
+        }
+        button.tap()
         
         let attachment = XCTAttachment(screenshot: app.screenshot())
         attachment.name = "Log Item"
