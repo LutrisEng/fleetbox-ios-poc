@@ -49,6 +49,7 @@
         <attribute name="model" optional="YES" attributeType="String"/>
         <attribute name="sortOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="speedRating" optional="YES" attributeType="String"/>
+        <attribute name="userDisplayName" optional="YES" attributeType="String"/>
         <attribute name="vehicleType" optional="YES" attributeType="String"/>
         <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="lineItemFieldsNs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LineItemField" inverseName="tireSetValue" inverseEntity="LineItemField"/>
@@ -70,7 +71,7 @@
         <element name="LogItem" positionX="406.38671875" positionY="-9.95703125" width="128" height="134"/>
         <element name="OdometerReading" positionX="270" positionY="108" width="128" height="89"/>
         <element name="Shop" positionX="279" positionY="45" width="128" height="74"/>
-        <element name="TireSet" positionX="279" positionY="63" width="128" height="194"/>
+        <element name="TireSet" positionX="279" positionY="63" width="128" height="209"/>
         <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="149"/>
     </elements>
 </model>

@@ -16,6 +16,7 @@ struct LogItemView: View {
     
     @State private var newLineItemSheetPresented = false
     @State private var newAttachmentSheetPresented = false
+    @State private var shopSheetPresented = false
     
     func createLineItem() -> LineItem {
         LineItem(context: viewContext, logItem: logItem)
@@ -31,15 +32,7 @@ struct LogItemView: View {
                 )
                 DatePicker(
                     "Performed",
-                    selection: Binding(
-                        get: { logItem.performedAt ?? Date.distantPast },
-                        set: {
-                            logItem.performedAt = $0
-                            ignoreErrors {
-                                try viewContext.save()
-                            }
-                        }
-                    ),
+                    selection: convertToNonNilBinding(date: $logItem.performedAt),
                     displayedComponents: [.date]
                 )
                 Section(header: Text("Shop")) {
@@ -53,7 +46,7 @@ struct LogItemView: View {
                     } else {
                         Text("Performed by owner")
                         Button("Add shop") {
-                            
+                            shopSheetPresented = true
                         }
                     }
                 }
@@ -100,15 +93,8 @@ struct LogItemView: View {
                     }.onDelete { offsets in
                         withAnimation {
                             offsets.map { lineItems[$0] }.forEach(viewContext.delete)
-
-                            do {
+                            ignoreErrors {
                                 try viewContext.save()
-                            } catch {
-                                SentrySDK.capture(error: error)
-                                // Replace this implementation with code to handle the error appropriately.
-                                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                                let nsError = error as NSError
-                                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
                             }
                         }
                     }
@@ -126,25 +112,25 @@ struct LogItemView: View {
                 }
             }
         }
-        .navigationTitle("Log item")
+            .navigationTitle("Log item")
             .sheet(isPresented: $newLineItemSheetPresented) {
-                List(lineItemTypes.hierarchyItems, children: \.children) { item in
-                    switch item {
-                    case .type(let t):
-                        Button(action: {
-                            let lineItem = createLineItem()
-                            lineItem.type = t
-                            ignoreErrors {
-                                try viewContext.save()
-                            }
-                            newLineItemSheetPresented = false
-                        }) {
-                            LineItemTypeLabelView(type: t)
-                        }
-                    case .category(let c):
-                        Text(c.displayName)
+                LineItemTypePickerView {
+                    let lineItem = createLineItem()
+                    lineItem.type = $0
+                    ignoreErrors {
+                        try viewContext.save()
                     }
-                }.navigationTitle("New line item")
+                    newLineItemSheetPresented = false
+                }
+            }
+            .sheet(isPresented: $shopSheetPresented) {
+                ShopPickerView(selected: logItem.shop) {
+                    logItem.shop = $0
+                    ignoreErrors {
+                        try viewContext.save()
+                    }
+                    shopSheetPresented = false
+                }
             }
     }
 }

@@ -11,8 +11,13 @@ struct ShopView: View {
     @ObservedObject var shop: Shop
     
     var body: some View {
-        Text(shop.name ?? "Unknown shop")
-            .navigationTitle(shop.name ?? "Shop")
+        Form {
+            FleetboxTextField(value: $shop.name, name: "Name", example: "Quick Lube of Anytown USA")
+            Section(header: Text("Actions")) {
+                Button("Merge with other shop") {}
+            }
+        }
+        .navigationTitle("Shop")
     }
 }
 

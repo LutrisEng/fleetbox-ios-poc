@@ -15,17 +15,17 @@ func dateDifference(_ a: Date?, _ b: Date?) -> Double {
 
 extension Vehicle {
     var logItems: Set<LogItem> {
-        return logItemsNs as? Set<LogItem> ?? []
+        logItemsNs as? Set<LogItem> ?? []
     }
     
     var logItemsChrono: [LogItem] {
-        return logItems.sorted {
+        logItems.sorted {
             ($0.performedAt ?? Date.distantPast) < ($1.performedAt ?? Date.distantPast)
         }
     }
     
     var logItemsInverseChrono: [LogItem] {
-        return logItems.sorted {
+        logItems.sorted {
             ($0.performedAt ?? Date.distantPast) > ($1.performedAt ?? Date.distantPast)
         }
     }
@@ -34,12 +34,16 @@ extension Vehicle {
         return odometerReadingsNs as? Set<OdometerReading> ?? []
     }
     
-    var odometerReadings: [OdometerReading] {
-        return odometerReadingSet.sorted { ($0.at ?? Date.distantPast) < ($1.at ?? Date.distantPast) }
+    var odometerReadingsChrono: [OdometerReading] {
+        odometerReadingSet.sorted { ($0.at ?? Date.distantPast) < ($1.at ?? Date.distantPast) }
+    }
+    
+    var odometerReadingsInverseChrono: [OdometerReading] {
+        odometerReadingSet.sorted { ($0.at ?? Date.distantPast) > ($1.at ?? Date.distantPast) }
     }
     
     var odometer: Int64 {
-        return odometerReadings.last?.reading ?? 0
+        odometerReadingsInverseChrono.first?.reading ?? 0
     }
     
     var currentTireSet: TireSet? {
@@ -59,7 +63,7 @@ extension Vehicle {
     }
     
     func closestOdometerReadingTo(date: Date?) -> Int64 {
-        odometerReadings.sorted(by: { dateDifference($0.at, date) < dateDifference($1.at, date) }).first?.reading ?? odometer
+        odometerReadingsChrono.sorted(by: { dateDifference($0.at, date) < dateDifference($1.at, date) }).first?.reading ?? odometer
     }
     
     func milesSince(lineItemType: String) -> Int64? {

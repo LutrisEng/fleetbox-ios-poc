@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 let lineItemTypes = try! LineItemTypes()
 let lineItemDefaultIcon = "wrench.and.screwdriver"
@@ -42,7 +43,9 @@ enum LineItemTypeFetcher {
 class LineItemTypeField : Identifiable {
     let id: String
     let shortDisplayName: String
+    let shortDisplayNameLocal: LocalizedStringKey
     let longDisplayName: String
+    let longDisplayNameLocal: LocalizedStringKey
     let type: LineItemTypeFieldType
     let booleanFormat: LineItemTypeBooleanFormat?
     let enumValues: [ String : LineItemTypeEnumValue ]
@@ -53,7 +56,9 @@ class LineItemTypeField : Identifiable {
     init(id: String, yaml: LineItemTypes.YamlField) throws {
         self.id = id
         self.shortDisplayName = yaml.shortDisplayName
+        self.shortDisplayNameLocal = LocalizedStringKey(self.shortDisplayName)
         self.longDisplayName = yaml.longDisplayName
+        self.longDisplayNameLocal = LocalizedStringKey(self.longDisplayName)
         switch yaml.type {
         case "string": self.type = .string
         case "tireSet": self.type = .tireSet

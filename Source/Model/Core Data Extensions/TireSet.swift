@@ -10,7 +10,7 @@ import CoreData
 
 extension TireSet {
     var displayName: String {
-        "\(make ?? "Unknown Make") \(model ?? "Unknown Model")"
+        userDisplayName ?? "\(make ?? "Unknown Make") \(model ?? "Unknown Model")"
     }
     
     var lineItemFields: Set<LineItemField> {
@@ -46,9 +46,9 @@ extension TireSet {
             }
             if item.addedTireSets.contains(self) {
                 if let prevMountedOn = mountedOn, let prevMountedAt = mountedAt {
-                    if let lastBeforeThis = prevMountedOn.odometerReadings.first(where: { ($0.at ?? Date.distantPast) < (item.performedAt ?? Date.distantPast) }) {
+                    if let lastBeforeThis = prevMountedOn.odometerReadingsChrono.first(where: { ($0.at ?? Date.distantPast) < (item.performedAt ?? Date.distantPast) }) {
                         counter += lastBeforeThis.reading - prevMountedAt
-                    } else if let soonestAfterThis = prevMountedOn.odometerReadings.first(where: { ($0.at ?? Date.distantPast) > (item.performedAt ?? Date.distantPast) }) {
+                    } else if let soonestAfterThis = prevMountedOn.odometerReadingsChrono.first(where: { ($0.at ?? Date.distantPast) > (item.performedAt ?? Date.distantPast) }) {
                         counter += soonestAfterThis.reading - prevMountedAt
                     } else {
                         counter += prevMountedOn.odometer - prevMountedAt
