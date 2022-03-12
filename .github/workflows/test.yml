@@ -13,7 +13,7 @@ jobs:
       - name: Checkout LFS objects
         run: git lfs checkout
       - name: Install tools
-        run: brew install yq jq swiftlint
+        run: brew install --overwrite yq jq swiftlint
       - run: swiftlint lint
       - name: Run build
         run: xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" clean build | tee xcodebuild.log
