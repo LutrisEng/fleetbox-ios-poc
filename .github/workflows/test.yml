@@ -13,10 +13,10 @@ jobs:
       - name: Checkout LFS objects
         run: git lfs checkout
       - name: Install tools
-        run: brew install --overwrite yq jq swiftlint
+        run: brew install --overwrite yq jq swiftlint && gem install xcpretty
       - run: swiftlint lint
       - name: Run build
-        run: xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" clean build | tee xcodebuild.log
+        run: xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" clean build | tee xcodebuild.log | xcpretty
       - run: swiftlint analyze --compiler-log-path xcodebuild.log
   test:
     name: Test
@@ -28,9 +28,9 @@ jobs:
       - name: Checkout LFS objects
         run: git lfs checkout
       - name: Install tools
-        run: brew install yq jq
+        run: brew install yq jq && gem install xcpretty
       - name: Run tests
-        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" -resultBundlePath TestResults clean test
+        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" -resultBundlePath TestResults clean test | xcpretty
       - name: Export tests results
         uses: kishikawakatsumi/xcresulttool@v1
         with:
