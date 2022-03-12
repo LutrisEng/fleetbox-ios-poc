@@ -26,7 +26,7 @@ struct ExportableVehicle: Codable {
         logItems = vehicle.logItems.map {
             ExportableLogItem(logItem: $0)
         }
-        self.standaloneOdometerReadings = vehicle.odometerReadingsChrono
+        standaloneOdometerReadings = vehicle.odometerReadingsChrono
                 .filter({ $0.logItem == nil })
                 .map {
                     ExportableOdometerReading(odometerReading: $0)

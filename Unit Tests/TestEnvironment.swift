@@ -12,13 +12,13 @@ import CoreData
 struct TestEnvironment {
     let controller: PersistenceController
     let viewContext: NSManagedObjectContext
-    
+
     init() {
         controller = PersistenceController(inMemory: true)
         viewContext = controller.container.viewContext
     }
-    
-    func addFixtures() -> PersistenceController.Fixtures {
-        PersistenceController.Fixtures(viewContext: viewContext)
+
+    func addFixtures() throws -> PersistenceController.Fixtures {
+        try PersistenceController.Fixtures(viewContext: viewContext)
     }
 }

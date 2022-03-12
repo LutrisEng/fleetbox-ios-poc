@@ -55,8 +55,10 @@ enum PartOdometer: Identifiable {
 
     var id: String {
         switch self {
-        case .individual(let t, let n): return "lineItem:\(t):\(n)"
-        case .fluidFilter(let ta, let tb, let n): return "lineItem:\(ta):\(tb):\(n)"
+        case .individual(let type, let name):
+            return "lineItem:\(type):\(name)"
+        case .fluidFilter(let fluidType, let filterType, let name):
+            return "lineItem:\(fluidType):\(filterType):\(name)"
         }
     }
 
@@ -64,9 +66,18 @@ enum PartOdometer: Identifiable {
     func view(vehicle: Vehicle) -> some View {
         switch self {
         case .individual(let lineItemType, let name):
-            PartOdometerIndividualView(vehicle: vehicle, lineItemType: lineItemType, name: name)
+            PartOdometerIndividualView(
+                    vehicle: vehicle,
+                    lineItemType: lineItemType,
+                    name: name
+            )
         case .fluidFilter(let fluidLineItemType, let filterLineItemType, let fluidName):
-            PartOdometerFluidFilterView(vehicle: vehicle, fluidLineItemType: fluidLineItemType, filterLineItemType: filterLineItemType, fluidName: fluidName)
+            PartOdometerFluidFilterView(
+                    vehicle: vehicle,
+                    fluidLineItemType: fluidLineItemType,
+                    filterLineItemType: filterLineItemType,
+                    fluidName: fluidName
+            )
         }
     }
 }

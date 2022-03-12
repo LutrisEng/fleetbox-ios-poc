@@ -9,8 +9,8 @@ import SwiftUI
 
 struct OdometerReadingFormView: View {
     let currentReading: Int64
-    let onSubmit: (Int64) -> ()
-    let onDismiss: () -> ()
+    let onSubmit: (Int64) -> Void
+    let onDismiss: () -> Void
     @StateObject private var reading = NumbersOnly()
 
     var body: some View {
@@ -33,7 +33,7 @@ struct OdometerReadingFormView: View {
 
 struct OdometerReadingFormView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper { fixtures in
+        PreviewWrapper { _ in
             OdometerReadingFormView(currentReading: 1000, onSubmit: { _ in }, onDismiss: {})
         }
     }

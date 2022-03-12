@@ -13,7 +13,7 @@ struct LineItemLabelView: View {
     var itemFont: Font = .body
     var detailFont: Font = .caption
     var iconWidth: CGFloat? = 30
-    var iconHeight: CGFloat? = nil
+    var iconHeight: CGFloat?
 
     var details: LineItemLabelView {
         var newView = self

@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct LineItemTypePickerView: View {
-    let action: (LineItemType) -> ()
+    let action: (LineItemType) -> Void
 
     var body: some View {
         List(lineItemTypes.hierarchyItems, children: \.children) { item in
             switch item {
-            case .type(let t):
-                Button(action: { action(t) }) {
-                    LineItemTypeLabelView(type: t)
-                }
-            case .category(let c):
+            case .type(let type):
+                Button(action: { action(type) }, label: {
+                    LineItemTypeLabelView(type: type)
+                })
+            case .category(let category):
                 HStack {
-                    Image(systemName: c.icon)
+                    Image(systemName: category.icon)
                             .frame(width: 30, alignment: .center)
-                    Text(c.displayName)
+                    Text(category.displayName)
                     Spacer()
                 }
             }

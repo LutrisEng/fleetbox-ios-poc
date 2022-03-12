@@ -11,10 +11,10 @@ import CoreData
 extension LineItemField {
     var type: LineItemTypeField? {
         get {
-            guard let typeId = self.typeId else {
+            guard let typeId = typeId else {
                 return nil
             }
-            guard let lineItem = self.lineItem else {
+            guard let lineItem = lineItem else {
                 return nil
             }
             guard let lineItemType = lineItem.type else {
@@ -24,7 +24,7 @@ extension LineItemField {
         }
 
         set {
-            self.typeId = newValue?.id
+            typeId = newValue?.id
         }
     }
 

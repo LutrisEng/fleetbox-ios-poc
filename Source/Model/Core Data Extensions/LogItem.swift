@@ -30,20 +30,20 @@ extension LogItem {
     }
 
     var formattedDate: String? {
-        if let d = performedAt {
+        if let date = performedAt {
             let formatter = DateFormatter()
             formatter.setLocalizedDateFormatFromTemplate("dd MMMM YYYY")
-            return formatter.string(from: d)
+            return formatter.string(from: date)
         } else {
             return nil
         }
     }
 
     func fixLineItemSortOrder() {
-        var i: Int16 = 0
+        var counter: Int16 = 0
         for lineItem in lineItems {
-            lineItem.sortOrder = i
-            i += 1
+            lineItem.sortOrder = counter
+            counter += 1
         }
     }
 

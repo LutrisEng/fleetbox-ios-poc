@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// swiftlint:disable:next force_try
 let lineItemTypes = try! LineItemTypes()
 let lineItemDefaultIcon = "wrench.and.screwdriver"
 
@@ -53,6 +54,7 @@ class LineItemTypeField: Identifiable {
     let defaultValue: String?
     let defaultValueFrom: LineItemTypeFetcher?
 
+    // swiftlint:disable:next cyclomatic_complexity
     init(id: String, yaml: LineItemTypes.YamlField) throws {
         self.id = id
         shortDisplayName = yaml.shortDisplayName
@@ -67,13 +69,16 @@ class LineItemTypeField: Identifiable {
         default: throw LineItemTypesParseError.invalidFieldType(statedType: yaml.type)
         }
         if let booleanFormat = yaml.booleanFormat {
-            self.booleanFormat = LineItemTypeBooleanFormat(trueFormat: booleanFormat.trueFormat, falseFormat: booleanFormat.falseFormat)
+            self.booleanFormat = LineItemTypeBooleanFormat(
+                    trueFormat: booleanFormat.trueFormat,
+                    falseFormat: booleanFormat.falseFormat
+            )
         } else {
             booleanFormat = nil
         }
         var enumValues: [String: LineItemTypeEnumValue] = [:]
-        for (id, ev) in yaml.enumValues ?? [:] {
-            enumValues[id] = LineItemTypeEnumValue(id: id, yaml: ev)
+        for (id, enumValue) in yaml.enumValues ?? [:] {
+            enumValues[id] = LineItemTypeEnumValue(id: id, yaml: enumValue)
         }
         self.enumValues = enumValues
         example = yaml.example
@@ -133,7 +138,12 @@ class LineItemTypeCategory: Identifiable {
     var types: [LineItemType] = []
     var subcategories: [LineItemTypeCategory] = []
 
-    init(id: String, parent: LineItemTypeCategory? = nil, categoryPath: [String], yaml: LineItemTypes.YamlCategory) throws {
+    init(
+            id: String,
+            parent: LineItemTypeCategory? = nil,
+            categoryPath: [String],
+            yaml: LineItemTypes.YamlCategory
+    ) throws {
         self.id = id
         self.parent = parent
         self.categoryPath = categoryPath
@@ -141,11 +151,18 @@ class LineItemTypeCategory: Identifiable {
         childCategoryPath.append(id)
         displayName = yaml.displayName
         definedIcon = yaml.icon?.sfsymbols
-        for (id, t) in yaml.types ?? [:] {
-            types.append(try LineItemType(id: id, category: self, categoryPath: childCategoryPath, yaml: t))
+        for (id, type) in yaml.types ?? [:] {
+            types.append(try LineItemType(id: id, category: self, categoryPath: childCategoryPath, yaml: type))
         }
-        for (id, c) in yaml.subcategories ?? [:] {
-            subcategories.append(try LineItemTypeCategory(id: id, parent: self, categoryPath: childCategoryPath, yaml: c))
+        for (id, subcategory) in yaml.subcategories ?? [:] {
+            subcategories.append(
+                    try LineItemTypeCategory(
+                            id: id,
+                            parent: self,
+                            categoryPath: childCategoryPath,
+                            yaml: subcategory
+                    )
+            )
         }
     }
 }
@@ -156,17 +173,17 @@ enum LineItemTypeHierarchyItem: Identifiable {
 
     var id: String {
         switch self {
-        case .type(let t): return "type:\(t.id)"
-        case .category(let c): return "category:\(c.id)"
+        case .type(let type): return "type:\(type.id)"
+        case .category(let category): return "category:\(category.id)"
         }
     }
 
     var children: [LineItemTypeHierarchyItem]? {
         switch self {
-        case .type(_): return nil
-        case .category(let c):
-            var vals = c.types.map(LineItemTypeHierarchyItem.type)
-            vals.append(contentsOf: c.subcategories.map(LineItemTypeHierarchyItem.category))
+        case .type: return nil
+        case .category(let category):
+            var vals = category.types.map(LineItemTypeHierarchyItem.type)
+            vals.append(contentsOf: category.subcategories.map(LineItemTypeHierarchyItem.category))
             return vals
         }
     }
@@ -182,6 +199,7 @@ struct LineItemTypes {
         let trueFormat: String
         let falseFormat: String
 
+        // swiftlint:disable:next nesting
         enum CodingKeys: String, CodingKey {
             case trueFormat = "true"
             case falseFormat = "false"
@@ -233,8 +251,8 @@ struct LineItemTypes {
 
     init() throws {
         yamlContents = try decoder.decode(YamlContents.self, from: try Data(contentsOf: filePath))
-        topLevelCategories = try yamlContents.categories.map { (id, c) in
-            try LineItemTypeCategory(id: id, categoryPath: [], yaml: c)
+        topLevelCategories = try yamlContents.categories.map { (id, category) in
+            try LineItemTypeCategory(id: id, categoryPath: [], yaml: category)
         }
         (allCategories, allTypes) = LineItemTypes.walk(categories: topLevelCategories)
         var categoriesById: [String: LineItemTypeCategory] = [:]
@@ -250,12 +268,14 @@ struct LineItemTypes {
         hierarchyItems = topLevelCategories.map(LineItemTypeHierarchyItem.category)
     }
 
-    private static func walk(categories inputCategories: [LineItemTypeCategory]) -> ([LineItemTypeCategory], [LineItemType]) {
+    private static func walk(
+            categories inputCategories: [LineItemTypeCategory]) -> ([LineItemTypeCategory], [LineItemType]
+    ) {
         var categories: [LineItemTypeCategory] = []
         var types: [LineItemType] = []
-        for c in inputCategories {
-            categories.append(c)
-            let (newCategories, newTypes) = walk(category: c)
+        for category in inputCategories {
+            categories.append(category)
+            let (newCategories, newTypes) = walk(category: category)
             categories.append(contentsOf: newCategories)
             types.append(contentsOf: newTypes)
         }
@@ -264,8 +284,8 @@ struct LineItemTypes {
 
     private static func walk(category: LineItemTypeCategory) -> ([LineItemTypeCategory], [LineItemType]) {
         var (categories, types) = walk(categories: category.subcategories)
-        for t in category.types {
-            types.append(t)
+        for type in category.types {
+            types.append(type)
         }
         return (categories, types)
     }

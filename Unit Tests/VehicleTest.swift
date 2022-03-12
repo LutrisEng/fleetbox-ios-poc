@@ -19,7 +19,7 @@ class VehicleTest: XCTestCase {
         _ = Vehicle(context: env.viewContext)
         try env.viewContext.save()
     }
-    
+
     func testOdometer() throws {
         let vehicle = Vehicle(context: env.viewContext)
         XCTAssertEqual(vehicle.odometer, 0)

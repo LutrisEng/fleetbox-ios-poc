@@ -19,7 +19,8 @@ struct PersistenceController {
         let lineItem: LineItem
         let tireSet: TireSet
 
-        init(viewContext: NSManagedObjectContext) {
+        // swiftlint:disable:next function_body_length
+        init(viewContext: NSManagedObjectContext) throws {
             vehicle = Vehicle(context: viewContext)
             vehicle.displayName = "The Mazda CX-5"
             vehicle.year = 2022
@@ -43,7 +44,7 @@ struct PersistenceController {
             tireSet.model = "Turanza"
             let factoryTireLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
             factoryTireLineItem.typeId = "mountedTires"
-            try! factoryTireLineItem.setFieldValue("tireSet", value: tireSet)
+            try factoryTireLineItem.setFieldValue("tireSet", value: tireSet)
             let factoryOilLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
             factoryOilLineItem.typeId = "engineOilChange"
             let factoryOilFilterLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
@@ -76,18 +77,18 @@ struct PersistenceController {
             odometerReading.logItem = logItem
             lineItem = LineItem(context: viewContext, logItem: logItem)
             lineItem.typeId = "engineOilChange"
-            try! lineItem.setFieldValue("viscosity", value: "0W-20")
-            try! lineItem.setFieldValue("brand", value: "BMW")
-            try! lineItem.setFieldValue("partNumber", value: "83-21-2-463-673")
+            try lineItem.setFieldValue("viscosity", value: "0W-20")
+            try lineItem.setFieldValue("brand", value: "BMW")
+            try lineItem.setFieldValue("partNumber", value: "83-21-2-463-673")
             let secondLineItem = LineItem(context: viewContext, logItem: logItem)
             secondLineItem.typeId = "engineOilFilterChange"
-            try! secondLineItem.setFieldValue("brand", value: "BMW")
-            try! secondLineItem.setFieldValue("partNumber", value: "11-42-8-583-898")
+            try secondLineItem.setFieldValue("brand", value: "BMW")
+            try secondLineItem.setFieldValue("partNumber", value: "11-42-8-583-898")
             let laterOdometerReading = OdometerReading(context: viewContext)
             laterOdometerReading.reading = 6871
             laterOdometerReading.at = Date(timeIntervalSince1970: 1646550183)
             laterOdometerReading.vehicle = vehicle
-            try! viewContext.save()
+            try viewContext.save()
         }
     }
 
@@ -96,14 +97,15 @@ struct PersistenceController {
         let viewContext: NSManagedObjectContext
         let fixtures: Fixtures
 
-        init() {
+        init() throws {
             controller = PersistenceController(inMemory: true)
             viewContext = controller.container.viewContext
-            fixtures = Fixtures(viewContext: viewContext)
+            fixtures = try Fixtures(viewContext: viewContext)
         }
     }
 
-    static var preview: Preview = Preview()
+    // swiftlint:disable:next force_try
+    static var preview: Preview = try! Preview()
 
     let container: NSPersistentCloudKitContainer
 
@@ -121,19 +123,7 @@ struct PersistenceController {
         container.loadPersistentStores(completionHandler: { (description, error) in
             if let error = error as NSError? {
                 SentrySDK.capture(error: error)
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-
-                /*
-                Typical reasons for an error here include:
-                * The parent directory does not exist, cannot be created, or disallows writing.
-                * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                * The device is out of space.
-                * The store could not be migrated to the current model version.
-                Check the error message to determine what the actual problem was.
-                */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            } else if (!inMemory) {
+            } else if !inMemory {
                 let indexer = VehicleSpotlightDelegate(forStoreWith: description, coordinator: coordinator)
                 indexer.startSpotlightIndexing()
             }

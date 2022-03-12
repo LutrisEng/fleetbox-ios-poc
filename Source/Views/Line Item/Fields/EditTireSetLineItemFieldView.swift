@@ -14,7 +14,7 @@ struct EditTireSetLineItemFieldView: View {
     @State private var sheetPresented: Bool = false
 
     var body: some View {
-        Button(action: { sheetPresented = true }) {
+        Button(action: { sheetPresented = true }, label: {
             HStack {
                 Text(type.shortDisplayNameLocal)
                         .foregroundColor(.primary)
@@ -22,7 +22,7 @@ struct EditTireSetLineItemFieldView: View {
                 Text(field.tireSetValue?.displayName ?? "None")
                         .foregroundColor(.secondary)
             }
-        }
+        })
                 .sheet(isPresented: $sheetPresented) {
                     TireSetPickerView(selected: field.tireSetValue) {
                         field.tireSetValue = $0

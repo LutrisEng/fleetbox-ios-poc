@@ -16,7 +16,9 @@ struct PartOdometerFluidFilterView: View {
     var body: some View {
         let milesSinceFluid = vehicle.milesSince(lineItemType: fluidLineItemType)
         let milesSinceFilter = vehicle.milesSince(lineItemType: filterLineItemType)
-        if let milesSinceFluid = milesSinceFluid, let milesSinceFilter = milesSinceFilter, milesSinceFluid == milesSinceFilter {
+        if let milesSinceFluid = milesSinceFluid,
+           let milesSinceFilter = milesSinceFilter,
+           milesSinceFluid == milesSinceFilter {
             PartOdometerRowView(name: "\(fluidName) & filter", reading: milesSinceFluid)
         } else {
             if let milesSinceFluid = milesSinceFluid {
@@ -32,7 +34,12 @@ struct PartOdometerFluidFilterView: View {
 struct PartOdometerFluidFilterView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
-            PartOdometerFluidFilterView(vehicle: fixtures.vehicle, fluidLineItemType: "engineOilChanged", filterLineItemType: "engineOilFilterChanged", fluidName: "Oil")
+            PartOdometerFluidFilterView(
+                    vehicle: fixtures.vehicle,
+                    fluidLineItemType: "engineOilChanged",
+                    filterLineItemType: "engineOilFilterChanged",
+                    fluidName: "Oil"
+            )
         }
     }
 }

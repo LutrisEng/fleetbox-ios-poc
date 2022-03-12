@@ -14,6 +14,7 @@ struct VINDetailView: View {
     @State private var err: Bool = false
 
     enum ViewState {
+        // swiftlint:disable:next identifier_name
         case base, loading, ok, err
     }
 
@@ -61,10 +62,11 @@ struct VINDetailView: View {
                                     }
                                     state = .base
                                 }
+                            },
+                            label: {
+                                Image(systemName: "square.and.arrow.down")
                             }
-                    ) {
-                        Image(systemName: "square.and.arrow.down")
-                    }
+                    )
                             .padding(.trailing, 8)
                             .frame(width: 30)
                             .buttonStyle(BorderlessButtonStyle())
@@ -86,9 +88,12 @@ struct VINDetailView: View {
                 }
             }
         }
-                .alert("Failed to decode VIN", isPresented: $err, actions: {}) {
-                    Text("An error occurred while decoding your VIN. Check to make sure you typed your VIN correctly, and check your network connection.")
-                }
+                .alert("Failed to decode VIN", isPresented: $err, actions: {}, message: {
+                    Text(
+                            "An error occurred while decoding your VIN. Check to make sure you typed your VIN " +
+                                    "correctly, and check your network connection."
+                    )
+                })
     }
 }
 

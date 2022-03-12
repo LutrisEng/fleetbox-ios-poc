@@ -23,19 +23,19 @@ extension LineItem {
     convenience init(context: NSManagedObjectContext, logItem: LogItem) {
         self.init(context: context)
         self.logItem = logItem
-        self.sortOrder = logItem.nextLineItemSortOrder
+        sortOrder = logItem.nextLineItemSortOrder
     }
 
     var type: LineItemType? {
         get {
-            guard let typeId = self.typeId else {
+            guard let typeId = typeId else {
                 return nil
             }
             return (lineItemTypes.allTypesById[typeId] ?? lineItemTypes.allTypesById["misc"])!
         }
 
         set {
-            self.typeId = newValue?.id
+            typeId = newValue?.id
         }
     }
 
@@ -92,7 +92,7 @@ extension LineItem {
             return nil
         }
         switch value {
-        case .string(let v): return v
+        case .string(let value): return value
         case .tireSet: throw FieldValueError.invalidType(expected: .string, received: .tireSet)
         case .boolean: throw FieldValueError.invalidType(expected: .string, received: .boolean)
         }
@@ -103,7 +103,7 @@ extension LineItem {
             return nil
         }
         switch value {
-        case .tireSet(let v): return v
+        case .tireSet(let value): return value
         case .string: throw FieldValueError.invalidType(expected: .tireSet, received: .string)
         case .boolean: throw FieldValueError.invalidType(expected: .tireSet, received: .boolean)
         }
@@ -114,7 +114,7 @@ extension LineItem {
             return nil
         }
         switch value {
-        case .boolean(let v): return v
+        case .boolean(let value): return value
         case .string: throw FieldValueError.invalidType(expected: .boolean, received: .string)
         case .tireSet: throw FieldValueError.invalidType(expected: .boolean, received: .tireSet)
         }
@@ -173,9 +173,9 @@ extension LineItem {
 
     func setFieldValue(_ id: String, value: FieldValue) throws {
         switch value {
-        case .string(let v): try setFieldValue(id, value: v)
-        case .tireSet(let v): try setFieldValue(id, value: v)
-        case .boolean(let v): try setFieldValue(id, value: v)
+        case .string(let value): try setFieldValue(id, value: value)
+        case .tireSet(let value): try setFieldValue(id, value: value)
+        case .boolean(let value): try setFieldValue(id, value: value)
         }
     }
 

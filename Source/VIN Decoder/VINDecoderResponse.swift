@@ -36,9 +36,9 @@ struct VINDecoderResponse: Codable {
 
     func toResult() -> VINDecoderResult {
         var result = VINDecoderResult()
-        for r in results {
-            if let value = r.value {
-                switch r.variableId {
+        for item in results {
+            if let value = item.value {
+                switch item.variableId {
                 case 143: result.errorCode = Int(value) ?? result.errorCode
                 case 26: result.make = value
                 case 28: result.model = value

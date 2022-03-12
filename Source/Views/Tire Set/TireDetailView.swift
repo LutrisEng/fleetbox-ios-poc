@@ -11,14 +11,14 @@ struct TireDetailView: View {
     @ObservedObject var tireSet: TireSet
 
     var body: some View {
-        NavigationLink(destination: { TireSetView(tireSet: tireSet) }) {
+        NavigationLink(destination: { TireSetView(tireSet: tireSet) }, label: {
             HStack {
                 Text("Tires")
                 Spacer()
                 Text(tireSet.displayName)
                         .foregroundColor(.secondary)
             }
-        }
+        })
     }
 }
 

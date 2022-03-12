@@ -37,8 +37,8 @@ extension TireSet {
 
     var odometer: Int64 {
         var counter: Int64 = 0
-        var mountedOn: Vehicle? = nil
-        var mountedAt: Int64? = nil
+        var mountedOn: Vehicle?
+        var mountedAt: Int64?
         for item in logItemsSorted {
             if item.removedTireSets.contains(self) {
                 if let dismountedAt = item.odometerReading?.reading {
@@ -52,9 +52,13 @@ extension TireSet {
             }
             if item.addedTireSets.contains(self) {
                 if let prevMountedOn = mountedOn, let prevMountedAt = mountedAt {
-                    if let lastBeforeThis = prevMountedOn.odometerReadingsChrono.first(where: { ($0.at ?? Date.distantPast) < (item.performedAt ?? Date.distantPast) }) {
+                    if let lastBeforeThis = prevMountedOn
+                            .odometerReadingsChrono
+                            .first(where: { ($0.at ?? Date.distantPast) < (item.performedAt ?? Date.distantPast) }) {
                         counter += lastBeforeThis.reading - prevMountedAt
-                    } else if let soonestAfterThis = prevMountedOn.odometerReadingsChrono.first(where: { ($0.at ?? Date.distantPast) > (item.performedAt ?? Date.distantPast) }) {
+                    } else if let soonestAfterThis = prevMountedOn
+                            .odometerReadingsChrono
+                            .first(where: { ($0.at ?? Date.distantPast) > (item.performedAt ?? Date.distantPast) }) {
                         counter += soonestAfterThis.reading - prevMountedAt
                     } else {
                         counter += prevMountedOn.odometer - prevMountedAt

@@ -11,9 +11,9 @@ extension OdometerReading {
     convenience init(context: NSManagedObjectContext, logItem: LogItem) {
         self.init(context: context)
         self.logItem = logItem
-        self.vehicle = logItem.vehicle
-        self.reading = logItem.vehicle?.odometer ?? 0
-        self.at = logItem.performedAt ?? Date.now
+        vehicle = logItem.vehicle
+        reading = logItem.vehicle?.odometer ?? 0
+        at = logItem.performedAt ?? Date.now
     }
 
     override public func willChangeValue(forKey key: String) {

@@ -14,13 +14,13 @@ struct ShopPickerView: View {
     private var shops: FetchedResults<Shop>
 
     let selected: Shop?
-    let action: (Shop) -> ()
+    let action: (Shop) -> Void
 
     var body: some View {
         NavigationView {
             List {
                 ForEach(shops, id: \.self) { shop in
-                    Button(action: { action(shop) }) {
+                    Button(action: { action(shop) }, label: {
                         HStack {
                             Text(shop.name ?? "Unknown shop")
                                     .foregroundColor(.primary)
@@ -30,7 +30,7 @@ struct ShopPickerView: View {
                                         .foregroundColor(.accentColor)
                             }
                         }
-                    }
+                    })
                 }
             }
                     .navigationTitle("Shops")
@@ -40,7 +40,7 @@ struct ShopPickerView: View {
 
 struct ShopPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper { fixtures in
+        PreviewWrapper { _ in
             ShopPickerView(selected: nil) {
                 print($0.name ?? "Unknown shop")
             }

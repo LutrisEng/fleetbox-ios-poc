@@ -18,7 +18,7 @@ struct VehiclesView: View {
             animation: .default)
     private var vehicles: FetchedResults<Vehicle>
 
-    @State private var selection: String? = nil
+    @State private var selection: String?
 
     var body: some View {
         NavigationView {
@@ -95,14 +95,16 @@ struct VehiclesView: View {
 
     private func addFixtures() {
         withAnimation {
-            _ = PersistenceController.Fixtures(viewContext: viewContext)
+            ignoreErrors {
+                _ = try PersistenceController.Fixtures(viewContext: viewContext)
+            }
         }
     }
 }
 
 struct VehiclesView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper { fixtures in
+        PreviewWrapper { _ in
             VehiclesView()
         }
                 .withoutNavigation()

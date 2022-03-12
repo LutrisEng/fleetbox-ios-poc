@@ -12,9 +12,9 @@ struct PreviewWrapper<Content: View>: View {
     let content: (PersistenceController.Fixtures) -> Content
 
     func withoutNavigation() -> PreviewWrapper<Content> {
-        var v = self
-        v.navigation = false
-        return v
+        var view = self
+        view.navigation = false
+        return view
     }
 
     var body: some View {

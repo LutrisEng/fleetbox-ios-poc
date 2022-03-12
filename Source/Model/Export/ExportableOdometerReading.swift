@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 struct ExportableOdometerReading: Codable {
+    // swiftlint:disable:next identifier_name
     let at: Date?
     let reading: Int64
 

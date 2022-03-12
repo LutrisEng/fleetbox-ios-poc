@@ -25,7 +25,7 @@ class UILaunchTests: XCTestCase {
         attachment.lifetime = .keepAlways
         add(attachment)
     }
-    
+
     func testVehicle() throws {
         let app = XCUIApplication()
         app.launch()
@@ -33,7 +33,7 @@ class UILaunchTests: XCTestCase {
             app.navigationBars["Vehicles"].buttons["Add Fixtures"].tap()
         }
         app.tables.buttons["The Mazda CX-5"].tap()
-        
+
         let attachment = XCTAttachment(screenshot: app.screenshot())
         attachment.name = "Vehicle"
         attachment.lifetime = .keepAlways

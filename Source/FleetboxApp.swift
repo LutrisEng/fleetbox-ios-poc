@@ -15,7 +15,7 @@ let debug = false
 #endif
 
 func getInfoDictionaryKey(key: String) -> String {
-    Bundle.main.object(forInfoDictionaryKey: key) as! String
+    Bundle.main.object(forInfoDictionaryKey: key) as? String ?? "unknown"
 }
 
 func getSentryRelease() -> String {

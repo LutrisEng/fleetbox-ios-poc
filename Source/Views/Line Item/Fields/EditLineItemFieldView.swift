@@ -18,7 +18,11 @@ struct EditLineItemFieldView: View {
             Section(header: Text(type.longDisplayName)) {
                 switch type.type {
                 case .string:
-                    FleetboxTextField(value: $field.stringValue, name: type.shortDisplayNameLocal, example: type.example)
+                    FleetboxTextField(
+                            value: $field.stringValue,
+                            name: type.shortDisplayNameLocal,
+                            example: type.example
+                    )
                 case .enumeration:
                     Picker(type.shortDisplayNameLocal, selection: convertToNonNilBinding(string: $field.stringValue)) {
                         ForEach(Array(type.enumValues.values)) { val in

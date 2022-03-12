@@ -14,12 +14,12 @@ struct TireSetPickerView: View {
     private var tireSets: FetchedResults<TireSet>
 
     let selected: TireSet?
-    let action: (TireSet?) -> ()
+    let action: (TireSet?) -> Void
 
     var body: some View {
         NavigationView {
             List {
-                Button(action: { action(nil) }) {
+                Button(action: { action(nil) }, label: {
                     HStack {
                         Text("None")
                                 .foregroundColor(.primary)
@@ -29,9 +29,9 @@ struct TireSetPickerView: View {
                                     .foregroundColor(.accentColor)
                         }
                     }
-                }
+                })
                 ForEach(tireSets, id: \.self) { tireSet in
-                    Button(action: { action(tireSet) }) {
+                    Button(action: { action(tireSet) }, label: {
                         HStack {
                             Text(tireSet.displayName)
                                     .foregroundColor(.primary)
@@ -41,7 +41,7 @@ struct TireSetPickerView: View {
                                         .foregroundColor(.accentColor)
                             }
                         }
-                    }
+                    })
                 }
             }
                     .navigationTitle("Tire sets")
@@ -51,7 +51,7 @@ struct TireSetPickerView: View {
 
 struct TireSetPickerView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper { fixtures in
+        PreviewWrapper { _ in
             TireSetPickerView(selected: nil) {
                 print($0?.displayName ?? "None")
             }

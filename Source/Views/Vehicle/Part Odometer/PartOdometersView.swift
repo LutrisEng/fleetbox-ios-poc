@@ -41,8 +41,8 @@ struct PartOdometersView: View {
             if let tires = vehicle.currentTireSet {
                 PartOdometerRowView(name: "Tires", reading: tires.odometer)
             }
-            ForEach(partOdometers) { x in
-                x.view(vehicle: vehicle)
+            ForEach(partOdometers) { odometer in
+                odometer.view(vehicle: vehicle)
             }
         }
     }

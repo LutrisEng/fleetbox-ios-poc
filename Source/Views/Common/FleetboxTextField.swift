@@ -14,12 +14,12 @@ struct FleetboxTextField: View {
     @State var focused: Bool = false
     let name: LocalizedStringKey?
     let example: String?
-    var unitName: LocalizedStringKey? = nil
+    var unitName: LocalizedStringKey?
 
     func unit(_ unit: LocalizedStringKey) -> FleetboxTextField {
-        var v = self
-        v.unitName = unit
-        return v
+        var view = self
+        view.unitName = unit
+        return view
     }
 
     var body: some View {
@@ -42,10 +42,10 @@ struct FleetboxTextField: View {
                             }
                     )
                     if let value = value, focused && !value.isEmpty {
-                        Button(action: { self.value = "" }) {
+                        Button(action: { self.value = "" }, label: {
                             Image(systemName: "xmark.circle")
                                     .foregroundColor(.secondary)
-                        }
+                        })
                                 .padding(.trailing, 8)
                                 .buttonStyle(BorderlessButtonStyle())
                     }

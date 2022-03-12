@@ -13,7 +13,12 @@ struct DummyData {
     let vin: String
     let vehicleName: String
 
-    static let popCulture = DummyData(vehicleMake: "Knight Industries", vehicleModel: "Two Thousand", vin: "AAAAA000000000000", vehicleName: "KITT")
+    static let popCulture = DummyData(
+            vehicleMake: "Knight Industries",
+            vehicleModel: "Two Thousand",
+            vin: "AAAAA000000000000",
+            vehicleName: "KITT"
+    )
 }
 
 let dummyData = DummyData.popCulture

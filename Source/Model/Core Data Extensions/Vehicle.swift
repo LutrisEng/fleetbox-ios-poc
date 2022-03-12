@@ -9,8 +9,8 @@ import Foundation
 import CoreData
 import Sentry
 
-func dateDifference(_ a: Date?, _ b: Date?) -> Double {
-    abs((a ?? Date.distantPast).timeIntervalSince1970 - (b ?? Date.distantPast).timeIntervalSince1970)
+func dateDifference(_ first: Date?, _ second: Date?) -> Double {
+    abs((first ?? Date.distantPast).timeIntervalSince1970 - (second ?? Date.distantPast).timeIntervalSince1970)
 }
 
 extension Vehicle {
@@ -52,14 +52,12 @@ extension Vehicle {
 
     var currentTireSet: TireSet? {
         for logItem in logItemsInverseChrono {
-            for lineItem in logItem.lineItems {
-                if lineItem.typeId == "mountedTires" {
-                    do {
-                        return try lineItem.getFieldValueTireSet("tireSet")
-                    } catch {
-                        SentrySDK.capture(error: error)
-                        return nil
-                    }
+            for lineItem in logItem.lineItems where lineItem.typeId == "mountedTires" {
+                do {
+                    return try lineItem.getFieldValueTireSet("tireSet")
+                } catch {
+                    SentrySDK.capture(error: error)
+                    return nil
                 }
             }
         }
@@ -67,18 +65,20 @@ extension Vehicle {
     }
 
     func closestOdometerReadingTo(date: Date?) -> Int64 {
-        odometerReadingsChrono.sorted(by: { dateDifference($0.at, date) < dateDifference($1.at, date) }).first?.reading ?? odometer
+        odometerReadingsChrono
+                .sorted(by: { dateDifference($0.at, date) < dateDifference($1.at, date) })
+                .first?
+                .reading
+                ?? odometer
     }
 
     func milesSince(lineItemType: String) -> Int64? {
         for logItem in logItemsInverseChrono {
-            for lineItem in logItem.lineItems {
-                if lineItem.typeId == lineItemType {
-                    if let reading = logItem.odometerReading?.reading {
-                        return odometer - reading
-                    } else {
-                        return odometer - closestOdometerReadingTo(date: logItem.performedAt ?? Date.distantPast)
-                    }
+            for lineItem in logItem.lineItems where lineItem.typeId == lineItemType {
+                if let reading = logItem.odometerReading?.reading {
+                    return odometer - reading
+                } else {
+                    return odometer - closestOdometerReadingTo(date: logItem.performedAt ?? Date.distantPast)
                 }
             }
         }
