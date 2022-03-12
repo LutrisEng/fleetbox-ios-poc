@@ -15,7 +15,7 @@ extension OdometerReading {
         self.reading = logItem.vehicle?.odometer ?? 0
         self.at = logItem.performedAt ?? Date.now
     }
-    
+
     override public func willChangeValue(forKey key: String) {
         super.willChangeValue(forKey: key)
         self.objectWillChange.send()

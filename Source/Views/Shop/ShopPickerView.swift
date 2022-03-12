@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ShopPickerView: View {
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Shop.sortOrder, ascending: true)],
-        animation: .default)
+            sortDescriptors: [NSSortDescriptor(keyPath: \Shop.sortOrder, ascending: true)],
+            animation: .default)
     private var shops: FetchedResults<Shop>
-    
+
     let selected: Shop?
     let action: (Shop) -> ()
-    
+
     var body: some View {
         NavigationView {
             List {
@@ -23,17 +23,17 @@ struct ShopPickerView: View {
                     Button(action: { action(shop) }) {
                         HStack {
                             Text(shop.name ?? "Unknown shop")
-                                .foregroundColor(.primary)
+                                    .foregroundColor(.primary)
                             if selected == shop {
                                 Spacer()
                                 Image(systemName: "checkmark")
-                                    .foregroundColor(.accentColor)
+                                        .foregroundColor(.accentColor)
                             }
                         }
                     }
                 }
             }
-            .navigationTitle("Shops")
+                    .navigationTitle("Shops")
         }
     }
 }

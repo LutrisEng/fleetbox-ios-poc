@@ -11,7 +11,7 @@ struct PartOdometerIndividualView: View {
     @ObservedObject var vehicle: Vehicle
     let lineItemType: String
     let name: String
-    
+
     var body: some View {
         if let milesSince = vehicle.milesSince(lineItemType: lineItemType) {
             PartOdometerRowView(name: name, reading: milesSince)

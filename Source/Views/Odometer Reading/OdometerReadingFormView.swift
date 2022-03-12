@@ -12,22 +12,22 @@ struct OdometerReadingFormView: View {
     let onSubmit: (Int64) -> ()
     let onDismiss: () -> ()
     @StateObject private var reading = NumbersOnly()
-    
+
     var body: some View {
         Form {
             PartOdometerRowView(name: "Current", reading: currentReading)
             HStack {
                 TextField("Odometer reading in miles", text: $reading.value)
-                    .keyboardType(.decimalPad)
+                        .keyboardType(.decimalPad)
                 Spacer()
                 Text("miles")
             }
             Button("Save", action: { onSubmit(reading.numericValue) })
             Button("Cancel", action: onDismiss)
         }
-        .onAppear {
-            reading.numericValue = currentReading
-        }
+                .onAppear {
+                    reading.numericValue = currentReading
+                }
     }
 }
 

@@ -22,12 +22,12 @@ extension LineItemField {
             }
             return lineItemType.fieldsById[typeId]
         }
-        
+
         set {
             self.typeId = newValue?.id
         }
     }
-    
+
     var displayValue: String? {
         switch type?.type {
         case .string:
@@ -59,7 +59,7 @@ extension LineItemField {
         case nil: return nil
         }
     }
-    
+
     func setDefaultValue(vehicle: Vehicle?) {
         if let defaultValue = type?.defaultValue {
             switch type?.type {
@@ -86,7 +86,7 @@ extension LineItemField {
             }
         }
     }
-    
+
     override public func willChangeValue(forKey key: String) {
         super.willChangeValue(forKey: key)
         self.objectWillChange.send()

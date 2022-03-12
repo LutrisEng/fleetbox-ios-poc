@@ -12,7 +12,7 @@ struct PartOdometerFluidFilterView: View {
     let fluidLineItemType: String
     let filterLineItemType: String
     let fluidName: String
-    
+
     var body: some View {
         let milesSinceFluid = vehicle.milesSince(lineItemType: fluidLineItemType)
         let milesSinceFilter = vehicle.milesSince(lineItemType: filterLineItemType)

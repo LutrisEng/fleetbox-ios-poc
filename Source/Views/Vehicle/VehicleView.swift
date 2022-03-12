@@ -10,9 +10,9 @@ import Sentry
 
 struct VehicleView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+
     @ObservedObject var vehicle: Vehicle
-    
+
     var body: some View {
         VStack {
             Form {
@@ -20,7 +20,8 @@ struct VehicleView: View {
                 PartOdometersView(vehicle: vehicle)
                 MaintenanceLogView(vehicle: vehicle)
             }
-        }.navigationTitle(vehicle.fullModelName)
+        }
+                .navigationTitle(vehicle.fullModelName)
     }
 }
 

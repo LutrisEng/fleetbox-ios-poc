@@ -9,23 +9,23 @@ import SwiftUI
 
 struct OdometerReadingView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+
     @ObservedObject var odometerReading: OdometerReading
-    
+
     var body: some View {
         Form {
             DatePicker(
-                "Performed",
-                selection: convertToNonNilBinding(date: $odometerReading.at),
-                displayedComponents: [.date]
+                    "Performed",
+                    selection: convertToNonNilBinding(date: $odometerReading.at),
+                    displayedComponents: [.date]
             )
             FleetboxTextField(
-                value: convertToNillableBinding(string: convertToStringBinding(int64: $odometerReading.reading)),
-                name: "Odometer reading in miles",
-                example: "1000"
+                    value: convertToNillableBinding(string: convertToStringBinding(int64: $odometerReading.reading)),
+                    name: "Odometer reading in miles",
+                    example: "1000"
             )
-                .unit("miles")
-                .keyboardType(.decimalPad)
+                    .unit("miles")
+                    .keyboardType(.decimalPad)
         }
     }
 }

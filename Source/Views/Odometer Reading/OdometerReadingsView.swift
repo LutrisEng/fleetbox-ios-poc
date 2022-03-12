@@ -9,7 +9,7 @@ import SwiftUI
 
 struct OdometerReadingsView: View {
     @ObservedObject var vehicle: Vehicle
-    
+
     var body: some View {
         List {
             ForEach(vehicle.odometerReadingsInverseChrono, id: \.self) { odometerReading in

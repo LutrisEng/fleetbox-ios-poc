@@ -12,25 +12,25 @@ struct EditTireSetLineItemFieldView: View {
     @ObservedObject var field: LineItemField
     let type: LineItemTypeField
     @State private var sheetPresented: Bool = false
-    
+
     var body: some View {
         Button(action: { sheetPresented = true }) {
             HStack {
                 Text(type.shortDisplayNameLocal)
-                    .foregroundColor(.primary)
+                        .foregroundColor(.primary)
                 Spacer()
                 Text(field.tireSetValue?.displayName ?? "None")
-                    .foregroundColor(.secondary)
+                        .foregroundColor(.secondary)
             }
         }
-            .sheet(isPresented: $sheetPresented) {
-                TireSetPickerView(selected: field.tireSetValue) {
-                    field.tireSetValue = $0
-                    ignoreErrors {
-                        try viewContext.save()
+                .sheet(isPresented: $sheetPresented) {
+                    TireSetPickerView(selected: field.tireSetValue) {
+                        field.tireSetValue = $0
+                        ignoreErrors {
+                            try viewContext.save()
+                        }
+                        sheetPresented = false
                     }
-                    sheetPresented = false
                 }
-            }
     }
 }

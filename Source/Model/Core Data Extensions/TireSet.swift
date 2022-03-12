@@ -12,23 +12,29 @@ extension TireSet {
     var displayName: String {
         userDisplayName ?? "\(make ?? "Unknown Make") \(model ?? "Unknown Model")"
     }
-    
+
     var lineItemFields: Set<LineItemField> {
         lineItemFieldsNs as? Set<LineItemField> ?? []
     }
-    
+
     var lineItems: Set<LineItem> {
-        Set(lineItemFields.compactMap { $0.lineItem })
+        Set(lineItemFields.compactMap {
+            $0.lineItem
+        })
     }
-    
+
     var logItems: Set<LogItem> {
-        Set(lineItems.compactMap { $0.logItem })
+        Set(lineItems.compactMap {
+            $0.logItem
+        })
     }
-    
+
     var logItemsSorted: [LogItem] {
-        logItems.sorted { ($0.performedAt ?? Date.distantPast) < ($1.performedAt ?? Date.distantPast) }
+        logItems.sorted {
+            ($0.performedAt ?? Date.distantPast) < ($1.performedAt ?? Date.distantPast)
+        }
     }
-    
+
     var odometer: Int64 {
         var counter: Int64 = 0
         var mountedOn: Vehicle? = nil
@@ -56,7 +62,7 @@ extension TireSet {
                 } else if let prevMountedOn = mountedOn {
                     counter += prevMountedOn.odometer
                 }
-                
+
                 if let newMountedAt = item.odometerReading?.reading {
                     mountedAt = newMountedAt
                 } else if let vehicle = item.vehicle {
@@ -71,7 +77,7 @@ extension TireSet {
         }
         return counter
     }
-    
+
     override public func willChangeValue(forKey key: String) {
         super.willChangeValue(forKey: key)
         self.objectWillChange.send()

@@ -14,10 +14,10 @@ struct VehiclesView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Vehicle.sortOrder, ascending: true)],
-        animation: .default)
+            sortDescriptors: [NSSortDescriptor(keyPath: \Vehicle.sortOrder, ascending: true)],
+            animation: .default)
     private var vehicles: FetchedResults<Vehicle>
-    
+
     @State private var selection: String? = nil
 
     var body: some View {
@@ -25,39 +25,45 @@ struct VehiclesView: View {
             List {
                 ForEach(vehicles, id: \.self) { vehicle in
                     NavigationLink(
-                        vehicle.displayNameWithFallback,
-                        destination: VehicleView(vehicle: vehicle),
-                        tag: vehicle.objectID.uriRepresentation().absoluteString,
-                        selection: $selection)
-                }.onDelete { offsets in
-                    withAnimation {
-                        offsets.map { vehicles[$0] }.forEach(viewContext.delete)
-
-                        ignoreErrors {
-                            try viewContext.save()
-                        }
-                    }
+                            vehicle.displayNameWithFallback,
+                            destination: VehicleView(vehicle: vehicle),
+                            tag: vehicle.objectID.uriRepresentation().absoluteString,
+                            selection: $selection)
                 }
-            }.navigationTitle("Vehicles")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
+                        .onDelete { offsets in
+                            withAnimation {
+                                offsets.map {
+                                            vehicles[$0]
+                                        }
+                                        .forEach(viewContext.delete)
+
+                                ignoreErrors {
+                                    try viewContext.save()
+                                }
+                            }
+                        }
+            }
+                    .navigationTitle("Vehicles")
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            EditButton()
+                        }
 //                    ToolbarItem {
 //                        Button(action: addVehicle) {
 //                            Label("Add Vehicle", systemImage: "plus")
 //                        }
 //                    }
-                    ToolbarItem {
-                        Button(action: addFixtures) {
-                            Label("Add Fixtures", systemImage: "plus")
+                        ToolbarItem {
+                            Button(action: addFixtures) {
+                                Label("Add Fixtures", systemImage: "plus")
+                            }
                         }
                     }
-                }
             Text("Select a vehicle")
-        }.onContinueUserActivity(CSSearchableItemActionType, perform: handleSpotlight)
+        }
+                .onContinueUserActivity(CSSearchableItemActionType, perform: handleSpotlight)
     }
-    
+
     private func handleSpotlight(_ userActivity: NSUserActivity) {
         print("handle spotlight")
         if let id = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
@@ -86,7 +92,7 @@ struct VehiclesView: View {
             }
         }
     }
-    
+
     private func addFixtures() {
         withAnimation {
             _ = PersistenceController.Fixtures(viewContext: viewContext)
@@ -98,6 +104,7 @@ struct VehiclesView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
             VehiclesView()
-        }.withoutNavigation()
+        }
+                .withoutNavigation()
     }
 }

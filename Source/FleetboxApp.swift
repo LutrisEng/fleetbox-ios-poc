@@ -9,9 +9,9 @@ import SwiftUI
 import Sentry
 
 #if DEBUG
-    let debug = true
+let debug = true
 #else
-    let debug = false
+let debug = false
 #endif
 
 func getInfoDictionaryKey(key: String) -> String {
@@ -29,7 +29,7 @@ func getSentryRelease() -> String {
 @main
 struct FleetboxApp: App {
     let persistenceController = PersistenceController.shared
-    
+
     init() {
         SentrySDK.start { options in
             options.dsn = "https://2d3e25e0c99347c3b8bd0a3a8908bcdd@o1155807.ingest.sentry.io/6236540"
@@ -44,22 +44,22 @@ struct FleetboxApp: App {
         WindowGroup {
             TabView {
                 VehiclesView()
-                    .tabItem {
-                        Image(systemName: "car.2")
-                        Text("Vehicles")
-                    }
+                        .tabItem {
+                            Image(systemName: "car.2")
+                            Text("Vehicles")
+                        }
                 TireSetsView()
-                    .tabItem {
-                        Image(systemName: "circle.circle")
-                        Text("Tire sets")
-                    }
+                        .tabItem {
+                            Image(systemName: "circle.circle")
+                            Text("Tire sets")
+                        }
                 ShopsView()
-                    .tabItem {
-                        Image(systemName: "building.2")
-                        Text("Shops")
-                    }
+                        .tabItem {
+                            Image(systemName: "building.2")
+                            Text("Shops")
+                        }
             }
-            .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }

@@ -9,24 +9,24 @@ import SwiftUI
 
 struct TireSetPickerView: View {
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \TireSet.sortOrder, ascending: true)],
-        animation: .default)
+            sortDescriptors: [NSSortDescriptor(keyPath: \TireSet.sortOrder, ascending: true)],
+            animation: .default)
     private var tireSets: FetchedResults<TireSet>
-    
+
     let selected: TireSet?
     let action: (TireSet?) -> ()
-    
+
     var body: some View {
         NavigationView {
             List {
                 Button(action: { action(nil) }) {
                     HStack {
                         Text("None")
-                            .foregroundColor(.primary)
+                                .foregroundColor(.primary)
                         if selected == nil {
                             Spacer()
                             Image(systemName: "checkmark")
-                                .foregroundColor(.accentColor)
+                                    .foregroundColor(.accentColor)
                         }
                     }
                 }
@@ -34,17 +34,17 @@ struct TireSetPickerView: View {
                     Button(action: { action(tireSet) }) {
                         HStack {
                             Text(tireSet.displayName)
-                                .foregroundColor(.primary)
+                                    .foregroundColor(.primary)
                             if selected == tireSet {
                                 Spacer()
                                 Image(systemName: "checkmark")
-                                    .foregroundColor(.accentColor)
+                                        .foregroundColor(.accentColor)
                             }
                         }
                     }
                 }
             }
-            .navigationTitle("Tire sets")
+                    .navigationTitle("Tire sets")
         }
     }
 }

@@ -10,13 +10,13 @@ import SwiftUI
 struct PartOdometerRowView: View {
     let name: String
     let reading: Int64
-    
+
     var body: some View {
         HStack {
             Text(LocalizedStringKey(name))
             Spacer()
             Text("\(reading) miles")
-                .foregroundColor(.secondary)
+                    .foregroundColor(.secondary)
         }
     }
 }

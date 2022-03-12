@@ -9,31 +9,31 @@ import SwiftUI
 
 struct PartOdometersView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+
     @ObservedObject var vehicle: Vehicle
-    
+
     @State private var createPresented: Bool = false
     @StateObject private var createReading = NumbersOnly()
-    
+
     var body: some View {
         Section(header: Text("Odometer")) {
             Button("Record odometer reading") {
                 createPresented = true
             }
-            .sheet(isPresented: $createPresented) {
-                OdometerReadingFormView(currentReading: vehicle.odometer) { value in
-                    let reading = OdometerReading(context: viewContext)
-                    reading.vehicle = vehicle
-                    reading.at = Date.now
-                    reading.reading = value
-                    ignoreErrors {
-                        try viewContext.save()
+                    .sheet(isPresented: $createPresented) {
+                        OdometerReadingFormView(currentReading: vehicle.odometer) { value in
+                            let reading = OdometerReading(context: viewContext)
+                            reading.vehicle = vehicle
+                            reading.at = Date.now
+                            reading.reading = value
+                            ignoreErrors {
+                                try viewContext.save()
+                            }
+                            createPresented = false
+                        } onDismiss: {
+                            createPresented = false
+                        }
                     }
-                    createPresented = false
-                } onDismiss: {
-                    createPresented = false
-                }
-            }
             NavigationLink("View odometer readings") {
                 OdometerReadingsView(vehicle: vehicle)
             }

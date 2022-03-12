@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MaintenanceLogView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+
     @ObservedObject var vehicle: Vehicle
-    
+
     var body: some View {
         Section(header: Text("Maintenance log")) {
             let logItems = vehicle.logItemsInverseChrono
@@ -19,15 +19,19 @@ struct MaintenanceLogView: View {
                 NavigationLink(destination: LogItemView(logItem: logItem)) {
                     LogItemLabelView(logItem: logItem).padding([.top, .bottom], 10)
                 }
-            }.onDelete { offsets in
-                withAnimation {
-                    offsets.map { logItems[$0] }.forEach(viewContext.delete)
-                    
-                    ignoreErrors {
-                        try viewContext.save()
-                    }
-                }
             }
+                    .onDelete { offsets in
+                        withAnimation {
+                            offsets.map {
+                                        logItems[$0]
+                                    }
+                                    .forEach(viewContext.delete)
+
+                            ignoreErrors {
+                                try viewContext.save()
+                            }
+                        }
+                    }
         }
     }
 }

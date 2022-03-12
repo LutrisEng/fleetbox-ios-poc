@@ -10,56 +10,56 @@ import SwiftUI
 
 let partOdometers: [PartOdometer] = [
     .fluidFilter(
-        fluidLineItemType: "engineOilChange",
-        filterLineItemType: "engineOilFilterChange",
-        fluidName: "Oil"
+            fluidLineItemType: "engineOilChange",
+            filterLineItemType: "engineOilFilterChange",
+            fluidName: "Oil"
     ),
     .fluidFilter(
-        fluidLineItemType: "transmissionFluidChange",
-        filterLineItemType: "transmissionFluidFilterChange",
-        fluidName: "Transmission fluid"
+            fluidLineItemType: "transmissionFluidChange",
+            filterLineItemType: "transmissionFluidFilterChange",
+            fluidName: "Transmission fluid"
     ),
     .individual(
-        lineItemType: "brakeFluidChange",
-        name: "Brake fluid"
+            lineItemType: "brakeFluidChange",
+            name: "Brake fluid"
     ),
     .individual(
-        lineItemType: "coolantChange",
-        name: "Coolant"
+            lineItemType: "coolantChange",
+            name: "Coolant"
     ),
     .individual(
-        lineItemType: "sparkPlugReplacement",
-        name: "Spark plugs"
+            lineItemType: "sparkPlugReplacement",
+            name: "Spark plugs"
     ),
     .individual(
-        lineItemType: "batteryReplacement",
-        name: "12V battery"
+            lineItemType: "batteryReplacement",
+            name: "12V battery"
     ),
     .individual(
-        lineItemType: "hvBatteryReplacement",
-        name: "High-voltage battery"
+            lineItemType: "hvBatteryReplacement",
+            name: "High-voltage battery"
     ),
     .individual(
-        lineItemType: "engineAirFilterChange",
-        name: "Engine air filter"
+            lineItemType: "engineAirFilterChange",
+            name: "Engine air filter"
     ),
     .individual(
-        lineItemType: "cabinAirFilterChange",
-        name: "Cabin air filter"
+            lineItemType: "cabinAirFilterChange",
+            name: "Cabin air filter"
     )
 ]
 
 enum PartOdometer: Identifiable {
     case individual(lineItemType: String, name: String)
     case fluidFilter(fluidLineItemType: String, filterLineItemType: String, fluidName: String)
-    
+
     var id: String {
         switch self {
         case .individual(let t, let n): return "lineItem:\(t):\(n)"
         case .fluidFilter(let ta, let tb, let n): return "lineItem:\(ta):\(tb):\(n)"
         }
     }
-    
+
     @ViewBuilder
     func view(vehicle: Vehicle) -> some View {
         switch self {

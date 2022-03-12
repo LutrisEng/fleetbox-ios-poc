@@ -10,7 +10,7 @@ import Sentry
 
 struct PersistenceController {
     static let shared = PersistenceController()
-    
+
     struct Fixtures {
         let shop: Shop
         let vehicle: Vehicle
@@ -18,7 +18,7 @@ struct PersistenceController {
         let odometerReading: OdometerReading
         let lineItem: LineItem
         let tireSet: TireSet
-        
+
         init(viewContext: NSManagedObjectContext) {
             vehicle = Vehicle(context: viewContext)
             vehicle.displayName = "The Mazda CX-5"
@@ -90,12 +90,12 @@ struct PersistenceController {
             try! viewContext.save()
         }
     }
-    
+
     struct Preview {
         let controller: PersistenceController
         let viewContext: NSManagedObjectContext
         let fixtures: Fixtures
-        
+
         init() {
             controller = PersistenceController(inMemory: true)
             viewContext = controller.container.viewContext

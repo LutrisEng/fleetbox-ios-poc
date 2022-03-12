@@ -9,16 +9,16 @@ import SwiftUI
 
 struct LineItemView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    
+
     @ObservedObject var lineItem: LineItem
-    
+
     var body: some View {
         Form {
             ForEach(lineItem.allFields) { field in
                 EditLineItemFieldView(field: field)
             }
         }
-        .navigationTitle(lineItem.type?.displayName ?? "Unknown Line Item")
+                .navigationTitle(lineItem.type?.displayName ?? "Unknown Line Item")
     }
 }
 

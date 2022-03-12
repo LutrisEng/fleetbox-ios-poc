@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VehicleDetailsView: View {
     @ObservedObject var vehicle: Vehicle
-    
+
     var body: some View {
         Section(header: Text("Vehicle details")) {
             FleetboxTextField(value: $vehicle.displayName, name: "Name", example: dummyData.vehicleName)

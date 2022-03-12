@@ -12,7 +12,7 @@ import Sentry
 struct EditLineItemFieldView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var field: LineItemField
-    
+
     var body: some View {
         if let type = field.type {
             Section(header: Text(type.longDisplayName)) {
@@ -35,10 +35,10 @@ struct EditLineItemFieldView: View {
                     Toggle(type.shortDisplayNameLocal, isOn: $field.booleanValue)
                 }
             }
-            .onDisappear(perform: save)
+                    .onDisappear(perform: save)
         }
     }
-    
+
     private func save() {
         ignoreErrors {
             try viewContext.save()

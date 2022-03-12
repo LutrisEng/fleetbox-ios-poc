@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LineItemTypePickerView: View {
     let action: (LineItemType) -> ()
-    
+
     var body: some View {
         List(lineItemTypes.hierarchyItems, children: \.children) { item in
             switch item {
@@ -20,7 +20,7 @@ struct LineItemTypePickerView: View {
             case .category(let c):
                 HStack {
                     Image(systemName: c.icon)
-                        .frame(width: 30, alignment: .center)
+                            .frame(width: 30, alignment: .center)
                     Text(c.displayName)
                     Spacer()
                 }

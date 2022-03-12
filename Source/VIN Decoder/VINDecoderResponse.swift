@@ -12,7 +12,7 @@ struct VINDecoderResponseResult: Codable {
     let valueId: String?
     let variable: String?
     let variableId: Int?
-    
+
     enum CodingKeys: String, CodingKey {
         case value = "Value"
         case valueId = "ValueId"
@@ -26,14 +26,14 @@ struct VINDecoderResponse: Codable {
     let message: String
     let searchCriteria: String
     let results: [VINDecoderResponseResult]
-    
+
     enum CodingKeys: String, CodingKey {
         case count = "Count"
         case message = "Message"
         case searchCriteria = "SearchCriteria"
         case results = "Results"
     }
-    
+
     func toResult() -> VINDecoderResult {
         var result = VINDecoderResult()
         for r in results {

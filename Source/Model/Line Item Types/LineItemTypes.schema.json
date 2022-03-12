@@ -1,137 +1,144 @@
 {
   "type": "object",
   "definitions": {
-      "icon": {
-          "type": "object",
-          "properties": {
-              "sfsymbols": {
-                  "type": "string"
-              }
-          }
-      },
-      "category": {
-          "type": "object",
-          "properties": {
-              "displayName": {
-                  "type": "string"
-              },
-              "icon": {
-                  "$ref": "#/definitions/icon"
-              },
-              "subcategories": {
-                  "type": "object",
-                  "additionalProperties": {
-                      "$ref": "#/definitions/category"
-                  }
-              },
-              "types": {
-                  "type": "object",
-                  "additionalProperties": {
-                      "$ref": "#/definitions/type"
-                  }
-              }
-          },
-          "required": [ "displayName" ]
-      },
-      "type": {
-          "type": "object",
-          "properties": {
-              "displayName": {
-                  "type": "string"
-              },
-              "description": {
-                  "type": "string"
-              },
-              "icon": {
-                  "$ref": "#/definitions/icon"
-              },
-              "fields": {
-                  "type": "object",
-                  "additionalProperties": {
-                      "$ref": "#/definitions/field"
-                  }
-              }
-          },
-          "required": [
-              "displayName"
-          ]
-      },
-      "field": {
-          "type": "object",
-          "properties": {
-              "shortDisplayName": {
-                  "type": "string"
-              },
-              "longDisplayName": {
-                  "type": "string"
-              },
-              "type": {
-                  "type": "string",
-                  "enum": [
-                      "string",
-                      "tireSet",
-                      "enum",
-                      "boolean"
-                  ]
-              },
-              "booleanFormat": {
-                  "type": "object",
-                  "properties": {
-                      "true": {
-                          "type": "string"
-                      },
-                      "false": {
-                          "type": "string"
-                      }
-                  },
-                  "required": ["true", "false"]
-              },
-              "enumValues": {
-                  "type": "object",
-                  "additionalProperties": {
-                      "type": "object",
-                      "properties": {
-                          "displayName": {
-                              "type": "string"
-                          },
-                          "description": {
-                              "type": "string"
-                          }
-                      },
-                      "required": [ "displayName" ]
-                  }
-              },
-              "example": {
-                  "type": "string"
-              },
-              "defaultValue": {
-                  "type": "string"
-              },
-              "defaultValueFrom": {
-                  "type": "string",
-                  "enum": [
-                      "vehicle.make",
-                      "vehicle.registrationState",
-                      "vehicle.oilViscosity",
-                      "vehicle.currentTires"
-                  ]
-              }
-          },
-          "required": [
-              "shortDisplayName",
-              "type"
-          ]
+    "icon": {
+      "type": "object",
+      "properties": {
+        "sfsymbols": {
+          "type": "string"
+        }
       }
-  },
-  "properties": {
-      "categories": {
+    },
+    "category": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "icon": {
+          "$ref": "#/definitions/icon"
+        },
+        "subcategories": {
           "type": "object",
           "additionalProperties": {
-              "$ref": "#/definitions/category"
+            "$ref": "#/definitions/category"
           }
+        },
+        "types": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/type"
+          }
+        }
+      },
+      "required": [
+        "displayName"
+      ]
+    },
+    "type": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "icon": {
+          "$ref": "#/definitions/icon"
+        },
+        "fields": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/field"
+          }
+        }
+      },
+      "required": [
+        "displayName"
+      ]
+    },
+    "field": {
+      "type": "object",
+      "properties": {
+        "shortDisplayName": {
+          "type": "string"
+        },
+        "longDisplayName": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "tireSet",
+            "enum",
+            "boolean"
+          ]
+        },
+        "booleanFormat": {
+          "type": "object",
+          "properties": {
+            "true": {
+              "type": "string"
+            },
+            "false": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "true",
+            "false"
+          ]
+        },
+        "enumValues": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "displayName": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "displayName"
+            ]
+          }
+        },
+        "example": {
+          "type": "string"
+        },
+        "defaultValue": {
+          "type": "string"
+        },
+        "defaultValueFrom": {
+          "type": "string",
+          "enum": [
+            "vehicle.make",
+            "vehicle.registrationState",
+            "vehicle.oilViscosity",
+            "vehicle.currentTires"
+          ]
+        }
+      },
+      "required": [
+        "shortDisplayName",
+        "type"
+      ]
+    }
+  },
+  "properties": {
+    "categories": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/category"
       }
+    }
   },
   "required": [
-      "categories"
+    "categories"
   ]
 }

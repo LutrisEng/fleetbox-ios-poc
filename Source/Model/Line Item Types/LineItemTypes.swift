@@ -11,7 +11,7 @@ import SwiftUI
 let lineItemTypes = try! LineItemTypes()
 let lineItemDefaultIcon = "wrench.and.screwdriver"
 
-enum LineItemTypesParseError : Error {
+enum LineItemTypesParseError: Error {
     case invalidFieldType(statedType: String)
 }
 
@@ -19,11 +19,11 @@ enum LineItemTypeFieldType {
     case string, tireSet, enumeration, boolean
 }
 
-struct LineItemTypeEnumValue : Identifiable {
+struct LineItemTypeEnumValue: Identifiable {
     let id: String
     let displayName: String
     let description: String?
-    
+
     init(id: String, yaml: LineItemTypes.YamlEnumValue) {
         self.id = id
         self.displayName = yaml.displayName
@@ -40,7 +40,7 @@ enum LineItemTypeFetcher {
     case vehicleMake, vehicleRegistrationState, vehicleOilViscosity, vehicleCurrentTires
 }
 
-class LineItemTypeField : Identifiable {
+class LineItemTypeField: Identifiable {
     let id: String
     let shortDisplayName: String
     let shortDisplayNameLocal: LocalizedStringKey
@@ -48,11 +48,11 @@ class LineItemTypeField : Identifiable {
     let longDisplayNameLocal: LocalizedStringKey
     let type: LineItemTypeFieldType
     let booleanFormat: LineItemTypeBooleanFormat?
-    let enumValues: [ String : LineItemTypeEnumValue ]
+    let enumValues: [String: LineItemTypeEnumValue]
     let example: String?
     let defaultValue: String?
     let defaultValueFrom: LineItemTypeFetcher?
-    
+
     init(id: String, yaml: LineItemTypes.YamlField) throws {
         self.id = id
         self.shortDisplayName = yaml.shortDisplayName
@@ -71,7 +71,7 @@ class LineItemTypeField : Identifiable {
         } else {
             self.booleanFormat = nil
         }
-        var enumValues: [ String : LineItemTypeEnumValue ] = [:]
+        var enumValues: [String: LineItemTypeEnumValue] = [:]
         for (id, ev) in yaml.enumValues ?? [:] {
             enumValues[id] = LineItemTypeEnumValue(id: id, yaml: ev)
         }
@@ -99,8 +99,8 @@ class LineItemType: Identifiable {
         definedIcon ?? category.icon
     }
     let fields: [LineItemTypeField]
-    let fieldsById: [String : LineItemTypeField]
-    
+    let fieldsById: [String: LineItemTypeField]
+
     init(id: String, category: LineItemTypeCategory, categoryPath: [String], yaml: LineItemTypes.YamlType) throws {
         self.id = id
         self.category = category
@@ -121,7 +121,7 @@ class LineItemType: Identifiable {
     }
 }
 
-class LineItemTypeCategory : Identifiable {
+class LineItemTypeCategory: Identifiable {
     let id: String
     let parent: LineItemTypeCategory?
     let categoryPath: [String]
@@ -132,7 +132,7 @@ class LineItemTypeCategory : Identifiable {
     }
     var types: [LineItemType] = []
     var subcategories: [LineItemTypeCategory] = []
-    
+
     init(id: String, parent: LineItemTypeCategory? = nil, categoryPath: [String], yaml: LineItemTypes.YamlCategory) throws {
         self.id = id
         self.parent = parent
@@ -153,14 +153,14 @@ class LineItemTypeCategory : Identifiable {
 enum LineItemTypeHierarchyItem: Identifiable {
     case type(LineItemType)
     case category(LineItemTypeCategory)
-    
+
     var id: String {
         switch self {
         case .type(let t): return "type:\(t.id)"
         case .category(let c): return "category:\(c.id)"
         }
     }
-    
+
     var children: [LineItemTypeHierarchyItem]? {
         switch self {
         case .type(_): return nil
@@ -173,83 +173,83 @@ enum LineItemTypeHierarchyItem: Identifiable {
 }
 
 struct LineItemTypes {
-    struct YamlEnumValue : Codable {
+    struct YamlEnumValue: Codable {
         let displayName: String
         let description: String?
     }
-    
-    struct YamlBooleanFormat : Codable {
+
+    struct YamlBooleanFormat: Codable {
         let trueFormat: String
         let falseFormat: String
-        
+
         enum CodingKeys: String, CodingKey {
             case trueFormat = "true"
             case falseFormat = "false"
         }
     }
-    
-    struct YamlField : Codable {
+
+    struct YamlField: Codable {
         let shortDisplayName: String
         let longDisplayName: String
         let type: String
         let booleanFormat: YamlBooleanFormat?
-        let enumValues: [ String : YamlEnumValue ]?
+        let enumValues: [String: YamlEnumValue]?
         let example: String?
         let defaultValue: String?
         let defaultValueFrom: String?
     }
-    
-    struct YamlIcon : Codable {
+
+    struct YamlIcon: Codable {
         let sfsymbols: String?
     }
-    
-    struct YamlType : Codable {
+
+    struct YamlType: Codable {
         let displayName: String
         let description: String?
         let icon: YamlIcon?
-        let fields: [ String : YamlField ]?
+        let fields: [String: YamlField]?
     }
-    
-    struct YamlCategory : Codable {
+
+    struct YamlCategory: Codable {
         let displayName: String
         let icon: YamlIcon?
-        let subcategories: [ String : YamlCategory ]?
-        let types: [ String : YamlType ]?
+        let subcategories: [String: YamlCategory]?
+        let types: [String: YamlType]?
     }
-    
-    struct YamlContents : Codable {
-        let categories: [ String : YamlCategory ]
+
+    struct YamlContents: Codable {
+        let categories: [String: YamlCategory]
     }
-    
+
     private let filePath = Bundle.main.url(forResource: "LineItemTypes", withExtension: "json")!
     private let decoder = JSONDecoder()
     private let yamlContents: YamlContents
     public let topLevelCategories: [LineItemTypeCategory]
     public let allCategories: [LineItemTypeCategory]
     public let allTypes: [LineItemType]
-    public let allCategoriesById: [String : LineItemTypeCategory]
-    public let allTypesById: [String : LineItemType]
+    public let allCategoriesById: [String: LineItemTypeCategory]
+    public let allTypesById: [String: LineItemType]
     public let hierarchyItems: [LineItemTypeHierarchyItem]
-    
+
     init() throws {
         yamlContents = try decoder.decode(YamlContents.self, from: try Data(contentsOf: filePath))
         topLevelCategories = try yamlContents.categories.map { (id, c) in
             try LineItemTypeCategory(id: id, categoryPath: [], yaml: c)
         }
         (allCategories, allTypes) = LineItemTypes.walk(categories: self.topLevelCategories)
-        var categoriesById: [String : LineItemTypeCategory] = [:]
+        var categoriesById: [String: LineItemTypeCategory] = [:]
         for category in allCategories {
             categoriesById[category.id] = category
         }
         allCategoriesById = categoriesById
-        var typesById: [String : LineItemType] = [:]
+        var typesById: [String: LineItemType] = [:]
         for type in allTypes {
             typesById[type.id] = type
         }
         allTypesById = typesById
         hierarchyItems = topLevelCategories.map(LineItemTypeHierarchyItem.category)
     }
-    
+
     private static func walk(categories inputCategories: [LineItemTypeCategory]) -> ([LineItemTypeCategory], [LineItemType]) {
         var categories: [LineItemTypeCategory] = []
         var types: [LineItemType] = []
@@ -261,7 +261,7 @@ struct LineItemTypes {
         }
         return (categories, types)
     }
-    
+
     private static func walk(category: LineItemTypeCategory) -> ([LineItemTypeCategory], [LineItemType]) {
         var (categories, types) = walk(categories: category.subcategories)
         for t in category.types {

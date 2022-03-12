@@ -11,36 +11,36 @@ import Sentry
 struct LogItemView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.presentationMode) var presentationMode
-    
+
     @ObservedObject var logItem: LogItem
-    
+
     @State private var newLineItemSheetPresented = false
     @State private var newAttachmentSheetPresented = false
     @State private var shopSheetPresented = false
-    
+
     func createLineItem() -> LineItem {
         LineItem(context: viewContext, logItem: logItem)
     }
-    
+
     var body: some View {
         VStack {
             Form {
                 FleetboxTextField(
-                    value: $logItem.displayName,
-                    name: nil,
-                    example: "Display name"
+                        value: $logItem.displayName,
+                        name: nil,
+                        example: "Display name"
                 )
                 DatePicker(
-                    "Performed",
-                    selection: convertToNonNilBinding(date: $logItem.performedAt),
-                    displayedComponents: [.date]
+                        "Performed",
+                        selection: convertToNonNilBinding(date: $logItem.performedAt),
+                        displayedComponents: [.date]
                 )
                 Section(header: Text("Shop")) {
                     if let shop = logItem.shop {
                         NavigationLink("Performed by \(shop.name ?? "a shop")") {
                             ShopView(shop: shop)
                         }
-                        Button ("Remove shop") {
+                        Button("Remove shop") {
                             logItem.shop = nil
                         }
                     } else {
@@ -54,21 +54,23 @@ struct LogItemView: View {
                     if let odometerReading = logItem.odometerReading {
                         HStack {
                             TextField(
-                                "Odometer reading at time of service",
-                                text: Binding(
-                                    get: {
-                                        String(odometerReading.reading)
-                                    },
-                                    set: { value in
-                                        let filtered = value.filter { $0.isNumber }
-                                        odometerReading.reading = Int64(filtered) ?? 0
-                                        ignoreErrors {
-                                            try viewContext.save()
-                                        }
-                                    }
-                                )
+                                    "Odometer reading at time of service",
+                                    text: Binding(
+                                            get: {
+                                                String(odometerReading.reading)
+                                            },
+                                            set: { value in
+                                                let filtered = value.filter {
+                                                    $0.isNumber
+                                                }
+                                                odometerReading.reading = Int64(filtered) ?? 0
+                                                ignoreErrors {
+                                                    try viewContext.save()
+                                                }
+                                            }
+                                    )
                             )
-                                .keyboardType(.decimalPad)
+                                    .keyboardType(.decimalPad)
                             Spacer()
                             Text("miles")
                         }
@@ -90,14 +92,18 @@ struct LogItemView: View {
                         NavigationLink(destination: LineItemView(lineItem: lineItem)) {
                             LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
                         }
-                    }.onDelete { offsets in
-                        withAnimation {
-                            offsets.map { lineItems[$0] }.forEach(viewContext.delete)
-                            ignoreErrors {
-                                try viewContext.save()
-                            }
-                        }
                     }
+                            .onDelete { offsets in
+                                withAnimation {
+                                    offsets.map {
+                                                lineItems[$0]
+                                            }
+                                            .forEach(viewContext.delete)
+                                    ignoreErrors {
+                                        try viewContext.save()
+                                    }
+                                }
+                            }
                     Button("Add line item") {
                         newLineItemSheetPresented = true
                     }
@@ -112,26 +118,26 @@ struct LogItemView: View {
                 }
             }
         }
-            .navigationTitle("Log item")
-            .sheet(isPresented: $newLineItemSheetPresented) {
-                LineItemTypePickerView {
-                    let lineItem = createLineItem()
-                    lineItem.type = $0
-                    ignoreErrors {
-                        try viewContext.save()
+                .navigationTitle("Log item")
+                .sheet(isPresented: $newLineItemSheetPresented) {
+                    LineItemTypePickerView {
+                        let lineItem = createLineItem()
+                        lineItem.type = $0
+                        ignoreErrors {
+                            try viewContext.save()
+                        }
+                        newLineItemSheetPresented = false
                     }
-                    newLineItemSheetPresented = false
                 }
-            }
-            .sheet(isPresented: $shopSheetPresented) {
-                ShopPickerView(selected: logItem.shop) {
-                    logItem.shop = $0
-                    ignoreErrors {
-                        try viewContext.save()
+                .sheet(isPresented: $shopSheetPresented) {
+                    ShopPickerView(selected: logItem.shop) {
+                        logItem.shop = $0
+                        ignoreErrors {
+                            try viewContext.save()
+                        }
+                        shopSheetPresented = false
                     }
-                    shopSheetPresented = false
                 }
-            }
     }
 }
 
