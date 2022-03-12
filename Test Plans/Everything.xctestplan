@@ -6,6 +6,28 @@
       "options" : {
 
       }
+    },
+    {
+      "id" : "2147A811-781F-4244-A782-7C0925D0B268",
+      "name" : "Address Sanitizer",
+      "options" : {
+        "addressSanitizer" : {
+          "detectStackUseAfterReturn" : true,
+          "enabled" : true
+        },
+        "mallocScribbleEnabled" : true,
+        "nsZombieEnabled" : true,
+        "undefinedBehaviorSanitizerEnabled" : true
+      }
+    },
+    {
+      "id" : "10CF5BA2-F1EB-4B1E-8952-66D540F7ECD3",
+      "name" : "Thread Sanitizer",
+      "options" : {
+        "nsZombieEnabled" : true,
+        "threadSanitizerEnabled" : true,
+        "undefinedBehaviorSanitizerEnabled" : true
+      }
     }
   ],
   "defaultOptions" : {
