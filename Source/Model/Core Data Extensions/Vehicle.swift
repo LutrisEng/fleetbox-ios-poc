@@ -31,7 +31,7 @@ extension Vehicle {
     }
 
     var odometerReadingSet: Set<OdometerReading> {
-        return odometerReadingsNs as? Set<OdometerReading> ?? []
+        odometerReadingsNs as? Set<OdometerReading> ?? []
     }
 
     var odometerReadingsChrono: [OdometerReading] {

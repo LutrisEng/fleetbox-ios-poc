@@ -13,8 +13,8 @@ struct ExportableOdometerReading: Codable {
     let reading: Int64
 
     init(odometerReading: OdometerReading) {
-        self.at = odometerReading.at
-        self.reading = odometerReading.reading
+        at = odometerReading.at
+        reading = odometerReading.reading
     }
 
     func importOdometerReading(context: NSManagedObjectContext, vehicle: Vehicle) -> OdometerReading {

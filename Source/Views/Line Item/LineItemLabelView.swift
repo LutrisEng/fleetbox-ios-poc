@@ -59,7 +59,7 @@ struct LineItemLabelView: View {
 
 struct LineItemLabelView_Previews: PreviewProvider {
     static var previews: some View {
-        return Group {
+        Group {
             PreviewWrapper { fixtures in
                 List {
                     ForEach(fixtures.logItem.lineItems) { lineItem in

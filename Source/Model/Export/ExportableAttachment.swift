@@ -14,9 +14,9 @@ struct ExportableAttachment: Codable {
     let fileContents: String?
 
     init(attachment: Attachment) {
-        self.sortOrder = attachment.sortOrder
-        self.fileName = attachment.fileName
-        self.fileContents = attachment.fileContents?.base64EncodedString()
+        sortOrder = attachment.sortOrder
+        fileName = attachment.fileName
+        fileContents = attachment.fileContents?.base64EncodedString()
     }
 
     func importAttachment(context: NSManagedObjectContext) -> Attachment {

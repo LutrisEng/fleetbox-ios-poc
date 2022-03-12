@@ -16,9 +16,9 @@ struct ExportableLineItemField: Codable {
     // TODO: tire sets
 
     init(lineItemField: LineItemField) {
-        self.typeId = lineItemField.typeId
-        self.stringValue = lineItemField.stringValue
-        self.booleanValue = lineItemField.booleanValue
+        typeId = lineItemField.typeId
+        stringValue = lineItemField.stringValue
+        booleanValue = lineItemField.booleanValue
     }
 
     func importLineItemField(context: NSManagedObjectContext, lineItem: LineItem) -> LineItemField {

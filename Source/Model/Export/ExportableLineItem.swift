@@ -15,10 +15,10 @@ struct ExportableLineItem: Codable {
     let fields: [ExportableLineItemField]
 
     init(lineItem: LineItem) {
-        self.notes = lineItem.notes
-        self.sortOrder = lineItem.sortOrder
-        self.typeId = lineItem.typeId ?? "misc"
-        self.fields = lineItem.fields.map {
+        notes = lineItem.notes
+        sortOrder = lineItem.sortOrder
+        typeId = lineItem.typeId ?? "misc"
+        fields = lineItem.fields.map {
             ExportableLineItemField(lineItemField: $0)
         }
     }

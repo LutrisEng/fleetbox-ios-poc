@@ -18,12 +18,12 @@ struct ExportableVehicle: Codable {
     let standaloneOdometerReadings: [ExportableOdometerReading]
 
     init(vehicle: Vehicle) {
-        self.displayName = vehicle.displayName
-        self.make = vehicle.make
-        self.model = vehicle.model
-        self.vin = vehicle.vin
-        self.year = vehicle.year
-        self.logItems = vehicle.logItems.map {
+        displayName = vehicle.displayName
+        make = vehicle.make
+        model = vehicle.model
+        vin = vehicle.vin
+        year = vehicle.year
+        logItems = vehicle.logItems.map {
             ExportableLogItem(logItem: $0)
         }
         self.standaloneOdometerReadings = vehicle.odometerReadingsChrono

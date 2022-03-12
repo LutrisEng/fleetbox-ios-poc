@@ -26,8 +26,8 @@ struct LineItemTypeEnumValue: Identifiable {
 
     init(id: String, yaml: LineItemTypes.YamlEnumValue) {
         self.id = id
-        self.displayName = yaml.displayName
-        self.description = yaml.description
+        displayName = yaml.displayName
+        description = yaml.description
     }
 }
 
@@ -55,35 +55,35 @@ class LineItemTypeField: Identifiable {
 
     init(id: String, yaml: LineItemTypes.YamlField) throws {
         self.id = id
-        self.shortDisplayName = yaml.shortDisplayName
-        self.shortDisplayNameLocal = LocalizedStringKey(self.shortDisplayName)
-        self.longDisplayName = yaml.longDisplayName
-        self.longDisplayNameLocal = LocalizedStringKey(self.longDisplayName)
+        shortDisplayName = yaml.shortDisplayName
+        shortDisplayNameLocal = LocalizedStringKey(shortDisplayName)
+        longDisplayName = yaml.longDisplayName
+        longDisplayNameLocal = LocalizedStringKey(longDisplayName)
         switch yaml.type {
-        case "string": self.type = .string
-        case "tireSet": self.type = .tireSet
-        case "enum": self.type = .enumeration
-        case "boolean": self.type = .boolean
+        case "string": type = .string
+        case "tireSet": type = .tireSet
+        case "enum": type = .enumeration
+        case "boolean": type = .boolean
         default: throw LineItemTypesParseError.invalidFieldType(statedType: yaml.type)
         }
         if let booleanFormat = yaml.booleanFormat {
             self.booleanFormat = LineItemTypeBooleanFormat(trueFormat: booleanFormat.trueFormat, falseFormat: booleanFormat.falseFormat)
         } else {
-            self.booleanFormat = nil
+            booleanFormat = nil
         }
         var enumValues: [String: LineItemTypeEnumValue] = [:]
         for (id, ev) in yaml.enumValues ?? [:] {
             enumValues[id] = LineItemTypeEnumValue(id: id, yaml: ev)
         }
         self.enumValues = enumValues
-        self.example = yaml.example
-        self.defaultValue = yaml.defaultValue
+        example = yaml.example
+        defaultValue = yaml.defaultValue
         switch yaml.defaultValueFrom {
-        case "vehicle.make": self.defaultValueFrom = .vehicleMake
-        case "vehicle.registrationState": self.defaultValueFrom = .vehicleRegistrationState
-        case "vehicle.oilViscosity": self.defaultValueFrom = .vehicleOilViscosity
-        case "vehicle.currentTires": self.defaultValueFrom = .vehicleCurrentTires
-        default: self.defaultValueFrom = nil
+        case "vehicle.make": defaultValueFrom = .vehicleMake
+        case "vehicle.registrationState": defaultValueFrom = .vehicleRegistrationState
+        case "vehicle.oilViscosity": defaultValueFrom = .vehicleOilViscosity
+        case "vehicle.currentTires": defaultValueFrom = .vehicleCurrentTires
+        default: defaultValueFrom = nil
         }
     }
 }
@@ -105,9 +105,9 @@ class LineItemType: Identifiable {
         self.id = id
         self.category = category
         self.categoryPath = categoryPath
-        self.displayName = yaml.displayName
-        self.description = yaml.description
-        self.definedIcon = yaml.icon?.sfsymbols
+        displayName = yaml.displayName
+        description = yaml.description
+        definedIcon = yaml.icon?.sfsymbols
         var fields: [LineItemTypeField] = []
         for (id, field) in yaml.fields ?? [:] {
             fields.append(try LineItemTypeField(id: id, yaml: field))
@@ -139,8 +139,8 @@ class LineItemTypeCategory: Identifiable {
         self.categoryPath = categoryPath
         var childCategoryPath = categoryPath
         childCategoryPath.append(id)
-        self.displayName = yaml.displayName
-        self.definedIcon = yaml.icon?.sfsymbols
+        displayName = yaml.displayName
+        definedIcon = yaml.icon?.sfsymbols
         for (id, t) in yaml.types ?? [:] {
             types.append(try LineItemType(id: id, category: self, categoryPath: childCategoryPath, yaml: t))
         }
@@ -236,7 +236,7 @@ struct LineItemTypes {
         topLevelCategories = try yamlContents.categories.map { (id, c) in
             try LineItemTypeCategory(id: id, categoryPath: [], yaml: c)
         }
-        (allCategories, allTypes) = LineItemTypes.walk(categories: self.topLevelCategories)
+        (allCategories, allTypes) = LineItemTypes.walk(categories: topLevelCategories)
         var categoriesById: [String: LineItemTypeCategory] = [:]
         for category in allCategories {
             categoriesById[category.id] = category

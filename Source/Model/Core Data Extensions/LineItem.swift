@@ -40,7 +40,7 @@ extension LineItem {
     }
 
     var fieldSet: Set<LineItemField> {
-        return fieldsNs as? Set<LineItemField> ?? []
+        fieldsNs as? Set<LineItemField> ?? []
     }
 
     func getFields(create: Bool = false) -> [LineItemField] {

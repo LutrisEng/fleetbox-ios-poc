@@ -17,18 +17,18 @@ struct ExportableLogItem: Codable {
     let attachments: [ExportableAttachment]
 
     init(logItem: LogItem) {
-        self.displayName = logItem.displayName
-        self.performedAt = logItem.performedAt
-        self.lineItems = logItem.lineItems.map {
+        displayName = logItem.displayName
+        performedAt = logItem.performedAt
+        lineItems = logItem.lineItems.map {
             ExportableLineItem(lineItem: $0)
         }
         if let odometerReading = logItem.odometerReading {
             self.odometerReading = ExportableOdometerReading(odometerReading: odometerReading)
         } else {
-            self.odometerReading = nil
+            odometerReading = nil
         }
-        self.shop = logItem.shop?.name
-        self.attachments = logItem.attachments.map {
+        shop = logItem.shop?.name
+        attachments = logItem.attachments.map {
             ExportableAttachment(attachment: $0)
         }
     }
