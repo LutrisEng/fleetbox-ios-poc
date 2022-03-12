@@ -487,6 +487,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 861DAE3F27CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Fleetbox" */;
 			buildPhases = (
+				861DA48427DC892C00775276 /* Run SwiftLint */,
 				861DAE0E27CDD59F00AFE972 /* Sources */,
 				861DAE0F27CDD59F00AFE972 /* Frameworks */,
 				861DAE1027CDD59F00AFE972 /* Resources */,
@@ -574,8 +575,8 @@
 			);
 			mainGroup = 861DAE0227CDD59D00AFE972;
 			packageReferences = (
-				861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa.git" */,
-				86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire.git" */,
+				861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+				86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 861DAE1327CDD59F00AFE972 /* Products */;
 			projectDirPath = "";
@@ -613,6 +614,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		861DA48427DC892C00775276 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		861DAE0E27CDD59F00AFE972 /* Sources */ = {
@@ -1014,7 +1037,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa.git" */ = {
+		861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
 			requirement = {
@@ -1022,7 +1045,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
+		86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1035,12 +1058,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		861DAE4D27CDDAD700AFE972 /* Sentry */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa.git" */;
+			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
 			productName = Sentry;
 		};
 		86D2DA7127D081490083254E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire.git" */;
+			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
