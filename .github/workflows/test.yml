@@ -14,10 +14,10 @@ jobs:
         run: git lfs checkout
       - name: Install tools
         run: brew install yq jq swiftlint
+      - run: swiftlint lint
       - name: Run build
         run: xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" clean build | tee xcodebuild.log
-      - name: Run swiftlint
-        run: swiftlint lint && swiftlint analyze --compiler-log-path xcodebuild.log
+      - run: swiftlint analyze --compiler-log-path xcodebuild.log
   test:
     name: Test
     runs-on: macos-latest
