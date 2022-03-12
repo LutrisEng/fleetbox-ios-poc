@@ -109,6 +109,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1B206C79650C16573AAB5A64 /* workflows */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = workflows; path = .github/workflows; sourceTree = "<group>"; };
 		861BA8FD27D8537100DD729A /* Fleetbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleetbox.entitlements; sourceTree = "<group>"; };
 		861BA8FE27D8546700DD729A /* LineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemView.swift; sourceTree = "<group>"; };
 		861DAE0927CDD59D00AFE972 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
@@ -219,6 +220,7 @@
 				86638D2B27D9870700149689 /* Design */,
 				861DAE1327CDD59F00AFE972 /* Products */,
 				861DAE4F27CDDAEB00AFE972 /* Frameworks */,
+				1B206C79650C16573AAB5A64 /* workflows */,
 			);
 			sourceTree = "<group>";
 		};
@@ -572,8 +574,8 @@
 			);
 			mainGroup = 861DAE0227CDD59D00AFE972;
 			packageReferences = (
-				861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
-				86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa.git" */,
+				86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire.git" */,
 			);
 			productRefGroup = 861DAE1327CDD59F00AFE972 /* Products */;
 			projectDirPath = "";
@@ -1012,7 +1014,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+		861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
 			requirement = {
@@ -1020,7 +1022,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -1033,12 +1035,12 @@
 /* Begin XCSwiftPackageProductDependency section */
 		861DAE4D27CDDAD700AFE972 /* Sentry */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa.git" */;
 			productName = Sentry;
 		};
 		86D2DA7127D081490083254E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire.git" */;
 			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */

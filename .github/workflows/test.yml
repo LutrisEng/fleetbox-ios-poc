@@ -3,8 +3,23 @@ name: Test
 on: [push]
 
 jobs:
-  ios:
-    name: iOS
+  lint:
+    name: Lint
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          lfs: true
+      - name: Checkout LFS objects
+        run: git lfs checkout
+      - name: Install tools
+        run: brew install yq jq swiftlint
+      - name: Run build
+        run: xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" clean build | tee xcodebuild.log
+      - name: Run swiftlint
+        run: swiftlint lint && swiftlint analyze --compiler-log-path xcodebuild.log
+  test:
+    name: Test
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
