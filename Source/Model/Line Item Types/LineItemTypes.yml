@@ -172,7 +172,7 @@ categories:
                 type: string
           - id: batteryReplacement
             displayName: Battery replacement
-            description: The main 12V battery was replaced.
+            description: Main 12V battery was replaced.
             icon:
               sfsymbols: minus.plus.batteryblock
             fields:
@@ -192,7 +192,7 @@ categories:
                 type: string
           - id: hvBatteryReplacement
             displayName: HV battery replacement
-            description: The high-voltage (e.g. hybrid/traction) battery was replaced.
+            description: High-voltage (e.g. hybrid/traction) battery was replaced.
             icon:
               sfsymbols: minus.plus.batteryblock
             fields:

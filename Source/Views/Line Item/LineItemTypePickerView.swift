@@ -15,7 +15,7 @@ struct LineItemTypePickerView: View {
             switch item {
             case .type(let type):
                 Button(action: { action(type) }, label: {
-                    LineItemTypeLabelView(type: type)
+                    LineItemTypeLabelView(type: type, descriptionFont: .caption)
                 })
             case .category(let category):
                 HStack {
