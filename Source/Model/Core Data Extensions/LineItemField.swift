@@ -78,9 +78,9 @@ extension LineItemField {
             case .vehicleMake:
                 stringValue = vehicle?.make
             case .vehicleRegistrationState:
-                stringValue = nil // TODO
+                stringValue = vehicle?.registrationState
             case .vehicleOilViscosity:
-                stringValue = nil // TODO
+                stringValue = vehicle?.lastOilViscosity
             case .vehicleCurrentTires:
                 tireSetValue = vehicle?.currentTireSet
             }

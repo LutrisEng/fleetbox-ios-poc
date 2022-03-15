@@ -12,8 +12,8 @@ categories:
           sfsymbols: car
         types:
           basicPreDrive:
-            displayName: Basic pre-drive inspection
-            description: A basic inspection intended to be completed in a couple minutes
+            displayName: Basic pre-drive inspection completed
+            description: A basic inspection intended to be completed in a couple minutes was completed.
             fields:
               lowBeams:
                 shortDisplayName: Low beams
@@ -172,7 +172,6 @@ categories:
         types:
           sparkPlugReplacement:
             displayName: Spark plug replacement
-            description: Spark plugs were replaced.
             icon:
               sfsymbols: bolt
             fields:
@@ -389,7 +388,6 @@ categories:
                     description: Typically used for rear-wheel drive and all-wheel drive vehicles. Front tires moved to opposite sides of rear axle, and rear tires moved to front.
           mountedTires:
             displayName: Tire set mounted
-            description: A set of tires was mounted on the car
             fields:
               tireSet:
                 shortDisplayName: Tire set
@@ -397,12 +395,24 @@ categories:
                 type: tireSet
           dismountedTires:
             displayName: Tire set dismounted
-            description: The current set of tires was dismounted from the car
             fields:
               tireSet:
                 shortDisplayName: Tire set
                 longDisplayName: Which tire set was dismounted?
                 type: tireSet
+  
+  registration:
+    displayName: Registration
+    icon:
+      sfsymbols: rectangle.and.paperclip
+      types:
+        stateRegistration:
+          displayName: Registered with state
+          fields:
+            state:
+              shortDisplayName: State
+              longDisplayName: Which state was this vehicle registered with?
+              type: string
 
   misc:
     displayName: Miscellaneous

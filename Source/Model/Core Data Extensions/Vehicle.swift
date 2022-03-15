@@ -46,18 +46,22 @@ extension Vehicle {
         odometerReadingsInverseChrono.first?.reading ?? 0
     }
 
-    var currentTireSet: TireSet? {
+    func lastLineItem(type: String) -> LineItem? {
         for logItem in logItemsInverseChrono {
-            for lineItem in logItem.lineItems where lineItem.typeId == "mountedTires" {
-                do {
-                    return try lineItem.getFieldValueTireSet("tireSet")
-                } catch {
-                    SentrySDK.capture(error: error)
-                    return nil
-                }
+            for lineItem in logItem.lineItems where lineItem.typeId == type {
+                return lineItem
             }
         }
         return nil
+    }
+
+    var currentTireSet: TireSet? {
+        do {
+            return try lastLineItem(type: "mountedTires")?.getFieldValueTireSet("tireSet")
+        } catch {
+            SentrySDK.capture(error: error)
+            return nil
+        }
     }
 
     func closestOdometerReadingTo(date: Date?) -> Int64 {
@@ -108,6 +112,24 @@ extension Vehicle {
             return displayName
         } else {
             return fullModelName
+        }
+    }
+
+    var registrationState: String? {
+        do {
+            return try lastLineItem(type: "stateRegistration")?.getFieldValueString("state")
+        } catch {
+            SentrySDK.capture(error: error)
+            return nil
+        }
+    }
+
+    var lastOilViscosity: String? {
+        do {
+            return try lastLineItem(type: "engineOilChange")?.getFieldValueString("viscosity")
+        } catch {
+            SentrySDK.capture(error: error)
+            return nil
         }
     }
 

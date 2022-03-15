@@ -29,7 +29,6 @@ struct VINDetailView: View {
                                 Task.init {
                                     state = .loading
                                     do {
-                                        // TODO: error dialog
                                         let decoderResult = try await decodeVIN(vin)
                                         if decoderResult.errorCode != 0 {
                                             print("error code", decoderResult.errorCode)
