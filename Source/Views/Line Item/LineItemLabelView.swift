@@ -46,12 +46,18 @@ struct LineItemLabelView: View {
 
     var body: some View {
         VStack {
-            LineItemTypeLabelView(type: lineItem.type, font: itemFont, iconWidth: iconWidth, iconHeight: iconHeight)
-            if showDetails {
-                ForEach(lineItem.fields) { field in
+            LineItemTypeLabelView(
+                type: lineItem.type,
+                font: itemFont,
+                descriptionFont: detailFont,
+                descriptionColor: .gray,
+                iconWidth: iconWidth,
+                iconHeight: iconHeight
+            ) {
+                ForEach(showDetails ? lineItem.fields : []) { field in
                     LineItemFieldLabelView(field: field, font: detailFont)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                        .padding(EdgeInsets(top: 0, leading: (iconWidth ?? 0) + 30, bottom: 0, trailing: 0))
             }
         }
     }
