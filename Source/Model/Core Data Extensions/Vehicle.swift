@@ -9,10 +9,6 @@ import Foundation
 import CoreData
 import Sentry
 
-func dateDifference(_ first: Date?, _ second: Date?) -> Double {
-    abs((first ?? Date.distantPast).timeIntervalSince1970 - (second ?? Date.distantPast).timeIntervalSince1970)
-}
-
 extension Vehicle {
     var logItems: Set<LogItem> {
         logItemsNs as? Set<LogItem> ?? []
@@ -116,15 +112,17 @@ extension Vehicle {
     }
 
     func export() throws -> Data {
+        let ctx = ExportContext(vehicle: self)
         let encoder = JSONEncoder()
-        let exportable = ExportableVehicle(vehicle: self)
+        let exportable = ctx.export()
         return try encoder.encode(exportable)
     }
 
     static func importData(_ data: Data, context: NSManagedObjectContext) throws -> Vehicle {
         let decoder = JSONDecoder()
-        let exportable = try decoder.decode(ExportableVehicle.self, from: data)
-        return exportable.importVehicle(context: context)
+        let exportable = try decoder.decode(ExportableExportContext.self, from: data)
+        let ctx = ExportContext(context: context, exportContext: exportable)
+        return ctx.vehicle!
     }
 
     override public func willChangeValue(forKey key: String) {

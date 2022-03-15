@@ -13,38 +13,53 @@ struct ExportableLogItem: Codable {
     let performedAt: Date?
     let lineItems: [ExportableLineItem]
     let odometerReading: ExportableOdometerReading?
-    let shop: String?
+    let shop: Int?
     let attachments: [ExportableAttachment]
 
-    init(logItem: LogItem) {
+    init(context: ExportContext, logItem: LogItem) {
         displayName = logItem.displayName
         performedAt = logItem.performedAt
         lineItems = logItem.lineItems.map {
-            ExportableLineItem(lineItem: $0)
+            ExportableLineItem(context: context, lineItem: $0)
         }
         if let odometerReading = logItem.odometerReading {
             self.odometerReading = ExportableOdometerReading(odometerReading: odometerReading)
         } else {
             odometerReading = nil
         }
-        shop = logItem.shop?.name
+        if let shop = logItem.shop {
+            if let idx = context.shops.firstIndex(of: shop) {
+                self.shop = idx
+            } else {
+                self.shop = context.shops.count
+                context.shops.append(shop)
+            }
+        } else {
+            shop = nil
+        }
         attachments = logItem.attachments.map {
             ExportableAttachment(attachment: $0)
         }
     }
 
-    func importLogItem(context: NSManagedObjectContext, vehicle: Vehicle) -> LogItem {
+    func importLogItem(context: NSManagedObjectContext, exportContext: ExportContext, vehicle: Vehicle) -> LogItem {
         let logItem = LogItem(context: context)
         logItem.vehicle = vehicle
         logItem.displayName = displayName
         logItem.performedAt = performedAt
         for lineItem in lineItems {
-            _ = lineItem.importLineItem(context: context, logItem: logItem)
+            _ = lineItem.importLineItem(
+                context: context,
+                exportContext: exportContext,
+                logItem: logItem
+            )
         }
         if let odometerReading = odometerReading {
             _ = odometerReading.importOdometerReading(context: context, logItem: logItem)
         }
-        // TODO: shop
+        if let shop = shop {
+            logItem.shop = exportContext.shops[shop]
+        }
         for attachment in attachments {
             let obj = attachment.importAttachment(context: context)
             obj.logItem = logItem

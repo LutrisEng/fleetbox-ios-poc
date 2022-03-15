@@ -14,22 +14,26 @@ struct ExportableLineItem: Codable {
     let typeId: String
     let fields: [ExportableLineItemField]
 
-    init(lineItem: LineItem) {
+    init(context: ExportContext, lineItem: LineItem) {
         notes = lineItem.notes
         sortOrder = lineItem.sortOrder
         typeId = lineItem.typeId ?? "misc"
         fields = lineItem.fields.map {
-            ExportableLineItemField(lineItemField: $0)
+            ExportableLineItemField(context: context, lineItemField: $0)
         }
     }
 
-    func importLineItem(context: NSManagedObjectContext, logItem: LogItem) -> LineItem {
+    func importLineItem(context: NSManagedObjectContext, exportContext: ExportContext, logItem: LogItem) -> LineItem {
         let lineItem = LineItem(context: context, logItem: logItem)
         lineItem.notes = notes
         lineItem.sortOrder = sortOrder
         lineItem.typeId = typeId
         for field in fields {
-            _ = field.importLineItemField(context: context, lineItem: lineItem)
+            _ = field.importLineItemField(
+                context: context,
+                exportContext: exportContext,
+                lineItem: lineItem
+            )
         }
         return lineItem
     }

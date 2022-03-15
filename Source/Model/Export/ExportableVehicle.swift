@@ -17,14 +17,14 @@ struct ExportableVehicle: Codable {
     let logItems: [ExportableLogItem]
     let standaloneOdometerReadings: [ExportableOdometerReading]
 
-    init(vehicle: Vehicle) {
+    init(context: ExportContext, vehicle: Vehicle) {
         displayName = vehicle.displayName
         make = vehicle.make
         model = vehicle.model
         vin = vehicle.vin
         year = vehicle.year
         logItems = vehicle.logItems.map {
-            ExportableLogItem(logItem: $0)
+            ExportableLogItem(context: context, logItem: $0)
         }
         standaloneOdometerReadings = vehicle.odometerReadingsChrono
                 .filter({ $0.logItem == nil })
@@ -33,7 +33,7 @@ struct ExportableVehicle: Codable {
                 }
     }
 
-    func importVehicle(context: NSManagedObjectContext) -> Vehicle {
+    func importVehicle(context: NSManagedObjectContext, exportContext: ExportContext) -> Vehicle {
         let vehicle = Vehicle(context: context)
         vehicle.displayName = displayName
         vehicle.make = make
@@ -41,7 +41,11 @@ struct ExportableVehicle: Codable {
         vehicle.vin = vin
         vehicle.year = year
         for logItem in logItems {
-            _ = logItem.importLogItem(context: context, vehicle: vehicle)
+            _ = logItem.importLogItem(
+                context: context,
+                exportContext: exportContext,
+                vehicle: vehicle
+            )
         }
         for odometerReading in standaloneOdometerReadings {
             _ = odometerReading.importOdometerReading(context: context, vehicle: vehicle)

@@ -12,21 +12,37 @@ struct ExportableLineItemField: Codable {
     let typeId: String?
     let stringValue: String?
     let booleanValue: Bool
+    let tireSetValue: Int?
 
-    // TODO: tire sets
-
-    init(lineItemField: LineItemField) {
+    init(context: ExportContext, lineItemField: LineItemField) {
         typeId = lineItemField.typeId
         stringValue = lineItemField.stringValue
         booleanValue = lineItemField.booleanValue
+        if let tireSet = lineItemField.tireSetValue {
+            if let idx = context.tireSets.firstIndex(of: tireSet) {
+                tireSetValue = idx
+            } else {
+                tireSetValue = context.tireSets.count
+                context.tireSets.append(tireSet)
+            }
+        } else {
+            tireSetValue = nil
+        }
     }
 
-    func importLineItemField(context: NSManagedObjectContext, lineItem: LineItem) -> LineItemField {
+    func importLineItemField(
+        context: NSManagedObjectContext,
+        exportContext: ExportContext,
+        lineItem: LineItem
+    ) -> LineItemField {
         let field = LineItemField(context: context)
         field.lineItem = lineItem
         field.typeId = typeId
         field.stringValue = stringValue
         field.booleanValue = booleanValue
+        if let tireSetValue = tireSetValue {
+            field.tireSetValue = exportContext.tireSets[tireSetValue]
+        }
         return field
     }
 }

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
+		861DA48727E11DFF00775276 /* ExportContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48627E11DFF00775276 /* ExportContext.swift */; };
+		861DA48927E11E3600775276 /* ExportableShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48827E11E3600775276 /* ExportableShop.swift */; };
+		861DA48B27E11E3E00775276 /* ExportableExportContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48A27E11E3E00775276 /* ExportableExportContext.swift */; };
+		861DA48D27E11F8100775276 /* ExportableTireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48C27E11F8100775276 /* ExportableTireSet.swift */; };
+		861DA48F27E1233200775276 /* Date Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48E27E1233200775276 /* Date Functions.swift */; };
 		861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */; };
 		861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */; };
 		861DAE3727CDD59F00AFE972 /* VehiclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0B27CDD59D00AFE972 /* VehiclesView.swift */; };
@@ -87,7 +92,7 @@
 				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).json",
 			);
 			runOncePerArchitecture = 0;
-			script = "#!/bin/sh\nset -euxo pipefail\nexport PATH=\"/opt/homebrew/bin:$PATH\"\nyq -o=json eval \"$SCRIPT_INPUT_FILE\" | jq -c . > \"$SCRIPT_OUTPUT_FILE_0\"\n";
+			script = "#!/bin/sh\nset -euxo pipefail\nexport PATH=\"$PATH:/opt/homebrew/bin\"\nyq -o=json eval \"$SCRIPT_INPUT_FILE\" | jq -c . > \"$SCRIPT_OUTPUT_FILE_0\"\n";
 		};
 /* End PBXBuildRule section */
 
@@ -112,6 +117,12 @@
 		1B206C79650C16573AAB5A64 /* workflows */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = workflows; path = .github/workflows; sourceTree = "<group>"; };
 		861BA8FD27D8537100DD729A /* Fleetbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleetbox.entitlements; sourceTree = "<group>"; };
 		861BA8FE27D8546700DD729A /* LineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemView.swift; sourceTree = "<group>"; };
+		861DA48527DC8D7500775276 /* Fleetbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fleetbox-Info.plist"; sourceTree = "<group>"; };
+		861DA48627E11DFF00775276 /* ExportContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportContext.swift; sourceTree = "<group>"; };
+		861DA48827E11E3600775276 /* ExportableShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableShop.swift; sourceTree = "<group>"; };
+		861DA48A27E11E3E00775276 /* ExportableExportContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableExportContext.swift; sourceTree = "<group>"; };
+		861DA48C27E11F8100775276 /* ExportableTireSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableTireSet.swift; sourceTree = "<group>"; };
+		861DA48E27E1233200775276 /* Date Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Functions.swift"; sourceTree = "<group>"; };
 		861DAE0927CDD59D00AFE972 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetboxApp.swift; sourceTree = "<group>"; };
 		861DAE0B27CDD59D00AFE972 /* VehiclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesView.swift; sourceTree = "<group>"; };
@@ -213,6 +224,7 @@
 		861DAE0227CDD59D00AFE972 = {
 			isa = PBXGroup;
 			children = (
+				861DA48527DC8D7500775276 /* Fleetbox-Info.plist */,
 				861DAE0727CDD59D00AFE972 /* Source */,
 				8664C23927D9FED600AE9ADB /* Test Plans */,
 				8690C7E827D9EBD90042F543 /* Unit Tests */,
@@ -379,6 +391,7 @@
 				865D028427D9F1B3006C815D /* Error Handling.swift */,
 				8664C24627DA987800AE9ADB /* Custom Bindings.swift */,
 				8652AA7627DAB5F300D8D56D /* Dummy Data.swift */,
+				861DA48E27E1233200775276 /* Date Functions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -432,6 +445,10 @@
 				8664C24F27DAAB7800AE9ADB /* ExportableLineItem.swift */,
 				8664C25127DAABE300AE9ADB /* ExportableLineItemField.swift */,
 				8664C25327DAB14000AE9ADB /* ExportableAttachment.swift */,
+				861DA48627E11DFF00775276 /* ExportContext.swift */,
+				861DA48827E11E3600775276 /* ExportableShop.swift */,
+				861DA48A27E11E3E00775276 /* ExportableExportContext.swift */,
+				861DA48C27E11F8100775276 /* ExportableTireSet.swift */,
 			);
 			path = Export;
 			sourceTree = "<group>";
@@ -642,11 +659,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				861DA48D27E11F8100775276 /* ExportableTireSet.swift in Sources */,
 				86500C8927DC0D6E00A5111E /* VehicleDetailsView.swift in Sources */,
 				8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */,
 				8664C24127DA91BB00AE9ADB /* ShopsView.swift in Sources */,
 				864C731E27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */,
 				8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */,
+				861DA48727E11DFF00775276 /* ExportContext.swift in Sources */,
 				86500C7827DC00DF00A5111E /* OdometerReadingsView.swift in Sources */,
 				864C732727D06C6800047165 /* LineItem.swift in Sources */,
 				86500C7427DBEDC500A5111E /* TireSetPickerView.swift in Sources */,
@@ -654,6 +673,7 @@
 				861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
 				861DAE3927CDD59F00AFE972 /* Persistence.swift in Sources */,
 				8664C25427DAB14000AE9ADB /* ExportableAttachment.swift in Sources */,
+				861DA48F27E1233200775276 /* Date Functions.swift in Sources */,
 				86500C9727DC0E5B00A5111E /* OdometerReadingFormView.swift in Sources */,
 				8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */,
 				8664C25027DAAB7800AE9ADB /* ExportableLineItem.swift in Sources */,
@@ -681,6 +701,7 @@
 				86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */,
 				864C732127D06A7F00047165 /* LogItem.swift in Sources */,
 				86500C8B27DC0D8600A5111E /* VINDetailView.swift in Sources */,
+				861DA48927E11E3600775276 /* ExportableShop.swift in Sources */,
 				8664C24327DA91C200AE9ADB /* ShopView.swift in Sources */,
 				86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */,
 				86500C9127DC0DFE00A5111E /* PartOdometerRowView.swift in Sources */,
@@ -693,6 +714,7 @@
 				86500C7627DBF22D00A5111E /* ShopPickerView.swift in Sources */,
 				861DAE3727CDD59F00AFE972 /* VehiclesView.swift in Sources */,
 				86500C9E27DC125200A5111E /* EditTireSetLineItemFieldView.swift in Sources */,
+				861DA48B27E11E3E00775276 /* ExportableExportContext.swift in Sources */,
 				8690C7AD27D9AA260042F543 /* OdometerReadingView.swift in Sources */,
 				864C732427D06B8C00047165 /* Shop.swift in Sources */,
 				86500C8D27DC0DBC00A5111E /* PartOdometersView.swift in Sources */,
@@ -857,6 +879,7 @@
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fleetbox-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -891,6 +914,7 @@
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fleetbox-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
