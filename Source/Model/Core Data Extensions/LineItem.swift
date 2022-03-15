@@ -83,7 +83,11 @@ extension LineItem {
             }
             return .tireSet(value)
         case .boolean:
-            return .boolean(field.booleanValue)
+            switch field.stringValue {
+            case "true": return .boolean(true)
+            case "false": return .boolean(false)
+            default: return nil
+            }
         }
     }
 
@@ -158,21 +162,29 @@ extension LineItem {
         }
     }
 
-    func setFieldValue(_ id: String, value: Bool) throws {
+    func setFieldValue(_ id: String, value: Bool?) throws {
         let field = getField(id: id)
         guard let fieldType = field.type else {
             return
         }
         switch fieldType.type {
         case .boolean:
-            field.booleanValue = value
+            switch value {
+            case true: field.stringValue = "true"
+            case false: field.stringValue = "false"
+            default: field.stringValue = nil
+            }
         default:
             throw FieldValueError.invalidType(expected: fieldType.type, received: .boolean)
         }
     }
 
-    func setFieldValue(_ id: String, value: FieldValue) throws {
+    func setFieldValue(_ id: String, value: FieldValue?) throws {
         switch value {
+        case nil:
+            let field = getField(id: id)
+            field.stringValue = nil
+            field.tireSetValue = nil
         case .string(let value): try setFieldValue(id, value: value)
         case .tireSet(let value): try setFieldValue(id, value: value)
         case .boolean(let value): try setFieldValue(id, value: value)

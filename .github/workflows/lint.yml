@@ -1,9 +1,10 @@
-name: SwiftLint
+name: Lint
 
 on: [push]
 
 jobs:
-  lint:
+  swiftlint:
+    name: SwiftLint
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -13,3 +14,21 @@ jobs:
         uses: norio-nomura/action-swiftlint@3.2.1
         env:
           WORKING_DIRECTORY: Source
+  schema:
+    name: Check YAML schema
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Checkout LFS objects
+        run: git lfs checkout
+      - name: Install tools
+        run: wget https://github.com/mikefarah/yq/releases/download/v4.22.1/yq_linux_amd64 -O /usr/local/bin/yq && chmod +x /usr/local/bin/yq
+      - name: Convert YAML to JSON
+        run: |
+          yq -o=json eval "Source/Model/Line Item Types/LineItemTypes.yml" | jq -c . > LineItemTypes.json
+          cp "Source/Model/Line Item Types/LineItemTypes.schema.json" LineItemTypes.schema.json
+      - name: Validate JSON
+        uses: OrRosenblatt/validate-json-action@0.1.0
+        env:
+          INPUT_SCHEMA: ./LineItemTypes.schema.json
+          INPUT_JSONS: ./LineItemTypes.json

@@ -40,21 +40,16 @@ extension LineItemField {
             guard let stringValue = stringValue else {
                 return nil
             }
-            return type?.enumValues[stringValue]?.displayName
+            return type?.enumValuesById[stringValue]?.displayName
         case .tireSet: return tireSetValue?.displayName
         case .boolean:
-            if let booleanFormat = type?.booleanFormat {
-                if booleanValue {
-                    return booleanFormat.trueFormat
-                } else {
-                    return booleanFormat.falseFormat
-                }
+            let booleanFormat = type?.booleanFormat ?? LineItemTypeBooleanFormat.defaultFormat
+            if stringValue == "true" {
+                return booleanFormat.trueFormat
+            } else if stringValue == "false" {
+                return booleanFormat.falseFormat
             } else {
-                if booleanValue {
-                    return "Yes"
-                } else {
-                    return "No"
-                }
+                return nil
             }
         case nil: return nil
         }
@@ -62,17 +57,7 @@ extension LineItemField {
 
     func setDefaultValue(vehicle: Vehicle?) {
         if let defaultValue = type?.defaultValue {
-            switch type?.type {
-            case .boolean:
-                switch defaultValue {
-                case "true":
-                    booleanValue = true
-                default:
-                    booleanValue = false
-                }
-            default:
-                stringValue = defaultValue
-            }
+            stringValue = defaultValue
         } else if let defaultFrom = type?.defaultValueFrom {
             switch defaultFrom {
             case .vehicleMake:

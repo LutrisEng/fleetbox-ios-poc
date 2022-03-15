@@ -11,13 +11,11 @@ import CoreData
 struct ExportableLineItemField: Codable {
     let typeId: String?
     let stringValue: String?
-    let booleanValue: Bool
     let tireSetValue: Int?
 
     init(context: ExportContext, lineItemField: LineItemField) {
         typeId = lineItemField.typeId
         stringValue = lineItemField.stringValue
-        booleanValue = lineItemField.booleanValue
         if let tireSet = lineItemField.tireSetValue {
             if let idx = context.tireSets.firstIndex(of: tireSet) {
                 tireSetValue = idx
@@ -39,7 +37,6 @@ struct ExportableLineItemField: Codable {
         field.lineItem = lineItem
         field.typeId = typeId
         field.stringValue = stringValue
-        field.booleanValue = booleanValue
         if let tireSetValue = tireSetValue {
             field.tireSetValue = exportContext.tireSets[tireSetValue]
         }

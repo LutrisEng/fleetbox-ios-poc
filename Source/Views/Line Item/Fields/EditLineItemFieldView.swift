@@ -25,7 +25,7 @@ struct EditLineItemFieldView: View {
                     )
                 case .enumeration:
                     Picker(type.shortDisplayNameLocal, selection: convertToNonNilBinding(string: $field.stringValue)) {
-                        ForEach(Array(type.enumValues.values)) { val in
+                        ForEach(type.enumValues) { val in
                             VStack {
                                 Text(val.displayName)
                                 if let description = val.description {
@@ -36,7 +36,32 @@ struct EditLineItemFieldView: View {
                     }
                 case .tireSet: EditTireSetLineItemFieldView(field: field, type: type)
                 case .boolean:
-                    Toggle(type.shortDisplayNameLocal, isOn: $field.booleanValue)
+                    HStack {
+                        Button(type.booleanFormat.unsetFormat) {
+                            field.stringValue = nil
+                        }
+                            .foregroundColor(
+                                field.stringValue == nil ? .accentColor : .secondary
+                            )
+                            .buttonStyle(BorderlessButtonStyle())
+                            .frame(maxWidth: .infinity)
+                        Button(type.booleanFormat.trueFormat) {
+                            field.stringValue = "true"
+                        }
+                            .foregroundColor(
+                                field.stringValue == "true" ? .green : .secondary
+                            )
+                            .buttonStyle(BorderlessButtonStyle())
+                            .frame(maxWidth: .infinity)
+                        Button(type.booleanFormat.falseFormat) {
+                            field.stringValue = "false"
+                        }
+                            .foregroundColor(
+                                field.stringValue == "false" ? .red : .secondary
+                            )
+                            .buttonStyle(BorderlessButtonStyle())
+                            .frame(maxWidth: .infinity)
+                    }
                 }
             }
                     .onDisappear(perform: save)

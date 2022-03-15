@@ -1,423 +1,408 @@
 # yaml-language-server: $schema=LineItemTypes.schema.json
 
 categories:
-  inspection:
+  - id: inspection
     displayName: Inspections
     icon:
       sfsymbols: magnifyingglass
     subcategories:
-      predrive:
+      - id: predrive
         displayName: Pre-drive
         icon:
           sfsymbols: car
         types:
-          basicPreDrive:
+          - id: basicPreDrive
             displayName: Basic pre-drive inspection completed
             description: A basic inspection intended to be completed in a couple minutes was completed.
             fields:
-              lowBeams:
+              - id: lowBeams
                 shortDisplayName: Low beams
-                longDisplayName: Are the low beams functional?
+                longDisplayName: Low beams are functional.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              highBeams:
+              - id: highBeams
                 shortDisplayName: High beams
-                longDisplayName: Are the high beams functional?
+                longDisplayName: High beams are functional.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              brakes:
+              - id: brakes
                 shortDisplayName: Brakes
-                longDisplayName: Does the brake pedal feel normal?
+                longDisplayName: Brake pedal feels normal.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              brakeLights:
+              - id: brakeLights
                 shortDisplayName: Brake lights
-                longDisplayName: Are the brake lights functional?
+                longDisplayName: Brake lights are functional.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              tailLights:
+              - id: tailLights
                 shortDisplayName: Tail lights
-                longDisplayName: Are the tail lights functional?
+                longDisplayName: Tail lights are functional.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              hazards:
+              - id: hazards
                 shortDisplayName: Hazards
-                longDisplayName: Are the hazards functional?
+                longDisplayName: Hazards are functional.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              visibility:
+              - id: visibility
                 shortDisplayName: Visibility
-                longDisplayName: Is there adequate visibility out of the windshield, front windows, and mirrors?
+                longDisplayName: There is adequate visibility out of the windshield, front windows, and mirrors.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              wiperBlades:
+              - id: wiperBlades
                 shortDisplayName: Wiper blades
-                longDisplayName: Are the wiper blades in adequate condition?
+                longDisplayName: Wiper blades are in adequate condition.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              washerFluid:
+              - id: washerFluid
                 shortDisplayName: Washer fluid
-                longDisplayName: Is the washer fluid sprayer functional?
+                longDisplayName: Washer fluid sprayer is functional.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              tireInflation:
+              - id: tireInflation
                 shortDisplayName: Tire inflation
-                longDisplayName: Are the tires adequately inflated?
+                longDisplayName: Tires are adequately inflated.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              leaks:
+              - id: leaks
                 shortDisplayName: Leaks
-                longDisplayName: Are there any leaks under the vehicle?
+                longDisplayName: There are no leaks under the vehicle.
                 type: boolean
-                defaultValue: "true"
                 booleanFormat:
-                  true: Fail
-                  false: Pass
-              sound:
+                  true: Pass
+                  false: Fail
+              - id: sound
                 shortDisplayName: Sound
-                longDisplayName: Does the vehicle make abnormal sounds while running?
+                longDisplayName: Vehicle does not make abnormal sounds while running.
                 type: boolean
-                defaultValue: "true"
                 booleanFormat:
-                  true: Fail
-                  false: Pass
-              steering:
+                  true: Pass
+                  false: Fail
+              - id: steering
                 shortDisplayName: Steering
-                longDisplayName: Does the steering feel normal?
+                longDisplayName: Steering feels normal.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              horn:
+              - id: horn
                 shortDisplayName: Horn
-                longDisplayName: Is the horn functional?
+                longDisplayName: Horn is functional.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-              fuel:
+              - id: fuel
                 shortDisplayName: Fuel
-                longDisplayName: Is there adequate fuel?
+                longDisplayName: There is adequate fuel.
                 type: boolean
-                defaultValue: "false"
                 booleanFormat:
                   true: Pass
                   false: Fail
-      government:
+      - id: government
         displayName: Government-mandated
         icon:
           sfsymbols: building.columns
         types:
-          safetyInspection:
+          - id: safetyInspection
             displayName: Safety inspection
             description: A mandatory state safety inspection was performed.
             fields:
-              state:
+              - id: state
                 shortDisplayName: State
                 longDisplayName: Which state was this inspection for?
                 type: string
                 example: Texas
                 defaultValueFrom: vehicle.registrationState
-          emissionsInspection:
+          - id: emissionsInspection
             displayName: Emissions inspection
             description: A mandatory state emissions inspection was performed.
             fields:
-              state:
+              - id: state
                 shortDisplayName: State
                 longDisplayName: Which state was this inspection for?
                 type: string
                 example: Texas
                 defaultValueFrom: vehicle.registrationState
-  maintenance:
+  - id: maintenance
     displayName: Maintenance
     icon:
       sfsymbols: wrench.and.screwdriver
     subcategories:
-      mechanical:
+      - id: mechanical
         displayName: Mechanical
         icon:
           sfsymbols: wrench.and.screwdriver
         types:
-          sparkPlugReplacement:
+          - id: sparkPlugReplacement
             displayName: Spark plug replacement
             icon:
               sfsymbols: bolt
             fields:
-              brand:
+              - id: brand
                 shortDisplayName: Brand
                 longDisplayName: What is the new spark plugs' brand?
                 type: string
                 example: PartCo
                 defaultValueFrom: vehicle.make
-              partNumber:
+              - id: partNumber
                 shortDisplayName: Part number
                 longDisplayName: What is the new spark plugs' part number?
                 type: string
-          batteryReplacement:
+          - id: batteryReplacement
             displayName: Battery replacement
             description: The main 12V battery was replaced.
             icon:
               sfsymbols: minus.plus.batteryblock
             fields:
-              brand:
+              - id: brand
                 shortDisplayName: Brand
                 longDisplayName: What is the new battery's brand?
                 type: string
                 example: PartCo
                 defaultValueFrom: vehicle.make
-              partNumber:
+              - id: partNumber
                 shortDisplayName: Part number
                 longDisplayName: What is the new battery's part number?
                 type: string
-              serialNumber:
+              - id: serialNumber
                 shortDisplayName: Serial number
                 longDisplayName: What is the new battery's serial number?
                 type: string
-          hvBatteryReplacement:
+          - id: hvBatteryReplacement
             displayName: HV battery replacement
             description: The high-voltage (e.g. hybrid/traction) battery was replaced.
             icon:
               sfsymbols: minus.plus.batteryblock
             fields:
-              brand:
+              - id: brand
                 shortDisplayName: Brand
                 longDisplayName: What is the new battery's brand?
                 type: string
                 example: PartCo
                 defaultValueFrom: vehicle.make
-              partNumber:
+              - id: partNumber
                 shortDisplayName: Part number
                 longDisplayName: What is the new battery's part number?
                 type: string
-              serialNumber:
+              - id: serialNumber
                 shortDisplayName: Serial number
                 longDisplayName: What is the new battery's serial number?
                 type: string
-      fluids:
+      - id: fluids
         displayName: Fluids
         icon:
           sfsymbols: drop.triangle
         types:
-          engineOilChange:
+          - id: engineOilChange
             displayName: Engine oil changed
             description: Engine oil was drained and refilled.
             fields:
-              viscosity:
+              - id: viscosity
                 shortDisplayName: Viscosity
                 longDisplayName: What is the new oil's viscosity?
                 type: string
                 example: 5W-40
                 defaultValueFrom: vehicle.oilViscosity
-              brand:
+              - id: brand
                 shortDisplayName: Brand
                 longDisplayName: What is the new oil's brand?
                 type: string
                 example: OilCo
                 defaultValueFrom: vehicle.make
-              partNumber:
+              - id: partNumber
                 shortDisplayName: Part number
                 longDisplayName: What is the new oil's part number?
                 type: string
-          transmissionFluidChange:
+          - id: transmissionFluidChange
             displayName: Transmission fluid changed
             description: Transmission fluid was drained and refilled.
             fields:
-              brand:
+              - id: brand
                 shortDisplayName: Brand
                 longDisplayName: What is the new fluid's brand?
                 type: string
                 example: FluidCo
                 defaultValueFrom: vehicle.make
-              partNumber:
+              - id: partNumber
                 shortDisplayName: Part number
                 longDisplayName: What is the new fluid's part number?
                 type: string
-          brakeFluidChange:
+          - id: brakeFluidChange
             displayName: Brake fluid changed
             description: Brake fluid was drained and refilled.
             fields:
-              brand:
+              - id: brand
                 shortDisplayName: Brand
                 longDisplayName: What is the new fluid's brand?
                 type: string
                 example: FluidCo
                 defaultValueFrom: vehicle.make
-              partNumber:
+              - id: partNumber
                 shortDisplayName: Part number
                 longDisplayName: What is the new fluid's part number?
                 type: string
-          coolantChange:
+          - id: coolantChange
             displayName: Coolant flushed
             description: Engine coolant was drained and refilled.
             fields:
-              brand:
+              - id: brand
                 shortDisplayName: Brand
                 longDisplayName: What is the new coolant's brand?
                 type: string
                 example: FluidCo
                 defaultValueFrom: vehicle.make
-              partNumber:
+              - id: partNumber
                 shortDisplayName: Part number
                 longDisplayName: What is the new coolant's part number?
                 type: string
-      filters:
+      - id: filters
         displayName: Filters
         subcategories:
-          fluidFilters:
+          - id: fluidFilters
             displayName: Fluid filters
             icon:
               sfsymbols: drop.triangle
             types:
-              engineOilFilterChange:
+              - id: engineOilFilterChange
                 displayName: Engine oil filter replaced
                 fields:
-                  brand:
+                  - id: brand
                     shortDisplayName: Brand
                     longDisplayName: What is the new oil filter's brand?
                     type: string
                     example: FilterCo
                     defaultValueFrom: vehicle.make
-                  partNumber:
+                  - id: partNumber
                     shortDisplayName: Part number
                     longDisplayName: What is the new oil filter's part number?
                     type: string
-              transmissionFluidFilterChange:
+              - id: transmissionFluidFilterChange
                 displayName: Transmission fluid filter replaced
                 fields:
-                  brand:
+                  - id: brand
                     shortDisplayName: Brand
                     longDisplayName: What is the new filter's brand?
                     type: string
                     example: FilterCo
                     defaultValueFrom: vehicle.make
-                  partNumber:
+                  - id: partNumber
                     shortDisplayName: Part number
                     longDisplayName: What is the new filter's part number?
                     type: string
-          airFilters:
+          - id: airFilters
             displayName: Air filters
             icon:
               sfsymbols: wind
             types:
-              engineAirFilterChange:
+              - id: engineAirFilterChange
                 displayName: Engine air filter replaced
                 fields:
-                  brand:
+                  - id: brand
                     shortDisplayName: Brand
                     longDisplayName: What is the new air filter's brand?
                     type: string
                     example: FilterCo
                     defaultValueFrom: vehicle.make
-                  partNumber:
+                  - id: partNumber
                     shortDisplayName: Part number
                     longDisplayName: What is the new air filter's part number?
                     type: string
-              cabinAirFilterChange:
+              - id: cabinAirFilterChange
                 displayName: Cabin air filter replaced
                 fields:
-                  brand:
+                  - id: brand
                     shortDisplayName: Brand
                     longDisplayName: What is the new air filter's brand?
                     type: string
                     example: FilterCo
                     defaultValueFrom: vehicle.make
-                  partNumber:
+                  - id: partNumber
                     shortDisplayName: Part number
                     longDisplayName: What is the new air filter's part number?
                     type: string
-      tires:
+      - id: tires
         displayName: Tires
         icon:
           sfsymbols: circle.circle
         types:
-          tireRotation:
+          - id: tireRotation
             displayName: Tires rotated
             icon:
               sfsymbols: repeat.circle
             fields:
-              tireSet:
+              - id: tireSet
                 shortDisplayName: Tire set
                 longDisplayName: Which tire set was rotated?
                 type: tireSet
                 defaultValueFrom: vehicle.currentTires
-              pattern:
+              - id: pattern
                 shortDisplayName: Pattern
                 longDisplayName: Which pattern was used to rotate the tires?
                 type: enum
                 enumValues:
-                  forwardCross:
+                  - id: forwardCross
                     displayName: Forward cross
                     description: Typically used for front-wheel drive vehicles. Front tires moved to rear, and rear tires moved to opposite sides of front axle.
-                  cross:
+                  - id: cross
                     displayName: Cross
                     description: Typically used for front-wheel drive vehicles. Front tires moved to opposite sides of rear axle, and rear tires moved to opposite sides of front axle.
-                  rearwardCross:
+                  - id: rearwardCross
                     displayName: Rearward cross
                     description: Typically used for rear-wheel drive and all-wheel drive vehicles. Front tires moved to opposite sides of rear axle, and rear tires moved to front.
-          mountedTires:
+          - id: mountedTires
             displayName: Tire set mounted
             fields:
-              tireSet:
+              - id: tireSet
                 shortDisplayName: Tire set
                 longDisplayName: Which tire set was mounted?
                 type: tireSet
-          dismountedTires:
+          - id: dismountedTires
             displayName: Tire set dismounted
             fields:
-              tireSet:
+              - id: tireSet
                 shortDisplayName: Tire set
                 longDisplayName: Which tire set was dismounted?
                 type: tireSet
   
-  registration:
+  - id: registration
     displayName: Registration
     icon:
       sfsymbols: rectangle.and.paperclip
       types:
-        stateRegistration:
+        - id: stateRegistration
           displayName: Registered with state
           fields:
-            state:
+            - id: state
               shortDisplayName: State
               longDisplayName: Which state was this vehicle registered with?
               type: string
 
-  misc:
+  - id: misc
     displayName: Miscellaneous
     icon:
       sfsymbols: questionmark.circle
     types:
-      misc:
+      - id: misc
         displayName: Miscellaneous

@@ -12,6 +12,9 @@
     "category": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "displayName": {
           "type": "string"
         },
@@ -19,25 +22,29 @@
           "$ref": "#/definitions/icon"
         },
         "subcategories": {
-          "type": "object",
-          "additionalProperties": {
+          "type": "array",
+          "items": {
             "$ref": "#/definitions/category"
           }
         },
         "types": {
-          "type": "object",
-          "additionalProperties": {
+          "type": "array",
+          "items": {
             "$ref": "#/definitions/type"
           }
         }
       },
       "required": [
+        "id",
         "displayName"
       ]
     },
     "type": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "displayName": {
           "type": "string"
         },
@@ -48,19 +55,23 @@
           "$ref": "#/definitions/icon"
         },
         "fields": {
-          "type": "object",
-          "additionalProperties": {
+          "type": "array",
+          "items": {
             "$ref": "#/definitions/field"
           }
         }
       },
       "required": [
+        "id",
         "displayName"
       ]
     },
     "field": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "shortDisplayName": {
           "type": "string"
         },
@@ -92,10 +103,13 @@
           ]
         },
         "enumValues": {
-          "type": "object",
-          "additionalProperties": {
+          "type": "array",
+          "items": {
             "type": "object",
             "properties": {
+              "id": {
+                "type": "string"
+              },
               "displayName": {
                 "type": "string"
               },
@@ -104,6 +118,7 @@
               }
             },
             "required": [
+              "id",
               "displayName"
             ]
           }
@@ -125,6 +140,7 @@
         }
       },
       "required": [
+        "id",
         "shortDisplayName",
         "type"
       ]
@@ -132,8 +148,8 @@
   },
   "properties": {
     "categories": {
-      "type": "object",
-      "additionalProperties": {
+      "type": "array",
+      "items": {
         "$ref": "#/definitions/category"
       }
     }
