@@ -23,6 +23,8 @@ struct VehicleImageView: View {
 
     @Binding var imageData: Data?
 
+    @State private var image: UIImage?
+
     @State private var showImagePicker: Bool = false
 
     @ViewBuilder
@@ -33,29 +35,40 @@ struct VehicleImageView: View {
     }
 
     var body: some View {
-        if let imageData = imageData, let uiImage = UIImage(data: imageData) {
-            Section {
-                Image(uiImage: uiImage)
+        VStack {
+            if let image = image {
+                Image(uiImage: image)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-            }
-            .listRowBackground(EmptyView())
-            Section {
-                Button("Remove image") {
-                    self.imageData = nil
+                .listRowBackground(EmptyView())
+                Section(header: Text("Image")) {
+                    Button("Remove image") {
+                        self.imageData = nil
+                    }
+                    Button("Change image") {
+                        showImagePicker = true
+                    }
                 }
-                Button("Change image") {
-                    showImagePicker = true
+            } else {
+                Section(header: Text("Image")) {
+                    Button("Add image") {
+                        showImagePicker = true
+                    }
                 }
             }
-            .sheet(isPresented: $showImagePicker, content: imagePickerSheet)
-        } else {
-            Section {
-                Button("Add image") {
-                    showImagePicker = true
-                }
+        }
+        .sheet(isPresented: $showImagePicker, content: imagePickerSheet)
+        .onAppear {
+            if let imageData = imageData {
+                image = UIImage(data: imageData)
             }
-            .sheet(isPresented: $showImagePicker, content: imagePickerSheet)
+        }
+        .onChange(of: imageData) { newImageData in
+            if let newImageData = newImageData {
+                image = UIImage(data: newImageData)
+            } else {
+                image = nil
+            }
         }
     }
 }
