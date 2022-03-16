@@ -18,12 +18,14 @@
 import Foundation
 
 struct DummyData {
+    let vehicleYear: String
     let vehicleMake: String
     let vehicleModel: String
     let vin: String
     let vehicleName: String
 
     static let popCulture = DummyData(
+            vehicleYear: "1982",
             vehicleMake: "Knight Industries",
             vehicleModel: "Two Thousand",
             vin: "AAAAA000000000000",

@@ -26,29 +26,47 @@ struct ShopPickerView: View {
     private var shops: FetchedResults<Shop>
 
     let selected: Shop?
+    let exclude: Set<Shop>
     let action: (Shop) -> Void
 
+    init(selected: Shop?, exclude: Set<Shop> = [], action: @escaping (Shop) -> Void) {
+        self.selected = selected
+        self.exclude = exclude
+        self.action = action
+    }
+
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(shops, id: \.self) { shop in
-                    Button(action: {
-                        action(shop)
-                        dismiss()
-                    }, label: {
-                        HStack {
-                            Text(shop.name ?? "Unknown shop")
-                                    .foregroundColor(.primary)
-                            if selected == shop {
-                                Spacer()
-                                Image(systemName: "checkmark")
-                                        .foregroundColor(.accentColor)
+        List {
+            let filteredShops = shops.filter { !exclude.contains($0) }
+            if filteredShops.isEmpty {
+                if exclude.isEmpty {
+                    Text("No shops").foregroundColor(.secondary)
+                } else {
+                    Text("No eligible shops").foregroundColor(.secondary)
+                }
+            } else {
+                ForEach(
+                    filteredShops,
+                    id: \.self
+                ) { shop in
+                    Button(
+                        action: {
+                            action(shop)
+                            dismiss()
+                        }, label: {
+                            HStack {
+                                Text(shop.name ?? "Unknown shop")
+                                        .foregroundColor(.primary)
+                                if selected == shop {
+                                    Spacer()
+                                    Image(systemName: "checkmark")
+                                            .foregroundColor(.accentColor)
+                                }
                             }
                         }
-                    })
+                    )
                 }
             }
-                    .navigationTitle("Shops")
         }
     }
 }

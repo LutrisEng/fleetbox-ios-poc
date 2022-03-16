@@ -43,7 +43,13 @@ class NumbersOnly: ObservableObject {
 
 func convertToStringBinding(int64: Binding<Int64>) -> Binding<String> {
     Binding<String>(
-            get: { String(int64.wrappedValue) },
+            get: {
+                if int64.wrappedValue == 0 {
+                    return ""
+                } else {
+                    return String(int64.wrappedValue)
+                }
+            },
             set: { value in
                 let filtered = value.filter {
                     $0.isNumber

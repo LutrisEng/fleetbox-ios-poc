@@ -18,13 +18,51 @@
 import SwiftUI
 
 struct ShopView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+
     @ObservedObject var shop: Shop
 
     var body: some View {
         Form {
             FleetboxTextField(value: $shop.name, name: "Name", example: "Quick Lube of Anytown USA")
+            let vehicles = shop.vehicles
+            if !vehicles.isEmpty {
+                Section(header: Text("Performed service on")) {
+                    ForEach(shop.vehicles) { vehicle in
+                        NavigationLink(vehicle.displayNameWithFallback) {
+                            VehicleView(vehicle: vehicle)
+                        }
+                    }
+                }
+            }
+            let logItems = shop.logItemsInverseChrono
+            if !logItems.isEmpty {
+                Section(header: Text("Log items")) {
+                    ForEach(shop.logItemsInverseChrono) { logItem in
+                        NavigationLink(
+                            destination: {
+                                LogItemView(logItem: logItem)
+                            },
+                            label: {
+                                LogItemLabelView(logItem: logItem, showVehicle: true).padding([.top, .bottom], 10)
+                            }
+                        )
+                    }
+                }
+            }
             Section(header: Text("Actions")) {
-                Button("Merge with other shop") {
+                NavigationLink("Merge with other shop") {
+                    ShopPickerView(
+                        selected: nil,
+                        exclude: [shop]
+                    ) {
+                        shop.mergeWith($0)
+                        ignoreErrors {
+                            try viewContext.save()
+                        }
+                    }
+                    .navigationTitle("Merge shops")
+                    .navigationBarTitleDisplayMode(.inline)
                 }
             }
         }

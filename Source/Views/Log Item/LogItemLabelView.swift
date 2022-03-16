@@ -19,9 +19,20 @@ import SwiftUI
 
 struct LogItemLabelView: View {
     @ObservedObject var logItem: LogItem
+    let showVehicle: Bool
+
+    init(logItem: LogItem, showVehicle: Bool = false) {
+        self.logItem = logItem
+        self.showVehicle = showVehicle
+    }
 
     var body: some View {
         VStack {
+            if showVehicle, let vehicle = logItem.vehicle {
+                Text(vehicle.displayNameWithFallback)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
             if let displayName = logItem.displayName, !displayName.isEmpty {
                 Text(displayName)
                         .font(.body.bold())

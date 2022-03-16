@@ -32,6 +32,28 @@ struct VehicleView: View {
             }
         }
                 .navigationTitle(vehicle.fullModelName)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem {
+                        Button(action: addLogItem) {
+                            Label("Add Log Item", systemImage: "plus")
+                        }
+                    }
+                }
+    }
+
+    private func addLogItem() {
+        withAnimation {
+            let logItem = LogItem(context: viewContext)
+            logItem.vehicle = vehicle
+            logItem.performedAt = Date.now
+
+            ignoreErrors {
+                try viewContext.save()
+            }
+        }
     }
 }
 

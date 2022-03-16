@@ -23,7 +23,7 @@ jobs:
       - name: Checkout LFS objects
         run: git lfs checkout
       - name: Install tools
-        run: brew install yq jq && gem install xcpretty
+        run: brew install yq jq fastlane && gem install xcpretty
       - name: Run tests
         run: set -o pipefail && xcodebuild -scheme Fleetbox -destination '${{ matrix.destination['destination'] }}' -resultBundlePath TestResults clean test | xcpretty
       - name: Export tests results

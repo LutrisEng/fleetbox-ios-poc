@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8612CD6227E1956D00976E8F /* Array Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6127E1956D00976E8F /* Array Extensions.swift */; };
 		861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
 		861DA48727E11DFF00775276 /* ExportContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48627E11DFF00775276 /* ExportContext.swift */; };
 		861DA48927E11E3600775276 /* ExportableShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48827E11E3600775276 /* ExportableShop.swift */; };
@@ -116,6 +117,7 @@
 
 /* Begin PBXFileReference section */
 		1B206C79650C16573AAB5A64 /* workflows */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = workflows; path = .github/workflows; sourceTree = "<group>"; };
+		8612CD6127E1956D00976E8F /* Array Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array Extensions.swift"; sourceTree = "<group>"; };
 		861BA8FD27D8537100DD729A /* Fleetbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleetbox.entitlements; sourceTree = "<group>"; };
 		861BA8FE27D8546700DD729A /* LineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemView.swift; sourceTree = "<group>"; };
 		861DA48527DC8D7500775276 /* Fleetbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fleetbox-Info.plist"; sourceTree = "<group>"; };
@@ -228,8 +230,8 @@
 		861DAE0227CDD59D00AFE972 = {
 			isa = PBXGroup;
 			children = (
-				86EB569D27E176AC007FA2DD /* LICENSE.md */,
 				86EB569C27E17681007FA2DD /* README.md */,
+				86EB569D27E176AC007FA2DD /* LICENSE.md */,
 				861DA48527DC8D7500775276 /* Fleetbox-Info.plist */,
 				861DAE0727CDD59D00AFE972 /* Source */,
 				8664C23927D9FED600AE9ADB /* Test Plans */,
@@ -398,6 +400,7 @@
 				8664C24627DA987800AE9ADB /* Custom Bindings.swift */,
 				8652AA7627DAB5F300D8D56D /* Dummy Data.swift */,
 				861DA48E27E1233200775276 /* Date Functions.swift */,
+				8612CD6127E1956D00976E8F /* Array Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -665,7 +668,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint Source/\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -674,6 +677,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8612CD6227E1956D00976E8F /* Array Extensions.swift in Sources */,
 				861DA48D27E11F8100775276 /* ExportableTireSet.swift in Sources */,
 				86500C8927DC0D6E00A5111E /* VehicleDetailsView.swift in Sources */,
 				8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */,

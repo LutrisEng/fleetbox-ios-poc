@@ -15,27 +15,11 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import SwiftUI
+import Foundation
 
-struct OdometerReadingsView: View {
-    @ObservedObject var vehicle: Vehicle
-
-    var body: some View {
-        List {
-            ForEach(vehicle.odometerReadingsInverseChrono, id: \.self) { odometerReading in
-                NavigationLink(odometerReading.at?.formatted() ?? "Odometer reading") {
-                    OdometerReadingView(odometerReading: odometerReading)
-                }
-            }
-        }
-        .navigationTitle("Odometer readings")
-    }
-}
-
-struct OdometerReadingsView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewWrapper { fixtures in
-            OdometerReadingsView(vehicle: fixtures.vehicle)
-        }
+extension Sequence where Iterator.Element: Hashable {
+    func unique() -> [Iterator.Element] {
+        var seen: Set<Iterator.Element> = []
+        return filter { seen.insert($0).inserted }
     }
 }

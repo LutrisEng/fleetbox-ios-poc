@@ -25,23 +25,27 @@ struct MaintenanceLogView: View {
     var body: some View {
         Section(header: Text("Maintenance log")) {
             let logItems = vehicle.logItemsInverseChrono
-            ForEach(logItems, id: \.self) { logItem in
-                NavigationLink(destination: LogItemView(logItem: logItem)) {
-                    LogItemLabelView(logItem: logItem).padding([.top, .bottom], 10)
+            if logItems.isEmpty {
+                Text("Empty")
+                    .foregroundColor(.secondary)
+            } else {
+                ForEach(logItems, id: \.self) { logItem in
+                    NavigationLink(destination: LogItemView(logItem: logItem)) {
+                        LogItemLabelView(logItem: logItem).padding([.top, .bottom], 10)
+                    }
                 }
-            }
-                    .onDelete { offsets in
-                        withAnimation {
-                            offsets.map {
-                                        logItems[$0]
-                                    }
+                        .onDelete { offsets in
+                            withAnimation {
+                                offsets
+                                    .map { logItems[$0] }
                                     .forEach(viewContext.delete)
 
-                            ignoreErrors {
-                                try viewContext.save()
+                                ignoreErrors {
+                                    try viewContext.save()
+                                }
                             }
                         }
-                    }
+            }
         }
     }
 }

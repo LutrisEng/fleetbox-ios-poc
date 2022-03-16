@@ -56,13 +56,23 @@ struct TireSetsView: View {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             EditButton()
                         }
-//                    ToolbarItem {
-//                        Button(action: addVehicle) {
-//                            Label("Add Tire Set", systemImage: "plus")
-//                        }
-//                    }
+                        ToolbarItem {
+                            Button(action: addTireSet) {
+                                Label("Add Tire Set", systemImage: "plus")
+                            }
+                        }
                     }
             Text("Select a tire set")
+        }
+    }
+
+    private func addTireSet() {
+        withAnimation {
+            _ = TireSet(context: viewContext)
+
+            ignoreErrors {
+                try viewContext.save()
+            }
         }
     }
 }

@@ -56,13 +56,23 @@ struct ShopsView: View {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             EditButton()
                         }
-//                    ToolbarItem {
-//                        Button(action: addVehicle) {
-//                            Label("Add Shop", systemImage: "plus")
-//                        }
-//                    }
+                        ToolbarItem {
+                            Button(action: addShop) {
+                                Label("Add Shop", systemImage: "plus")
+                            }
+                        }
                     }
             Text("Select a shop")
+        }
+    }
+
+    private func addShop() {
+        withAnimation {
+            _ = Shop(context: viewContext)
+
+            ignoreErrors {
+                try viewContext.save()
+            }
         }
     }
 }

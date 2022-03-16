@@ -46,6 +46,13 @@ struct LogItemView: View {
                         selection: convertToNonNilBinding(date: $logItem.performedAt),
                         displayedComponents: [.date]
                 )
+                if let vehicle = logItem.vehicle {
+                    Section(header: Text("Vehicle")) {
+                        NavigationLink(vehicle.displayNameWithFallback) {
+                            VehicleView(vehicle: vehicle)
+                        }
+                    }
+                }
                 Section(header: Text("Shop")) {
                     if let shop = logItem.shop {
                         NavigationLink("Performed by \(shop.name ?? "a shop")") {
@@ -106,32 +113,26 @@ struct LogItemView: View {
                 }
                 Section(header: Text("Line items")) {
                     let lineItems = logItem.lineItems
-                    ForEach(Array(lineItems)) { lineItem in
-                        NavigationLink(destination: LineItemView(lineItem: lineItem)) {
-                            LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
+                    if lineItems.isEmpty {
+                        Text("No line items")
+                            .foregroundColor(.secondary)
+                    } else {
+                        ForEach(lineItems) { lineItem in
+                            NavigationLink(destination: LineItemView(lineItem: lineItem)) {
+                                LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
+                            }
                         }
-                    }
-                            .onDelete { offsets in
-                                withAnimation {
-                                    offsets.map {
-                                                lineItems[$0]
-                                            }
-                                            .forEach(viewContext.delete)
-                                    ignoreErrors {
-                                        try viewContext.save()
+                                .onDelete { offsets in
+                                    withAnimation {
+                                        offsets.map {
+                                                    lineItems[$0]
+                                                }
+                                                .forEach(viewContext.delete)
+                                        ignoreErrors {
+                                            try viewContext.save()
+                                        }
                                     }
                                 }
-                            }
-                    NavigationLink("Add line item") {
-                        LineItemTypePickerView {
-                            let lineItem = createLineItem()
-                            lineItem.type = $0
-                            ignoreErrors {
-                                try viewContext.save()
-                            }
-                        }
-                        .navigationTitle("Add line item")
-                        .navigationBarTitleDisplayMode(.inline)
                     }
                 }
                 Section(header: Text("Attachments")) {
@@ -145,6 +146,27 @@ struct LogItemView: View {
             }
         }
                 .navigationTitle("Log item")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        EditButton()
+                    }
+                    ToolbarItem {
+                        NavigationLink(
+                            destination: {
+                                LineItemTypePickerView {
+                                    let lineItem = createLineItem()
+                                    lineItem.type = $0
+                                    ignoreErrors {
+                                        try viewContext.save()
+                                    }
+                                }
+                                .navigationTitle("Add line item")
+                                .navigationBarTitleDisplayMode(.inline)
+                            },
+                            label: { Label("Add Line Item", systemImage: "plus") }
+                        )
+                    }
+                }
     }
 }
 

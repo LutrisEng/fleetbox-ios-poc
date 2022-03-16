@@ -23,6 +23,26 @@ extension Shop {
         logItemsNs as? Set<LogItem> ?? []
     }
 
+    var logItemsInverseChrono: [LogItem] {
+        logItemsUnordered.sorted {
+            ($0.performedAt ?? Date.distantPast) > ($1.performedAt ?? Date.distantPast)
+        }
+    }
+
+    var vehicles: [Vehicle] {
+        logItemsInverseChrono.compactMap({ $0.vehicle }).unique()
+    }
+
+    func mergeWith(_ other: Shop) {
+        if other == self { return }
+        for item in other.logItemsUnordered {
+            item.shop = self
+        }
+        if let context = managedObjectContext {
+            context.delete(other)
+        }
+    }
+
     override public func willChangeValue(forKey key: String) {
         super.willChangeValue(forKey: key)
         self.objectWillChange.send()

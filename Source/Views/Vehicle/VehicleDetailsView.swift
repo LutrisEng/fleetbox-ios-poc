@@ -24,6 +24,12 @@ struct VehicleDetailsView: View {
         Section(header: Text("Vehicle details")) {
             FleetboxTextField(value: $vehicle.displayName, name: "Name", example: dummyData.vehicleName)
             VINDetailView(vehicle: vehicle)
+            FleetboxTextField(
+                value: convertToNillableBinding(string: convertToStringBinding(int64: $vehicle.year)),
+                name: "Year",
+                example: "0"
+            )
+            .keyboardType(.decimalPad)
             FleetboxTextField(value: $vehicle.make, name: "Make", example: dummyData.vehicleMake)
             FleetboxTextField(value: $vehicle.model, name: "Model", example: dummyData.vehicleModel)
             if let tireSet = vehicle.currentTireSet {

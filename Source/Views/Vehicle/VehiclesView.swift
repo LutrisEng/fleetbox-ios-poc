@@ -34,18 +34,15 @@ struct VehiclesView: View {
         NavigationView {
             List {
                 ForEach(vehicles, id: \.self) { vehicle in
-                    NavigationLink(
-                            vehicle.displayNameWithFallback,
-                            destination: VehicleView(vehicle: vehicle),
-                            tag: vehicle.objectID.uriRepresentation().absoluteString,
-                            selection: $selection)
+                    NavigationLink(vehicle.displayNameWithFallback) {
+                        VehicleView(vehicle: vehicle)
+                    }
                 }
                         .onDelete { offsets in
                             withAnimation {
-                                offsets.map {
-                                            vehicles[$0]
-                                        }
-                                        .forEach(viewContext.delete)
+                                offsets
+                                    .map { vehicles[$0] }
+                                    .forEach(viewContext.delete)
 
                                 ignoreErrors {
                                     try viewContext.save()
@@ -58,44 +55,24 @@ struct VehiclesView: View {
                         ToolbarItem(placement: .navigationBarTrailing) {
                             EditButton()
                         }
-//                    ToolbarItem {
-//                        Button(action: addVehicle) {
-//                            Label("Add Vehicle", systemImage: "plus")
-//                        }
-//                    }
                         ToolbarItem {
+                            Button(action: addVehicle) {
+                                Label("Add Vehicle", systemImage: "plus")
+                            }
+                        }
+                        ToolbarItem(placement: .navigationBarLeading) {
                             Button(action: addFixtures) {
-                                Label("Add Fixtures", systemImage: "plus")
+                                Label("Add Fixtures", systemImage: "questionmark.folder")
                             }
                         }
                     }
-            Text("Select a vehicle")
-        }
-                .onContinueUserActivity(CSSearchableItemActionType, perform: handleSpotlight)
-    }
-
-    private func handleSpotlight(_ userActivity: NSUserActivity) {
-        print("handle spotlight")
-        if let id = userActivity.userInfo?[CSSearchableItemActivityIdentifier] as? String {
-            print("id \(id)")
-            self.selection = id
+            Image(systemName: "car")
         }
     }
 
     private func addVehicle() {
         withAnimation {
-            let vehicle = Vehicle(context: viewContext)
-            vehicle.year = 2022
-            vehicle.make = "BMW"
-            vehicle.model = "M340i"
-            vehicle.vin = "3MW5U7J09N8C40580"
-            let firstLogItem = LogItem(context: viewContext)
-            firstLogItem.vehicle = vehicle
-            firstLogItem.performedAt = Date.now
-            let firstLineItem = LineItem(context: viewContext)
-            firstLineItem.logItem = firstLogItem
-            firstLineItem.typeId = "engineOilChange"
-            selection = vehicle.objectID.uriRepresentation().absoluteString
+            _ = Vehicle(context: viewContext)
 
             ignoreErrors {
                 try viewContext.save()

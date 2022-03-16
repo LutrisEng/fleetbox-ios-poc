@@ -33,23 +33,49 @@ extension TireSet {
         })
     }
 
+    var lineItemsChrono: [LineItem] {
+        lineItems.sorted {
+            ($0.logItem?.performedAt ?? Date.distantPast) > ($1.logItem?.performedAt ?? Date.distantPast)
+        }
+    }
+
+    var lineItemsInverseChrono: [LineItem] {
+        lineItems.sorted {
+            ($0.logItem?.performedAt ?? Date.distantPast) < ($1.logItem?.performedAt ?? Date.distantPast)
+        }
+    }
+
     var logItems: Set<LogItem> {
         Set(lineItems.compactMap {
             $0.logItem
         })
     }
 
-    var logItemsSorted: [LogItem] {
+    var logItemsChrono: [LogItem] {
+        logItems.sorted {
+            ($0.performedAt ?? Date.distantPast) > ($1.performedAt ?? Date.distantPast)
+        }
+    }
+
+    var logItemsInverseChrono: [LogItem] {
         logItems.sorted {
             ($0.performedAt ?? Date.distantPast) < ($1.performedAt ?? Date.distantPast)
         }
+    }
+
+    func lastLineItem(type: String) -> LineItem? {
+        return lineItemsInverseChrono.first(where: { $0.typeId == type })
+    }
+
+    var vehicle: Vehicle? {
+        return lastLineItem(type: "mountedTires")?.logItem?.vehicle
     }
 
     var odometer: Int64 {
         var counter: Int64 = 0
         var mountedOn: Vehicle?
         var mountedAt: Int64?
-        for item in logItemsSorted {
+        for item in logItemsChrono {
             if item.removedTireSets.contains(self) {
                 if let dismountedAt = item.odometerReading?.reading {
                     counter += dismountedAt - (mountedAt ?? 0)
@@ -90,6 +116,16 @@ extension TireSet {
             counter += mountedOn.odometer - mountedAt
         }
         return counter
+    }
+
+    func mergeWith(_ other: TireSet) {
+        if other == self { return }
+        for field in other.lineItemFields {
+            field.tireSetValue = self
+        }
+        if let context = managedObjectContext {
+            context.delete(other)
+        }
     }
 
     override public func willChangeValue(forKey key: String) {

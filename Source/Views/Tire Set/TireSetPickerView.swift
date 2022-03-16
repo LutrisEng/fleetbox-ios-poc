@@ -18,43 +18,74 @@
 import SwiftUI
 
 struct TireSetPickerView: View {
+    @Environment(\.dismiss) var dismiss
+
     @FetchRequest(
             sortDescriptors: [NSSortDescriptor(keyPath: \TireSet.sortOrder, ascending: true)],
             animation: .default)
     private var tireSets: FetchedResults<TireSet>
 
     let selected: TireSet?
+    let allowNone: Bool
+    let exclude: Set<TireSet>
     let action: (TireSet?) -> Void
 
+    init(selected: TireSet?, allowNone: Bool = true, exclude: Set<TireSet> = [], action: @escaping (TireSet?) -> Void) {
+        self.selected = selected
+        self.allowNone = allowNone
+        self.exclude = exclude
+        self.action = action
+    }
+
     var body: some View {
-        NavigationView {
-            List {
-                Button(action: { action(nil) }, label: {
-                    HStack {
-                        Text("None")
-                                .foregroundColor(.primary)
-                        if selected == nil {
-                            Spacer()
-                            Image(systemName: "checkmark")
-                                    .foregroundColor(.accentColor)
-                        }
-                    }
-                })
-                ForEach(tireSets, id: \.self) { tireSet in
-                    Button(action: { action(tireSet) }, label: {
+        List {
+            let filteredTireSets = tireSets.filter { !exclude.contains($0) }
+            if allowNone {
+                Button(
+                    action: {
+                        action(nil)
+                        dismiss()
+                    }, label: {
                         HStack {
-                            Text(tireSet.displayName)
+                            Text("None")
                                     .foregroundColor(.primary)
-                            if selected == tireSet {
+                            if selected == nil {
                                 Spacer()
                                 Image(systemName: "checkmark")
                                         .foregroundColor(.accentColor)
                             }
                         }
-                    })
+                    }
+                )
+            } else if filteredTireSets.isEmpty {
+                if exclude.isEmpty {
+                    Text("No tire sets").foregroundColor(.secondary)
+                } else {
+                    Text("No eligible tire sets").foregroundColor(.secondary)
+                }
+            } else {
+                ForEach(
+                    filteredTireSets,
+                    id: \.self
+                ) { tireSet in
+                    Button(
+                        action: {
+                            action(tireSet)
+                            dismiss()
+                        }, label: {
+                            HStack {
+                                Text(tireSet.displayName)
+                                        .foregroundColor(.primary)
+                                if selected == tireSet {
+                                    Spacer()
+                                    Image(systemName: "checkmark")
+                                            .foregroundColor(.accentColor)
+                                }
+                            }
+                        }
+                    )
                 }
             }
-                    .navigationTitle("Tire sets")
         }
     }
 }

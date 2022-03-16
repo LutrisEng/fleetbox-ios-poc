@@ -48,24 +48,21 @@ let osProjects: [OSProject] = [
 struct AboutView: View {
     var body: some View {
         NavigationView {
-            VStack {
-                VStack {
-                    Image("FleetboxLogo")
-                    Text("Private Beta")
-                        .font(.title)
+            List {
+                Image("FleetboxLogo")
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .listRowBackground(EmptyView())
+                Section(header: Text("Private beta")) {
                     Text(
                         "Fleetbox is currently in a private beta. Please report any issues using " +
                         "TestFlight or by contacting your Lutris contact."
                     )
-                    Text("Open-source projects")
-                        .font(.title)
+                }
+                Section(header: Text("Open-source projects")) {
                     Text(
                         "Not only is Fleetbox open-source, we depend on the work done by a " +
                         "bunch of other open-source projects to make this thing work!"
                     )
-                }
-                .padding()
-                List {
                     ForEach(osProjects) { osProject in
                         Link(destination: osProject.url) {
                             VStack {

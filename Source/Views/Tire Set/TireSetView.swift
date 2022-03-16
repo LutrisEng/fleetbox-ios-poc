@@ -18,6 +18,8 @@
 import SwiftUI
 
 struct TireSetView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+
     @ObservedObject var tireSet: TireSet
 
     var body: some View {
@@ -25,8 +27,42 @@ struct TireSetView: View {
             FleetboxTextField(value: $tireSet.userDisplayName, name: "Name", example: "My Summer Tires")
             FleetboxTextField(value: $tireSet.make, name: "Make", example: "TireCo")
             FleetboxTextField(value: $tireSet.model, name: "Model", example: "Aviator Sport")
+            if let vehicle = tireSet.vehicle {
+                Section(header: Text("Current vehicle")) {
+                    NavigationLink(vehicle.displayNameWithFallback) {
+                        VehicleView(vehicle: vehicle)
+                    }
+                }
+            }
+            let logItems = tireSet.logItemsInverseChrono
+            if !logItems.isEmpty {
+                Section(header: Text("Log items")) {
+                    ForEach(logItems) { logItem in
+                        NavigationLink(
+                            destination: {
+                                LogItemView(logItem: logItem)
+                            },
+                            label: {
+                                LogItemLabelView(logItem: logItem, showVehicle: true)
+                            }
+                        )
+                    }
+                }
+            }
             Section(header: Text("Actions")) {
-                Button("Merge with other tire set") {
+                NavigationLink("Merge with other tire set") {
+                    TireSetPickerView(
+                        selected: nil,
+                        allowNone: false,
+                        exclude: [tireSet]
+                    ) {
+                        tireSet.mergeWith($0!)
+                        ignoreErrors {
+                            try viewContext.save()
+                        }
+                    }
+                    .navigationTitle("Merge tire sets")
+                    .navigationBarTitleDisplayMode(.inline)
                 }
             }
         }
