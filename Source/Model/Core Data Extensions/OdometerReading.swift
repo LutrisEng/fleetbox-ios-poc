@@ -22,8 +22,11 @@ extension OdometerReading {
         self.init(context: context)
         self.logItem = logItem
         vehicle = logItem.vehicle
-        reading = logItem.vehicle?.odometer ?? 0
         at = logItem.performedAt ?? Date.now
+        reading = logItem
+            .vehicle?
+            .closestOdometerReadingTo(date: at)
+            ?? (logItem.vehicle?.odometer) ?? 0
     }
 
     override public func willChangeValue(forKey key: String) {

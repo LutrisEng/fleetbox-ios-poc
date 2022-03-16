@@ -35,15 +35,16 @@ struct VehicleView: View {
                 MaintenanceLogView(vehicle: vehicle)
             }
         }
-                .navigationTitle(vehicle.fullModelName)
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        Button(action: addLogItem) {
-                            Label("Add Log Item", systemImage: "plus")
-                        }
-                        EditButton()
-                    }
+        .modifier(WithDoneButton())
+        .navigationTitle(vehicle.fullModelName)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button(action: addLogItem) {
+                    Label("Add Log Item", systemImage: "plus")
                 }
+                EditButton()
+            }
+        }
     }
 
     private func addLogItem() {

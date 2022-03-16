@@ -37,23 +37,35 @@ struct VehicleImageView: View {
     var body: some View {
         Group {
             if let image = image {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                .listRowBackground(EmptyView())
-                Section(header: Text("Image")) {
-                    Button("Remove image") {
-                        self.imageData = nil
-                    }
-                    Button("Change image") {
-                        showImagePicker = true
-                    }
+                ZStack(alignment: .topTrailing) {
+                    Button(
+                        action: {
+                            showImagePicker = true
+                        }, label: {
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .cornerRadius(20)
+                        }
+                    )
+                    Button(
+                        action: {
+                            self.imageData = nil
+                        }, label: {
+                            Image(systemName: "xmark.circle")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxWidth: 20, maxHeight: 20)
+                                .foregroundColor(.red)
+                                .padding(15)
+                        }
+                    )
                 }
+                .buttonStyle(.plain)
+                .listRowBackground(EmptyView())
             } else {
-                Section(header: Text("Image")) {
-                    Button("Add image") {
-                        showImagePicker = true
-                    }
+                Button("Add image") {
+                    showImagePicker = true
                 }
             }
         }

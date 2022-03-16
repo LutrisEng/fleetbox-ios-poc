@@ -17,31 +17,20 @@
 
 import SwiftUI
 
-struct LineItemView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @ObservedObject var lineItem: LineItem
-
-    var body: some View {
-        Form {
-            ForEach(lineItem.fields) { field in
-                EditLineItemFieldView(field: field)
+struct WithDoneButton: ViewModifier {
+    func body(content: Content) -> some View {
+        content.toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") {
+                    UIApplication.shared.sendAction(
+                        #selector(UIResponder.resignFirstResponder),
+                        to: nil,
+                        from: nil,
+                        for: nil
+                    )
+                }
             }
-        }
-        .modifier(WithDoneButton())
-        .navigationTitle(lineItem.type?.displayName ?? "Unknown Line Item")
-        .onAppear {
-            viewContext.perform {
-                lineItem.createMissingFields()
-            }
-        }
-    }
-}
-
-struct LineItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewWrapper { fixtures in
-            LineItemView(lineItem: fixtures.lineItem)
         }
     }
 }

@@ -54,9 +54,12 @@ struct AboutView: View {
     var body: some View {
         NavigationView {
             List {
-                Image("FleetboxLogo")
-                    .frame(maxWidth: .infinity, alignment: .center)
-                    .listRowBackground(EmptyView())
+                HStack {
+                    Spacer()
+                    Image("FleetboxLogo").cornerRadius(20)
+                    Spacer()
+                }
+                .listRowBackground(EmptyView())
                 Section(header: Text("Private beta")) {
                     Text(
                         "Fleetbox is currently in a private beta. Please report any issues using " +

@@ -79,7 +79,7 @@ struct LogItemView: View {
                                 get: { odometerReading.reading },
                                 set: { odometerReading.reading = $0 }
                             ),
-                            name: "Current",
+                            name: "At service",
                             example: 0
                         )
                         .unit("miles")
@@ -123,23 +123,24 @@ struct LogItemView: View {
                 }
             }
         }
-                .navigationTitle("Log item")
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        NavigationLink(
-                            destination: {
-                                LineItemTypePickerView {
-                                    let lineItem = createLineItem()
-                                    lineItem.type = $0
-                                }
-                                .navigationTitle("Add line item")
-                                .navigationBarTitleDisplayMode(.inline)
-                            },
-                            label: { Label("Add Line Item", systemImage: "plus") }
-                        )
-                        EditButton()
-                    }
-                }
+        .modifier(WithDoneButton())
+        .navigationTitle("Log item")
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                NavigationLink(
+                    destination: {
+                        LineItemTypePickerView {
+                            let lineItem = createLineItem()
+                            lineItem.type = $0
+                        }
+                        .navigationTitle("Add line item")
+                        .navigationBarTitleDisplayMode(.inline)
+                    },
+                    label: { Label("Add Line Item", systemImage: "plus") }
+                )
+                EditButton()
+            }
+        }
     }
 }
 

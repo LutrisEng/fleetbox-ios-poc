@@ -21,6 +21,7 @@ struct FleetboxTextField: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     var value: Binding<String?>
+    var wrappedValue: Binding<String>
     @State private var tempValue: String = ""
     @FocusState var focused: Bool
     let name: LocalizedStringKey?
@@ -30,6 +31,7 @@ struct FleetboxTextField: View {
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?) {
         self.value = value
+        wrappedValue = convertToNonNilBinding(string: value)
         self.name = name
         self.example = example
     }
@@ -59,7 +61,6 @@ struct FleetboxTextField: View {
     }
 
     var body: some View {
-        let value = convertToNonNilBinding(string: value)
         HStack {
             if let name = name {
                 Text(name)
@@ -72,30 +73,25 @@ struct FleetboxTextField: View {
                             text: $tempValue,
                             onEditingChanged: { focused in
                                 if focused {
-                                    tempValue = value.wrappedValue
+                                    prepare()
                                 } else {
-                                    value.wrappedValue = tempValue
+                                    save()
                                 }
                             }
                     )
                     .focused($focused)
-                    .toolbar {
-                        ToolbarItemGroup(placement: .keyboard) {
-                            if focused {
-                                Spacer()
-
-                                Button("Done") {
-                                    focused = false
-                                }
-                            }
-                        }
-                    }
                     .keyboardType(number ? .decimalPad : .default)
                     if let value = value.wrappedValue, focused && !value.isEmpty {
-                        Button(action: { self.value.wrappedValue = "" }, label: {
-                            Image(systemName: "xmark.circle")
-                                    .foregroundColor(.secondary)
-                        })
+                        Button(
+                            action: {
+                                self.tempValue = ""
+                                save()
+                            },
+                            label: {
+                                Image(systemName: "xmark.circle")
+                                        .foregroundColor(.secondary)
+                            }
+                        )
                                 .padding(.trailing, 8)
                                 .buttonStyle(BorderlessButtonStyle())
                     }
@@ -105,15 +101,26 @@ struct FleetboxTextField: View {
                     Text(unitName)
                 }
             }
-            .onChange(of: value.wrappedValue) { newValue in
+            .onChange(of: wrappedValue.wrappedValue) { _ in
                 if !focused {
-                    tempValue = newValue
+                    prepare()
                 }
             }
-            .onAppear { tempValue = value.wrappedValue }
+            .onAppear(perform: prepare)
             .foregroundColor(name == nil ? .primary : .secondary)
             .frame(alignment: name == nil ? .leading : .trailing)
             .multilineTextAlignment(name == nil ? .leading : .trailing)
+        }
+    }
+
+    private func prepare() {
+        tempValue = wrappedValue.wrappedValue
+    }
+
+    private func save() {
+        wrappedValue.wrappedValue = tempValue
+        ignoreErrors {
+            try viewContext.save()
         }
     }
 }

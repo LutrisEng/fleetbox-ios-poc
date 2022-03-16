@@ -35,9 +35,10 @@ struct OdometerReadingFormView: View {
             Button("Save", action: { onSubmit(reading) })
             Button("Cancel", action: onDismiss)
         }
-                .onAppear {
-                    reading = previousReading
-                }
+        .modifier(WithDoneButton())
+        .onAppear {
+            reading = previousReading
+        }
     }
 }
 

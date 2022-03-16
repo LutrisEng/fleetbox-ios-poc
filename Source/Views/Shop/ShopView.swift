@@ -63,7 +63,8 @@ struct ShopView: View {
                 }
             }
         }
-                .navigationTitle("Shop")
+        .modifier(WithDoneButton())
+        .navigationTitle("Shop")
     }
 }
 
