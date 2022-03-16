@@ -42,6 +42,11 @@ let osProjects: [OSProject] = [
         name: "sentry-cocoa",
         url: URL(string: "https://github.com/getsentry/sentry-cocoa")!,
         license: "MIT"
+    ),
+    OSProject(
+        name: "ImagePickerView",
+        url: URL(string: "https://github.com/ralfebert/ImagePickerView")!,
+        license: "MIT"
     )
 ]
 

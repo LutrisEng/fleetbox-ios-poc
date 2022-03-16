@@ -18,25 +18,25 @@
 import SwiftUI
 
 struct OdometerReadingFormView: View {
-    let currentReading: Int64
+    let previousReading: Int64
     let onSubmit: (Int64) -> Void
     let onDismiss: () -> Void
-    @StateObject private var reading = NumbersOnly()
+    @State private var reading: Int64 = 0
 
     var body: some View {
         Form {
-            PartOdometerRowView(name: "Current", reading: currentReading)
-            HStack {
-                TextField("Odometer reading in miles", text: $reading.value)
-                        .keyboardType(.decimalPad)
-                Spacer()
-                Text("miles")
-            }
-            Button("Save", action: { onSubmit(reading.numericValue) })
+            PartOdometerRowView(name: "Previous", reading: previousReading)
+            FleetboxTextField(
+                value: convertToNillableBinding(string: convertToStringBinding(int64: $reading)),
+                name: "Current",
+                example: "0"
+            )
+            .unit("miles")
+            Button("Save", action: { onSubmit(reading) })
             Button("Cancel", action: onDismiss)
         }
                 .onAppear {
-                    reading.numericValue = currentReading
+                    reading = previousReading
                 }
     }
 }
@@ -44,7 +44,7 @@ struct OdometerReadingFormView: View {
 struct OdometerReadingFormView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { _ in
-            OdometerReadingFormView(currentReading: 1000, onSubmit: { _ in }, onDismiss: {})
+            OdometerReadingFormView(previousReading: 1000, onSubmit: { _ in }, onDismiss: {})
         }
     }
 }

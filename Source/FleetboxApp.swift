@@ -36,8 +36,52 @@ func getSentryRelease() -> String {
     return "\(package)@\(version)+\(buildIdentifier)\(debugPart)"
 }
 
+struct FleetboxAppMainWindow: View {
+    @Environment(\.scenePhase) var scenePhase
+    @Environment(\.managedObjectContext) var viewContext
+
+    var body: some View {
+        TabView {
+            VehiclesView()
+                    .tabItem {
+                        Image(systemName: "car.2")
+                        Text("Vehicles")
+                    }
+            TireSetsView()
+                    .tabItem {
+                        Image(systemName: "circle.circle")
+                        Text("Tire sets")
+                    }
+            ShopsView()
+                    .tabItem {
+                        Image(systemName: "building.2")
+                        Text("Shops")
+                    }
+            AboutView()
+                    .tabItem {
+                        Image(systemName: "info.circle")
+                        Text("About")
+                    }
+        }
+            .onChange(of: scenePhase) { _ in
+                ignoreErrors {
+                    try viewContext.save()
+                }
+            }
+            .onReceive(
+                NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification),
+                perform: { _ in
+                    ignoreErrors {
+                        try viewContext.save()
+                    }
+                }
+            )
+    }
+}
+
 @main
 struct FleetboxApp: App {
+
     let persistenceController = PersistenceController.shared
 
     init() {
@@ -52,28 +96,7 @@ struct FleetboxApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TabView {
-                VehiclesView()
-                        .tabItem {
-                            Image(systemName: "car.2")
-                            Text("Vehicles")
-                        }
-                TireSetsView()
-                        .tabItem {
-                            Image(systemName: "circle.circle")
-                            Text("Tire sets")
-                        }
-                ShopsView()
-                        .tabItem {
-                            Image(systemName: "building.2")
-                            Text("Shops")
-                        }
-                AboutView()
-                        .tabItem {
-                            Image(systemName: "info.circle")
-                            Text("About")
-                        }
-            }
+            FleetboxAppMainWindow()
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }

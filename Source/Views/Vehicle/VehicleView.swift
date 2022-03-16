@@ -26,6 +26,7 @@ struct VehicleView: View {
     var body: some View {
         VStack {
             Form {
+                VehicleImageView(vehicle: vehicle)
                 VehicleDetailsView(vehicle: vehicle)
                 PartOdometersView(vehicle: vehicle)
                 MaintenanceLogView(vehicle: vehicle)

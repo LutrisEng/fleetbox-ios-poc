@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19574" systemVersion="21D62" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Attachment" representedClassName="Attachment" syncable="YES" codeGenerationType="class">
         <attribute name="fileContents" optional="YES" attributeType="Binary"/>
         <attribute name="fileName" optional="YES" attributeType="String"/>
@@ -55,6 +55,7 @@
     </entity>
     <entity name="Vehicle" representedClassName="Vehicle" syncable="YES" codeGenerationType="class">
         <attribute name="displayName" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
+        <attribute name="imageData" optional="YES" attributeType="Binary"/>
         <attribute name="make" optional="YES" attributeType="String"/>
         <attribute name="model" optional="YES" attributeType="String"/>
         <attribute name="sortOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -71,6 +72,6 @@
         <element name="OdometerReading" positionX="270" positionY="108" width="128" height="89"/>
         <element name="Shop" positionX="279" positionY="45" width="128" height="74"/>
         <element name="TireSet" positionX="279" positionY="63" width="128" height="209"/>
-        <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="149"/>
+        <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="164"/>
     </elements>
 </model>

@@ -18,6 +18,7 @@
 import Foundation
 import CoreData
 import Sentry
+import UIKit
 
 extension Vehicle {
     var logItems: Set<LogItem> {
@@ -140,6 +141,20 @@ extension Vehicle {
         } catch {
             SentrySDK.capture(error: error)
             return nil
+        }
+    }
+
+    var image: UIImage? {
+        get {
+            if let data = imageData {
+                return UIImage(data: data)
+            } else {
+                return nil
+            }
+        }
+
+        set {
+            imageData = newValue?.pngData()
         }
     }
 

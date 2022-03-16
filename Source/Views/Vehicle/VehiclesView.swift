@@ -34,9 +34,22 @@ struct VehiclesView: View {
         NavigationView {
             List {
                 ForEach(vehicles, id: \.self) { vehicle in
-                    NavigationLink(vehicle.displayNameWithFallback) {
-                        VehicleView(vehicle: vehicle)
-                    }
+                    NavigationLink(
+                        destination: {
+                            VehicleView(vehicle: vehicle)
+                        },
+                        label: {
+                            if let displayName = vehicle.displayName {
+                                HStack {
+                                    Text(displayName)
+                                        .font(.body.bold())
+                                    Text(vehicle.fullModelName)
+                                }
+                            } else {
+                                Text(vehicle.fullModelName)
+                            }
+                        }
+                    )
                 }
                         .onDelete { offsets in
                             withAnimation {

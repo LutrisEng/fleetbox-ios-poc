@@ -19,6 +19,8 @@ import SwiftUI
 import Sentry
 
 struct VINDetailView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+
     @ObservedObject var vehicle: Vehicle
     @State private var state: ViewState = .base
     @State private var err: Bool = false
@@ -55,6 +57,7 @@ struct VINDetailView: View {
                                         }
                                         vehicle.make = decoderResult.make ?? vehicle.make
                                         vehicle.model = decoderResult.model ?? vehicle.model
+                                        try viewContext.save()
                                     } catch {
                                         SentrySDK.capture(error: error)
                                         state = .err
