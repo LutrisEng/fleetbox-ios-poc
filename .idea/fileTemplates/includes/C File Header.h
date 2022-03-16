@@ -1,3 +1,4 @@
+#if ($HEADER_COMMENTS)
 //  SPDX-License-Identifier: GPL-3.0-or-later
 //  Fleetbox, a tool for managing vehicle maintenance logs
 //  Copyright (C) 2022 Lutris, Inc
@@ -14,27 +15,5 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#end
 
-import Foundation
-import CoreData
-import CoreSpotlight
-
-class VehicleSpotlightDelegate: NSCoreDataCoreSpotlightDelegate {
-    override func domainIdentifier() -> String {
-        "engineering.lutris.fleetbox.vehicles"
-    }
-
-    override func indexName() -> String? {
-        "vehicles-index"
-    }
-
-    override func attributeSet(for object: NSManagedObject) -> CSSearchableItemAttributeSet? {
-        if let vehicle = object as? Vehicle {
-            let attributeSet = CSSearchableItemAttributeSet(contentType: .content)
-            attributeSet.identifier = vehicle.vin
-            attributeSet.displayName = vehicle.displayName
-            return attributeSet
-        }
-        return nil
-    }
-}

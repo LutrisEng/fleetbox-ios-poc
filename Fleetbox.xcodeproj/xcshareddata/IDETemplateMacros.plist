@@ -1,4 +1,9 @@
-//  SPDX-License-Identifier: GPL-3.0-or-later
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>FILEHEADER</key>
+	<string>//  SPDX-License-Identifier: GPL-3.0-or-later
 //  Fleetbox, a tool for managing vehicle maintenance logs
 //  Copyright (C) 2022 Lutris, Inc
 //
@@ -13,22 +18,6 @@
 //  GNU General Public License for more details.
 //
 //  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-import Foundation
-import CoreData
-@testable import Fleetbox
-
-struct TestEnvironment {
-    let controller: PersistenceController
-    let viewContext: NSManagedObjectContext
-
-    init() {
-        controller = PersistenceController(inMemory: true)
-        viewContext = controller.container.viewContext
-    }
-
-    func addFixtures() throws -> PersistenceController.Fixtures {
-        try PersistenceController.Fixtures(viewContext: viewContext)
-    }
-}
+//  along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</string>
+</dict>
+</plist>
