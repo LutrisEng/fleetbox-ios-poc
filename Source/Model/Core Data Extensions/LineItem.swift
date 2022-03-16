@@ -49,17 +49,23 @@ extension LineItem {
         }
         var fields: [LineItemField] = []
         for fieldType in type.fields {
-            fields.append(getField(id: fieldType.id, create: create))
+            if create {
+                fields.append(getField(id: fieldType.id))
+            } else {
+                if let field = getFieldWithoutCreating(id: fieldType.id) {
+                    fields.append(field)
+                }
+            }
         }
         return fields
     }
 
-    var fields: [LineItemField] {
-        getFields(create: false)
+    func createMissingFields() {
+        _ = getFields(create: true)
     }
 
-    var allFields: [LineItemField] {
-        getFields(create: true)
+    var fields: [LineItemField] {
+        getFields(create: false)
     }
 
     func getFieldValue(_ id: String) throws -> FieldValue? {
@@ -124,8 +130,12 @@ extension LineItem {
         }
     }
 
-    func getField(id: String, create: Bool = true) -> LineItemField {
-        if let field = fieldSet.first(where: { $0.typeId == id }) {
+    func getFieldWithoutCreating(id: String) -> LineItemField? {
+        return fieldSet.first(where: { $0.typeId == id })
+    }
+
+    func getField(id: String) -> LineItemField {
+        if let field = getFieldWithoutCreating(id: id) {
             return field
         } else {
             let field = LineItemField(context: managedObjectContext!)

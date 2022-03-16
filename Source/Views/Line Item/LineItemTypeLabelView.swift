@@ -40,15 +40,15 @@ struct LineItemTypeLabelView<Content: View>: View {
                     .frame(width: iconWidth, height: iconHeight, alignment: .center)
             VStack {
                 Text(type?.displayName ?? "Unknown line item")
-                        .font(font)
-                        .minimumScaleFactor(0.5)
                         .frame(maxWidth: .infinity, alignment: .leading)
+                        .minimumScaleFactor(font == .body ? 0.5 : 1)
+                        .font(font)
                 if let descriptionFont = descriptionFont, let description = type?.description {
                     Text(description)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .font(descriptionFont)
                         .foregroundColor(descriptionColor)
                         .fixedSize(horizontal: false, vertical: true)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 if let details = details {
                     details()

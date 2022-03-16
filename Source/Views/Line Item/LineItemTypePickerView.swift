@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct LineItemTypePickerView: View {
+    @Environment(\.dismiss) var dismiss
+
     let action: (LineItemType) -> Void
+    @State private var searchQuery: String = ""
 
     var body: some View {
-        List(lineItemTypes.hierarchyItems, children: \.children) { item in
+        List(searchResults, children: \.children) { item in
             switch item {
             case .type(let type):
-                Button(action: { action(type) }, label: {
+                Button(action: {
+                    action(type)
+                    dismiss()
+                }, label: {
                     LineItemTypeLabelView(type: type, descriptionFont: .caption) {}
                 })
-            case .category(let category):
+            case .category(let category, _, _):
                 HStack {
                     Image(systemName: category.icon)
                             .frame(width: 30, alignment: .center)
@@ -25,6 +31,15 @@ struct LineItemTypePickerView: View {
                     Spacer()
                 }
             }
+        }
+        .searchable(text: $searchQuery, placement: .toolbar)
+    }
+
+    private var searchResults: [LineItemTypeHierarchyItem] {
+        if searchQuery == "" {
+            return lineItemTypes.hierarchyItems
+        } else {
+            return lineItemTypes.search(query: searchQuery)
         }
     }
 }

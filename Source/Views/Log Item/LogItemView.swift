@@ -10,13 +10,14 @@ import Sentry
 
 struct LogItemView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @Environment(\.presentationMode) var presentationMode
 
     @ObservedObject var logItem: LogItem
 
-    @State private var newLineItemSheetPresented = false
-    @State private var newAttachmentSheetPresented = false
-    @State private var shopSheetPresented = false
+    enum NavigationState: Hashable {
+        case addLineItem, addShop, addAttachment
+    }
+
+    @State private var navigationState: NavigationState?
 
     func createLineItem() -> LineItem {
         LineItem(context: viewContext, logItem: logItem)
@@ -45,8 +46,15 @@ struct LogItemView: View {
                         }
                     } else {
                         Text("Performed by owner")
-                        Button("Add shop") {
-                            shopSheetPresented = true
+                        NavigationLink("Add shop") {
+                            ShopPickerView(selected: logItem.shop) {
+                                logItem.shop = $0
+                                ignoreErrors {
+                                    try viewContext.save()
+                                }
+                            }
+                            .navigationTitle("Add shop")
+                            .navigationBarTitleDisplayMode(.inline)
                         }
                     }
                 }
@@ -104,40 +112,29 @@ struct LogItemView: View {
                                     }
                                 }
                             }
-                    Button("Add line item") {
-                        newLineItemSheetPresented = true
+                    NavigationLink("Add line item") {
+                        LineItemTypePickerView {
+                            let lineItem = createLineItem()
+                            lineItem.type = $0
+                            ignoreErrors {
+                                try viewContext.save()
+                            }
+                        }
+                        .navigationTitle("Add line item")
+                        .navigationBarTitleDisplayMode(.inline)
                     }
                 }
                 Section(header: Text("Attachments")) {
                     ForEach(logItem.attachments) { attachment in
                         Text(attachment.fileName ?? "Attachment")
                     }
-                    Button("Add attachment") {
-                        newAttachmentSheetPresented = true
+                    NavigationLink("Add attachment", tag: NavigationState.addAttachment, selection: $navigationState) {
+                        Text("Add attachment")
                     }
                 }
             }
         }
                 .navigationTitle("Log item")
-                .sheet(isPresented: $newLineItemSheetPresented) {
-                    LineItemTypePickerView {
-                        let lineItem = createLineItem()
-                        lineItem.type = $0
-                        ignoreErrors {
-                            try viewContext.save()
-                        }
-                        newLineItemSheetPresented = false
-                    }
-                }
-                .sheet(isPresented: $shopSheetPresented) {
-                    ShopPickerView(selected: logItem.shop) {
-                        logItem.shop = $0
-                        ignoreErrors {
-                            try viewContext.save()
-                        }
-                        shopSheetPresented = false
-                    }
-                }
     }
 }
 

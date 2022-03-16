@@ -14,11 +14,16 @@ struct LineItemView: View {
 
     var body: some View {
         Form {
-            ForEach(lineItem.allFields) { field in
+            ForEach(lineItem.fields) { field in
                 EditLineItemFieldView(field: field)
             }
         }
                 .navigationTitle(lineItem.type?.displayName ?? "Unknown Line Item")
+                .onAppear {
+                    viewContext.perform {
+                        lineItem.createMissingFields()
+                    }
+                }
     }
 }
 

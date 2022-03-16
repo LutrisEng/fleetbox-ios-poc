@@ -103,8 +103,8 @@ class LineItemType: Identifiable {
     let id: String
     let category: LineItemTypeCategory
     let categoryPath: [String]
-    let displayName: String
-    let description: String?
+    dynamic let displayName: String
+    dynamic let description: String?
     let definedIcon: String?
     var icon: String {
         definedIcon ?? category.icon
@@ -132,7 +132,7 @@ class LineItemTypeCategory: Identifiable {
     let id: String
     let parent: LineItemTypeCategory?
     let categoryPath: [String]
-    let displayName: String
+    dynamic let displayName: String
     let definedIcon: String?
     var icon: String {
         definedIcon ?? parent?.icon ?? lineItemDefaultIcon
@@ -167,21 +167,62 @@ class LineItemTypeCategory: Identifiable {
 
 enum LineItemTypeHierarchyItem: Identifiable {
     case type(LineItemType)
-    case category(LineItemTypeCategory)
+    case category(
+        LineItemTypeCategory,
+        allowedCategories: Set<String>? = nil,
+        allowedTypes: Set<String>? = nil
+    )
 
     var id: String {
         switch self {
         case .type(let type): return "type:\(type.id)"
-        case .category(let category): return "category:\(category.id)"
+        case .category(let category, _, _): return "category:\(category.id)"
+        }
+    }
+
+    func allowed(category: LineItemTypeCategory) -> Bool {
+        switch self {
+        case .category(_, let allowedCategories, _):
+            if let allowedCategories = allowedCategories {
+                return allowedCategories.contains(category.id)
+            } else {
+                return true
+            }
+        default: return true
+        }
+    }
+
+    func allowed(type: LineItemType) -> Bool {
+        switch self {
+        case .category(_, _, let allowedTypes):
+            if let allowedTypes = allowedTypes {
+                return allowedTypes.contains(type.id)
+            } else {
+                return true
+            }
+        default: return true
         }
     }
 
     var children: [LineItemTypeHierarchyItem]? {
         switch self {
         case .type: return nil
-        case .category(let category):
-            var vals = category.types.map(LineItemTypeHierarchyItem.type)
-            vals.append(contentsOf: category.subcategories.map(LineItemTypeHierarchyItem.category))
+        case .category(let category, let allowedCategories, let allowedTypes):
+            var vals = category.types
+                .filter(allowed)
+                .map(LineItemTypeHierarchyItem.type)
+            vals.append(
+                contentsOf:
+                    category.subcategories
+                        .filter(allowed)
+                        .map {
+                            LineItemTypeHierarchyItem.category(
+                                $0,
+                                allowedCategories: allowedCategories,
+                                allowedTypes: allowedTypes
+                            )
+                        }
+            )
             return vals
         }
     }
@@ -269,12 +310,54 @@ struct LineItemTypes {
             typesById[type.id] = type
         }
         allTypesById = typesById
-        hierarchyItems = topLevelCategories.map(LineItemTypeHierarchyItem.category)
+        hierarchyItems = topLevelCategories.map { LineItemTypeHierarchyItem.category($0) }
+    }
+
+    func search(query: String) -> [LineItemTypeHierarchyItem] {
+        let lowercaseQuery = query.lowercased()
+        let matchingCategories = allCategories.filter {
+            $0.displayName.lowercased().contains(lowercaseQuery)
+        }
+        let matchingTypes = allTypes.filter {
+            $0.displayName.lowercased().contains(lowercaseQuery) ||
+            $0.description?.lowercased().contains(lowercaseQuery) == true
+        }
+        print("matching categories", matchingCategories.map { $0.id })
+        print("matching types", matchingTypes.map { $0.id })
+        var foundCategories = Set<String>()
+        var foundTypes = Set<String>()
+        for category in matchingCategories {
+            foundCategories.insert(category.id)
+            var maybeParent = category.parent
+            while let parent = maybeParent {
+                foundCategories.insert(parent.id)
+                maybeParent = parent.parent
+            }
+        }
+        for type in matchingTypes {
+            foundTypes.insert(type.id)
+            var maybeParent: LineItemTypeCategory? = type.category
+            while let parent = maybeParent {
+                foundCategories.insert(parent.id)
+                maybeParent = parent.parent
+            }
+        }
+        print("found categories", foundCategories)
+        print("found types", foundTypes)
+        return topLevelCategories
+            .filter({ foundCategories.contains($0.id) })
+            .map {
+                LineItemTypeHierarchyItem.category(
+                    $0,
+                    allowedCategories: foundCategories,
+                    allowedTypes: foundTypes
+                )
+            }
     }
 
     private static func walk(
-            categories inputCategories: [LineItemTypeCategory]) -> ([LineItemTypeCategory], [LineItemType]
-    ) {
+            categories inputCategories: [LineItemTypeCategory]
+    ) -> ([LineItemTypeCategory], [LineItemType]) {
         var categories: [LineItemTypeCategory] = []
         var types: [LineItemType] = []
         for category in inputCategories {
@@ -286,7 +369,9 @@ struct LineItemTypes {
         return (categories, types)
     }
 
-    private static func walk(category: LineItemTypeCategory) -> ([LineItemTypeCategory], [LineItemType]) {
+    private static func walk(
+        category: LineItemTypeCategory
+    ) -> ([LineItemTypeCategory], [LineItemType]) {
         var (categories, types) = walk(categories: category.subcategories)
         for type in category.types {
             types.append(type)

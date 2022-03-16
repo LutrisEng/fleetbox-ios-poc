@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ShopPickerView: View {
+    @Environment(\.dismiss) var dismiss
+
     @FetchRequest(
             sortDescriptors: [NSSortDescriptor(keyPath: \Shop.sortOrder, ascending: true)],
             animation: .default)
@@ -20,7 +22,10 @@ struct ShopPickerView: View {
         NavigationView {
             List {
                 ForEach(shops, id: \.self) { shop in
-                    Button(action: { action(shop) }, label: {
+                    Button(action: {
+                        action(shop)
+                        dismiss()
+                    }, label: {
                         HStack {
                             Text(shop.name ?? "Unknown shop")
                                     .foregroundColor(.primary)
