@@ -35,7 +35,7 @@ struct VehicleImageView: View {
     }
 
     var body: some View {
-        VStack {
+        Group {
             if let image = image {
                 Image(uiImage: image)
                     .resizable()
