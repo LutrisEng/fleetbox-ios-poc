@@ -28,7 +28,7 @@ jobs:
           yq -o=json eval "Source/Model/Line Item Types/LineItemTypes.yml" | jq -c . > LineItemTypes.json
           cp "Source/Model/Line Item Types/LineItemTypes.schema.json" LineItemTypes.schema.json
       - name: Validate JSON
-        uses: OrRosenblatt/validate-json-action@0.1.0
+        uses: docker://orrosenblatt/validate-json-action:latest
         env:
           INPUT_SCHEMA: ./LineItemTypes.schema.json
           INPUT_JSONS: ./LineItemTypes.json
