@@ -13,8 +13,9 @@ jobs:
             destination: 'platform=iOS Simulator,OS=15.2,name=iPhone 13'
           - name: iPad (9th generation)
             destination: 'platform=iOS Simulator,OS=15.2,name=iPad (9th generation)'
-          - name: macOS
-            destination: 'platform=macOS'
+# Waiting for GitHub actions to add macOS 12 support
+#          - name: macOS
+#            destination: 'platform=macOS'
     steps:
       - uses: actions/checkout@v2
         with:
