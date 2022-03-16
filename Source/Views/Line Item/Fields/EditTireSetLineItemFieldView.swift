@@ -36,9 +36,6 @@ struct EditTireSetLineItemFieldView: View {
                 .sheet(isPresented: $sheetPresented) {
                     TireSetPickerView(selected: field.tireSetValue) {
                         field.tireSetValue = $0
-                        ignoreErrors {
-                            try viewContext.save()
-                        }
                         sheetPresented = false
                     }
                 }

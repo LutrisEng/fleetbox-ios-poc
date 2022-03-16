@@ -55,10 +55,6 @@ struct OdometerReadingsView: View {
                     offsets
                         .map { odometerReadings[$0] }
                         .forEach(viewContext.delete)
-
-                    ignoreErrors {
-                        try viewContext.save()
-                    }
                 }
             }
         }

@@ -30,12 +30,14 @@ struct OdometerReadingView: View {
                     displayedComponents: [.date]
             )
             FleetboxTextField(
-                    value: convertToNillableBinding(string: convertToStringBinding(int64: $odometerReading.reading)),
+                    value: Binding(
+                        get: { odometerReading.reading },
+                        set: { odometerReading.reading = $0 }
+                    ),
                     name: "Odometer reading in miles",
-                    example: "1000"
+                    example: 1000
             )
                     .unit("miles")
-                    .keyboardType(.decimalPad)
         }
     }
 }

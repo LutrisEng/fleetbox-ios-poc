@@ -73,7 +73,6 @@ extension TireSet {
     }
 
     var odometer: Int64 {
-        let transaction = SentrySDK.startTransaction(name: "TireSet", operation: "odometer")
         var counter: Int64 = 0
         var mountedOn: Vehicle?
         var mountedAt: Int64?
@@ -117,7 +116,6 @@ extension TireSet {
         if let mountedAt = mountedAt, let mountedOn = mountedOn {
             counter += mountedOn.odometer - mountedAt
         }
-        transaction.finish()
         return counter
     }
 

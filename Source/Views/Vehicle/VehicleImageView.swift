@@ -21,34 +21,28 @@ import ImagePickerView
 struct VehicleImageView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @ObservedObject var vehicle: Vehicle
+    @Binding var imageData: Data?
 
     @State private var showImagePicker: Bool = false
 
     @ViewBuilder
     func imagePickerSheet() -> some View {
         ImagePickerView(sourceType: .photoLibrary) { image in
-            vehicle.image = image
-            ignoreErrors {
-                try viewContext.save()
-            }
+            imageData = image.pngData()
         }
     }
 
     var body: some View {
-        if let image = vehicle.image {
+        if let imageData = imageData, let uiImage = UIImage(data: imageData) {
             Section {
-                Image(uiImage: image)
+                Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
             }
             .listRowBackground(EmptyView())
             Section {
                 Button("Remove image") {
-                    vehicle.image = nil
-                    ignoreErrors {
-                        try viewContext.save()
-                    }
+                    self.imageData = nil
                 }
                 Button("Change image") {
                     showImagePicker = true
@@ -70,7 +64,10 @@ struct VehicleImageView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
             List {
-                VehicleImageView(vehicle: fixtures.vehicle)
+                VehicleImageView(imageData: Binding(
+                    get: { fixtures.vehicle.imageData },
+                    set: { _ in }
+                ))
             }
         }
     }

@@ -74,13 +74,6 @@ struct EditLineItemFieldView: View {
                     }
                 }
             }
-                    .onDisappear(perform: save)
-        }
-    }
-
-    private func save() {
-        ignoreErrors {
-            try viewContext.save()
         }
     }
 }

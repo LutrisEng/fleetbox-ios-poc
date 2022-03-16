@@ -44,22 +44,16 @@ struct ShopsView: View {
                                             shops[$0]
                                         }
                                         .forEach(viewContext.delete)
-
-                                ignoreErrors {
-                                    try viewContext.save()
-                                }
                             }
                         }
             }
                     .navigationTitle("Shops")
                     .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            EditButton()
-                        }
-                        ToolbarItem {
+                        ToolbarItemGroup(placement: .navigationBarTrailing) {
                             Button(action: addShop) {
                                 Label("Add Shop", systemImage: "plus")
                             }
+                            EditButton()
                         }
                     }
             Text("Select a shop")
@@ -69,10 +63,6 @@ struct ShopsView: View {
     private func addShop() {
         withAnimation {
             _ = Shop(context: viewContext)
-
-            ignoreErrors {
-                try viewContext.save()
-            }
         }
     }
 }

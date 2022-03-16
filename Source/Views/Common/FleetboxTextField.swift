@@ -21,6 +21,7 @@ struct FleetboxTextField: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     var value: Binding<String?>
+    @State private var tempValue: String = ""
     @FocusState var focused: Bool
     let name: LocalizedStringKey?
     let example: String?
@@ -58,6 +59,7 @@ struct FleetboxTextField: View {
     }
 
     var body: some View {
+        let value = convertToNonNilBinding(string: value)
         HStack {
             if let name = name {
                 Text(name)
@@ -67,15 +69,24 @@ struct FleetboxTextField: View {
                 ZStack(alignment: name == nil ? .trailing : .leading) {
                     TextField(
                             example ?? "",
-                            text: convertToNonNilBinding(string: value)
+                            text: $tempValue,
+                            onEditingChanged: { focused in
+                                if focused {
+                                    tempValue = value.wrappedValue
+                                } else {
+                                    value.wrappedValue = tempValue
+                                }
+                            }
                     )
                     .focused($focused)
                     .toolbar {
                         ToolbarItemGroup(placement: .keyboard) {
-                            Spacer()
+                            if focused {
+                                Spacer()
 
-                            Button("Done") {
-                                focused = false
+                                Button("Done") {
+                                    focused = false
+                                }
                             }
                         }
                     }
@@ -94,9 +105,15 @@ struct FleetboxTextField: View {
                     Text(unitName)
                 }
             }
-                    .foregroundColor(name == nil ? .primary : .secondary)
-                    .frame(alignment: name == nil ? .leading : .trailing)
-                    .multilineTextAlignment(name == nil ? .leading : .trailing)
+            .onChange(of: value.wrappedValue) { newValue in
+                if !focused {
+                    tempValue = newValue
+                }
+            }
+            .onAppear { tempValue = value.wrappedValue }
+            .foregroundColor(name == nil ? .primary : .secondary)
+            .frame(alignment: name == nil ? .leading : .trailing)
+            .multilineTextAlignment(name == nil ? .leading : .trailing)
         }
     }
 }

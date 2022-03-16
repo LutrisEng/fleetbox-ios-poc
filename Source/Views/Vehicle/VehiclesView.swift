@@ -40,10 +40,12 @@ struct VehiclesView: View {
                         },
                         label: {
                             if let displayName = vehicle.displayName {
-                                HStack {
+                                VStack {
                                     Text(displayName)
                                         .font(.body.bold())
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                     Text(vehicle.fullModelName)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             } else {
                                 Text(vehicle.fullModelName)
@@ -56,27 +58,19 @@ struct VehiclesView: View {
                                 offsets
                                     .map { vehicles[$0] }
                                     .forEach(viewContext.delete)
-
-                                ignoreErrors {
-                                    try viewContext.save()
-                                }
                             }
                         }
             }
                     .navigationTitle("Vehicles")
                     .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            EditButton()
-                        }
-                        ToolbarItem {
+                        ToolbarItemGroup(placement: .navigationBarTrailing) {
                             Button(action: addVehicle) {
                                 Label("Add Vehicle", systemImage: "plus")
                             }
-                        }
-                        ToolbarItem(placement: .navigationBarLeading) {
                             Button(action: addFixtures) {
                                 Label("Add Fixtures", systemImage: "questionmark.folder")
                             }
+                            EditButton()
                         }
                     }
             Image(systemName: "car")
@@ -86,10 +80,6 @@ struct VehiclesView: View {
     private func addVehicle() {
         withAnimation {
             _ = Vehicle(context: viewContext)
-
-            ignoreErrors {
-                try viewContext.save()
-            }
         }
     }
 

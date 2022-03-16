@@ -36,9 +36,6 @@ struct PartOdometersView: View {
                             reading.vehicle = vehicle
                             reading.at = Date.now
                             reading.reading = value
-                            ignoreErrors {
-                                try viewContext.save()
-                            }
                             createPresented = false
                         } onDismiss: {
                             createPresented = false

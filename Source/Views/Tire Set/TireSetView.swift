@@ -68,9 +68,6 @@ struct TireSetView: View {
                         exclude: [tireSet]
                     ) {
                         tireSet.mergeWith($0!)
-                        ignoreErrors {
-                            try viewContext.save()
-                        }
                     }
                     .navigationTitle("Merge tire sets")
                     .navigationBarTitleDisplayMode(.inline)

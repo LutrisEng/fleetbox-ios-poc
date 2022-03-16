@@ -57,9 +57,6 @@ struct ShopView: View {
                         exclude: [shop]
                     ) {
                         shop.mergeWith($0)
-                        ignoreErrors {
-                            try viewContext.save()
-                        }
                     }
                     .navigationTitle("Merge shops")
                     .navigationBarTitleDisplayMode(.inline)

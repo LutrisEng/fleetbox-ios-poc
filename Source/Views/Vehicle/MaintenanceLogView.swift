@@ -39,10 +39,6 @@ struct MaintenanceLogView: View {
                                 offsets
                                     .map { logItems[$0] }
                                     .forEach(viewContext.delete)
-
-                                ignoreErrors {
-                                    try viewContext.save()
-                                }
                             }
                         }
             }

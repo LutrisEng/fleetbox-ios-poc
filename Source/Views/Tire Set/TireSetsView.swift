@@ -44,22 +44,16 @@ struct TireSetsView: View {
                                             tireSets[$0]
                                         }
                                         .forEach(viewContext.delete)
-
-                                ignoreErrors {
-                                    try viewContext.save()
-                                }
                             }
                         }
             }
                     .navigationTitle("Tire sets")
                     .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            EditButton()
-                        }
-                        ToolbarItem {
+                        ToolbarItemGroup(placement: .navigationBarTrailing) {
                             Button(action: addTireSet) {
                                 Label("Add Tire Set", systemImage: "plus")
                             }
+                            EditButton()
                         }
                     }
             Text("Select a tire set")
@@ -69,10 +63,6 @@ struct TireSetsView: View {
     private func addTireSet() {
         withAnimation {
             _ = TireSet(context: viewContext)
-
-            ignoreErrors {
-                try viewContext.save()
-            }
         }
     }
 }

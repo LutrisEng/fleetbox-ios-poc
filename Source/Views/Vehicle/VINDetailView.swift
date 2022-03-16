@@ -57,7 +57,6 @@ struct VINDetailView: View {
                                         }
                                         vehicle.make = decoderResult.make ?? vehicle.make
                                         vehicle.model = decoderResult.model ?? vehicle.model
-                                        try viewContext.save()
                                     } catch {
                                         SentrySDK.capture(error: error)
                                         state = .err

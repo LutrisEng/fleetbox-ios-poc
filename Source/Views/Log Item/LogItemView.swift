@@ -66,9 +66,6 @@ struct LogItemView: View {
                         NavigationLink("Add shop") {
                             ShopPickerView(selected: logItem.shop) {
                                 logItem.shop = $0
-                                ignoreErrors {
-                                    try viewContext.save()
-                                }
                             }
                             .navigationTitle("Add shop")
                             .navigationBarTitleDisplayMode(.inline)
@@ -78,24 +75,20 @@ struct LogItemView: View {
                 Section(header: Text("Odometer reading")) {
                     if let odometerReading = logItem.odometerReading {
                         FleetboxTextField(
-                            value: convertToNillableBinding(string: convertToStringBinding(int64: Binding(
+                            value: Binding(
                                 get: { odometerReading.reading },
                                 set: { odometerReading.reading = $0 }
-                            ))),
+                            ),
                             name: "Current",
-                            example: "0"
+                            example: 0
                         )
                         .unit("miles")
-                        .keyboardType(.decimalPad)
                         Button("Remove odometer reading") {
                             viewContext.delete(odometerReading)
                         }
                     } else {
                         Button("Add odometer reading") {
                             _ = OdometerReading(context: viewContext, logItem: logItem)
-                            ignoreErrors {
-                                try viewContext.save()
-                            }
                         }
                     }
                 }
@@ -116,9 +109,6 @@ struct LogItemView: View {
                                                     lineItems[$0]
                                                 }
                                                 .forEach(viewContext.delete)
-                                        ignoreErrors {
-                                            try viewContext.save()
-                                        }
                                     }
                                 }
                     }
@@ -135,24 +125,19 @@ struct LogItemView: View {
         }
                 .navigationTitle("Log item")
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
-                    ToolbarItem {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
                         NavigationLink(
                             destination: {
                                 LineItemTypePickerView {
                                     let lineItem = createLineItem()
                                     lineItem.type = $0
-                                    ignoreErrors {
-                                        try viewContext.save()
-                                    }
                                 }
                                 .navigationTitle("Add line item")
                                 .navigationBarTitleDisplayMode(.inline)
                             },
                             label: { Label("Add Line Item", systemImage: "plus") }
                         )
+                        EditButton()
                     }
                 }
     }

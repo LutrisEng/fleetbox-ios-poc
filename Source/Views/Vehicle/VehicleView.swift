@@ -26,7 +26,10 @@ struct VehicleView: View {
     var body: some View {
         VStack {
             Form {
-                VehicleImageView(vehicle: vehicle)
+                VehicleImageView(imageData: Binding(
+                    get: { vehicle.imageData },
+                    set: { vehicle.imageData = $0 }
+                ))
                 VehicleDetailsView(vehicle: vehicle)
                 PartOdometersView(vehicle: vehicle)
                 MaintenanceLogView(vehicle: vehicle)
@@ -34,13 +37,11 @@ struct VehicleView: View {
         }
                 .navigationTitle(vehicle.fullModelName)
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        EditButton()
-                    }
-                    ToolbarItem {
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
                         Button(action: addLogItem) {
                             Label("Add Log Item", systemImage: "plus")
                         }
+                        EditButton()
                     }
                 }
     }
@@ -50,10 +51,6 @@ struct VehicleView: View {
             let logItem = LogItem(context: viewContext)
             logItem.vehicle = vehicle
             logItem.performedAt = Date.now
-
-            ignoreErrors {
-                try viewContext.save()
-            }
         }
     }
 }
