@@ -4,8 +4,14 @@ on: [push]
 
 jobs:
   test:
-    name: Test
+    name: Test ${{ matrix.destination }}
     runs-on: macos-latest
+    strategy:
+      matrix:
+        destination:
+          - 'platform=iOS Simulator,OS=15.2,name=iPhone 13'
+          - 'platform=iOS Simulator,OS=15.2,name=iPad (9th generation)'
+          - 'platform=macOS'
     steps:
       - uses: actions/checkout@v2
         with:
@@ -15,7 +21,7 @@ jobs:
       - name: Install tools
         run: brew install yq jq && gem install xcpretty
       - name: Run tests
-        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination "platform=iOS Simulator,OS=15.2,name=iPhone 13" -resultBundlePath TestResults clean test | xcpretty
+        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination '${{ matrix.destination }}' -resultBundlePath TestResults clean test | xcpretty
       - name: Export tests results
         uses: kishikawakatsumi/xcresulttool@v1
         with:
