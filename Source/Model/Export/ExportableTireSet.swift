@@ -30,6 +30,7 @@ struct ExportableTireSet: Codable {
     let userDisplayName: String?
     let vehicleType: String?
     let width: Int16
+    let tin: String?
 
     init(tireSet: TireSet) {
         aspectRatio = tireSet.aspectRatio
@@ -43,6 +44,7 @@ struct ExportableTireSet: Codable {
         userDisplayName = tireSet.userDisplayName
         vehicleType = tireSet.vehicleType
         width = tireSet.width
+        tin = tireSet.tin
     }
 
     func importTireSet(context: NSManagedObjectContext) -> TireSet {
@@ -58,6 +60,7 @@ struct ExportableTireSet: Codable {
         tireSet.userDisplayName = userDisplayName
         tireSet.vehicleType = vehicleType
         tireSet.width = width
+        tireSet.tin = tin
         return tireSet
     }
 }
