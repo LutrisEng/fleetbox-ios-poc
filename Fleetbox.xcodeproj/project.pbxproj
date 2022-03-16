@@ -11,6 +11,7 @@
 		8612CD6627E1A58300976E8F /* VehicleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6527E1A58300976E8F /* VehicleImageView.swift */; };
 		8612CD6927E1A68B00976E8F /* ImagePickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 8612CD6827E1A68B00976E8F /* ImagePickerView */; };
 		8612CD6B27E1C77D00976E8F /* WithDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6A27E1C77D00976E8F /* WithDoneButton.swift */; };
+		8612CD6D27E1CF4400976E8F /* UIImage Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6C27E1CF4400976E8F /* UIImage Extensions.swift */; };
 		861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
 		861DA48727E11DFF00775276 /* ExportContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48627E11DFF00775276 /* ExportContext.swift */; };
 		861DA48927E11E3600775276 /* ExportableShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48827E11E3600775276 /* ExportableShop.swift */; };
@@ -123,6 +124,7 @@
 		8612CD6127E1956D00976E8F /* Array Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array Extensions.swift"; sourceTree = "<group>"; };
 		8612CD6527E1A58300976E8F /* VehicleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleImageView.swift; sourceTree = "<group>"; };
 		8612CD6A27E1C77D00976E8F /* WithDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDoneButton.swift; sourceTree = "<group>"; };
+		8612CD6C27E1CF4400976E8F /* UIImage Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extensions.swift"; sourceTree = "<group>"; };
 		861BA8FD27D8537100DD729A /* Fleetbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleetbox.entitlements; sourceTree = "<group>"; };
 		861BA8FE27D8546700DD729A /* LineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemView.swift; sourceTree = "<group>"; };
 		861DA48527DC8D7500775276 /* Fleetbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fleetbox-Info.plist"; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 				8652AA7627DAB5F300D8D56D /* Dummy Data.swift */,
 				861DA48E27E1233200775276 /* Date Functions.swift */,
 				8612CD6127E1956D00976E8F /* Array Extensions.swift */,
+				8612CD6C27E1CF4400976E8F /* UIImage Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
 				8612CD6B27E1C77D00976E8F /* WithDoneButton.swift in Sources */,
 				861DAE3927CDD59F00AFE972 /* Persistence.swift in Sources */,
+				8612CD6D27E1CF4400976E8F /* UIImage Extensions.swift in Sources */,
 				8664C25427DAB14000AE9ADB /* ExportableAttachment.swift in Sources */,
 				861DA48F27E1233200775276 /* Date Functions.swift in Sources */,
 				86500C9727DC0E5B00A5111E /* OdometerReadingFormView.swift in Sources */,

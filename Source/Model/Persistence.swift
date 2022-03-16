@@ -52,27 +52,57 @@ struct PersistenceController {
             tireSet = TireSet(context: viewContext)
             tireSet.make = "Bridgestone"
             tireSet.model = "Turanza"
-            let factoryTireLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
-            factoryTireLineItem.typeId = "mountedTires"
+            let factoryTireLineItem = LineItem(
+                context: viewContext,
+                logItem: factoryLogItem,
+                typeId: "mountedTires"
+            )
             try factoryTireLineItem.setFieldValue("tireSet", value: tireSet)
-            let factoryOilLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
-            factoryOilLineItem.typeId = "engineOilChange"
-            let factoryOilFilterLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
-            factoryOilFilterLineItem.typeId = "engineOilFilterChange"
-            let factoryTransmissionFluidLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
-            factoryTransmissionFluidLineItem.typeId = "transmissionFluidChange"
-            let factoryTransmissionFluidFilterLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
-            factoryTransmissionFluidFilterLineItem.typeId = "transmissionFluidFilterChange"
-            let factoryCoolantLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
-            factoryCoolantLineItem.typeId = "coolantChange"
-            let factoryBrakeFluidLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
-            factoryBrakeFluidLineItem.typeId = "brakeFluidChange"
-            let factoryEngineAirFilterLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
-            factoryEngineAirFilterLineItem.typeId = "engineAirFilterChange"
-            let factoryCabinAirFilterLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
-            factoryCabinAirFilterLineItem.typeId = "cabinAirFilterChange"
-            let factoryBatteryLineItem = LineItem(context: viewContext, logItem: factoryLogItem)
-            factoryBatteryLineItem.typeId = "batteryReplacement"
+            _ = LineItem(
+                context: viewContext,
+                logItem: factoryLogItem,
+                typeId: "engineOilChange"
+            )
+            _ = LineItem(
+                context: viewContext,
+                logItem: factoryLogItem,
+                typeId: "engineOilFilterChange"
+            )
+            _ = LineItem(
+                context: viewContext,
+                logItem: factoryLogItem,
+                typeId: "transmissionFluidChange"
+            )
+            _ = LineItem(
+                context: viewContext,
+                logItem: factoryLogItem,
+                typeId: "transmissionFluidFilterChange"
+            )
+            _ = LineItem(
+                context: viewContext,
+                logItem: factoryLogItem,
+                typeId: "coolantChange"
+            )
+            _ = LineItem(
+                context: viewContext,
+                logItem: factoryLogItem,
+                typeId: "brakeFluidChange"
+            )
+            _ = LineItem(
+                context: viewContext,
+                logItem: factoryLogItem,
+                typeId: "engineAirFilterChange"
+            )
+            _ = LineItem(
+                context: viewContext,
+                logItem: factoryLogItem,
+                typeId: "cabinAirFilterChange"
+            )
+            _ = LineItem(
+                context: viewContext,
+                logItem: factoryLogItem,
+                typeId: "batteryReplacement"
+            )
             shop = Shop(context: viewContext)
             shop.name = "BMW of West Houston"
             logItem = LogItem(context: viewContext)
@@ -85,8 +115,7 @@ struct PersistenceController {
             odometerReading.at = logItem.performedAt
             odometerReading.vehicle = vehicle
             odometerReading.logItem = logItem
-            lineItem = LineItem(context: viewContext, logItem: logItem)
-            lineItem.typeId = "engineOilChange"
+            lineItem = LineItem(context: viewContext, logItem: logItem, typeId: "engineOilChange")
             try lineItem.setFieldValue("viscosity", value: "0W-20")
             try lineItem.setFieldValue("brand", value: "BMW")
             try lineItem.setFieldValue("partNumber", value: "83-21-2-463-673")

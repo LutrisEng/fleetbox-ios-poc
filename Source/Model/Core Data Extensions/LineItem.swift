@@ -36,6 +36,16 @@ extension LineItem {
         sortOrder = logItem.nextLineItemSortOrder
     }
 
+    convenience init(context: NSManagedObjectContext, logItem: LogItem, typeId: String) {
+        self.init(context: context, logItem: logItem)
+        self.typeId = typeId
+        self.createMissingFields()
+    }
+
+    convenience init(context: NSManagedObjectContext, logItem: LogItem, type: LineItemType) {
+        self.init(context: context, logItem: logItem, typeId: type.id)
+    }
+
     var type: LineItemType? {
         get {
             guard let typeId = typeId else {

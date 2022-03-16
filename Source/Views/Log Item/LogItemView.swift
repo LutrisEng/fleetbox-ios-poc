@@ -29,8 +29,8 @@ struct LogItemView: View {
 
     @State private var navigationState: NavigationState?
 
-    func createLineItem() -> LineItem {
-        LineItem(context: viewContext, logItem: logItem)
+    func createLineItem(type: LineItemType) -> LineItem {
+        LineItem(context: viewContext, logItem: logItem, type: type)
     }
 
     var body: some View {
@@ -130,8 +130,7 @@ struct LogItemView: View {
                 NavigationLink(
                     destination: {
                         LineItemTypePickerView {
-                            let lineItem = createLineItem()
-                            lineItem.type = $0
+                            _ = createLineItem(type: $0)
                         }
                         .navigationTitle("Add line item")
                         .navigationBarTitleDisplayMode(.inline)

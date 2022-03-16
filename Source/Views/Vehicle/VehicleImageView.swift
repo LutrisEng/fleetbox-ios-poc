@@ -30,7 +30,7 @@ struct VehicleImageView: View {
     @ViewBuilder
     func imagePickerSheet() -> some View {
         ImagePickerView(sourceType: .photoLibrary) { image in
-            imageData = image.pngData()
+            imageData = (image.resize(maxWidth: 750) ?? image).jpegData(compressionQuality: 6)
         }
     }
 
