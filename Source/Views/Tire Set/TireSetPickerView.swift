@@ -63,28 +63,27 @@ struct TireSetPickerView: View {
                 } else {
                     Text("No eligible tire sets").foregroundColor(.secondary)
                 }
-            } else {
-                ForEach(
-                    filteredTireSets,
-                    id: \.self
-                ) { tireSet in
-                    Button(
-                        action: {
-                            action(tireSet)
-                            dismiss()
-                        }, label: {
-                            HStack {
-                                Text(tireSet.displayName)
-                                        .foregroundColor(.primary)
-                                if selected == tireSet {
-                                    Spacer()
-                                    Image(systemName: "checkmark")
-                                            .foregroundColor(.accentColor)
-                                }
+            }
+            ForEach(
+                filteredTireSets,
+                id: \.self
+            ) { tireSet in
+                Button(
+                    action: {
+                        action(tireSet)
+                        dismiss()
+                    }, label: {
+                        HStack {
+                            Text(tireSet.displayName)
+                                    .foregroundColor(.primary)
+                            if selected == tireSet {
+                                Spacer()
+                                Image(systemName: "checkmark")
+                                        .foregroundColor(.accentColor)
                             }
                         }
-                    )
-                }
+                    }
+                )
             }
         }
     }

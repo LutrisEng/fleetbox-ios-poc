@@ -59,6 +59,24 @@ func convertToStringBinding(int64: Binding<Int64>) -> Binding<String> {
     )
 }
 
+func convertToStringBinding(int16: Binding<Int16>) -> Binding<String> {
+    Binding<String>(
+            get: {
+                if int16.wrappedValue == 0 {
+                    return ""
+                } else {
+                    return String(int16.wrappedValue)
+                }
+            },
+            set: { value in
+                let filtered = value.filter {
+                    $0.isNumber
+                }
+                int16.wrappedValue = Int16(filtered) ?? 0
+            }
+    )
+}
+
 func convertToNillableBinding(string: Binding<String>) -> Binding<String?> {
     Binding<String?>(
             get: { string.wrappedValue },

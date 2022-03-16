@@ -31,7 +31,7 @@ struct MaintenanceLogView: View {
             } else {
                 ForEach(logItems, id: \.self) { logItem in
                     NavigationLink(destination: LogItemView(logItem: logItem)) {
-                        LogItemLabelView(logItem: logItem).padding([.top, .bottom], 10)
+                        LogItemLabelView(logItem: logItem)
                     }
                 }
                         .onDelete { offsets in

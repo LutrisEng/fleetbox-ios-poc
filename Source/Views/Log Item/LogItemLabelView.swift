@@ -33,6 +33,11 @@ struct LogItemLabelView: View {
                     .foregroundColor(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
+            if let odometerReading = logItem.odometerReading {
+                Text("\(odometerReading.reading) miles")
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
             if let displayName = logItem.displayName, !displayName.isEmpty {
                 Text(displayName)
                         .font(.body.bold())
@@ -57,6 +62,7 @@ struct LogItemLabelView: View {
                 LineItemLabelView(lineItem: lineItem).mini
             }
         }
+        .padding([.top, .bottom], 10)
     }
 }
 

@@ -44,7 +44,7 @@ struct ShopView: View {
                                 LogItemView(logItem: logItem)
                             },
                             label: {
-                                LogItemLabelView(logItem: logItem, showVehicle: true).padding([.top, .bottom], 10)
+                                LogItemLabelView(logItem: logItem, showVehicle: true)
                             }
                         )
                     }

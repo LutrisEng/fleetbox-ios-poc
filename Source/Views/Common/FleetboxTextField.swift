@@ -20,11 +20,36 @@ import SwiftUI
 struct FleetboxTextField: View {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @Binding var value: String?
-    @State var focused: Bool = false
+    var value: Binding<String?>
+    @FocusState var focused: Bool
     let name: LocalizedStringKey?
     let example: String?
     var unitName: LocalizedStringKey?
+    var number: Bool = false
+
+    init(value: Binding<String?>, name: LocalizedStringKey?, example: String?) {
+        self.value = value
+        self.name = name
+        self.example = example
+    }
+
+    init(value: Binding<Int64>, name: LocalizedStringKey?, example: Int64) {
+        self.init(
+            value: convertToNillableBinding(string: convertToStringBinding(int64: value)),
+            name: name,
+            example: String(example)
+        )
+        number = true
+    }
+
+    init(value: Binding<Int16>, name: LocalizedStringKey?, example: Int16) {
+        self.init(
+            value: convertToNillableBinding(string: convertToStringBinding(int16: value)),
+            name: name,
+            example: String(example)
+        )
+        number = true
+    }
 
     func unit(_ unit: LocalizedStringKey) -> FleetboxTextField {
         var view = self
@@ -42,17 +67,21 @@ struct FleetboxTextField: View {
                 ZStack(alignment: name == nil ? .trailing : .leading) {
                     TextField(
                             example ?? "",
-                            text: convertToNonNilBinding(string: $value),
-                            onEditingChanged: { editingChanged in
-                                if editingChanged {
-                                    focused = true
-                                } else {
-                                    focused = false
-                                }
-                            }
+                            text: convertToNonNilBinding(string: value)
                     )
-                    if let value = value, focused && !value.isEmpty {
-                        Button(action: { self.value = "" }, label: {
+                    .focused($focused)
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+
+                            Button("Done") {
+                                focused = false
+                            }
+                        }
+                    }
+                    .keyboardType(number ? .decimalPad : .default)
+                    if let value = value.wrappedValue, focused && !value.isEmpty {
+                        Button(action: { self.value.wrappedValue = "" }, label: {
                             Image(systemName: "xmark.circle")
                                     .foregroundColor(.secondary)
                         })

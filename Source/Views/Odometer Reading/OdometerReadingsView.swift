@@ -18,14 +18,53 @@
 import SwiftUI
 
 struct OdometerReadingsView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+
     @ObservedObject var vehicle: Vehicle
 
     var body: some View {
         List {
-            ForEach(vehicle.odometerReadingsInverseChrono, id: \.self) { odometerReading in
-                NavigationLink(odometerReading.at?.formatted() ?? "Odometer reading") {
-                    OdometerReadingView(odometerReading: odometerReading)
+            let odometerReadings = vehicle.odometerReadingsInverseChrono
+            ForEach(odometerReadings, id: \.self) { odometerReading in
+                NavigationLink(
+                    destination: {
+                        OdometerReadingView(odometerReading: odometerReading)
+                    },
+                    label: {
+                        if let logItem = odometerReading.logItem {
+                            LogItemLabelView(logItem: logItem)
+                        } else {
+                            VStack {
+                                Text("\(odometerReading.reading) miles")
+                                    .foregroundColor(.secondary)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Text(
+                                    odometerReading.at?.formatted(date: .abbreviated, time: .omitted)
+                                    ?? "Odometer reading"
+                                )
+                                .font(.body.bold())
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            .padding([.top, .bottom], 10)
+                        }
+                    }
+                )
+            }
+            .onDelete { offsets in
+                withAnimation {
+                    offsets
+                        .map { odometerReadings[$0] }
+                        .forEach(viewContext.delete)
+
+                    ignoreErrors {
+                        try viewContext.save()
+                    }
                 }
+            }
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                EditButton()
             }
         }
         .navigationTitle("Odometer readings")

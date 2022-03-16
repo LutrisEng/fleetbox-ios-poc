@@ -46,6 +46,7 @@ struct PartOdometersView: View {
                     }
             NavigationLink("View odometer readings") {
                 OdometerReadingsView(vehicle: vehicle)
+                    .navigationTitle("Odometer readings")
             }
             PartOdometerRowView(name: "Vehicle", reading: vehicle.odometer)
             if let tires = vehicle.currentTireSet {

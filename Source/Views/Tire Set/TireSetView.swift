@@ -27,12 +27,23 @@ struct TireSetView: View {
             FleetboxTextField(value: $tireSet.userDisplayName, name: "Name", example: "My Summer Tires")
             FleetboxTextField(value: $tireSet.make, name: "Make", example: "TireCo")
             FleetboxTextField(value: $tireSet.model, name: "Model", example: "Aviator Sport")
+            FleetboxTextField(value: $tireSet.tin, name: "TIN", example: "DOT U2LL LMLR5107")
             if let vehicle = tireSet.vehicle {
                 Section(header: Text("Current vehicle")) {
                     NavigationLink(vehicle.displayNameWithFallback) {
                         VehicleView(vehicle: vehicle)
                     }
                 }
+            }
+            Section(header: Text("Specs")) {
+                Text("Examples based on P225/70R16 91S").foregroundColor(.secondary)
+                FleetboxTextField(value: $tireSet.vehicleType, name: "Vehicle Type", example: "P")
+                FleetboxTextField(value: $tireSet.width, name: "Width", example: 225)
+                FleetboxTextField(value: $tireSet.aspectRatio, name: "Aspect Ratio", example: 70)
+                FleetboxTextField(value: $tireSet.construction, name: "Construction", example: "R")
+                FleetboxTextField(value: $tireSet.diameter, name: "Rim Diameter", example: 16)
+                FleetboxTextField(value: $tireSet.loadIndex, name: "Load Index", example: 91)
+                FleetboxTextField(value: $tireSet.speedRating, name: "Speed Rating", example: "S")
             }
             let logItems = tireSet.logItemsInverseChrono
             if !logItems.isEmpty {

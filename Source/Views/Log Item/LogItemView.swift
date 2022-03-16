@@ -77,28 +77,16 @@ struct LogItemView: View {
                 }
                 Section(header: Text("Odometer reading")) {
                     if let odometerReading = logItem.odometerReading {
-                        HStack {
-                            TextField(
-                                    "Odometer reading at time of service",
-                                    text: Binding(
-                                            get: {
-                                                String(odometerReading.reading)
-                                            },
-                                            set: { value in
-                                                let filtered = value.filter {
-                                                    $0.isNumber
-                                                }
-                                                odometerReading.reading = Int64(filtered) ?? 0
-                                                ignoreErrors {
-                                                    try viewContext.save()
-                                                }
-                                            }
-                                    )
-                            )
-                                    .keyboardType(.decimalPad)
-                            Spacer()
-                            Text("miles")
-                        }
+                        FleetboxTextField(
+                            value: convertToNillableBinding(string: convertToStringBinding(int64: Binding(
+                                get: { odometerReading.reading },
+                                set: { odometerReading.reading = $0 }
+                            ))),
+                            name: "Current",
+                            example: "0"
+                        )
+                        .unit("miles")
+                        .keyboardType(.decimalPad)
                         Button("Remove odometer reading") {
                             viewContext.delete(odometerReading)
                         }
