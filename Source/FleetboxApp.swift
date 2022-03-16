@@ -58,6 +58,11 @@ struct FleetboxApp: App {
                             Image(systemName: "building.2")
                             Text("Shops")
                         }
+                AboutView()
+                        .tabItem {
+                            Image(systemName: "info.circle")
+                            Text("About")
+                        }
             }
                     .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

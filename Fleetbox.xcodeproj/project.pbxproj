@@ -76,6 +76,7 @@
 		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
 		86D2DA7227D081490083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7127D081490083254E /* Alamofire */; };
+		86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB569A27E171A0007FA2DD /* AboutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -192,6 +193,9 @@
 		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
 		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
+		86EB569A27E171A0007FA2DD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		86EB569C27E17681007FA2DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		86EB569D27E176AC007FA2DD /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +228,8 @@
 		861DAE0227CDD59D00AFE972 = {
 			isa = PBXGroup;
 			children = (
+				86EB569D27E176AC007FA2DD /* LICENSE.md */,
+				86EB569C27E17681007FA2DD /* README.md */,
 				861DA48527DC8D7500775276 /* Fleetbox-Info.plist */,
 				861DAE0727CDD59D00AFE972 /* Source */,
 				8664C23927D9FED600AE9ADB /* Test Plans */,
@@ -487,6 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				86500C8227DC099400A5111E /* Common */,
+				86EB569927E1718A007FA2DD /* About */,
 				86500C7B27DC092B00A5111E /* Vehicle */,
 				86500C7C27DC093A00A5111E /* Log Item */,
 				86500C7D27DC094500A5111E /* Line Item */,
@@ -495,6 +502,14 @@
 				86500C7F27DC097A00A5111E /* Tire Set */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		86EB569927E1718A007FA2DD /* About */ = {
+			isa = PBXGroup;
+			children = (
+				86EB569A27E171A0007FA2DD /* AboutView.swift */,
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -711,6 +726,7 @@
 				86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */,
 				8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */,
 				8664C23D27DA906A00AE9ADB /* TireSetView.swift in Sources */,
+				86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */,
 				86500C7627DBF22D00A5111E /* ShopPickerView.swift in Sources */,
 				861DAE3727CDD59F00AFE972 /* VehiclesView.swift in Sources */,
 				86500C9E27DC125200A5111E /* EditTireSetLineItemFieldView.swift in Sources */,
