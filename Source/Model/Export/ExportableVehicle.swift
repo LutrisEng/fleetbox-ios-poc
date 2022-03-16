@@ -24,6 +24,7 @@ struct ExportableVehicle: Codable {
     let model: String?
     let vin: String?
     let year: Int64
+    let imageData: String?
     let logItems: [ExportableLogItem]
     let standaloneOdometerReadings: [ExportableOdometerReading]
 
@@ -33,6 +34,7 @@ struct ExportableVehicle: Codable {
         model = vehicle.model
         vin = vehicle.vin
         year = vehicle.year
+        imageData = vehicle.imageData?.base64EncodedString()
         logItems = vehicle.logItems.map {
             ExportableLogItem(context: context, logItem: $0)
         }
@@ -50,6 +52,9 @@ struct ExportableVehicle: Codable {
         vehicle.model = model
         vehicle.vin = vin
         vehicle.year = year
+        if let imageData = imageData {
+            vehicle.imageData = Data(base64Encoded: imageData)
+        }
         for logItem in logItems {
             _ = logItem.importLogItem(
                 context: context,
