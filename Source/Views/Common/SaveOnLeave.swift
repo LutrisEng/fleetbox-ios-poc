@@ -17,34 +17,14 @@
 
 import SwiftUI
 
-struct LineItemView: View {
+struct SaveOnLeave: ViewModifier {
     @Environment(\.managedObjectContext) private var viewContext
 
-    @ObservedObject var lineItem: LineItem
-
-    var body: some View {
-        Form {
-            ForEach(lineItem.fields) { field in
-                EditLineItemFieldView(field: field)
-            }
-        }
-        .modifier(WithDoneButton())
-        .modifier(SaveOnLeave())
-        .navigationTitle(lineItem.type?.displayName ?? "Unknown Line Item")
-        .onAppear {
-            viewContext.perform {
-                lineItem.createMissingFields()
+    func body(content: Content) -> some View {
+        content.onDisappear {
+            ignoreErrors {
+                try viewContext.save()
             }
         }
     }
 }
-
-#if DEBUG
-struct LineItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewWrapper { fixtures in
-            LineItemView(lineItem: fixtures.lineItem)
-        }
-    }
-}
-#endif

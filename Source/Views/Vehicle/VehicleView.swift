@@ -36,6 +36,7 @@ struct VehicleView: View {
             }
         }
         .modifier(WithDoneButton())
+        .modifier(SaveOnLeave())
         .navigationTitle(vehicle.fullModelName)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {

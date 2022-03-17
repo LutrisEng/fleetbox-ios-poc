@@ -75,6 +75,7 @@ struct TireSetView: View {
             }
         }
         .modifier(WithDoneButton())
+        .modifier(SaveOnLeave())
         .navigationTitle("Tire set")
     }
 }

@@ -64,6 +64,7 @@ struct ShopView: View {
             }
         }
         .modifier(WithDoneButton())
+        .modifier(SaveOnLeave())
         .navigationTitle("Shop")
     }
 }

@@ -28,7 +28,11 @@ struct OdometerReadingsView: View {
             ForEach(odometerReadings, id: \.self) { odometerReading in
                 NavigationLink(
                     destination: {
-                        OdometerReadingView(odometerReading: odometerReading)
+                        if let logItem = odometerReading.logItem {
+                            LogItemView(logItem: logItem)
+                        } else {
+                            OdometerReadingView(odometerReading: odometerReading)
+                        }
                     },
                     label: {
                         if let logItem = odometerReading.logItem {
