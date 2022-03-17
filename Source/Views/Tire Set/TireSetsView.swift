@@ -28,24 +28,40 @@ struct TireSetsView: View {
 
     @State private var selection: String?
 
+    @ViewBuilder
+    func setList(_ sets: [TireSet]) -> some View {
+        ForEach(sets, id: \.self) { tireSet in
+            NavigationLink(
+                    tireSet.displayName,
+                    destination: TireSetView(tireSet: tireSet),
+                    tag: tireSet.objectID.uriRepresentation().absoluteString,
+                    selection: $selection)
+        }
+                .onDelete { offsets in
+                    withAnimation {
+                        offsets.map {
+                                    sets[$0]
+                                }
+                                .forEach(viewContext.delete)
+                    }
+                }
+    }
+
     var body: some View {
         NavigationView {
             List {
-                ForEach(tireSets, id: \.self) { tireSet in
-                    NavigationLink(
-                            tireSet.displayName,
-                            destination: TireSetView(tireSet: tireSet),
-                            tag: tireSet.objectID.uriRepresentation().absoluteString,
-                            selection: $selection)
+                let mounted = tireSets.filter { $0.vehicle != nil }
+                if !mounted.isEmpty {
+                    Section(header: Text("Mounted")) {
+                        setList(mounted)
+                    }
                 }
-                        .onDelete { offsets in
-                            withAnimation {
-                                offsets.map {
-                                            tireSets[$0]
-                                        }
-                                        .forEach(viewContext.delete)
-                            }
-                        }
+                let unmounted = tireSets.filter { $0.vehicle == nil }
+                if !unmounted.isEmpty {
+                    Section(header: Text("Unmounted")) {
+                        setList(unmounted)
+                    }
+                }
             }
                     .navigationTitle("Tire sets")
                     .toolbar {
