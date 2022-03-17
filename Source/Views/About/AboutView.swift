@@ -56,7 +56,7 @@ struct AboutView: View {
             List {
                 HStack {
                     Spacer()
-                    Image("FleetboxLogo").cornerRadius(20)
+                    Image(debug ? "FleetboxLogo-Debug" : "FleetboxLogo").cornerRadius(20)
                     Spacer()
                 }
                 .listRowBackground(EmptyView())
