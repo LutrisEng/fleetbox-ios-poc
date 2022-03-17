@@ -39,6 +39,7 @@ func getSentryRelease() -> String {
 struct FleetboxAppMainWindow: View {
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.managedObjectContext) var viewContext
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         TabView {
@@ -63,19 +64,19 @@ struct FleetboxAppMainWindow: View {
                         Text("About")
                     }
         }
-            .onChange(of: scenePhase) { _ in
+        .onChange(of: scenePhase) { _ in
+            ignoreErrors {
+                try viewContext.save()
+            }
+        }
+        .onReceive(
+            NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification),
+            perform: { _ in
                 ignoreErrors {
                     try viewContext.save()
                 }
             }
-            .onReceive(
-                NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification),
-                perform: { _ in
-                    ignoreErrors {
-                        try viewContext.save()
-                    }
-                }
-            )
+        )
     }
 }
 
@@ -100,7 +101,9 @@ struct FleetboxApp: App {
     var body: some Scene {
         WindowGroup {
             FleetboxAppMainWindow()
-                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                // Sometimes SwiftUI decides not to apply the accent color from the bundle
+                .accentColor(Color(debug ? "AccentColor-Debug" : "AccentColor"))
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
 }
