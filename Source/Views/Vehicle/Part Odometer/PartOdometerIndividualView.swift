@@ -29,6 +29,7 @@ struct PartOdometerIndividualView: View {
     }
 }
 
+#if DEBUG
 struct PartOdometerIndividualView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
@@ -36,3 +37,4 @@ struct PartOdometerIndividualView_Previews: PreviewProvider {
         }
     }
 }
+#endif

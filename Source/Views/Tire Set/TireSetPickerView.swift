@@ -89,6 +89,7 @@ struct TireSetPickerView: View {
     }
 }
 
+#if DEBUG
 struct TireSetPickerView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { _ in
@@ -98,3 +99,4 @@ struct TireSetPickerView_Previews: PreviewProvider {
         }
     }
 }
+#endif

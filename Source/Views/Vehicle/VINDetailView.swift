@@ -108,6 +108,7 @@ struct VINDetailView: View {
     }
 }
 
+#if DEBUG
 struct VINDetailView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
@@ -115,3 +116,4 @@ struct VINDetailView_Previews: PreviewProvider {
         }
     }
 }
+#endif

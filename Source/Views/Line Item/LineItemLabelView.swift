@@ -73,6 +73,7 @@ struct LineItemLabelView: View {
     }
 }
 
+#if DEBUG
 struct LineItemLabelView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -100,3 +101,4 @@ struct LineItemLabelView_Previews: PreviewProvider {
         }
     }
 }
+#endif

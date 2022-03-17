@@ -143,6 +143,7 @@ struct LogItemView: View {
     }
 }
 
+#if DEBUG
 struct LogItemView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
@@ -150,3 +151,4 @@ struct LogItemView_Previews: PreviewProvider {
         }
     }
 }
+#endif

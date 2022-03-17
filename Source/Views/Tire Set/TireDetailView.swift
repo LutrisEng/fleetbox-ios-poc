@@ -32,6 +32,7 @@ struct TireDetailView: View {
     }
 }
 
+#if DEBUG
 struct TireDetailView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
@@ -41,3 +42,4 @@ struct TireDetailView_Previews: PreviewProvider {
         }
     }
 }
+#endif

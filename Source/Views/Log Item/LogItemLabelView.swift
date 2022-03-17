@@ -66,6 +66,7 @@ struct LogItemLabelView: View {
     }
 }
 
+#if DEBUG
 struct LogItemLabelView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
@@ -75,3 +76,4 @@ struct LogItemLabelView_Previews: PreviewProvider {
         }
     }
 }
+#endif

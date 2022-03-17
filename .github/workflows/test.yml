@@ -24,10 +24,15 @@ jobs:
         run: git lfs checkout
       - name: Install tools
         run: brew install yq jq fastlane && gem install xcpretty
+      - name: Build debug
+        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination '${{ matrix.destination['destination'] }}' -configuration Debug clean build | xcpretty
+      - name: Build release
+        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination '${{ matrix.destination['destination'] }}' -configuration Release clean build | xcpretty
       - name: Run tests
-        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination '${{ matrix.destination['destination'] }}' -resultBundlePath TestResults clean test | xcpretty
+        run: set -o pipefail && xcodebuild -scheme Fleetbox -destination '${{ matrix.destination['destination'] }}' -configuration Debug -resultBundlePath TestResults clean test | xcpretty
       - name: Export tests results
         uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: TestResults.xcresult
+          title: Test results for '${{ matrix.destination['name'] }}'
         if: success() || failure()

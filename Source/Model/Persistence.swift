@@ -21,6 +21,7 @@ import Sentry
 struct PersistenceController {
     static let shared = PersistenceController()
 
+    #if DEBUG
     struct Fixtures {
         let shop: Shop
         let vehicle: Vehicle
@@ -145,6 +146,7 @@ struct PersistenceController {
 
     // swiftlint:disable:next force_try
     static var preview: Preview = try! Preview()
+    #endif
 
     let container: NSPersistentCloudKitContainer
 

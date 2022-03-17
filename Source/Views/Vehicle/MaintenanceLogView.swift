@@ -46,6 +46,7 @@ struct MaintenanceLogView: View {
     }
 }
 
+#if DEBUG
 struct MaintenanceLogView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
@@ -55,3 +56,4 @@ struct MaintenanceLogView_Previews: PreviewProvider {
         }
     }
 }
+#endif

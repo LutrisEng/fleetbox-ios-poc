@@ -127,7 +127,7 @@
 		8612CD6C27E1CF4400976E8F /* UIImage Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extensions.swift"; sourceTree = "<group>"; };
 		861BA8FD27D8537100DD729A /* Fleetbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleetbox.entitlements; sourceTree = "<group>"; };
 		861BA8FE27D8546700DD729A /* LineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemView.swift; sourceTree = "<group>"; };
-		861DA48527DC8D7500775276 /* Fleetbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Fleetbox-Info.plist"; sourceTree = "<group>"; };
+		861DA48527DC8D7500775276 /* Fleetbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Fleetbox-Info.plist"; sourceTree = "<group>"; };
 		861DA48627E11DFF00775276 /* ExportContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportContext.swift; sourceTree = "<group>"; };
 		861DA48827E11E3600775276 /* ExportableShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableShop.swift; sourceTree = "<group>"; };
 		861DA48A27E11E3E00775276 /* ExportableExportContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableExportContext.swift; sourceTree = "<group>"; };
@@ -240,7 +240,6 @@
 			children = (
 				86EB569C27E17681007FA2DD /* README.md */,
 				86EB569D27E176AC007FA2DD /* LICENSE.md */,
-				861DA48527DC8D7500775276 /* Fleetbox-Info.plist */,
 				861DAE0727CDD59D00AFE972 /* Source */,
 				8664C23927D9FED600AE9ADB /* Test Plans */,
 				8690C7E827D9EBD90042F543 /* Unit Tests */,
@@ -257,6 +256,7 @@
 			children = (
 				86500C8527DC09F200A5111E /* Common */,
 				861BA8FD27D8537100DD729A /* Fleetbox.entitlements */,
+				861DA48527DC8D7500775276 /* Fleetbox-Info.plist */,
 				86D2DA7527D087D20083254E /* Views */,
 				86D2DA6627D07E3E0083254E /* VIN Decoder */,
 				864C731927CDF54000047165 /* Model */,
@@ -909,13 +909,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = Source/Fleetbox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Fleetbox-Info.plist";
+				INFOPLIST_FILE = "Source/Fleetbox-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -928,7 +929,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.ios.debug;
 				PRODUCT_NAME = Fleetbox;
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
@@ -944,13 +945,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = Source/Fleetbox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 79A4SD8C3M;
 				ENABLE_PREVIEWS = YES;
+				GCC_UNROLL_LOOPS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Fleetbox-Info.plist";
+				INFOPLIST_FILE = "Source/Fleetbox-Info.plist";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -962,6 +965,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LLVM_LTO = YES;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.ios;
 				PRODUCT_NAME = Fleetbox;
@@ -969,6 +973,7 @@
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZE_OBJECT_LIFETIME = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

@@ -67,9 +67,11 @@ struct VehiclesView: View {
                             Button(action: addVehicle) {
                                 Label("Add Vehicle", systemImage: "plus")
                             }
+                            #if DEBUG
                             Button(action: addFixtures) {
                                 Label("Add Fixtures", systemImage: "questionmark.folder")
                             }
+                            #endif
                             EditButton()
                         }
                     }
@@ -83,6 +85,7 @@ struct VehiclesView: View {
         }
     }
 
+    #if DEBUG
     private func addFixtures() {
         withAnimation {
             ignoreErrors {
@@ -90,8 +93,10 @@ struct VehiclesView: View {
             }
         }
     }
+    #endif
 }
 
+#if DEBUG
 struct VehiclesView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { _ in
@@ -100,3 +105,4 @@ struct VehiclesView_Previews: PreviewProvider {
                 .withoutNavigation()
     }
 }
+#endif

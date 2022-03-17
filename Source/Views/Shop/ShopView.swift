@@ -68,6 +68,7 @@ struct ShopView: View {
     }
 }
 
+#if DEBUG
 struct ShopView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
@@ -75,3 +76,4 @@ struct ShopView_Previews: PreviewProvider {
         }
     }
 }
+#endif

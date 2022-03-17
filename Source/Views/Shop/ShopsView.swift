@@ -67,6 +67,7 @@ struct ShopsView: View {
     }
 }
 
+#if DEBUG
 struct ShopsView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { _ in
@@ -75,3 +76,4 @@ struct ShopsView_Previews: PreviewProvider {
                 .withoutNavigation()
     }
 }
+#endif

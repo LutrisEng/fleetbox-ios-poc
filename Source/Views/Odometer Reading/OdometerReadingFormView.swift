@@ -42,6 +42,7 @@ struct OdometerReadingFormView: View {
     }
 }
 
+#if DEBUG
 struct OdometerReadingFormView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { _ in
@@ -49,3 +50,4 @@ struct OdometerReadingFormView_Previews: PreviewProvider {
         }
     }
 }
+#endif

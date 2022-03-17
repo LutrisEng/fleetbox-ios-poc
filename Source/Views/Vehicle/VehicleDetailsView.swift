@@ -34,6 +34,7 @@ struct VehicleDetailsView: View {
     }
 }
 
+#if DEBUG
 struct VehicleDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
@@ -41,3 +42,4 @@ struct VehicleDetailsView_Previews: PreviewProvider {
         }
     }
 }
+#endif

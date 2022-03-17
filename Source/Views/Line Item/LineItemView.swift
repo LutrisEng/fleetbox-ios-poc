@@ -38,6 +38,7 @@ struct LineItemView: View {
     }
 }
 
+#if DEBUG
 struct LineItemView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
@@ -45,3 +46,4 @@ struct LineItemView_Previews: PreviewProvider {
         }
     }
 }
+#endif

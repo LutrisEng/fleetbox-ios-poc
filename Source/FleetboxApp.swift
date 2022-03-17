@@ -85,6 +85,7 @@ struct FleetboxApp: App {
     let persistenceController = PersistenceController.shared
 
     init() {
+        #if !DEBUG
         SentrySDK.start { options in
             options.dsn = "https://2d3e25e0c99347c3b8bd0a3a8908bcdd@o1155807.ingest.sentry.io/6236540"
             options.tracesSampleRate = 1.0
@@ -93,6 +94,7 @@ struct FleetboxApp: App {
             options.enableAutoPerformanceTracking = true
             options.debug = debug
         }
+        #endif
     }
 
     var body: some Scene {

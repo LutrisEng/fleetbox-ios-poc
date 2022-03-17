@@ -41,6 +41,7 @@ struct PartOdometerFluidFilterView: View {
     }
 }
 
+#if DEBUG
 struct PartOdometerFluidFilterView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
@@ -53,3 +54,4 @@ struct PartOdometerFluidFilterView_Previews: PreviewProvider {
         }
     }
 }
+#endif
