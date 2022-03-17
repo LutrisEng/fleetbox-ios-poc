@@ -24,8 +24,10 @@ struct LineItemView: View {
 
     var body: some View {
         Form {
-            ForEach(lineItem.fields) { field in
-                EditLineItemFieldView(field: field)
+            Section(header: Text("Fields")) {
+                ForEach(lineItem.fields) { field in
+                    EditLineItemFieldView(field: field)
+                }
             }
         }
         .modifier(WithDoneButton())

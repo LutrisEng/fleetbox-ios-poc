@@ -33,11 +33,14 @@ struct EditTireSetLineItemFieldView: View {
                         .foregroundColor(.secondary)
             }
         })
-                .sheet(isPresented: $sheetPresented) {
-                    TireSetPickerView(selected: field.tireSetValue) {
-                        field.tireSetValue = $0
-                        sheetPresented = false
-                    }
+        .buttonStyle(.plain)
+        .sheet(isPresented: $sheetPresented) {
+            TireSetPickerView(selected: field.tireSetValue) { tireSet in
+                withAnimation {
+                    field.tireSetValue = tireSet
+                    sheetPresented = false
                 }
+            }
+        }
     }
 }

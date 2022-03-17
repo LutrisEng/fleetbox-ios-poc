@@ -23,55 +23,72 @@ struct EditLineItemFieldView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var field: LineItemField
 
+    @State private var showInfo: Bool = false
+
     var body: some View {
         if let type = field.type {
-            Section(header: Text(type.longDisplayName)) {
-                switch type.type {
-                case .string:
-                    FleetboxTextField(
-                            value: $field.stringValue,
-                            name: type.shortDisplayNameLocal,
-                            example: type.example
-                    )
-                case .enumeration:
-                    Picker(type.shortDisplayNameLocal, selection: convertToNonNilBinding(string: $field.stringValue)) {
-                        ForEach(type.enumValues) { val in
-                            VStack {
-                                Text(val.displayName)
-                                if let description = val.description {
-                                    Text(description).font(.caption)
+            VStack {
+                HStack {
+                    switch type.type {
+                    case .string:
+                        FleetboxTextField(
+                                value: $field.stringValue,
+                                name: type.shortDisplayNameLocal,
+                                example: type.example
+                        )
+                    case .enumeration:
+                        Picker(
+                            type.shortDisplayNameLocal,
+                            selection: convertToNonNilBinding(string: $field.stringValue)
+                        ) {
+                            ForEach(type.enumValues) { val in
+                                VStack {
+                                    Text(val.displayName)
+                                    if let description = val.description {
+                                        Text(description).font(.caption)
+                                    }
                                 }
                             }
                         }
+                    case .tireSet: EditTireSetLineItemFieldView(field: field, type: type)
+                    case .boolean:
+                        HStack {
+                            Button(type.booleanFormat.unsetFormat) {
+                                field.stringValue = nil
+                            }
+                                .foregroundColor(
+                                    field.stringValue == nil ? .accentColor : .secondary
+                                )
+                                .buttonStyle(BorderlessButtonStyle())
+                                .frame(maxWidth: .infinity)
+                            Button(type.booleanFormat.trueFormat) {
+                                field.stringValue = "true"
+                            }
+                                .foregroundColor(
+                                    field.stringValue == "true" ? .green : .secondary
+                                )
+                                .buttonStyle(BorderlessButtonStyle())
+                                .frame(maxWidth: .infinity)
+                            Button(type.booleanFormat.falseFormat) {
+                                field.stringValue = "false"
+                            }
+                                .foregroundColor(
+                                    field.stringValue == "false" ? .red : .secondary
+                                )
+                                .buttonStyle(BorderlessButtonStyle())
+                                .frame(maxWidth: .infinity)
+                        }
                     }
-                case .tireSet: EditTireSetLineItemFieldView(field: field, type: type)
-                case .boolean:
-                    HStack {
-                        Button(type.booleanFormat.unsetFormat) {
-                            field.stringValue = nil
-                        }
-                            .foregroundColor(
-                                field.stringValue == nil ? .accentColor : .secondary
-                            )
-                            .buttonStyle(BorderlessButtonStyle())
-                            .frame(maxWidth: .infinity)
-                        Button(type.booleanFormat.trueFormat) {
-                            field.stringValue = "true"
-                        }
-                            .foregroundColor(
-                                field.stringValue == "true" ? .green : .secondary
-                            )
-                            .buttonStyle(BorderlessButtonStyle())
-                            .frame(maxWidth: .infinity)
-                        Button(type.booleanFormat.falseFormat) {
-                            field.stringValue = "false"
-                        }
-                            .foregroundColor(
-                                field.stringValue == "false" ? .red : .secondary
-                            )
-                            .buttonStyle(BorderlessButtonStyle())
-                            .frame(maxWidth: .infinity)
-                    }
+                    Button(
+                        action: { withAnimation { showInfo.toggle() } },
+                        label: { Image(systemName: "info.circle") }
+                    )
+                }
+                if showInfo {
+                    Text(type.longDisplayName)
+                        .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding([.top, .bottom], 1.5)
                 }
             }
         }

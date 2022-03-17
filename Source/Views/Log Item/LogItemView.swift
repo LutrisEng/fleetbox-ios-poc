@@ -30,7 +30,9 @@ struct LogItemView: View {
     @State private var navigationState: NavigationState?
 
     func createLineItem(type: LineItemType) -> LineItem {
-        LineItem(context: viewContext, logItem: logItem, type: type)
+        withAnimation {
+            LineItem(context: viewContext, logItem: logItem, type: type)
+        }
     }
 
     var body: some View {
@@ -84,7 +86,9 @@ struct LogItemView: View {
                         )
                         .unit("miles")
                         Button("Remove odometer reading") {
-                            viewContext.delete(odometerReading)
+                            withAnimation {
+                                viewContext.delete(odometerReading)
+                            }
                         }
                     } else {
                         Button("Add odometer reading") {

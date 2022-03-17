@@ -55,8 +55,10 @@ struct ShopView: View {
                     ShopPickerView(
                         selected: nil,
                         exclude: [shop]
-                    ) {
-                        shop.mergeWith($0)
+                    ) { shop in
+                        withAnimation {
+                            shop.mergeWith(shop)
+                        }
                     }
                     .navigationTitle("Merge shops")
                     .navigationBarTitleDisplayMode(.inline)
