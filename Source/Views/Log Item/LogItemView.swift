@@ -38,8 +38,8 @@ struct LogItemView: View {
             Form {
                 FleetboxTextField(
                         value: $logItem.displayName,
-                        name: nil,
-                        example: "Display name"
+                        name: "Name",
+                        example: "10k service"
                 )
                 DatePicker(
                         "Performed",
