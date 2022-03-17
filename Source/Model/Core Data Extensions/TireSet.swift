@@ -119,6 +119,28 @@ extension TireSet {
         return counter
     }
 
+    var specs: String {
+        func maybe(_ number: Int16) -> String {
+            if number == 0 {
+                return "?"
+            } else {
+                return String(number)
+            }
+        }
+
+        func maybe(_ string: String?) -> String {
+            if let string = string, string != "" {
+                return string
+            } else {
+                return "?"
+            }
+        }
+
+        return "\(maybe(vehicleType))\(maybe(width))/" +
+        "\(maybe(aspectRatio))\(maybe(construction)) " +
+        "\(maybe(loadIndex))\(maybe(speedRating))"
+    }
+
     func mergeWith(_ other: TireSet) {
         if other == self { return }
         for field in other.lineItemFields {

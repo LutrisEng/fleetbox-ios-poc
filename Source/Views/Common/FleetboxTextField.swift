@@ -60,11 +60,23 @@ struct FleetboxTextField: View {
         return view
     }
 
+    @ViewBuilder
+    var editableButton: some View {
+        Button(
+            action: { focused = true },
+            label: { Image(systemName: "pencil.circle").foregroundColor(.secondary) }
+        )
+        .buttonStyle(.plain)
+    }
+
     var body: some View {
         HStack {
             if let name = name {
                 Text(name)
+                editableButton
                 Spacer()
+            } else {
+                editableButton
             }
             HStack {
                 ZStack(alignment: name == nil ? .trailing : .leading) {

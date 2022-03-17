@@ -37,6 +37,11 @@ struct TireSetView: View {
             }
             Section(header: Text("Specs")) {
                 Text("Examples based on P225/70R16 91S").foregroundColor(.secondary)
+                HStack {
+                    Text("Tire specs")
+                    Spacer()
+                    Text(tireSet.specs).foregroundColor(.secondary)
+                }
                 FleetboxTextField(value: $tireSet.vehicleType, name: "Vehicle Type", example: "P")
                 FleetboxTextField(value: $tireSet.width, name: "Width", example: 225)
                 FleetboxTextField(value: $tireSet.aspectRatio, name: "Aspect Ratio", example: 70)
