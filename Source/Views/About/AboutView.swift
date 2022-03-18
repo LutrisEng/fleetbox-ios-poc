@@ -64,16 +64,14 @@ struct AboutView: View {
                 Section(header: Text("Developer Mode")) {
                     Text("This Fleetbox build was done in developer (or \"") +
                     Text("DEBUG").font(.body.monospaced()) +
-                    Text(
-                        "\") mode. Your developer mode data is stored separately from your release mode " +
-                        "data, so that you don't end up corrupting your important data during development. " +
-                        "Developer mode builds are done without optimizations, so you may experience performance " +
-                        "issues - check a release mode build to see if a performance issue actually matters."
-                    )
+                    Text("\") mode.")
+
+                    Text("Your developer mode data is stored separately from your release mode " +
+                         "data, so that you don't end up corrupting your important data during development.")
+
+                    Text("Developer mode builds are done without optimizations, so you may experience performance " +
+                         "issues - check a release mode build to see if a performance issue actually matters.")
                 }
-                .fixedSize(horizontal: false, vertical: true)
-                .padding([.top, .bottom])
-                .lineLimit(50)
                 #endif
                 Section(header: Text("Private beta")) {
                     Text(
