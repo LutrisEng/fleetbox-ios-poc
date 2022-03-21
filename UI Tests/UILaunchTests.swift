@@ -36,16 +36,61 @@ class UILaunchTests: XCTestCase {
         add(attachment)
     }
 
+    func testVehicles() throws {
+        let app = XCUIApplication()
+        app.launch()
+        if !app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "The Mazda CX-5")).element.exists {
+            app.navigationBars["Vehicles"].buttons["Add Fixtures"].tap()
+        }
+
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = "Vehicles"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
     func testVehicle() throws {
         let app = XCUIApplication()
         app.launch()
-        if !app.tables.buttons["The Mazda CX-5"].exists {
+        if !app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "The Mazda CX-5")).element.exists {
             app.navigationBars["Vehicles"].buttons["Add Fixtures"].tap()
         }
-        app.tables.buttons["The Mazda CX-5"].tap()
+        app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "The Mazda CX-5")).element.tap()
 
         let attachment = XCTAttachment(screenshot: app.screenshot())
         attachment.name = "Vehicle"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
+    func testLogItem() throws {
+        let app = XCUIApplication()
+        app.launch()
+        if !app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "The Mazda CX-5")).element.exists {
+            app.navigationBars["Vehicles"].buttons["Add Fixtures"].tap()
+        }
+        app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "The Mazda CX-5")).element.tap()
+        app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "Break-in oil change")).element.tap()
+
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = "Line item"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
+    func testLineItem() throws {
+        let app = XCUIApplication()
+        app.launch()
+        if !app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "The Mazda CX-5")).element.exists {
+            app.navigationBars["Vehicles"].buttons["Add Fixtures"].tap()
+        }
+        app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "The Mazda CX-5")).element.tap()
+        app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "Break-in oil change")).element.tap()
+        app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "Break-in oil change")).element.tap()
+        app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "Engine oil changed")).element.tap()
+
+        let attachment = XCTAttachment(screenshot: app.screenshot())
+        attachment.name = "Line item"
         attachment.lifetime = .keepAlways
         add(attachment)
     }
