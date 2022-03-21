@@ -34,11 +34,11 @@ jobs:
       - name: Build
         run: set -o pipefail && xcodebuild -scheme '${{ matrix.scheme }}' -destination '${{ matrix.destination['destination'] }}' clean build | xcpretty
       - name: Test
-        if: ${{ matrix.scheme == 'Fleetbox Debug' }}
+        if: matrix.scheme == 'Fleetbox Debug'
         run: set -o pipefail && xcodebuild -scheme '${{ matrix.scheme }}' -destination '${{ matrix.destination['destination'] }}' -resultBundlePath TestResults clean test | xcpretty
       - name: Export test results
         uses: kishikawakatsumi/xcresulttool@v1
         with:
           path: TestResults.xcresult
           title: Test results for ${{ matrix.scheme }} on '${{ matrix.destination['name'] }}'
-        if: success() || failure()
+        if: (success() || failure()) && matrix.scheme == 'Fleetbox Debug'
