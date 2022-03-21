@@ -23,33 +23,36 @@ struct FleetboxTextField: View {
     var value: Binding<String?>
     var wrappedValue: Binding<String>
     @State private var tempValue: String = ""
-    @FocusState var focused: Bool
     let name: LocalizedStringKey?
+    let description: LocalizedStringKey?
     let example: String?
     var unitName: LocalizedStringKey?
     var number: Bool = false
 
-    init(value: Binding<String?>, name: LocalizedStringKey?, example: String?) {
+    init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: LocalizedStringKey? = nil) {
         self.value = value
         wrappedValue = convertToNonNilBinding(string: value)
         self.name = name
         self.example = example
+        self.description = description
     }
 
-    init(value: Binding<Int64>, name: LocalizedStringKey?, example: Int64) {
+    init(value: Binding<Int64>, name: LocalizedStringKey?, example: Int64, description: LocalizedStringKey? = nil) {
         self.init(
             value: convertToNillableBinding(string: convertToStringBinding(int64: value)),
             name: name,
-            example: String(example)
+            example: String(example),
+            description: description
         )
         number = true
     }
 
-    init(value: Binding<Int16>, name: LocalizedStringKey?, example: Int16) {
+    init(value: Binding<Int16>, name: LocalizedStringKey?, example: Int16, description: LocalizedStringKey? = nil) {
         self.init(
             value: convertToNillableBinding(string: convertToStringBinding(int16: value)),
             name: name,
-            example: String(example)
+            example: String(example),
+            description: description
         )
         number = true
     }
@@ -60,69 +63,55 @@ struct FleetboxTextField: View {
         return view
     }
 
-    @ViewBuilder
-    var editableButton: some View {
-        Button(
-            action: { focused = true },
-            label: { Image(systemName: "pencil.circle").foregroundColor(.secondary) }
-        )
-        .buttonStyle(.plain)
-    }
-
     var body: some View {
-        HStack {
-            if let name = name {
-                Text(name)
-                editableButton
-                Spacer()
-            } else {
-                editableButton
-            }
-            HStack {
-                ZStack(alignment: name == nil ? .trailing : .leading) {
-                    TextField(
-                            example ?? "",
-                            text: $tempValue,
-                            onEditingChanged: { focused in
-                                if focused {
-                                    prepare()
-                                } else {
-                                    save()
-                                }
-                            }
-                    )
-                    .focused($focused)
-                    .keyboardType(number ? .decimalPad : .default)
-                    if let value = value.wrappedValue, focused && !value.isEmpty {
-                        Button(
-                            action: {
-                                self.tempValue = ""
-                                save()
-                            },
-                            label: {
-                                Image(systemName: "xmark.circle")
-                                        .foregroundColor(.secondary)
-                            }
-                        )
+        NavigationLink(
+            destination: {
+                Form {
+                    if let description = description {
+                        Text(description)
+                    }
+                    HStack {
+                        ZStack(alignment: .trailing) {
+                            TextField(
+                                example ?? "",
+                                text: $tempValue
+                            )
+                            .keyboardType(number ? .decimalPad : .default)
+                            if let value = value.wrappedValue, !value.isEmpty {
+                                Button(
+                                    action: {
+                                        self.tempValue = ""
+                                    },
+                                    label: {
+                                        Image(systemName: "xmark.circle.fill")
+                                                .foregroundColor(.secondary)
+                                    }
+                                )
                                 .padding(.trailing, 8)
                                 .buttonStyle(BorderlessButtonStyle())
+                            }
+                        }
+                        if let unitName = unitName {
+                            Spacer()
+                            Text(unitName)
+                        }
                     }
+                    .onAppear(perform: prepare)
+                    .onDisappear(perform: save)
+                    .navigationTitle(name ?? "")
+                    .navigationBarTitleDisplayMode(.inline)
                 }
-                if let unitName = unitName {
+            },
+            label: {
+                HStack {
+                    if let name = name {
+                        Text(name)
+                    }
                     Spacer()
-                    Text(unitName)
+                    Text(value.wrappedValue ?? "").foregroundColor(.secondary)
                 }
             }
-            .onChange(of: wrappedValue.wrappedValue) { _ in
-                if !focused {
-                    prepare()
-                }
-            }
-            .onAppear(perform: prepare)
-            .foregroundColor(name == nil ? .primary : .secondary)
-            .frame(alignment: name == nil ? .leading : .trailing)
-            .multilineTextAlignment(name == nil ? .leading : .trailing)
-        }
+        )
     }
 
     private func prepare() {

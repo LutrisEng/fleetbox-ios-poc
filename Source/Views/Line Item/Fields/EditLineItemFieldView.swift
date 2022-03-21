@@ -48,7 +48,8 @@ struct EditLineItemFieldView: View {
                         FleetboxTextField(
                                 value: $field.stringValue,
                                 name: type.shortDisplayNameLocal,
-                                example: type.example
+                                example: type.example,
+                                description: type.longDisplayNameLocal
                         )
                     case .enumeration:
                         Picker(
@@ -86,7 +87,7 @@ struct EditLineItemFieldView: View {
                             .pickerStyle(SegmentedPickerStyle())
                         }
                     }
-                    if type.type != .boolean {
+                    if type.type != .boolean && type.type != .string {
                         infoButton(type: type)
                     }
                 }
