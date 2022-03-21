@@ -25,6 +25,20 @@ struct EditLineItemFieldView: View {
 
     @State private var showInfo: Bool = false
 
+    @ViewBuilder func infoButton(type: LineItemTypeField) -> some View {
+        Button(
+            action: { withAnimation { showInfo.toggle() } },
+            label: { Image(systemName: "info.circle") }
+        )
+    }
+
+    @ViewBuilder func info(type: LineItemTypeField, alignment: Alignment = .trailing) -> some View {
+        Text(type.longDisplayName)
+            .foregroundColor(.secondary)
+            .frame(maxWidth: .infinity, alignment: alignment)
+            .padding([.top, .bottom], 1.5)
+    }
+
     var body: some View {
         if let type = field.type {
             VStack {
@@ -52,43 +66,32 @@ struct EditLineItemFieldView: View {
                         }
                     case .tireSet: EditTireSetLineItemFieldView(field: field, type: type)
                     case .boolean:
-                        HStack {
-                            Button(type.booleanFormat.unsetFormat) {
-                                field.stringValue = nil
+                        VStack {
+                            HStack {
+                                Text(type.shortDisplayNameLocal)
+                                Spacer()
+                                infoButton(type: type)
                             }
-                                .foregroundColor(
-                                    field.stringValue == nil ? .accentColor : .secondary
-                                )
-                                .buttonStyle(BorderlessButtonStyle())
-                                .frame(maxWidth: .infinity)
-                            Button(type.booleanFormat.trueFormat) {
-                                field.stringValue = "true"
+                            if showInfo {
+                                info(type: type, alignment: .leading)
                             }
-                                .foregroundColor(
-                                    field.stringValue == "true" ? .green : .secondary
-                                )
-                                .buttonStyle(BorderlessButtonStyle())
-                                .frame(maxWidth: .infinity)
-                            Button(type.booleanFormat.falseFormat) {
-                                field.stringValue = "false"
+                            Picker(
+                                type.shortDisplayNameLocal,
+                                selection: $field.stringValue as Binding<String?>
+                            ) {
+                                Text(type.booleanFormat.unsetFormat).tag(nil as String?)
+                                Text(type.booleanFormat.trueFormat).tag("true" as String?)
+                                Text(type.booleanFormat.falseFormat).tag("false" as String?)
                             }
-                                .foregroundColor(
-                                    field.stringValue == "false" ? .red : .secondary
-                                )
-                                .buttonStyle(BorderlessButtonStyle())
-                                .frame(maxWidth: .infinity)
+                            .pickerStyle(SegmentedPickerStyle())
                         }
                     }
-                    Button(
-                        action: { withAnimation { showInfo.toggle() } },
-                        label: { Image(systemName: "info.circle") }
-                    )
+                    if type.type != .boolean {
+                        infoButton(type: type)
+                    }
                 }
-                if showInfo {
-                    Text(type.longDisplayName)
-                        .foregroundColor(.secondary)
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        .padding([.top, .bottom], 1.5)
+                if showInfo && type.type != .boolean {
+                    info(type: type)
                 }
             }
         }
