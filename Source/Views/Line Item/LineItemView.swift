@@ -33,6 +33,7 @@ struct LineItemView: View {
         .modifier(WithDoneButton())
         .modifier(SaveOnLeave())
         .navigationTitle(lineItem.type?.displayName ?? "Unknown Line Item")
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
             viewContext.perform {
                 lineItem.createMissingFields()

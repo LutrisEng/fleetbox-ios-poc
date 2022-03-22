@@ -130,6 +130,7 @@ struct LogItemView: View {
         .modifier(WithDoneButton())
         .modifier(SaveOnLeave())
         .navigationTitle("Log item")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 NavigationLink(
