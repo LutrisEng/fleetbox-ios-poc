@@ -20,8 +20,32 @@ import CoreData
 import Sentry
 
 extension TireSet {
+    var maybeUserDisplayName: String? {
+        if let userDisplayName = userDisplayName, !userDisplayName.isEmpty {
+            return userDisplayName
+        } else {
+            return nil
+        }
+    }
+
+    var maybeMake: String? {
+        if let make = make, !make.isEmpty {
+            return make
+        } else {
+            return nil
+        }
+    }
+
+    var maybeModel: String? {
+        if let model = model, !model.isEmpty {
+            return model
+        } else {
+            return nil
+        }
+    }
+
     var displayName: String {
-        userDisplayName ?? "\(make ?? "Unknown Make") \(model ?? "Unknown Model")"
+        maybeUserDisplayName ?? "\(maybeMake ?? "Unknown Make") \(maybeModel ?? "Unknown Model")"
     }
 
     var lineItemFields: Set<LineItemField> {
