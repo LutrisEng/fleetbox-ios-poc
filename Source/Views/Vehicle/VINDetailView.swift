@@ -24,6 +24,33 @@ struct VINDetailView: View {
     @ObservedObject var vehicle: Vehicle
     @State private var state: ViewState = .base
     @State private var err: Bool = false
+    @State private var success: Bool = false
+
+    private func setState(_ newState: ViewState) async {
+        state = newState
+        switch newState {
+        case .ok:
+            err = false
+            success = true
+            await ignoreErrors {
+                try await Task.sleep(nanoseconds: 3 * UInt64(NSEC_PER_SEC))
+            }
+            await setState(.base)
+        case .err:
+            err = true
+            success = false
+            await ignoreErrors {
+                try await Task.sleep(nanoseconds: 3 * UInt64(NSEC_PER_SEC))
+            }
+            await setState(.base)
+        case .base:
+            err = false
+            success = false
+        case .loading:
+            err = false
+            success = false
+        }
+    }
 
     enum ViewState {
         // swiftlint:disable:next identifier_name
@@ -37,43 +64,7 @@ struct VINDetailView: View {
                 switch state {
                 case .base:
                     Button(
-                            action: {
-                                Task.init {
-                                    state = .loading
-                                    do {
-                                        let decoderResult = try await decodeVIN(vin)
-                                        if decoderResult.errorCode != 0 {
-                                            print("error code", decoderResult.errorCode)
-                                            state = .err
-                                            err = true
-                                            await ignoreErrors {
-                                                try await Task.sleep(nanoseconds: 3 * UInt64(NSEC_PER_SEC))
-                                            }
-                                            state = .base
-                                            return
-                                        }
-                                        if let modelYear = decoderResult.modelYear {
-                                            vehicle.year = Int64(modelYear)
-                                        }
-                                        vehicle.make = decoderResult.make ?? vehicle.make
-                                        vehicle.model = decoderResult.model ?? vehicle.model
-                                    } catch {
-                                        SentrySDK.capture(error: error)
-                                        state = .err
-                                        err = true
-                                        await ignoreErrors {
-                                            try await Task.sleep(nanoseconds: 3 * UInt64(NSEC_PER_SEC))
-                                        }
-                                        state = .base
-                                        return
-                                    }
-                                    state = .ok
-                                    await ignoreErrors {
-                                        try await Task.sleep(nanoseconds: 3 * UInt64(NSEC_PER_SEC))
-                                    }
-                                    state = .base
-                                }
-                            },
+                            action: decode,
                             label: {
                                 Image(systemName: "square.and.arrow.down")
                             }
@@ -99,12 +90,41 @@ struct VINDetailView: View {
                 }
             }
         }
-                .alert("Failed to decode VIN", isPresented: $err, actions: {}, message: {
-                    Text(
-                            "An error occurred while decoding your VIN. Check to make sure you typed your VIN " +
-                                    "correctly, and check your network connection."
-                    )
-                })
+        .alert("VIN decoded!", isPresented: $success, actions: {}, message: {
+            Text("The VIN was successfully decoded into year, make, and/or model.")
+        })
+        .alert("Failed to decode VIN", isPresented: $err, actions: {}, message: {
+            Text(
+                    "An error occurred while decoding your VIN. Check to make sure you typed your VIN " +
+                            "correctly, and check your network connection."
+            )
+        })
+    }
+
+    private func decode() {
+        if let vin = vehicle.vin, vin != "" {
+            Task.init {
+                await setState(.loading)
+                do {
+                    let decoderResult = try await decodeVIN(vin)
+                    if decoderResult.errorCode != 0 {
+                        print("error code", decoderResult.errorCode)
+                        await setState(.err)
+                        return
+                    }
+                    if let modelYear = decoderResult.modelYear {
+                        vehicle.year = Int64(modelYear)
+                    }
+                    vehicle.make = decoderResult.make ?? vehicle.make
+                    vehicle.model = decoderResult.model ?? vehicle.model
+                } catch {
+                    SentrySDK.capture(error: error)
+                    await setState(.err)
+                    return
+                }
+                await setState(.ok)
+            }
+        }
     }
 }
 
