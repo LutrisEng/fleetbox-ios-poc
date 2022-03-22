@@ -26,26 +26,21 @@ struct ShopsView: View {
             animation: .default)
     private var shops: FetchedResults<Shop>
 
-    @State private var selection: String?
-
     var body: some View {
         NavigationView {
             List {
                 ForEach(shops, id: \.self) { shop in
                     NavigationLink(
                             shop.name ?? "Unknown shop",
-                            destination: ShopView(shop: shop),
-                            tag: shop.objectID.uriRepresentation().absoluteString,
-                            selection: $selection)
+                            destination: ShopView(shop: shop)
+                    )
                 }
-                        .onDelete { offsets in
-                            withAnimation {
-                                offsets.map {
-                                            shops[$0]
-                                        }
-                                        .forEach(viewContext.delete)
-                            }
-                        }
+                .onDelete { offsets in
+                    withAnimation {
+                        let toDelete = offsets.map { shops[$0] }
+                        toDelete.forEach(viewContext.delete)
+                    }
+                }
             }
                     .navigationTitle("Shops")
                     .toolbar {

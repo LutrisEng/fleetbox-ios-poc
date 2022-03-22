@@ -63,6 +63,16 @@ struct FleetboxTextField: View {
         return view
     }
 
+    @ViewBuilder
+    private var maybeUnitName: some View {
+        if let unitName = unitName {
+            (Text(" ") + Text(unitName))
+                .foregroundColor(.secondary)
+        } else {
+            EmptyView()
+        }
+    }
+
     var body: some View {
         NavigationLink(
             destination: {
@@ -109,6 +119,7 @@ struct FleetboxTextField: View {
                     }
                     Spacer()
                     Text(value.wrappedValue ?? "").foregroundColor(.secondary)
+                    maybeUnitName
                 }
             }
         )

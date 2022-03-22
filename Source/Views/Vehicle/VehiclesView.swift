@@ -28,16 +28,12 @@ struct VehiclesView: View {
             animation: .default)
     private var vehicles: FetchedResults<Vehicle>
 
-    @State private var selection: String?
-
     var body: some View {
         NavigationView {
             List {
                 ForEach(vehicles, id: \.self) { vehicle in
                     NavigationLink(
-                        destination: {
-                            VehicleView(vehicle: vehicle)
-                        },
+                        destination: VehicleView(vehicle: vehicle),
                         label: {
                             if let displayName = vehicle.displayName {
                                 VStack {
@@ -53,28 +49,27 @@ struct VehiclesView: View {
                         }
                     )
                 }
-                        .onDelete { offsets in
-                            withAnimation {
-                                offsets
-                                    .map { vehicles[$0] }
-                                    .forEach(viewContext.delete)
-                            }
-                        }
-            }
-                    .navigationTitle("Vehicles")
-                    .toolbar {
-                        ToolbarItemGroup(placement: .navigationBarTrailing) {
-                            Button(action: addVehicle) {
-                                Label("Add Vehicle", systemImage: "plus")
-                            }
-                            #if DEBUG
-                            Button(action: addFixtures) {
-                                Label("Add Fixtures", systemImage: "questionmark.folder")
-                            }
-                            #endif
-                            EditButton()
-                        }
+                .onDelete { offsets in
+                    withAnimation {
+                        let toDelete = offsets.map { vehicles[$0] }
+                        toDelete.forEach(viewContext.delete)
                     }
+                }
+            }
+            .navigationTitle("Vehicles")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button(action: addVehicle) {
+                        Label("Add Vehicle", systemImage: "plus")
+                    }
+                    #if DEBUG
+                    Button(action: addFixtures) {
+                        Label("Add Fixtures", systemImage: "questionmark.folder")
+                    }
+                    #endif
+                    EditButton()
+                }
+            }
             Image(systemName: "car")
         }
     }

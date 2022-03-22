@@ -104,6 +104,7 @@ struct FleetboxApp: App {
                 // Sometimes SwiftUI decides not to apply the accent color from the bundle
                 .accentColor(Color(debug ? "AccentColor-Debug" : "AccentColor"))
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .navigationViewStyle(.stack)
         }
     }
 }

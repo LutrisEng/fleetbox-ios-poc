@@ -26,16 +26,13 @@ struct TireSetsView: View {
             animation: .default)
     private var tireSets: FetchedResults<TireSet>
 
-    @State private var selection: String?
-
     @ViewBuilder
     func setList(_ sets: [TireSet]) -> some View {
         ForEach(sets, id: \.self) { tireSet in
             NavigationLink(
                     tireSet.displayName,
-                    destination: TireSetView(tireSet: tireSet),
-                    tag: tireSet.objectID.uriRepresentation().absoluteString,
-                    selection: $selection)
+                    destination: TireSetView(tireSet: tireSet)
+            )
         }
                 .onDelete { offsets in
                     withAnimation {
