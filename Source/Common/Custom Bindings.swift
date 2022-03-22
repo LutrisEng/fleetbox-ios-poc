@@ -79,7 +79,13 @@ func convertToStringBinding(int16: Binding<Int16>) -> Binding<String> {
 
 func convertToNillableBinding(string: Binding<String>) -> Binding<String?> {
     Binding<String?>(
-            get: { string.wrappedValue },
+            get: {
+                if string.wrappedValue.isEmpty {
+                    return nil
+                } else {
+                    return string.wrappedValue
+                }
+            },
             set: { value in
                 string.wrappedValue = value ?? ""
             }
@@ -99,7 +105,11 @@ func convertToNonNilBinding(string: Binding<String?>) -> Binding<String> {
     Binding<String>(
             get: { string.wrappedValue ?? "" },
             set: { value in
-                string.wrappedValue = value
+                if value.isEmpty {
+                    string.wrappedValue = nil
+                } else {
+                    string.wrappedValue = value
+                }
             }
     )
 }
