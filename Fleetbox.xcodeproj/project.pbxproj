@@ -82,6 +82,7 @@
 		86B189A727EAFEBE001CFBD3 /* QuickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189A627EAFEBE001CFBD3 /* QuickViewController.swift */; };
 		86B189A927EAFF5D001CFBD3 /* Temporary Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189A827EAFF5D001CFBD3 /* Temporary Files.swift */; };
 		86B189AD27EB0109001CFBD3 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189AC27EB0109001CFBD3 /* AttachmentView.swift */; };
+		86B189AF27EB0C6C001CFBD3 /* UIApplication Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */; };
 		86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
 		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
@@ -207,6 +208,7 @@
 		86B189A627EAFEBE001CFBD3 /* QuickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickViewController.swift; sourceTree = "<group>"; };
 		86B189A827EAFF5D001CFBD3 /* Temporary Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Temporary Files.swift"; sourceTree = "<group>"; };
 		86B189AC27EB0109001CFBD3 /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
+		86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication Extensions.swift"; sourceTree = "<group>"; };
 		86B5D09427D076B70040399C /* LineItemTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeTest.swift; sourceTree = "<group>"; };
 		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 				8612CD6127E1956D00976E8F /* Array Extensions.swift */,
 				8612CD6C27E1CF4400976E8F /* UIImage Extensions.swift */,
 				86B189A827EAFF5D001CFBD3 /* Temporary Files.swift */,
+				86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -751,6 +754,7 @@
 				864C731B27CDF54E00047165 /* Vehicle.swift in Sources */,
 				8664C24527DA91E100AE9ADB /* PreviewWrapper.swift in Sources */,
 				865D028527D9F1B3006C815D /* Error Handling.swift in Sources */,
+				86B189AF27EB0C6C001CFBD3 /* UIApplication Extensions.swift in Sources */,
 				86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */,
 				8612CD6627E1A58300976E8F /* VehicleImageView.swift in Sources */,
 				864C732127D06A7F00047165 /* LogItem.swift in Sources */,

@@ -68,9 +68,29 @@ struct AttachmentView: View {
                 Text("An error occurred previewing this attachment")
             }
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button(action: share) {
+                    Label("Share", systemImage: "square.and.arrow.up")
+                }
+            }
+        }
         .navigationTitle(attachment.fileName ?? "Attachment")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: tryToWriteFile)
         .onDisappear(perform: tryToRemoveFile)
+    }
+
+    private func share() {
+        guard let fileURL = fileURL else {
+            return
+        }
+        guard let keyWindow = UIApplication.shared.keyWindow else {
+            return
+        }
+        let activityViewController = UIActivityViewController(
+            activityItems: [fileURL], applicationActivities: nil
+        )
+        keyWindow.rootViewController?.present(activityViewController, animated: true, completion: nil)
     }
 }
