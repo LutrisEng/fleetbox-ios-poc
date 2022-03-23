@@ -17,6 +17,7 @@
 
 import SwiftUI
 import Sentry
+import FilePicker
 
 struct LogItemView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -107,23 +108,30 @@ struct LogItemView: View {
                                 LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
                             }
                         }
-                                .onDelete { offsets in
-                                    withAnimation {
-                                        offsets.map {
-                                                    lineItems[$0]
-                                                }
-                                                .forEach(viewContext.delete)
-                                    }
-                                }
+                        .onDelete { offsets in
+                            withAnimation {
+                                offsets.map {
+                                            lineItems[$0]
+                                        }
+                                        .forEach(viewContext.delete)
+                            }
+                        }
                     }
                 }
                 Section(header: Text("Attachments")) {
                     ForEach(logItem.attachments) { attachment in
-                        Text(attachment.fileName ?? "Attachment")
+                        NavigationLink(attachment.fileName ?? "Attachment") {
+                            AttachmentView(attachment: attachment)
+                        }
                     }
-                    NavigationLink("Add attachment", tag: NavigationState.addAttachment, selection: $navigationState) {
-                        Text("Add attachment")
+                    .onDelete { offsets in
+                        withAnimation {
+                            offsets
+                                .map { logItem.attachments[$0] }
+                                .forEach(viewContext.delete)
+                        }
                     }
+                    FilePicker(types: [.data], allowMultiple: true, title: "Add attachment", onPicked: addAttachments)
                 }
             }
         }
@@ -145,6 +153,21 @@ struct LogItemView: View {
                 )
                 EditButton()
             }
+        }
+    }
+
+    private func addAttachments(urls: [URL]) {
+        for url in urls {
+            ignoreErrors {
+                let contents = try Data(contentsOf: url)
+                let attachment = Attachment(context: viewContext)
+                attachment.logItem = logItem
+                attachment.fileContents = contents
+                attachment.fileName = url.lastPathComponent
+            }
+        }
+        ignoreErrors {
+            try viewContext.save()
         }
     }
 }

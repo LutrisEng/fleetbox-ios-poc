@@ -78,6 +78,10 @@
 		86B17F8C27D45EDF001E52C6 /* LineItemTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */; };
 		86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9427D47270001E52C6 /* LineItemField.swift */; };
 		86B17F9E27D48D14001E52C6 /* LogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B17F9D27D48D14001E52C6 /* LogItemView.swift */; };
+		86B189A527EAFD0F001CFBD3 /* FilePicker in Frameworks */ = {isa = PBXBuildFile; productRef = 86B189A427EAFD0F001CFBD3 /* FilePicker */; };
+		86B189A727EAFEBE001CFBD3 /* QuickViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189A627EAFEBE001CFBD3 /* QuickViewController.swift */; };
+		86B189A927EAFF5D001CFBD3 /* Temporary Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189A827EAFF5D001CFBD3 /* Temporary Files.swift */; };
+		86B189AD27EB0109001CFBD3 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189AC27EB0109001CFBD3 /* AttachmentView.swift */; };
 		86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
 		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
@@ -200,6 +204,9 @@
 		86B17F8E27D467EF001E52C6 /* LineItemTypes.schema.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LineItemTypes.schema.json; sourceTree = "<group>"; };
 		86B17F9427D47270001E52C6 /* LineItemField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemField.swift; sourceTree = "<group>"; };
 		86B17F9D27D48D14001E52C6 /* LogItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemView.swift; sourceTree = "<group>"; };
+		86B189A627EAFEBE001CFBD3 /* QuickViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickViewController.swift; sourceTree = "<group>"; };
+		86B189A827EAFF5D001CFBD3 /* Temporary Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Temporary Files.swift"; sourceTree = "<group>"; };
+		86B189AC27EB0109001CFBD3 /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
 		86B5D09427D076B70040399C /* LineItemTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeTest.swift; sourceTree = "<group>"; };
 		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
@@ -214,6 +221,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86B189A527EAFD0F001CFBD3 /* FilePicker in Frameworks */,
 				8612CD6927E1A68B00976E8F /* ImagePickerView in Frameworks */,
 				861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */,
 				86D2DA7227D081490083254E /* Alamofire in Frameworks */,
@@ -316,6 +324,7 @@
 			children = (
 				86B17F9D27D48D14001E52C6 /* LogItemView.swift */,
 				86638D2227D970F300149689 /* LogItemLabelView.swift */,
+				86B189AC27EB0109001CFBD3 /* AttachmentView.swift */,
 			);
 			path = "Log Item";
 			sourceTree = "<group>";
@@ -380,6 +389,7 @@
 				86500C6F27DAD84F00A5111E /* FleetboxTextField.swift */,
 				8612CD6A27E1C77D00976E8F /* WithDoneButton.swift */,
 				8612CD6E27E2DEF200976E8F /* SaveOnLeave.swift */,
+				86B189A627EAFEBE001CFBD3 /* QuickViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -415,6 +425,7 @@
 				861DA48E27E1233200775276 /* Date Functions.swift */,
 				8612CD6127E1956D00976E8F /* Array Extensions.swift */,
 				8612CD6C27E1CF4400976E8F /* UIImage Extensions.swift */,
+				86B189A827EAFF5D001CFBD3 /* Temporary Files.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -551,6 +562,7 @@
 				861DAE4D27CDDAD700AFE972 /* Sentry */,
 				86D2DA7127D081490083254E /* Alamofire */,
 				8612CD6827E1A68B00976E8F /* ImagePickerView */,
+				86B189A427EAFD0F001CFBD3 /* FilePicker */,
 			);
 			productName = "Fleetbox (iOS)";
 			productReference = 861DAE1227CDD59F00AFE972 /* Fleetbox Debug.app */;
@@ -628,6 +640,7 @@
 				861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 				86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */,
 				8612CD6727E1A68B00976E8F /* XCRemoteSwiftPackageReference "ImagePickerView" */,
+				86B189A327EAFD0F001CFBD3 /* XCRemoteSwiftPackageReference "FilePicker" */,
 			);
 			productRefGroup = 861DAE1327CDD59F00AFE972 /* Products */;
 			projectDirPath = "";
@@ -699,6 +712,7 @@
 				8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */,
 				8664C24127DA91BB00AE9ADB /* ShopsView.swift in Sources */,
 				864C731E27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */,
+				86B189A927EAFF5D001CFBD3 /* Temporary Files.swift in Sources */,
 				8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */,
 				861DA48727E11DFF00775276 /* ExportContext.swift in Sources */,
 				86500C7827DC00DF00A5111E /* OdometerReadingsView.swift in Sources */,
@@ -726,6 +740,7 @@
 				86500C9327DC0E3200A5111E /* PartOdometerIndividualView.swift in Sources */,
 				8664C24E27DAAA8200AE9ADB /* ExportableOdometerReading.swift in Sources */,
 				861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */,
+				86B189A727EAFEBE001CFBD3 /* QuickViewController.swift in Sources */,
 				86500C8F27DC0DE900A5111E /* PartOdometer.swift in Sources */,
 				86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */,
 				861E4D9C27DC13D00072B6DD /* LineItemTypeLabelView.swift in Sources */,
@@ -752,6 +767,7 @@
 				8664C23D27DA906A00AE9ADB /* TireSetView.swift in Sources */,
 				86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */,
 				86500C7627DBF22D00A5111E /* ShopPickerView.swift in Sources */,
+				86B189AD27EB0109001CFBD3 /* AttachmentView.swift in Sources */,
 				861DAE3727CDD59F00AFE972 /* VehiclesView.swift in Sources */,
 				86500C9E27DC125200A5111E /* EditTireSetLineItemFieldView.swift in Sources */,
 				861DA48B27E11E3E00775276 /* ExportableExportContext.swift in Sources */,
@@ -1123,6 +1139,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		86B189A327EAFD0F001CFBD3 /* XCRemoteSwiftPackageReference "FilePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/markrenaud/FilePicker";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1143,6 +1167,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
 			productName = Sentry;
+		};
+		86B189A427EAFD0F001CFBD3 /* FilePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86B189A327EAFD0F001CFBD3 /* XCRemoteSwiftPackageReference "FilePicker" */;
+			productName = FilePicker;
 		};
 		86D2DA7127D081490083254E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

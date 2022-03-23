@@ -47,6 +47,11 @@ let osProjects: [OSProject] = [
         name: "ImagePickerView",
         url: URL(string: "https://github.com/ralfebert/ImagePickerView")!,
         license: "MIT"
+    ),
+    OSProject(
+        name: "FilePicker",
+        url: URL(string: "https://github.com/markrenaud/FilePicker")!,
+        license: "MIT"
     )
 ]
 
