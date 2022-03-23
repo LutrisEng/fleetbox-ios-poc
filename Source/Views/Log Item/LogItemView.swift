@@ -121,7 +121,8 @@ struct LogItemView: View {
                     }
                 }
                 Section(header: Text("Attachments")) {
-                    ForEach(logItem.attachments) { attachment in
+                    let attachments = logItem.attachments
+                    ForEach(attachments) { attachment in
                         NavigationLink(attachment.fileName ?? "Attachment") {
                             AttachmentView(attachment: attachment)
                         }
@@ -129,7 +130,7 @@ struct LogItemView: View {
                     .onDelete { offsets in
                         withAnimation {
                             offsets
-                                .map { logItem.attachments[$0] }
+                                .map { attachments[$0] }
                                 .forEach(viewContext.delete)
                         }
                     }
