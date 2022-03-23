@@ -18,6 +18,7 @@
 import SwiftUI
 
 struct TireSetView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var tireSet: TireSet
@@ -65,17 +66,19 @@ struct TireSetView: View {
                     }
                 }
             }
-            Section(header: Text("Actions")) {
-                NavigationLink("Merge with other tire set") {
-                    TireSetPickerView(
-                        selected: nil,
-                        allowNone: false,
-                        exclude: [tireSet]
-                    ) {
-                        tireSet.mergeWith($0!)
+            if editable {
+                Section(header: Text("Actions")) {
+                    NavigationLink("Merge with other tire set") {
+                        TireSetPickerView(
+                            selected: nil,
+                            allowNone: false,
+                            exclude: [tireSet]
+                        ) {
+                            tireSet.mergeWith($0!)
+                        }
+                        .navigationTitle("Merge tire sets")
+                        .navigationBarTitleDisplayMode(.inline)
                     }
-                    .navigationTitle("Merge tire sets")
-                    .navigationBarTitleDisplayMode(.inline)
                 }
             }
         }

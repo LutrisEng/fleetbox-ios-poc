@@ -41,6 +41,17 @@ struct FleetboxAppMainWindow: View {
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.colorScheme) var colorScheme
 
+    struct PreviewImportState {
+        let url: URL
+        let vehicle: Vehicle
+        let persistence: PersistenceController
+    }
+
+    @State private var previewImportState: PreviewImportState?
+    @State private var showPreview: Bool = false
+    @State private var previewError: Bool = false
+    @State private var importing: Bool = false
+
     var body: some View {
         TabView {
             VehiclesView()
@@ -77,6 +88,84 @@ struct FleetboxAppMainWindow: View {
                 }
             }
         )
+        .sheet(isPresented: $showPreview) {
+            if previewError {
+                Text("An error occurred opening this file.")
+            } else if let previewImportState = previewImportState {
+                NavigationView {
+                    VehicleView(vehicle: previewImportState.vehicle)
+                        .toolbar {
+                            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                                if importing {
+                                    ProgressView()
+                                } else {
+                                    Button(action: importPreview) {
+                                        Label("Import vehicle", systemImage: "square.and.arrow.down")
+                                    }
+                                }
+                            }
+                        }
+                }
+                .environment(\.managedObjectContext, previewImportState.persistence.container.viewContext)
+                .environment(\.editable, false)
+            } else {
+                ProgressView()
+            }
+        }
+        .onOpenURL { url in
+            showPreview = true
+            previewImportState = nil
+            let persistence = PersistenceController(inMemory: true)
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    let gzipped = try Data(contentsOf: url)
+                    let json = gzipped.isGzipped ? try gzipped.gunzipped() : gzipped
+                    let vehicle = try Vehicle.importData(json, context: persistence.container.viewContext)
+                    DispatchQueue.main.async {
+                        previewImportState = PreviewImportState(
+                            url: url,
+                            vehicle: vehicle,
+                            persistence: persistence
+                        )
+                    }
+                } catch {
+                    SentrySDK.capture(error: error)
+                    print(error)
+                    DispatchQueue.main.async {
+                        previewError = true
+                    }
+                }
+            }
+        }
+    }
+
+    private func importPreview() {
+        if let previewImportState = previewImportState {
+            importing = true
+            DispatchQueue.global(qos: .userInitiated).async {
+                do {
+                    let gzipped = try Data(contentsOf: previewImportState.url)
+                    let json = gzipped.isGzipped ? try gzipped.gunzipped() : gzipped
+                    DispatchQueue.main.async {
+                        withAnimation {
+                            do {
+                                _ = try Vehicle.importData(json, context: viewContext)
+                                try viewContext.save()
+                            } catch {
+                                SentrySDK.capture(error: error)
+                            }
+                            self.previewImportState = nil
+                            previewError = false
+                            showPreview = false
+                            importing = false
+                        }
+                    }
+                } catch {
+                    SentrySDK.capture(error: error)
+                    importing = false
+                }
+            }
+        }
     }
 }
 

@@ -18,17 +18,26 @@
 import SwiftUI
 
 struct OdometerReadingView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var odometerReading: OdometerReading
 
     var body: some View {
         Form {
-            DatePicker(
-                    "Performed",
-                    selection: convertToNonNilBinding(date: $odometerReading.at),
-                    displayedComponents: [.date]
-            )
+            if editable {
+                DatePicker(
+                        "Performed",
+                        selection: convertToNonNilBinding(date: $odometerReading.at),
+                        displayedComponents: [.date]
+                )
+            } else if let readAt = odometerReading.at {
+                HStack {
+                    Text("Performed")
+                    Spacer()
+                    Text(readAt.formatted(date: .abbreviated, time: .omitted)).foregroundColor(.secondary)
+                }
+            }
             FleetboxTextField(
                     value: Binding(
                         get: { odometerReading.reading },

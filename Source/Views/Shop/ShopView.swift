@@ -18,6 +18,7 @@
 import SwiftUI
 
 struct ShopView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var shop: Shop
@@ -50,18 +51,20 @@ struct ShopView: View {
                     }
                 }
             }
-            Section(header: Text("Actions")) {
-                NavigationLink("Merge with other shop") {
-                    ShopPickerView(
-                        selected: nil,
-                        exclude: [shop]
-                    ) { shop in
-                        withAnimation {
-                            shop.mergeWith(shop)
+            if editable {
+                Section(header: Text("Actions")) {
+                    NavigationLink("Merge with other shop") {
+                        ShopPickerView(
+                            selected: nil,
+                            exclude: [shop]
+                        ) { shop in
+                            withAnimation {
+                                shop.mergeWith(shop)
+                            }
                         }
+                        .navigationTitle("Merge shops")
+                        .navigationBarTitleDisplayMode(.inline)
                     }
-                    .navigationTitle("Merge shops")
-                    .navigationBarTitleDisplayMode(.inline)
                 }
             }
         }

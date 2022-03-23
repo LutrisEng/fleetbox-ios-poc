@@ -20,6 +20,7 @@ import Sentry
 import FilePicker
 
 struct LogItemView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var logItem: LogItem
@@ -46,11 +47,19 @@ struct LogItemView: View {
                         name: "Name",
                         example: "10k service"
                 )
-                DatePicker(
-                        "Performed",
-                        selection: convertToNonNilBinding(date: $logItem.performedAt),
-                        displayedComponents: [.date]
-                )
+                if editable {
+                    DatePicker(
+                            "Performed",
+                            selection: convertToNonNilBinding(date: $logItem.performedAt),
+                            displayedComponents: [.date]
+                    )
+                } else if let performedAt = logItem.performedAt {
+                    HStack {
+                        Text("Performed")
+                        Spacer()
+                        Text(performedAt.formatted(date: .abbreviated, time: .omitted)).foregroundColor(.secondary)
+                    }
+                }
                 if let vehicle = logItem.vehicle {
                     Section(header: Text("Vehicle")) {
                         NavigationLink(vehicle.displayNameWithFallback) {
@@ -63,17 +72,21 @@ struct LogItemView: View {
                         NavigationLink("Performed by \(shop.name ?? "a shop")") {
                             ShopView(shop: shop)
                         }
-                        Button("Remove shop") {
-                            logItem.shop = nil
+                        if editable {
+                            Button("Remove shop") {
+                                logItem.shop = nil
+                            }
                         }
                     } else {
                         Text("Performed by owner")
-                        NavigationLink("Add shop") {
-                            ShopPickerView(selected: logItem.shop) {
-                                logItem.shop = $0
+                        if editable {
+                            NavigationLink("Add shop") {
+                                ShopPickerView(selected: logItem.shop) {
+                                    logItem.shop = $0
+                                }
+                                .navigationTitle("Add shop")
+                                .navigationBarTitleDisplayMode(.inline)
                             }
-                            .navigationTitle("Add shop")
-                            .navigationBarTitleDisplayMode(.inline)
                         }
                     }
                 }
@@ -88,12 +101,14 @@ struct LogItemView: View {
                             example: 0
                         )
                         .unit("miles")
-                        Button("Remove odometer reading") {
-                            withAnimation {
-                                viewContext.delete(odometerReading)
+                        if editable {
+                            Button("Remove odometer reading") {
+                                withAnimation {
+                                    viewContext.delete(odometerReading)
+                                }
                             }
                         }
-                    } else {
+                    } else if editable {
                         Button("Add odometer reading") {
                             _ = OdometerReading(context: viewContext, logItem: logItem)
                         }
@@ -106,7 +121,11 @@ struct LogItemView: View {
                             .foregroundColor(.secondary)
                     } else {
                         ForEach(lineItems) { lineItem in
-                            NavigationLink(destination: LineItemView(lineItem: lineItem)) {
+                            if editable {
+                                NavigationLink(destination: LineItemView(lineItem: lineItem)) {
+                                    LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
+                                }
+                            } else {
                                 LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
                             }
                         }
@@ -118,6 +137,7 @@ struct LogItemView: View {
                                         .forEach(viewContext.delete)
                             }
                         }
+                        .deleteDisabled(!editable)
                     }
                 }
                 Section(header: Text("Attachments")) {
@@ -134,10 +154,18 @@ struct LogItemView: View {
                                 .forEach(viewContext.delete)
                         }
                     }
+                    .deleteDisabled(!editable)
                     if addingAttachments {
                         ProgressView()
                     }
-                    FilePicker(types: [.data], allowMultiple: true, title: "Add attachment", onPicked: addAttachments)
+                    if editable {
+                        FilePicker(
+                            types: [.data],
+                            allowMultiple: true,
+                            title: "Add attachment",
+                            onPicked: addAttachments
+                        )
+                    }
                 }
             }
         }
@@ -147,17 +175,19 @@ struct LogItemView: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                NavigationLink(
-                    destination: {
-                        LineItemTypePickerView {
-                            _ = createLineItem(type: $0)
-                        }
-                        .navigationTitle("Add line item")
-                        .navigationBarTitleDisplayMode(.inline)
-                    },
-                    label: { Label("Add Line Item", systemImage: "plus") }
-                )
-                EditButton()
+                if editable {
+                    NavigationLink(
+                        destination: {
+                            LineItemTypePickerView {
+                                _ = createLineItem(type: $0)
+                            }
+                            .navigationTitle("Add line item")
+                            .navigationBarTitleDisplayMode(.inline)
+                        },
+                        label: { Label("Add Line Item", systemImage: "plus") }
+                    )
+                    EditButton()
+                }
             }
         }
     }

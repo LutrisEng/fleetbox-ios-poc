@@ -25,7 +25,8 @@ struct VehiclesView: View {
 
     @FetchRequest(
             sortDescriptors: [NSSortDescriptor(keyPath: \Vehicle.sortOrder, ascending: true)],
-            animation: .default)
+            animation: .default
+    )
     private var vehicles: FetchedResults<Vehicle>
 
     var body: some View {

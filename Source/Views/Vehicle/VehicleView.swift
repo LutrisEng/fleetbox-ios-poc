@@ -20,6 +20,7 @@ import Sentry
 import Gzip
 
 struct VehicleView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var vehicle: Vehicle
@@ -29,10 +30,7 @@ struct VehicleView: View {
     var body: some View {
         VStack {
             Form {
-                VehicleImageView(imageData: Binding(
-                    get: { vehicle.imageData },
-                    set: { vehicle.imageData = $0 }
-                ))
+                VehicleImageView(imageData: $vehicle.imageData)
                 VehicleDetailsView(vehicle: vehicle)
                 PartOdometersView(vehicle: vehicle)
                 MaintenanceLogView(vehicle: vehicle)
@@ -43,17 +41,19 @@ struct VehicleView: View {
         .navigationTitle(vehicle.fullModelName)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                if exporting {
-                    ProgressView()
-                } else {
-                    Button(action: share) {
-                        Label("Share", systemImage: "square.and.arrow.up")
+                if editable {
+                    if exporting {
+                        ProgressView()
+                    } else {
+                        Button(action: share) {
+                            Label("Share", systemImage: "square.and.arrow.up")
+                        }
                     }
+                    Button(action: addLogItem) {
+                        Label("Add Log Item", systemImage: "plus")
+                    }
+                    EditButton()
                 }
-                Button(action: addLogItem) {
-                    Label("Add Log Item", systemImage: "plus")
-                }
-                EditButton()
             }
         }
     }

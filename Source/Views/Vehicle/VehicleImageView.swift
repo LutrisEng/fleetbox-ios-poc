@@ -19,6 +19,7 @@ import SwiftUI
 import ImagePickerView
 
 struct VehicleImageView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @Binding var imageData: Data?
@@ -34,39 +35,53 @@ struct VehicleImageView: View {
         }
     }
 
+    @ViewBuilder
+    func imageView(_ image: UIImage) -> some View {
+        Image(uiImage: image)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .cornerRadius(20)
+    }
+
     var body: some View {
         Group {
             if let image = image {
-                ZStack(alignment: .topTrailing) {
-                    Button(
-                        action: {
-                            showImagePicker = true
-                        }, label: {
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .cornerRadius(20)
-                        }
-                    )
-                    Button(
-                        action: {
-                            self.imageData = nil
-                        }, label: {
-                            Image(systemName: "xmark.circle")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: 20, maxHeight: 20)
-                                .foregroundColor(.red)
-                                .padding(15)
-                        }
-                    )
+                if editable {
+                    ZStack(alignment: .topTrailing) {
+                        Button(
+                            action: {
+                                showImagePicker = true
+                            }, label: {
+                                imageView(image)
+                            }
+                        )
+                        Button(
+                            action: {
+                                self.imageData = nil
+                            }, label: {
+                                if editable {
+                                    Image(systemName: "xmark.circle")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: 20, maxHeight: 20)
+                                        .foregroundColor(.red)
+                                        .padding(15)
+                                }
+                            }
+                        )
+                    }
+                    .buttonStyle(.plain)
+                    .listRowBackground(EmptyView())
+                } else {
+                    imageView(image)
+                        .listRowBackground(EmptyView())
                 }
-                .buttonStyle(.plain)
-                .listRowBackground(EmptyView())
-            } else {
+            } else if editable {
                 Button("Add image") {
                     showImagePicker = true
                 }
+            } else {
+                Text("No image")
             }
         }
         .sheet(isPresented: $showImagePicker, content: imagePickerSheet)

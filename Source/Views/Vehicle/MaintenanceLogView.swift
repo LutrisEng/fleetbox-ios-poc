@@ -18,6 +18,7 @@
 import SwiftUI
 
 struct MaintenanceLogView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var vehicle: Vehicle
@@ -34,13 +35,14 @@ struct MaintenanceLogView: View {
                         LogItemLabelView(logItem: logItem)
                     }
                 }
-                        .onDelete { offsets in
-                            withAnimation {
-                                offsets
-                                    .map { logItems[$0] }
-                                    .forEach(viewContext.delete)
-                            }
-                        }
+                .onDelete { offsets in
+                    withAnimation {
+                        offsets
+                            .map { logItems[$0] }
+                            .forEach(viewContext.delete)
+                    }
+                }
+                .deleteDisabled(!editable)
             }
         }
     }

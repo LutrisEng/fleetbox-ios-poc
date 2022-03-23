@@ -19,6 +19,7 @@ import SwiftUI
 import Sentry
 
 struct VINDetailView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var vehicle: Vehicle
@@ -60,7 +61,7 @@ struct VINDetailView: View {
     var body: some View {
         HStack {
             FleetboxTextField(value: $vehicle.vin, name: "VIN", example: dummyData.vin)
-            if let vin = vehicle.vin, vin != "" {
+            if editable, let vin = vehicle.vin, vin != "" {
                 switch state {
                 case .base:
                     Button(

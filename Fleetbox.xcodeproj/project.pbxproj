@@ -89,6 +89,7 @@
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
 		86D2DA7227D081490083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7127D081490083254E /* Alamofire */; };
 		86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB569A27E171A0007FA2DD /* AboutView.swift */; };
+		86F8F80727EB197600442694 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F80627EB197600442694 /* Editable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -217,6 +218,7 @@
 		86EB569A27E171A0007FA2DD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		86EB569C27E17681007FA2DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		86EB569D27E176AC007FA2DD /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		86F8F80627EB197600442694 /* Editable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -394,6 +396,7 @@
 				8612CD6A27E1C77D00976E8F /* WithDoneButton.swift */,
 				8612CD6E27E2DEF200976E8F /* SaveOnLeave.swift */,
 				86B189A627EAFEBE001CFBD3 /* QuickViewController.swift */,
+				86F8F80627EB197600442694 /* Editable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -768,6 +771,7 @@
 				86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */,
 				86500C9127DC0DFE00A5111E /* PartOdometerRowView.swift in Sources */,
 				8664C24C27DAAA7900AE9ADB /* ExportableLogItem.swift in Sources */,
+				86F8F80727EB197600442694 /* Editable.swift in Sources */,
 				86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */,
 				8664C23F27DA907A00AE9ADB /* TireSetsView.swift in Sources */,
 				86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */,

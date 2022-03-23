@@ -18,6 +18,7 @@
 import SwiftUI
 
 struct PartOdometersView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var vehicle: Vehicle
@@ -27,20 +28,22 @@ struct PartOdometersView: View {
 
     var body: some View {
         Section(header: Text("Odometer")) {
-            Button("Record odometer reading") {
-                createPresented = true
-            }
-                    .sheet(isPresented: $createPresented) {
-                        OdometerReadingFormView(previousReading: vehicle.odometer) { value in
-                            let reading = OdometerReading(context: viewContext)
-                            reading.vehicle = vehicle
-                            reading.at = Date.now
-                            reading.reading = value
-                            createPresented = false
-                        } onDismiss: {
-                            createPresented = false
-                        }
+            if editable {
+                Button("Record odometer reading") {
+                    createPresented = true
+                }
+                .sheet(isPresented: $createPresented) {
+                    OdometerReadingFormView(previousReading: vehicle.odometer) { value in
+                        let reading = OdometerReading(context: viewContext)
+                        reading.vehicle = vehicle
+                        reading.at = Date.now
+                        reading.reading = value
+                        createPresented = false
+                    } onDismiss: {
+                        createPresented = false
                     }
+                }
+            }
             NavigationLink("View odometer readings") {
                 OdometerReadingsView(vehicle: vehicle)
                     .navigationTitle("Odometer readings")

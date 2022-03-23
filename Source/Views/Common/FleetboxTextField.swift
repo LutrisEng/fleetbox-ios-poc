@@ -18,6 +18,7 @@
 import SwiftUI
 
 struct FleetboxTextField: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     var value: Binding<String?>
@@ -72,56 +73,63 @@ struct FleetboxTextField: View {
         }
     }
 
+    @ViewBuilder
+    private var label: some View {
+        HStack {
+            if let name = name {
+                Text(name)
+            }
+            Spacer()
+            Text(value.wrappedValue ?? "").foregroundColor(.secondary)
+                + maybeUnitName
+        }
+    }
+
     var body: some View {
-        NavigationLink(
-            destination: {
-                Form {
-                    if let description = description {
-                        Text(description)
-                    }
-                    HStack {
-                        ZStack(alignment: .trailing) {
-                            TextField(
-                                example ?? "",
-                                text: $tempValue
-                            )
-                            .keyboardType(number ? .decimalPad : .default)
-                            if let value = value.wrappedValue, !value.isEmpty {
-                                Button(
-                                    action: {
-                                        self.tempValue = ""
-                                    },
-                                    label: {
-                                        Image(systemName: "xmark.circle.fill")
-                                                .foregroundColor(.secondary)
-                                    }
+        if editable {
+            NavigationLink(
+                destination: {
+                    Form {
+                        if let description = description {
+                            Text(description)
+                        }
+                        HStack {
+                            ZStack(alignment: .trailing) {
+                                TextField(
+                                    example ?? "",
+                                    text: $tempValue
                                 )
-                                .padding(.trailing, 8)
-                                .buttonStyle(BorderlessButtonStyle())
+                                .keyboardType(number ? .decimalPad : .default)
+                                if let value = value.wrappedValue, !value.isEmpty {
+                                    Button(
+                                        action: {
+                                            self.tempValue = ""
+                                        },
+                                        label: {
+                                            Image(systemName: "xmark.circle.fill")
+                                                    .foregroundColor(.secondary)
+                                        }
+                                    )
+                                    .padding(.trailing, 8)
+                                    .buttonStyle(BorderlessButtonStyle())
+                                }
+                            }
+                            if let unitName = unitName {
+                                Spacer()
+                                Text(unitName)
                             }
                         }
-                        if let unitName = unitName {
-                            Spacer()
-                            Text(unitName)
-                        }
+                        .onAppear(perform: prepare)
+                        .onDisappear(perform: save)
+                        .navigationTitle(name ?? "")
+                        .navigationBarTitleDisplayMode(.inline)
                     }
-                    .onAppear(perform: prepare)
-                    .onDisappear(perform: save)
-                    .navigationTitle(name ?? "")
-                    .navigationBarTitleDisplayMode(.inline)
-                }
-            },
-            label: {
-                HStack {
-                    if let name = name {
-                        Text(name)
-                    }
-                    Spacer()
-                    Text(value.wrappedValue ?? "").foregroundColor(.secondary)
-                        + maybeUnitName
-                }
-            }
-        )
+                },
+                label: { label }
+            )
+        } else {
+            label
+        }
     }
 
     private func prepare() {

@@ -20,6 +20,8 @@ import Sentry
 
 struct PersistenceController {
     static let shared = PersistenceController()
+    static let managedObjectModelURL = Bundle.main.url(forResource: "Fleetbox", withExtension: "momd")!
+    static let managedObjectModel = NSManagedObjectModel(contentsOf: managedObjectModelURL)!
 
     #if DEBUG
     struct Fixtures {
@@ -151,11 +153,20 @@ struct PersistenceController {
     let container: NSPersistentCloudKitContainer
 
     init(inMemory: Bool = false) {
-        container = NSPersistentCloudKitContainer(name: "Fleetbox")
-        let description = container.persistentStoreDescriptions.first
+        var name = "Fleetbox"
         if inMemory {
-            description!.url = URL(fileURLWithPath: "/dev/null")
+            name += ProcessInfo().globallyUniqueString
+        }
+        container = NSPersistentCloudKitContainer(
+            name: name,
+            managedObjectModel: PersistenceController.managedObjectModel
+        )
+        if inMemory {
+            container.persistentStoreDescriptions = [
+                NSPersistentStoreDescription(url: URL(fileURLWithPath: "/dev/null"))
+            ]
         } else {
+            let description = container.persistentStoreDescriptions.first
             description?.type = NSSQLiteStoreType
             description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
         }
