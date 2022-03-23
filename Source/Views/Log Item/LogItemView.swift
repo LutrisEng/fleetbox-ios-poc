@@ -36,6 +36,8 @@ struct LogItemView: View {
         }
     }
 
+    @State private var addingAttachments: Bool = false
+
     var body: some View {
         VStack {
             Form {
@@ -131,6 +133,9 @@ struct LogItemView: View {
                                 .forEach(viewContext.delete)
                         }
                     }
+                    if addingAttachments {
+                        ProgressView()
+                    }
                     FilePicker(types: [.data], allowMultiple: true, title: "Add attachment", onPicked: addAttachments)
                 }
             }
@@ -157,17 +162,33 @@ struct LogItemView: View {
     }
 
     private func addAttachments(urls: [URL]) {
-        for url in urls {
-            ignoreErrors {
-                let contents = try Data(contentsOf: url)
-                let attachment = Attachment(context: viewContext)
-                attachment.logItem = logItem
-                attachment.fileContents = contents
-                attachment.fileName = url.lastPathComponent
-            }
+        withAnimation {
+            addingAttachments = true
         }
-        ignoreErrors {
-            try viewContext.save()
+        DispatchQueue.global(qos: .userInitiated).async {
+            let attachments = urls.compactMap { url -> Attachment? in
+                do {
+                    let contents = try Data(contentsOf: url)
+                    let attachment = Attachment(context: viewContext)
+                    attachment.fileContents = contents
+                    attachment.fileName = url.lastPathComponent
+                    return attachment
+                } catch {
+                    SentrySDK.capture(error: error)
+                    return nil
+                }
+            }
+            DispatchQueue.main.async {
+                withAnimation {
+                    for attachment in attachments {
+                        attachment.logItem = logItem
+                    }
+                    addingAttachments = false
+                    ignoreErrors {
+                        try viewContext.save()
+                    }
+                }
+            }
         }
     }
 }
