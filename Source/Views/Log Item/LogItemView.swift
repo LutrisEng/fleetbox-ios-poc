@@ -121,7 +121,7 @@ struct LogItemView: View {
                     }
                 }
                 Section(header: Text("Attachments")) {
-                    let attachments = logItem.attachments
+                    let attachments = logItem.attachments.sorted { $0.sortOrder < $1.sortOrder }
                     ForEach(attachments) { attachment in
                         NavigationLink(attachment.fileName ?? "Attachment") {
                             AttachmentView(attachment: attachment)
@@ -181,8 +181,11 @@ struct LogItemView: View {
             }
             DispatchQueue.main.async {
                 withAnimation {
+                    var sortOrder = (logItem.attachments.map(\.sortOrder).max() ?? 0) + 1
                     for attachment in attachments {
                         attachment.logItem = logItem
+                        attachment.sortOrder = sortOrder
+                        sortOrder += 1
                     }
                     addingAttachments = false
                     ignoreErrors {

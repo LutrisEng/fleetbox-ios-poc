@@ -17,11 +17,14 @@
 
 import SwiftUI
 import Sentry
+import Gzip
 
 struct VehicleView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var vehicle: Vehicle
+
+    @State private var exporting: Bool = false
 
     var body: some View {
         VStack {
@@ -40,10 +43,42 @@ struct VehicleView: View {
         .navigationTitle(vehicle.fullModelName)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
+                if exporting {
+                    ProgressView()
+                } else {
+                    Button(action: share) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
+                }
                 Button(action: addLogItem) {
                     Label("Add Log Item", systemImage: "plus")
                 }
                 EditButton()
+            }
+        }
+    }
+
+    private func share() {
+        exporting = true
+        DispatchQueue.global(qos: .userInitiated).async {
+            do {
+                let data = try vehicle.export()
+                let gzipped = try data.gzipped()
+                let fileURL = temporaryFileURL(filename: "\(vehicle.displayNameWithFallback).fleetboxvehicle")
+                try gzipped.write(to: fileURL)
+                DispatchQueue.main.async {
+                    if let keyWindow = UIApplication.shared.keyWindow {
+                        let activityViewController = UIActivityViewController(
+                            activityItems: [fileURL], applicationActivities: nil
+                        )
+                        keyWindow.rootViewController?.present(activityViewController, animated: true) {
+                            exporting = false
+                        }
+                    }
+                }
+            } catch {
+                SentrySDK.capture(error: error)
+                exporting = false
             }
         }
     }

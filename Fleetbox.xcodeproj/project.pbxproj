@@ -83,6 +83,7 @@
 		86B189A927EAFF5D001CFBD3 /* Temporary Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189A827EAFF5D001CFBD3 /* Temporary Files.swift */; };
 		86B189AD27EB0109001CFBD3 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189AC27EB0109001CFBD3 /* AttachmentView.swift */; };
 		86B189AF27EB0C6C001CFBD3 /* UIApplication Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */; };
+		86B189B227EB0F6B001CFBD3 /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = 86B189B127EB0F6B001CFBD3 /* Gzip */; };
 		86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
 		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
@@ -224,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86B189A527EAFD0F001CFBD3 /* FilePicker in Frameworks */,
+				86B189B227EB0F6B001CFBD3 /* Gzip in Frameworks */,
 				8612CD6927E1A68B00976E8F /* ImagePickerView in Frameworks */,
 				861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */,
 				86D2DA7227D081490083254E /* Alamofire in Frameworks */,
@@ -566,6 +568,7 @@
 				86D2DA7127D081490083254E /* Alamofire */,
 				8612CD6827E1A68B00976E8F /* ImagePickerView */,
 				86B189A427EAFD0F001CFBD3 /* FilePicker */,
+				86B189B127EB0F6B001CFBD3 /* Gzip */,
 			);
 			productName = "Fleetbox (iOS)";
 			productReference = 861DAE1227CDD59F00AFE972 /* Fleetbox Debug.app */;
@@ -644,6 +647,7 @@
 				86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */,
 				8612CD6727E1A68B00976E8F /* XCRemoteSwiftPackageReference "ImagePickerView" */,
 				86B189A327EAFD0F001CFBD3 /* XCRemoteSwiftPackageReference "FilePicker" */,
+				86B189B027EB0F6B001CFBD3 /* XCRemoteSwiftPackageReference "GzipSwift" */,
 			);
 			productRefGroup = 861DAE1327CDD59F00AFE972 /* Products */;
 			projectDirPath = "";
@@ -1151,6 +1155,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		86B189B027EB0F6B001CFBD3 /* XCRemoteSwiftPackageReference "GzipSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/1024jp/GzipSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1176,6 +1188,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 86B189A327EAFD0F001CFBD3 /* XCRemoteSwiftPackageReference "FilePicker" */;
 			productName = FilePicker;
+		};
+		86B189B127EB0F6B001CFBD3 /* Gzip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86B189B027EB0F6B001CFBD3 /* XCRemoteSwiftPackageReference "GzipSwift" */;
+			productName = Gzip;
 		};
 		86D2DA7127D081490083254E /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

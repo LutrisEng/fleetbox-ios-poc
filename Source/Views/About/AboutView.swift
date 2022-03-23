@@ -52,6 +52,11 @@ let osProjects: [OSProject] = [
         name: "FilePicker",
         url: URL(string: "https://github.com/markrenaud/FilePicker")!,
         license: "MIT"
+    ),
+    OSProject(
+        name: "GzipSwift",
+        url: URL(string: "https://github.com/1024jp/GzipSwift")!,
+        license: "MIT"
     )
 ]
 
