@@ -21,30 +21,38 @@ import Sentry
 struct AttachmentView: View {
     let attachment: Attachment
     @State private var fileURL: URL?
+    @State private var loading: Bool = true
 
     init(attachment: Attachment) {
         self.attachment = attachment
     }
 
     func tryToWriteFile() {
-        if let contents = attachment.fileContents {
-            do {
+        DispatchQueue.global(qos: .userInteractive).async {
+            if let contents = attachment.fileContents {
                 let tempFileURL = temporaryFileURL(filename: attachment.fileName)
-                try contents.write(to: tempFileURL)
-                fileURL = tempFileURL
-            } catch {
-                SentrySDK.capture(error: error)
-                print("Error writing file", error)
+                ignoreErrors {
+                    try contents.write(to: tempFileURL)
+                }
+                DispatchQueue.main.async {
+                    fileURL = tempFileURL
+                    loading = false
+                }
+            } else {
+                DispatchQueue.main.async {
+                    fileURL = nil
+                    loading = false
+                }
             }
-        } else {
-            fileURL = nil
-        }
+         }
     }
 
     func tryToRemoveFile() {
         if let fileURL = fileURL {
-            ignoreErrors {
-                try FileManager.default.removeItem(at: fileURL)
+            DispatchQueue.global(qos: .background).async {
+                ignoreErrors {
+                    try FileManager.default.removeItem(at: fileURL)
+                }
             }
         }
         fileURL = nil
@@ -52,7 +60,9 @@ struct AttachmentView: View {
 
     var body: some View {
         HStack {
-            if let fileURL = fileURL {
+            if loading {
+                ProgressView()
+            } else if let fileURL = fileURL {
                 QuickViewController(url: fileURL)
             } else {
                 Text("An error occurred previewing this attachment")
