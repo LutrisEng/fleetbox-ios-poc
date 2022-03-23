@@ -63,13 +63,12 @@ struct FleetboxTextField: View {
         return view
     }
 
-    @ViewBuilder
-    private var maybeUnitName: some View {
+    private var maybeUnitName: Text {
         if let unitName = unitName {
-            (Text(" ") + Text(unitName))
+            return (Text(" ") + Text(unitName))
                 .foregroundColor(.secondary)
         } else {
-            EmptyView()
+            return Text("")
         }
     }
 
@@ -119,7 +118,7 @@ struct FleetboxTextField: View {
                     }
                     Spacer()
                     Text(value.wrappedValue ?? "").foregroundColor(.secondary)
-                    maybeUnitName
+                        + maybeUnitName
                 }
             }
         )
