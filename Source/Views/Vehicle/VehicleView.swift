@@ -33,6 +33,7 @@ struct VehicleView: View {
                 if geometry.size.width > 750 {
                     HStack {
                         VStack {
+                            Spacer()
                             VehicleImageView(imageData: $vehicle.imageData)
                                 .padding()
                             Spacer()
