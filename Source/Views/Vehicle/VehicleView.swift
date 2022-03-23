@@ -29,11 +29,29 @@ struct VehicleView: View {
 
     var body: some View {
         VStack {
-            Form {
-                VehicleImageView(imageData: $vehicle.imageData)
-                VehicleDetailsView(vehicle: vehicle)
-                PartOdometersView(vehicle: vehicle)
-                MaintenanceLogView(vehicle: vehicle)
+            GeometryReader { geometry in
+                if geometry.size.width > 750 {
+                    HStack {
+                        VStack {
+                            VehicleImageView(imageData: $vehicle.imageData)
+                                .padding()
+                            Spacer()
+                        }
+                        Form {
+                            VehicleDetailsView(vehicle: vehicle)
+                            PartOdometersView(vehicle: vehicle)
+                            MaintenanceLogView(vehicle: vehicle)
+                        }
+                    }
+                    .background(Color(UIColor.systemGroupedBackground))
+                } else {
+                    Form {
+                        VehicleImageView(imageData: $vehicle.imageData)
+                        VehicleDetailsView(vehicle: vehicle)
+                        PartOdometersView(vehicle: vehicle)
+                        MaintenanceLogView(vehicle: vehicle)
+                    }
+                }
             }
         }
         .modifier(WithDoneButton())
