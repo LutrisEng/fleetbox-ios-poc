@@ -115,6 +115,25 @@ struct LogItemView: View {
                     }
                 }
                 Section(header: Text("Line items")) {
+                    if editable {
+                        NavigationLink(
+                            destination: {
+                                LineItemTypePickerView {
+                                    _ = createLineItem(type: $0)
+                                }
+                                .navigationTitle("Add line item")
+                                .navigationBarTitleDisplayMode(.inline)
+                            },
+                            label: {
+                                HStack {
+                                    Image(systemName: "plus")
+                                    Text("Add line item")
+                                    Spacer()
+                                }
+                                .foregroundColor(.accentColor)
+                            }
+                        )
+                    }
                     let lineItems = logItem.lineItems
                     if lineItems.isEmpty {
                         Text("No line items")

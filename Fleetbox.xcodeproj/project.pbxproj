@@ -90,6 +90,9 @@
 		86D2DA7227D081490083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7127D081490083254E /* Alamofire */; };
 		86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB569A27E171A0007FA2DD /* AboutView.swift */; };
 		86F8F80727EB197600442694 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F80627EB197600442694 /* Editable.swift */; };
+		86F8F80927EE748F00442694 /* NewLogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F80827EE748F00442694 /* NewLogItemView.swift */; };
+		86F8F80D27EE774200442694 /* NewVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F80C27EE774200442694 /* NewVehicleView.swift */; };
+		86F8F81027EE827800442694 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 86F8F80F27EE827800442694 /* Introspect */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -219,6 +222,8 @@
 		86EB569C27E17681007FA2DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		86EB569D27E176AC007FA2DD /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		86F8F80627EB197600442694 /* Editable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
+		86F8F80827EE748F00442694 /* NewLogItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLogItemView.swift; sourceTree = "<group>"; };
+		86F8F80C27EE774200442694 /* NewVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVehicleView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86B189A527EAFD0F001CFBD3 /* FilePicker in Frameworks */,
+				86F8F81027EE827800442694 /* Introspect in Frameworks */,
 				86B189B227EB0F6B001CFBD3 /* Gzip in Frameworks */,
 				8612CD6927E1A68B00976E8F /* ImagePickerView in Frameworks */,
 				861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */,
@@ -321,6 +327,7 @@
 				86500C8A27DC0D8600A5111E /* VINDetailView.swift */,
 				86500C9F27DC134C00A5111E /* MaintenanceLogView.swift */,
 				8612CD6527E1A58300976E8F /* VehicleImageView.swift */,
+				86F8F80C27EE774200442694 /* NewVehicleView.swift */,
 			);
 			path = Vehicle;
 			sourceTree = "<group>";
@@ -331,6 +338,7 @@
 				86B17F9D27D48D14001E52C6 /* LogItemView.swift */,
 				86638D2227D970F300149689 /* LogItemLabelView.swift */,
 				86B189AC27EB0109001CFBD3 /* AttachmentView.swift */,
+				86F8F80827EE748F00442694 /* NewLogItemView.swift */,
 			);
 			path = "Log Item";
 			sourceTree = "<group>";
@@ -572,6 +580,7 @@
 				8612CD6827E1A68B00976E8F /* ImagePickerView */,
 				86B189A427EAFD0F001CFBD3 /* FilePicker */,
 				86B189B127EB0F6B001CFBD3 /* Gzip */,
+				86F8F80F27EE827800442694 /* Introspect */,
 			);
 			productName = "Fleetbox (iOS)";
 			productReference = 861DAE1227CDD59F00AFE972 /* Fleetbox Debug.app */;
@@ -651,6 +660,7 @@
 				8612CD6727E1A68B00976E8F /* XCRemoteSwiftPackageReference "ImagePickerView" */,
 				86B189A327EAFD0F001CFBD3 /* XCRemoteSwiftPackageReference "FilePicker" */,
 				86B189B027EB0F6B001CFBD3 /* XCRemoteSwiftPackageReference "GzipSwift" */,
+				86F8F80E27EE827800442694 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 861DAE1327CDD59F00AFE972 /* Products */;
 			projectDirPath = "";
@@ -726,6 +736,7 @@
 				8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */,
 				861DA48727E11DFF00775276 /* ExportContext.swift in Sources */,
 				86500C7827DC00DF00A5111E /* OdometerReadingsView.swift in Sources */,
+				86F8F80D27EE774200442694 /* NewVehicleView.swift in Sources */,
 				864C732727D06C6800047165 /* LineItem.swift in Sources */,
 				86500C7427DBEDC500A5111E /* TireSetPickerView.swift in Sources */,
 				8664C25227DAABE300AE9ADB /* ExportableLineItemField.swift in Sources */,
@@ -777,6 +788,7 @@
 				86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */,
 				8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */,
 				8664C23D27DA906A00AE9ADB /* TireSetView.swift in Sources */,
+				86F8F80927EE748F00442694 /* NewLogItemView.swift in Sources */,
 				86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */,
 				86500C7627DBF22D00A5111E /* ShopPickerView.swift in Sources */,
 				86B189AD27EB0109001CFBD3 /* AttachmentView.swift in Sources */,
@@ -1175,6 +1187,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		86F8F80E27EE827800442694 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1202,6 +1222,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 86D2DA7027D081490083254E /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		86F8F80F27EE827800442694 /* Introspect */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86F8F80E27EE827800442694 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
+			productName = Introspect;
 		};
 /* End XCSwiftPackageProductDependency section */
 

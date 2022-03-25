@@ -16,6 +16,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import SwiftUI
+import Introspect
 
 struct FleetboxTextField: View {
     @Environment(\.editable) private var editable
@@ -24,6 +25,7 @@ struct FleetboxTextField: View {
     var value: Binding<String?>
     var wrappedValue: Binding<String>
     @State private var tempValue: String = ""
+    @State private var pageShown: Bool = false
     let name: LocalizedStringKey?
     let description: LocalizedStringKey?
     let example: String?
@@ -88,6 +90,7 @@ struct FleetboxTextField: View {
     var body: some View {
         if editable {
             NavigationLink(
+                isActive: $pageShown,
                 destination: {
                     Form {
                         if let description = description {
@@ -99,6 +102,12 @@ struct FleetboxTextField: View {
                                     example ?? "",
                                     text: $tempValue
                                 )
+                                .introspectTextField { textField in
+                                    textField.becomeFirstResponder()
+                                }
+                                .onSubmit {
+                                    pageShown = false
+                                }
                                 .keyboardType(number ? .decimalPad : .default)
                                 if let value = value.wrappedValue, !value.isEmpty {
                                     Button(

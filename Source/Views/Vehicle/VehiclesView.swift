@@ -60,9 +60,14 @@ struct VehiclesView: View {
             .navigationTitle("Vehicles")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(action: addVehicle) {
-                        Label("Add Vehicle", systemImage: "plus")
-                    }
+                    NavigationLink(
+                        destination: {
+                            NewVehicleView()
+                        },
+                        label: {
+                            Label("Add Vehicle", systemImage: "plus")
+                        }
+                    )
                     #if DEBUG
                     Button(action: addFixtures) {
                         Label("Add Fixtures", systemImage: "questionmark.folder")
@@ -72,12 +77,6 @@ struct VehiclesView: View {
                 }
             }
             Image(systemName: "car")
-        }
-    }
-
-    private func addVehicle() {
-        withAnimation {
-            _ = Vehicle(context: viewContext)
         }
     }
 

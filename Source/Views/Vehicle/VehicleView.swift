@@ -68,9 +68,14 @@ struct VehicleView: View {
                             Label("Share", systemImage: "square.and.arrow.up")
                         }
                     }
-                    Button(action: addLogItem) {
-                        Label("Add Log Item", systemImage: "plus")
-                    }
+                    NavigationLink(
+                        destination: {
+                            NewLogItemView(vehicle: vehicle)
+                        },
+                        label: {
+                            Label("Add Log Item", systemImage: "plus")
+                        }
+                    )
                     EditButton()
                 }
             }

@@ -25,6 +25,21 @@ struct MaintenanceLogView: View {
 
     var body: some View {
         Section(header: Text("Maintenance log")) {
+            if editable {
+                NavigationLink(
+                    destination: {
+                        NewLogItemView(vehicle: vehicle)
+                    },
+                    label: {
+                        HStack {
+                            Image(systemName: "plus")
+                            Text("Add log item")
+                            Spacer()
+                        }
+                        .foregroundColor(.accentColor)
+                    }
+                )
+            }
             let logItems = vehicle.logItemsInverseChrono
             if logItems.isEmpty {
                 Text("Empty")

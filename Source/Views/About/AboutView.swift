@@ -57,6 +57,11 @@ let osProjects: [OSProject] = [
         name: "GzipSwift",
         url: URL(string: "https://github.com/1024jp/GzipSwift")!,
         license: "MIT"
+    ),
+    OSProject(
+        name: "SwiftUI-Introspect",
+        url: URL(string: "https://github.com/siteline/SwiftUI-Introspect")!,
+        license: "MIT"
     )
 ]
 
