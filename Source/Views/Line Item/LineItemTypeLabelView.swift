@@ -48,6 +48,7 @@ struct LineItemTypeLabelView<Content: View>: View {
         HStack {
             Image(systemName: type?.icon ?? "wrench.and.screwdriver")
                     .frame(width: iconWidth, height: iconHeight, alignment: .center)
+                    .padding([.leading, .trailing], 4)
             VStack {
                 Text(type?.displayName ?? "Unknown line item")
                         .frame(maxWidth: .infinity, alignment: .leading)
