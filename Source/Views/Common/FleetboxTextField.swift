@@ -103,7 +103,9 @@ struct FleetboxTextField: View {
                                     text: $tempValue
                                 )
                                 .introspectTextField { textField in
-                                    textField.becomeFirstResponder()
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                        textField.becomeFirstResponder()
+                                    }
                                 }
                                 .onSubmit {
                                     pageShown = false
