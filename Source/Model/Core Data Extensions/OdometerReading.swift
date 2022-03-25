@@ -33,5 +33,6 @@ extension OdometerReading {
         super.willChangeValue(forKey: key)
         self.objectWillChange.send()
         vehicle?.objectWillChange.send()
+        logItem?.objectWillChange.send()
     }
 }

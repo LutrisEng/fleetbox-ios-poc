@@ -7,7 +7,8 @@
         "sfsymbols": {
           "type": "string"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "category": {
       "type": "object",
@@ -34,6 +35,7 @@
           }
         }
       },
+      "additionalProperties": false,
       "required": [
         "id",
         "displayName"
@@ -61,6 +63,7 @@
           }
         }
       },
+      "additionalProperties": false,
       "required": [
         "id",
         "displayName"
@@ -139,6 +142,7 @@
           ]
         }
       },
+      "additionalProperties": false,
       "required": [
         "id",
         "shortDisplayName",

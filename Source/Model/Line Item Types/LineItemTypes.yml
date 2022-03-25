@@ -406,14 +406,15 @@ categories:
     displayName: Registration
     icon:
       sfsymbols: rectangle.and.paperclip
-      types:
-        - id: stateRegistration
-          displayName: Registered with state
-          fields:
-            - id: state
-              shortDisplayName: State
-              longDisplayName: Which state was this vehicle registered with?
-              type: string
+    types:
+      - id: stateRegistration
+        displayName: Registered with state
+        fields:
+          - id: state
+            shortDisplayName: State
+            longDisplayName: Which state was this vehicle registered with?
+            type: string
+            example: Texas
 
   - id: misc
     displayName: Miscellaneous
