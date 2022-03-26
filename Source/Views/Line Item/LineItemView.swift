@@ -24,6 +24,9 @@ struct LineItemView: View {
 
     var body: some View {
         Form {
+            Section(header: Text("Notes")) {
+                TextEditor(text: convertToNonNilBinding(string: $lineItem.notes))
+            }
             Section(header: Text("Fields")) {
                 ForEach(lineItem.fields) { field in
                     EditLineItemFieldView(field: field)

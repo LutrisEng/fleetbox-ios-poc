@@ -61,6 +61,7 @@ struct VINDetailView: View {
     var body: some View {
         HStack {
             FleetboxTextField(value: $vehicle.vin, name: "VIN", example: dummyData.vin)
+                .textInputAutocapitalization(.characters)
             if editable, let vin = vehicle.vin, vin != "" {
                 switch state {
                 case .base:
