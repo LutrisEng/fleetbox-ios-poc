@@ -69,9 +69,26 @@ struct FleetboxTextField: View {
     private var maybeUnitName: Text {
         if let unitName = unitName {
             return (Text(" ") + Text(unitName))
-                .foregroundColor(.secondary)
         } else {
             return Text("")
+        }
+    }
+
+    var numberValue: Int64? {
+        if number, let value = value.wrappedValue {
+            return try? Int64(value, format: .number)
+        } else {
+            return nil
+        }
+    }
+
+    var previewValue: LocalizedStringKey {
+        if number, let numberValue = numberValue {
+            return "\(numberValue)"
+        } else if let value = value.wrappedValue {
+            return "\(value)"
+        } else {
+            return ""
         }
     }
 
@@ -82,8 +99,8 @@ struct FleetboxTextField: View {
                 Text(name)
             }
             Spacer()
-            Text(value.wrappedValue ?? "").foregroundColor(.secondary)
-                + maybeUnitName
+            (Text(previewValue) + maybeUnitName)
+                .foregroundColor(.secondary)
         }
     }
 
