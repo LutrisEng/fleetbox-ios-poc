@@ -141,6 +141,15 @@ extension TireSet {
         "\(maybe(loadIndex))\(maybe(speedRating))"
     }
 
+    var age: TimeInterval? {
+        if let firstLogItemAt = logItemsChrono.compactMap(\.performedAt).first {
+            return Date.now.timeIntervalSinceReferenceDate -
+                firstLogItemAt.timeIntervalSinceReferenceDate
+        } else {
+            return nil
+        }
+    }
+
     func mergeWith(_ other: TireSet) {
         if other == self { return }
         for field in other.lineItemFields {

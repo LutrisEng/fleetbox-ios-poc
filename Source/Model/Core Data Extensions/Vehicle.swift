@@ -84,16 +84,20 @@ extension Vehicle {
     }
 
     func milesSince(lineItemType: String) -> Int64? {
-        for logItem in logItemsInverseChrono {
-            for lineItem in logItem.lineItems where lineItem.typeId == lineItemType {
-                if let reading = logItem.odometerReading?.reading {
-                    return odometer - reading
-                } else {
-                    return odometer - closestOdometerReadingTo(date: logItem.performedAt ?? Date.distantPast)
-                }
-            }
+        guard let lineItem = lastLineItem(type: lineItemType) else { return nil }
+        guard let logItem = lineItem.logItem else { return nil }
+        if let reading = logItem.odometerReading?.reading {
+            return odometer - reading
+        } else {
+            return odometer - closestOdometerReadingTo(date: logItem.performedAt ?? Date.distantPast)
         }
-        return nil
+    }
+
+    func timeSince(lineItemType: String) -> TimeInterval? {
+        guard let lineItem = lastLineItem(type: lineItemType) else { return nil }
+        guard let logItem = lineItem.logItem else { return nil }
+        guard let performedAt = logItem.performedAt else { return nil }
+        return Date.now.timeIntervalSinceReferenceDate - performedAt.timeIntervalSinceReferenceDate
     }
 
     var fullModelName: String {
@@ -155,6 +159,15 @@ extension Vehicle {
 
         set {
             imageData = newValue?.pngData()
+        }
+    }
+
+    var age: TimeInterval? {
+        if let firstLogItemAt = logItemsChrono.compactMap(\.performedAt).first {
+            return Date.now.timeIntervalSinceReferenceDate -
+                firstLogItemAt.timeIntervalSinceReferenceDate
+        } else {
+            return nil
         }
     }
 

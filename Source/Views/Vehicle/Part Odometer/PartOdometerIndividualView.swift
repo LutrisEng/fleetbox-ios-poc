@@ -22,9 +22,17 @@ struct PartOdometerIndividualView: View {
     let lineItemType: String
     let name: String
 
+    var milesSince: Int64? {
+        vehicle.milesSince(lineItemType: lineItemType)
+    }
+
+    var timeSince: TimeInterval? {
+        vehicle.timeSince(lineItemType: lineItemType)
+    }
+
     var body: some View {
-        if let milesSince = vehicle.milesSince(lineItemType: lineItemType) {
-            PartOdometerRowView(name: name, reading: milesSince)
+        if milesSince != nil || timeSince != nil {
+            PartOdometerRowView(name: name, milesSince: milesSince, timeSince: timeSince)
         }
     }
 }

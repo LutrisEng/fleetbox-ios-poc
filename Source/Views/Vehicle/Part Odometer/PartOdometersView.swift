@@ -48,9 +48,17 @@ struct PartOdometersView: View {
                 OdometerReadingsView(vehicle: vehicle)
                     .navigationTitle("Odometer readings")
             }
-            PartOdometerRowView(name: "Vehicle", reading: vehicle.odometer)
+            PartOdometerRowView(
+                name: "Vehicle",
+                milesSince: vehicle.odometer,
+                timeSince: vehicle.age
+            )
             if let tires = vehicle.currentTireSet {
-                PartOdometerRowView(name: "Tires", reading: tires.odometer)
+                PartOdometerRowView(
+                    name: "Tires",
+                    milesSince: tires.odometer,
+                    timeSince: tires.age
+                )
             }
             ForEach(partOdometers) { odometer in
                 odometer.view(vehicle: vehicle)

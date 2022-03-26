@@ -25,17 +25,31 @@ struct PartOdometerFluidFilterView: View {
 
     var body: some View {
         let milesSinceFluid = vehicle.milesSince(lineItemType: fluidLineItemType)
+        let timeSinceFluid = vehicle.timeSince(lineItemType: fluidLineItemType)
         let milesSinceFilter = vehicle.milesSince(lineItemType: filterLineItemType)
-        if let milesSinceFluid = milesSinceFluid,
-           let milesSinceFilter = milesSinceFilter,
-           milesSinceFluid == milesSinceFilter {
-            PartOdometerRowView(name: "\(fluidName) & filter", reading: milesSinceFluid)
+        let timeSinceFilter = vehicle.timeSince(lineItemType: filterLineItemType)
+        if milesSinceFluid != nil &&
+            milesSinceFluid == milesSinceFilter &&
+            (timeSinceFluid ?? 0) - (timeSinceFilter ?? 0) < 60 * 60 {
+            PartOdometerRowView(
+                name: "\(fluidName) & filter",
+                milesSince: milesSinceFluid,
+                timeSince: timeSinceFluid
+            )
         } else {
-            if let milesSinceFluid = milesSinceFluid {
-                PartOdometerRowView(name: fluidName, reading: milesSinceFluid)
+            if milesSinceFluid != nil || timeSinceFluid != nil {
+                PartOdometerRowView(
+                    name: fluidName,
+                    milesSince: milesSinceFluid,
+                    timeSince: timeSinceFluid
+                )
             }
-            if let milesSinceFilter = milesSinceFilter {
-                PartOdometerRowView(name: "\(fluidName) filter", reading: milesSinceFilter)
+            if milesSinceFilter != nil || timeSinceFilter != nil {
+                PartOdometerRowView(
+                    name: "\(fluidName) filter",
+                    milesSince: milesSinceFilter,
+                    timeSince: timeSinceFilter
+                )
             }
         }
     }

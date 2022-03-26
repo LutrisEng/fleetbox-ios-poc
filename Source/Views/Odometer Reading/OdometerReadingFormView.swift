@@ -25,7 +25,7 @@ struct OdometerReadingFormView: View {
 
     var body: some View {
         Form {
-            PartOdometerRowView(name: "Previous", reading: previousReading)
+            PartOdometerRowView(name: "Previous", milesSince: previousReading, timeSince: nil)
             FleetboxTextField(
                 value: convertToNillableBinding(string: convertToStringBinding(int64: $reading)),
                 name: "Current",

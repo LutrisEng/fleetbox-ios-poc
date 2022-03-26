@@ -19,14 +19,51 @@ import SwiftUI
 
 struct PartOdometerRowView: View {
     let name: String
-    let reading: Int64
+    let milesSince: Int64?
+    let timeSince: TimeInterval?
+
+    static let formatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.month, .weekOfMonth, .day]
+        formatter.unitsStyle = .full
+        formatter.maximumUnitCount = 1
+        formatter.includesApproximationPhrase = true
+        formatter.zeroFormattingBehavior = .dropAll
+        return formatter
+    }()
+
+    var milesSinceText: Text {
+        if let milesSince = milesSince {
+            return Text("\(milesSince) miles")
+        } else {
+            return Text("")
+        }
+    }
+
+    var separator: Text {
+        if milesSince != nil && timeSince != nil {
+            return Text("\n")
+        } else {
+            return Text("")
+        }
+    }
+
+    var timeSinceText: Text {
+        if let timeSince = timeSince,
+           let str = PartOdometerRowView.formatter.string(from: timeSince) {
+            return Text("\(str) old")
+        } else {
+            return Text("")
+        }
+    }
 
     var body: some View {
         HStack {
             Text(LocalizedStringKey(name))
             Spacer()
-            Text("\(reading) miles")
-                    .foregroundColor(.secondary)
+            (milesSinceText + separator + timeSinceText)
+                .multilineTextAlignment(.trailing)
+                .foregroundColor(.secondary)
         }
     }
 }
@@ -34,7 +71,7 @@ struct PartOdometerRowView: View {
 struct PartOdometerRowView_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            PartOdometerRowView(name: "Vehicle", reading: 1000)
+            PartOdometerRowView(name: "Vehicle", milesSince: 1000, timeSince: nil)
         }
     }
 }
