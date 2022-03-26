@@ -68,6 +68,7 @@ extension Fleetbox_Export_TireSet {
             self.tin = tin
         }
         treadwearWarranty = tireSet.treadwearWarranty
+        hidden = tireSet.hidden
     }
 
     func importTireSet(context: NSManagedObjectContext) -> TireSet {
@@ -84,6 +85,7 @@ extension Fleetbox_Export_TireSet {
         tireSet.width = Int16(width)
         tireSet.tin = tin
         tireSet.treadwearWarranty = treadwearWarranty
+        tireSet.hidden = hidden
         return tireSet
     }
 }

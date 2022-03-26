@@ -36,6 +36,21 @@ struct TireSetView: View {
                     }
                 }
             }
+            if tireSet.hidden {
+                Button("Un-hide") {
+                    tireSet.hidden = false
+                    ignoreErrors {
+                        try viewContext.save()
+                    }
+                }
+            } else {
+                Button("Hide") {
+                    tireSet.hidden = true
+                    ignoreErrors {
+                        try viewContext.save()
+                    }
+                }
+            }
             Section(header: Text("Odometer")) {
                 PartOdometerRowView(name: "Tires", milesSince: tireSet.odometer, timeSince: tireSet.age)
                 FleetboxTextField(value: $tireSet.treadwearWarranty, name: "Treadlife Warranty", example: 30000)

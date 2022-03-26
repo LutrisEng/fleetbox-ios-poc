@@ -66,4 +66,5 @@ message TireSet {
     optional int32 width = 10;
     optional string tin = 11;
     optional int64 treadwearWarranty = 12;
+    optional bool hidden = 13;
 }

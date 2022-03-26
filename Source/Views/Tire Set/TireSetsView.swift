@@ -47,28 +47,34 @@ struct TireSetsView: View {
     var body: some View {
         NavigationView {
             List {
-                let mounted = tireSets.filter { $0.vehicle != nil }
+                let mounted = tireSets.filter { $0.category == .mounted }
                 if !mounted.isEmpty {
                     Section(header: Text("Mounted")) {
                         setList(mounted)
                     }
                 }
-                let unmounted = tireSets.filter { $0.vehicle == nil }
+                let unmounted = tireSets.filter { $0.category == .unmounted }
                 if !unmounted.isEmpty {
                     Section(header: Text("Unmounted")) {
                         setList(unmounted)
                     }
                 }
-            }
-                    .navigationTitle("Tire sets")
-                    .toolbar {
-                        ToolbarItemGroup(placement: .navigationBarTrailing) {
-                            Button(action: addTireSet) {
-                                Label("Add Tire Set", systemImage: "plus")
-                            }
-                            EditButton()
-                        }
+                let hidden = tireSets.filter { $0.category == .hidden }
+                if !hidden.isEmpty {
+                    Section(header: Text("Hidden")) {
+                        setList(hidden)
                     }
+                }
+            }
+            .navigationTitle("Tire sets")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button(action: addTireSet) {
+                        Label("Add Tire Set", systemImage: "plus")
+                    }
+                    EditButton()
+                }
+            }
             Text("Select a tire set")
         }
     }

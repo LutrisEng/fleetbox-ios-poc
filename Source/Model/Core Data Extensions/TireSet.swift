@@ -150,6 +150,22 @@ extension TireSet {
         }
     }
 
+    enum Category {
+        case mounted
+        case unmounted
+        case hidden
+    }
+
+    var category: Category {
+        if hidden {
+            return .hidden
+        } else if vehicle != nil {
+            return .mounted
+        } else {
+            return .unmounted
+        }
+    }
+
     func mergeWith(_ other: TireSet) {
         if other == self { return }
         for field in other.lineItemFields {
