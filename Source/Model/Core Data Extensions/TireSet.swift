@@ -137,7 +137,7 @@ extension TireSet {
         }
 
         return "\(maybe(vehicleType))\(maybe(width))/" +
-        "\(maybe(aspectRatio))\(maybe(construction)) " +
+        "\(maybe(aspectRatio))\(maybe(construction))\(maybe(diameter)) " +
         "\(maybe(loadIndex))\(maybe(speedRating))"
     }
 
