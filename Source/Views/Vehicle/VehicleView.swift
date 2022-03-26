@@ -34,7 +34,7 @@ struct VehicleView: View {
     var body: some View {
         VStack {
             GeometryReader { geometry in
-                if geometry.size.width > 750 {
+                if geometry.size.width > 750 && vehicle.imageData != nil {
                     HStack {
                         VStack {
                             Spacer()

@@ -33,14 +33,16 @@ struct PartOdometersView: View {
                     createPresented = true
                 }
                 .sheet(isPresented: $createPresented) {
-                    OdometerReadingFormView(previousReading: vehicle.odometer) { value in
-                        let reading = OdometerReading(context: viewContext)
-                        reading.vehicle = vehicle
-                        reading.at = Date.now
-                        reading.reading = value
-                        createPresented = false
-                    } onDismiss: {
-                        createPresented = false
+                    NavigationView {
+                        OdometerReadingFormView(previousReading: vehicle.odometer) { value in
+                            let reading = OdometerReading(context: viewContext)
+                            reading.vehicle = vehicle
+                            reading.at = Date.now
+                            reading.reading = value
+                            createPresented = false
+                        } onDismiss: {
+                            createPresented = false
+                        }
                     }
                 }
             }
