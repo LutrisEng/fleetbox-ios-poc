@@ -723,7 +723,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif [ $ACTION != \"indexbuild\" ]; then\n    dir=\"$(dirname \"$SCRIPT_INPUT_FILE_0\")\"\n    protoc -I \"$dir\" --swift_out=\"$dir\" \"$SCRIPT_INPUT_FILE_0\"\n    sleep 1\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif [ $ACTION != \"indexbuild\" ]; then\n    dir=\"$(dirname \"$SCRIPT_INPUT_FILE_0\")\"\n    protoc -I \"$dir\" --swift_out=\"$dir\" \"$SCRIPT_INPUT_FILE_0\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
