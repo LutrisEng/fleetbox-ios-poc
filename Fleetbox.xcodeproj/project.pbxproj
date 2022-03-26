@@ -86,7 +86,7 @@
 		86F8F81027EE827800442694 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 86F8F80F27EE827800442694 /* Introspect */; };
 		86F8F81827EE99DC00442694 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 86F8F81727EE99DC00442694 /* SwiftProtobuf */; };
 		86F8F81B27EE9EB600442694 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F81927EE99EE00442694 /* Extensions.swift */; };
-		86F8F81E27EEA60900442694 /* FleetboxExport.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F81427EE99C500442694 /* FleetboxExport.pb.swift */; };
+		86F8F82127EEACFD00442694 /* FleetboxExport.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F81427EE99C500442694 /* FleetboxExport.pb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -546,8 +546,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 861DAE3F27CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Fleetbox" */;
 			buildPhases = (
+				86F8F82027EEAC7900442694 /* Compile Protocol Buffers */,
 				861DA48427DC892C00775276 /* Run SwiftLint */,
-				86F8F81D27EEA4A800442694 /* Compile Protocol Buffers */,
 				861DAE0E27CDD59F00AFE972 /* Sources */,
 				861DAE0F27CDD59F00AFE972 /* Frameworks */,
 				861DAE1027CDD59F00AFE972 /* Resources */,
@@ -703,11 +703,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, run brew bundle\"\nfi\n";
 		};
-		86F8F81D27EEA4A800442694 /* Compile Protocol Buffers */ = {
+		86F8F82027EEAC7900442694 /* Compile Protocol Buffers */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -724,7 +723,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\ndir=\"$(dirname \"$SCRIPT_OUTPUT_FILE_0\")\"\nprotoc -I \"$dir\" --swift_out=\"$dir\" \"$SCRIPT_INPUT_FILE_0\"\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\ndir=\"$(dirname \"$SCRIPT_INPUT_FILE_0\")\"\nprotoc -I \"$dir\" --swift_out=\"$DERIVED_FILE_DIR\" \"$SCRIPT_INPUT_FILE_0\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -742,7 +741,7 @@
 				8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */,
 				861DA48727E11DFF00775276 /* ExportEnvelopeTemplate.swift in Sources */,
 				86500C7827DC00DF00A5111E /* OdometerReadingsView.swift in Sources */,
-				86F8F81E27EEA60900442694 /* FleetboxExport.pb.swift in Sources */,
+				86F8F82127EEACFD00442694 /* FleetboxExport.pb.swift in Sources */,
 				86F8F80D27EE774200442694 /* NewVehicleView.swift in Sources */,
 				864C732727D06C6800047165 /* LineItem.swift in Sources */,
 				86500C7427DBEDC500A5111E /* TireSetPickerView.swift in Sources */,

@@ -31,6 +31,7 @@ struct FleetboxTextField: View {
     let example: String?
     var unitName: LocalizedStringKey?
     var number: Bool = false
+    var previewAsNumber: Bool = false
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: LocalizedStringKey? = nil) {
         self.value = value
@@ -48,6 +49,7 @@ struct FleetboxTextField: View {
             description: description
         )
         number = true
+        previewAsNumber = true
     }
 
     init(value: Binding<Int16>, name: LocalizedStringKey?, example: Int16, description: LocalizedStringKey? = nil) {
@@ -58,11 +60,18 @@ struct FleetboxTextField: View {
             description: description
         )
         number = true
+        previewAsNumber = true
     }
 
     func unit(_ unit: LocalizedStringKey) -> FleetboxTextField {
         var view = self
         view.unitName = unit
+        return view
+    }
+
+    func previewAsString() -> FleetboxTextField {
+        var view = self
+        view.previewAsNumber = false
         return view
     }
 
@@ -83,7 +92,7 @@ struct FleetboxTextField: View {
     }
 
     var previewValue: LocalizedStringKey {
-        if number, let numberValue = numberValue {
+        if previewAsNumber, let numberValue = numberValue {
             return "\(numberValue)"
         } else if let value = value.wrappedValue {
             return "\(value)"

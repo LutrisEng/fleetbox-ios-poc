@@ -25,6 +25,7 @@ struct VehicleDetailsView: View {
             FleetboxTextField(value: $vehicle.displayName, name: "Name", example: dummyData.vehicleName)
             VINDetailView(vehicle: vehicle)
             FleetboxTextField(value: $vehicle.year, name: "Year", example: 2020)
+                .previewAsString()
             FleetboxTextField(value: $vehicle.make, name: "Make", example: dummyData.vehicleMake)
             FleetboxTextField(value: $vehicle.model, name: "Model", example: dummyData.vehicleModel)
             if let tireSet = vehicle.currentTireSet {
