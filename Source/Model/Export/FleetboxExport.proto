@@ -1,0 +1,68 @@
+syntax = "proto3";
+package fleetbox.export;
+
+message ExportEnvelope {
+    optional Vehicle vehicle = 1;
+    repeated TireSet tireSets = 2;
+    repeated Shop shops = 3;
+}
+
+message Vehicle {
+    optional string displayName = 1;
+    optional string make = 2;
+    optional string model = 3;
+    optional string vin = 4;
+    optional int64 year = 5;
+    optional bytes image = 6;
+    repeated LogItem logItems = 7;
+    repeated OdometerReading freeOdometerReadings = 8;
+}
+
+message LogItem {
+    optional string displayName = 1;
+    optional int64 performedAt = 2;
+    optional uint64 odometerReading = 3;
+    optional uint64 shop = 4;
+    repeated LineItem lineItems = 5;
+    repeated Attachment attachments = 6;
+}
+
+message LineItem {
+    optional string notes = 1;
+    optional string typeID = 2;
+    repeated LineItemField fields = 3;
+}
+
+message LineItemField {
+    optional string typeID = 1;
+    optional string stringValue = 2;
+    optional uint64 tireSetValue = 3;
+}
+
+message OdometerReading {
+    optional int64 performedAt = 1;
+    optional uint64 reading = 2;
+}
+
+message Attachment {
+    optional string filename = 1;
+    optional bytes contents = 2;
+}
+
+message Shop {
+    optional string name = 1;
+}
+
+message TireSet {
+    optional int32 aspectRatio = 1;
+    optional string construction = 2;
+    optional int32 diameter = 3;
+    optional int32 loadIndex = 4;
+    optional string make = 5;
+    optional string model = 6;
+    optional string speedRating = 7;
+    optional string displayName = 8;
+    optional string vehicleType = 9;
+    optional int32 width = 10;
+    optional string tin = 11;
+}

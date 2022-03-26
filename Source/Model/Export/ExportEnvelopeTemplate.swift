@@ -18,7 +18,7 @@
 import Foundation
 import CoreData
 
-class ExportContext {
+class ExportEnvelopeTemplate {
     var vehicle: Vehicle?
     var shops: [Shop] = []
     var tireSets: [TireSet] = []
@@ -27,21 +27,21 @@ class ExportContext {
         self.vehicle = vehicle
     }
 
-    init(context: NSManagedObjectContext, exportContext: ExportableExportContext) {
-        shops = exportContext.shops.map { $0.importShop(context: context) }
-        tireSets = exportContext.tireSets.map { $0.importTireSet(context: context) }
-        vehicle = exportContext.vehicle.importVehicle(context: context, exportContext: self)
+    init(context: NSManagedObjectContext, envelope: Fleetbox_Export_ExportEnvelope) {
+        shops = envelope.shops.map { $0.importShop(context: context) }
+        tireSets = envelope.tireSets.map { $0.importTireSet(context: context) }
+        vehicle = envelope.vehicle.importVehicle(context: context, envelope: self)
     }
 
-    func export() -> ExportableExportContext? {
+    func export() -> Fleetbox_Export_ExportEnvelope? {
         guard let vehicle = vehicle else {
             return nil
         }
 
-        return ExportableExportContext(
-            vehicle: ExportableVehicle(context: self, vehicle: vehicle),
-            shops: shops.map { ExportableShop(shop: $0) },
-            tireSets: tireSets.map { ExportableTireSet(tireSet: $0) }
-        )
+        var envelope = Fleetbox_Export_ExportEnvelope()
+        envelope.vehicle = Fleetbox_Export_Vehicle(envelope: self, vehicle: vehicle)
+        envelope.shops = shops.map { Fleetbox_Export_Shop(shop: $0) }
+        envelope.tireSets = tireSets.map { Fleetbox_Export_TireSet(tireSet: $0) }
+        return envelope
     }
 }

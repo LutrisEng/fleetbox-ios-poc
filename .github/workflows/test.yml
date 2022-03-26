@@ -26,7 +26,7 @@ jobs:
       - name: Checkout LFS objects
         run: git lfs checkout
       - name: Install tools
-        run: brew install yq jq fastlane && gem install xcpretty
+        run: brew bundle && gem install xcpretty
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1.4.1
         with:

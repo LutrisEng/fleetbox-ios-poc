@@ -12,8 +12,6 @@ jobs:
         run: git lfs checkout
       - name: GitHub Action for SwiftLint
         uses: norio-nomura/action-swiftlint@3.2.1
-        env:
-          WORKING_DIRECTORY: Source
   schema:
     name: Check YAML schema
     runs-on: ubuntu-latest

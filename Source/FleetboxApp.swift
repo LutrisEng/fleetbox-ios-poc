@@ -36,6 +36,10 @@ func getSentryRelease() -> String {
     return "\(package)@\(version)+\(buildIdentifier)\(debugPart)"
 }
 
+enum ImportError: Error {
+    case invalidData
+}
+
 struct FleetboxAppMainWindow: View {
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.managedObjectContext) var viewContext
@@ -120,7 +124,9 @@ struct FleetboxAppMainWindow: View {
                 do {
                     let gzipped = try Data(contentsOf: url)
                     let json = gzipped.isGzipped ? try gzipped.gunzipped() : gzipped
-                    let vehicle = try Vehicle.importData(json, context: persistence.container.viewContext)
+                    guard let vehicle = try Vehicle.importData(json, context: persistence.container.viewContext) else {
+                        throw ImportError.invalidData
+                    }
                     DispatchQueue.main.async {
                         previewImportState = PreviewImportState(
                             url: url,

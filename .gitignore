@@ -97,3 +97,5 @@ Design/Export
 
 # TEMPORARY UNTIL GITHUB ACTIONS GETS XCODE 13.3 SUPPORT
 /Fleetbox.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
+
+*.pb.swift

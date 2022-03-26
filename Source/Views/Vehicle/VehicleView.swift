@@ -19,6 +19,10 @@ import SwiftUI
 import Sentry
 import Gzip
 
+enum ExportError: Error {
+    case unknownError
+}
+
 struct VehicleView: View {
     @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
@@ -86,7 +90,9 @@ struct VehicleView: View {
         exporting = true
         DispatchQueue.global(qos: .userInitiated).async {
             do {
-                let data = try vehicle.export()
+                guard let data = try vehicle.export() else {
+                    throw ExportError.unknownError
+                }
                 let gzipped = try data.gzipped()
                 let fileURL = temporaryFileURL(filename: "\(vehicle.displayNameWithFallback).fleetboxvehicle")
                 try gzipped.write(to: fileURL)

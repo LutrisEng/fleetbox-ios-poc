@@ -158,18 +158,16 @@ extension Vehicle {
         }
     }
 
-    func export() throws -> Data {
-        let ctx = ExportContext(vehicle: self)
-        let encoder = JSONEncoder()
+    func export() throws -> Data? {
+        let ctx = ExportEnvelopeTemplate(vehicle: self)
         let exportable = ctx.export()
-        return try encoder.encode(exportable)
+        return try exportable?.serializedData()
     }
 
-    static func importData(_ data: Data, context: NSManagedObjectContext) throws -> Vehicle {
-        let decoder = JSONDecoder()
-        let exportable = try decoder.decode(ExportableExportContext.self, from: data)
-        let ctx = ExportContext(context: context, exportContext: exportable)
-        return ctx.vehicle!
+    static func importData(_ data: Data, context: NSManagedObjectContext) throws -> Vehicle? {
+        let envelope = try Fleetbox_Export_ExportEnvelope(serializedData: data)
+        let tmpl = ExportEnvelopeTemplate(context: context, envelope: envelope)
+        return tmpl.vehicle
     }
 
     override public func willChangeValue(forKey key: String) {

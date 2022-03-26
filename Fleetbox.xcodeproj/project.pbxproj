@@ -14,10 +14,7 @@
 		8612CD6D27E1CF4400976E8F /* UIImage Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6C27E1CF4400976E8F /* UIImage Extensions.swift */; };
 		8612CD6F27E2DEF200976E8F /* SaveOnLeave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6E27E2DEF200976E8F /* SaveOnLeave.swift */; };
 		861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
-		861DA48727E11DFF00775276 /* ExportContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48627E11DFF00775276 /* ExportContext.swift */; };
-		861DA48927E11E3600775276 /* ExportableShop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48827E11E3600775276 /* ExportableShop.swift */; };
-		861DA48B27E11E3E00775276 /* ExportableExportContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48A27E11E3E00775276 /* ExportableExportContext.swift */; };
-		861DA48D27E11F8100775276 /* ExportableTireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48C27E11F8100775276 /* ExportableTireSet.swift */; };
+		861DA48727E11DFF00775276 /* ExportEnvelopeTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48627E11DFF00775276 /* ExportEnvelopeTemplate.swift */; };
 		861DA48F27E1233200775276 /* Date Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DA48E27E1233200775276 /* Date Functions.swift */; };
 		861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */; };
 		861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */; };
@@ -61,12 +58,6 @@
 		8664C24327DA91C200AE9ADB /* ShopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24227DA91C200AE9ADB /* ShopView.swift */; };
 		8664C24527DA91E100AE9ADB /* PreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24427DA91E100AE9ADB /* PreviewWrapper.swift */; };
 		8664C24727DA987900AE9ADB /* Custom Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24627DA987800AE9ADB /* Custom Bindings.swift */; };
-		8664C24A27DAAA2600AE9ADB /* ExportableVehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24927DAAA2600AE9ADB /* ExportableVehicle.swift */; };
-		8664C24C27DAAA7900AE9ADB /* ExportableLogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24B27DAAA7900AE9ADB /* ExportableLogItem.swift */; };
-		8664C24E27DAAA8200AE9ADB /* ExportableOdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24D27DAAA8200AE9ADB /* ExportableOdometerReading.swift */; };
-		8664C25027DAAB7800AE9ADB /* ExportableLineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24F27DAAB7800AE9ADB /* ExportableLineItem.swift */; };
-		8664C25227DAABE300AE9ADB /* ExportableLineItemField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C25127DAABE300AE9ADB /* ExportableLineItemField.swift */; };
-		8664C25427DAB14000AE9ADB /* ExportableAttachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C25327DAB14000AE9ADB /* ExportableAttachment.swift */; };
 		8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
 		8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */; };
 		8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */; };
@@ -93,6 +84,9 @@
 		86F8F80927EE748F00442694 /* NewLogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F80827EE748F00442694 /* NewLogItemView.swift */; };
 		86F8F80D27EE774200442694 /* NewVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F80C27EE774200442694 /* NewVehicleView.swift */; };
 		86F8F81027EE827800442694 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 86F8F80F27EE827800442694 /* Introspect */; };
+		86F8F81827EE99DC00442694 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 86F8F81727EE99DC00442694 /* SwiftProtobuf */; };
+		86F8F81B27EE9EB600442694 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F81927EE99EE00442694 /* Extensions.swift */; };
+		86F8F81E27EEA60900442694 /* FleetboxExport.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F81427EE99C500442694 /* FleetboxExport.pb.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -140,10 +134,7 @@
 		861BA8FD27D8537100DD729A /* Fleetbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleetbox.entitlements; sourceTree = "<group>"; };
 		861BA8FE27D8546700DD729A /* LineItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemView.swift; sourceTree = "<group>"; };
 		861DA48527DC8D7500775276 /* Fleetbox-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Fleetbox-Info.plist"; sourceTree = "<group>"; };
-		861DA48627E11DFF00775276 /* ExportContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportContext.swift; sourceTree = "<group>"; };
-		861DA48827E11E3600775276 /* ExportableShop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableShop.swift; sourceTree = "<group>"; };
-		861DA48A27E11E3E00775276 /* ExportableExportContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableExportContext.swift; sourceTree = "<group>"; };
-		861DA48C27E11F8100775276 /* ExportableTireSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableTireSet.swift; sourceTree = "<group>"; };
+		861DA48627E11DFF00775276 /* ExportEnvelopeTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportEnvelopeTemplate.swift; sourceTree = "<group>"; };
 		861DA48E27E1233200775276 /* Date Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date Functions.swift"; sourceTree = "<group>"; };
 		861DAE0927CDD59D00AFE972 /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		861DAE0A27CDD59D00AFE972 /* FleetboxApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetboxApp.swift; sourceTree = "<group>"; };
@@ -190,12 +181,6 @@
 		8664C24227DA91C200AE9ADB /* ShopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopView.swift; sourceTree = "<group>"; };
 		8664C24427DA91E100AE9ADB /* PreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewWrapper.swift; sourceTree = "<group>"; };
 		8664C24627DA987800AE9ADB /* Custom Bindings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom Bindings.swift"; sourceTree = "<group>"; };
-		8664C24927DAAA2600AE9ADB /* ExportableVehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableVehicle.swift; sourceTree = "<group>"; };
-		8664C24B27DAAA7900AE9ADB /* ExportableLogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableLogItem.swift; sourceTree = "<group>"; };
-		8664C24D27DAAA8200AE9ADB /* ExportableOdometerReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableOdometerReading.swift; sourceTree = "<group>"; };
-		8664C24F27DAAB7800AE9ADB /* ExportableLineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableLineItem.swift; sourceTree = "<group>"; };
-		8664C25127DAABE300AE9ADB /* ExportableLineItemField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableLineItemField.swift; sourceTree = "<group>"; };
-		8664C25327DAB14000AE9ADB /* ExportableAttachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportableAttachment.swift; sourceTree = "<group>"; };
 		8683930E27D1450B00D91D96 /* VehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
 		8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLineItemFieldView.swift; sourceTree = "<group>"; };
 		8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemFieldLabelView.swift; sourceTree = "<group>"; };
@@ -224,6 +209,9 @@
 		86F8F80627EB197600442694 /* Editable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
 		86F8F80827EE748F00442694 /* NewLogItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLogItemView.swift; sourceTree = "<group>"; };
 		86F8F80C27EE774200442694 /* NewVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVehicleView.swift; sourceTree = "<group>"; };
+		86F8F81227EE99B400442694 /* FleetboxExport.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = FleetboxExport.proto; sourceTree = "<group>"; };
+		86F8F81427EE99C500442694 /* FleetboxExport.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetboxExport.pb.swift; sourceTree = "<group>"; };
+		86F8F81927EE99EE00442694 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +224,7 @@
 				86B189B227EB0F6B001CFBD3 /* Gzip in Frameworks */,
 				8612CD6927E1A68B00976E8F /* ImagePickerView in Frameworks */,
 				861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */,
+				86F8F81827EE99DC00442694 /* SwiftProtobuf in Frameworks */,
 				86D2DA7227D081490083254E /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -489,16 +478,10 @@
 		8664C24827DAAA1A00AE9ADB /* Export */ = {
 			isa = PBXGroup;
 			children = (
-				8664C24927DAAA2600AE9ADB /* ExportableVehicle.swift */,
-				8664C24B27DAAA7900AE9ADB /* ExportableLogItem.swift */,
-				8664C24D27DAAA8200AE9ADB /* ExportableOdometerReading.swift */,
-				8664C24F27DAAB7800AE9ADB /* ExportableLineItem.swift */,
-				8664C25127DAABE300AE9ADB /* ExportableLineItemField.swift */,
-				8664C25327DAB14000AE9ADB /* ExportableAttachment.swift */,
-				861DA48627E11DFF00775276 /* ExportContext.swift */,
-				861DA48827E11E3600775276 /* ExportableShop.swift */,
-				861DA48A27E11E3E00775276 /* ExportableExportContext.swift */,
-				861DA48C27E11F8100775276 /* ExportableTireSet.swift */,
+				86F8F81227EE99B400442694 /* FleetboxExport.proto */,
+				861DA48627E11DFF00775276 /* ExportEnvelopeTemplate.swift */,
+				86F8F81427EE99C500442694 /* FleetboxExport.pb.swift */,
+				86F8F81927EE99EE00442694 /* Extensions.swift */,
 			);
 			path = Export;
 			sourceTree = "<group>";
@@ -564,6 +547,7 @@
 			buildConfigurationList = 861DAE3F27CDD59F00AFE972 /* Build configuration list for PBXNativeTarget "Fleetbox" */;
 			buildPhases = (
 				861DA48427DC892C00775276 /* Run SwiftLint */,
+				86F8F81D27EEA4A800442694 /* Compile Protocol Buffers */,
 				861DAE0E27CDD59F00AFE972 /* Sources */,
 				861DAE0F27CDD59F00AFE972 /* Frameworks */,
 				861DAE1027CDD59F00AFE972 /* Resources */,
@@ -581,6 +565,7 @@
 				86B189A427EAFD0F001CFBD3 /* FilePicker */,
 				86B189B127EB0F6B001CFBD3 /* Gzip */,
 				86F8F80F27EE827800442694 /* Introspect */,
+				86F8F81727EE99DC00442694 /* SwiftProtobuf */,
 			);
 			productName = "Fleetbox (iOS)";
 			productReference = 861DAE1227CDD59F00AFE972 /* Fleetbox Debug.app */;
@@ -661,6 +646,7 @@
 				86B189A327EAFD0F001CFBD3 /* XCRemoteSwiftPackageReference "FilePicker" */,
 				86B189B027EB0F6B001CFBD3 /* XCRemoteSwiftPackageReference "GzipSwift" */,
 				86F8F80E27EE827800442694 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				86F8F81627EE99DC00442694 /* XCRemoteSwiftPackageReference "swift-protobuf" */,
 			);
 			productRefGroup = 861DAE1327CDD59F00AFE972 /* Products */;
 			projectDirPath = "";
@@ -717,7 +703,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint Source/\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		86F8F81D27EEA4A800442694 /* Compile Protocol Buffers */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Source/Model/Export/FleetboxExport.proto",
+			);
+			name = "Compile Protocol Buffers";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/Source/Model/Export/FleetboxExport.pb.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\n\ndir=\"$(dirname \"$SCRIPT_OUTPUT_FILE_0\")\"\nprotoc -I \"$dir\" --swift_out=\"$dir\" \"$SCRIPT_INPUT_FILE_0\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -727,39 +734,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				8612CD6227E1956D00976E8F /* Array Extensions.swift in Sources */,
-				861DA48D27E11F8100775276 /* ExportableTireSet.swift in Sources */,
 				86500C8927DC0D6E00A5111E /* VehicleDetailsView.swift in Sources */,
 				8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */,
 				8664C24127DA91BB00AE9ADB /* ShopsView.swift in Sources */,
 				864C731E27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */,
 				86B189A927EAFF5D001CFBD3 /* Temporary Files.swift in Sources */,
 				8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */,
-				861DA48727E11DFF00775276 /* ExportContext.swift in Sources */,
+				861DA48727E11DFF00775276 /* ExportEnvelopeTemplate.swift in Sources */,
 				86500C7827DC00DF00A5111E /* OdometerReadingsView.swift in Sources */,
+				86F8F81E27EEA60900442694 /* FleetboxExport.pb.swift in Sources */,
 				86F8F80D27EE774200442694 /* NewVehicleView.swift in Sources */,
 				864C732727D06C6800047165 /* LineItem.swift in Sources */,
 				86500C7427DBEDC500A5111E /* TireSetPickerView.swift in Sources */,
-				8664C25227DAABE300AE9ADB /* ExportableLineItemField.swift in Sources */,
 				861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
 				8612CD6B27E1C77D00976E8F /* WithDoneButton.swift in Sources */,
 				861DAE3927CDD59F00AFE972 /* Persistence.swift in Sources */,
 				8612CD6F27E2DEF200976E8F /* SaveOnLeave.swift in Sources */,
 				8612CD6D27E1CF4400976E8F /* UIImage Extensions.swift in Sources */,
-				8664C25427DAB14000AE9ADB /* ExportableAttachment.swift in Sources */,
 				861DA48F27E1233200775276 /* Date Functions.swift in Sources */,
 				86500C9727DC0E5B00A5111E /* OdometerReadingFormView.swift in Sources */,
 				8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */,
-				8664C25027DAAB7800AE9ADB /* ExportableLineItem.swift in Sources */,
 				86B17F8C27D45EDF001E52C6 /* LineItemTypes.swift in Sources */,
 				86500C7027DAD84F00A5111E /* FleetboxTextField.swift in Sources */,
 				86638D3827D994B200149689 /* TireSet.swift in Sources */,
 				86500C9527DC0E4700A5111E /* PartOdometerFluidFilterView.swift in Sources */,
 				86500CA027DC134C00A5111E /* MaintenanceLogView.swift in Sources */,
 				8664C24727DA987900AE9ADB /* Custom Bindings.swift in Sources */,
-				8664C24A27DAAA2600AE9ADB /* ExportableVehicle.swift in Sources */,
 				86500C7227DBED3D00A5111E /* LineItemTypePickerView.swift in Sources */,
 				86500C9327DC0E3200A5111E /* PartOdometerIndividualView.swift in Sources */,
-				8664C24E27DAAA8200AE9ADB /* ExportableOdometerReading.swift in Sources */,
 				861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */,
 				86B189A727EAFEBE001CFBD3 /* QuickViewController.swift in Sources */,
 				86500C8F27DC0DE900A5111E /* PartOdometer.swift in Sources */,
@@ -777,11 +779,10 @@
 				8612CD6627E1A58300976E8F /* VehicleImageView.swift in Sources */,
 				864C732127D06A7F00047165 /* LogItem.swift in Sources */,
 				86500C8B27DC0D8600A5111E /* VINDetailView.swift in Sources */,
-				861DA48927E11E3600775276 /* ExportableShop.swift in Sources */,
+				86F8F81B27EE9EB600442694 /* Extensions.swift in Sources */,
 				8664C24327DA91C200AE9ADB /* ShopView.swift in Sources */,
 				86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */,
 				86500C9127DC0DFE00A5111E /* PartOdometerRowView.swift in Sources */,
-				8664C24C27DAAA7900AE9ADB /* ExportableLogItem.swift in Sources */,
 				86F8F80727EB197600442694 /* Editable.swift in Sources */,
 				86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */,
 				8664C23F27DA907A00AE9ADB /* TireSetsView.swift in Sources */,
@@ -794,7 +795,6 @@
 				86B189AD27EB0109001CFBD3 /* AttachmentView.swift in Sources */,
 				861DAE3727CDD59F00AFE972 /* VehiclesView.swift in Sources */,
 				86500C9E27DC125200A5111E /* EditTireSetLineItemFieldView.swift in Sources */,
-				861DA48B27E11E3E00775276 /* ExportableExportContext.swift in Sources */,
 				8690C7AD27D9AA260042F543 /* OdometerReadingView.swift in Sources */,
 				864C732427D06B8C00047165 /* Shop.swift in Sources */,
 				86500C8D27DC0DBC00A5111E /* PartOdometersView.swift in Sources */,
@@ -1195,6 +1195,14 @@
 				minimumVersion = 0.1.4;
 			};
 		};
+		86F8F81627EE99DC00442694 /* XCRemoteSwiftPackageReference "swift-protobuf" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-protobuf.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1227,6 +1235,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 86F8F80E27EE827800442694 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		86F8F81727EE99DC00442694 /* SwiftProtobuf */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 86F8F81627EE99DC00442694 /* XCRemoteSwiftPackageReference "swift-protobuf" */;
+			productName = SwiftProtobuf;
 		};
 /* End XCSwiftPackageProductDependency section */
 
