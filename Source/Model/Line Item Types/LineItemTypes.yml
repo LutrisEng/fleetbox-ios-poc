@@ -28,7 +28,7 @@ categories:
           sfsymbols: car
         types:
           - id: basicPreDrive
-            displayName: Basic pre-drive inspection completed
+            displayName: Basic pre-drive inspection
             description: A basic inspection intended to be completed in a couple minutes was completed.
             fields:
               - id: lowBeams
@@ -161,10 +161,59 @@ categories:
                 type: string
                 example: Texas
                 defaultValueFrom: vehicle.registrationState
+      - id: component
+        displayName: Components
+        types:
+          - id: fluidsCheck
+            displayName: Fluid level check
+          - id: engineOilCheck
+            displayName: Engine oil level check
+          - id: transmissionFluidCheck
+            displayName: Transmission fluid level check
+          - id: transferCaseFluidCheck
+            displayName: Transfer case fluid level check
+          - id: treadCheck
+            displayName: Tire tread check
+            fields:
+              - id: tireSet
+                shortDisplayName: Tire set
+                longDisplayName: Which tire set was checked?
+                type: tireSet
+                defaultValueFrom: vehicle.currentTires
+          - id: tirePressureChecked
+            displayName: Tire pressure check
+            fields:
+              - id: tireSet
+                shortDisplayName: Tire set
+                longDisplayName: Which tire set was checked?
+                type: tireSet
+                defaultValueFrom: vehicle.currentTires
+          - id: engineAirFilterCheck
+            displayName: Engine air filter check
+          - id: cabinAirFilterCheck
+            displayName: Cabin air filter check
+          - id: timingBeltCheck
+            displayName: Timing belt check
+          - id: serpentineBeltCheck
+            displayName: Serpentine belt check
   - id: maintenance
     displayName: Maintenance
     icon:
       sfsymbols: wrench.and.screwdriver
+    types:
+      - id: wiperBladeChange
+        displayName: Wiper blade replacement
+        fields:
+          - id: brand
+            shortDisplayName: Brand
+            longDisplayName: What is the new wiper blades' brand?
+            type: string
+            example: PartCo
+            defaultValueFrom: vehicle.make
+          - id: partNumber
+            shortDisplayName: Part number
+            longDisplayName: What is the new wiper blades' part number?
+            type: string
     subcategories:
       - id: mechanical
         displayName: Mechanical
@@ -232,7 +281,7 @@ categories:
           sfsymbols: drop.triangle
         types:
           - id: engineOilChange
-            displayName: Engine oil changed
+            displayName: Engine oil change
             description: Engine oil was drained and refilled.
             fields:
               - id: viscosity
@@ -252,7 +301,7 @@ categories:
                 longDisplayName: What is the new oil's part number?
                 type: string
           - id: transmissionFluidChange
-            displayName: Transmission fluid changed
+            displayName: Transmission fluid change
             description: Transmission fluid was drained and refilled.
             fields:
               - id: brand
@@ -265,8 +314,22 @@ categories:
                 shortDisplayName: Part number
                 longDisplayName: What is the new fluid's part number?
                 type: string
+          - id: transferCaseFluidChange
+            displayName: Transfer case fluid change
+            description: Transfer case fluid was drained and refilled.
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the new fluid's brand?
+                type: string
+                example: FluidCo
+                defaultValueFrom: vehicle.make
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the new fluid's part number?
+                type: string
           - id: brakeFluidChange
-            displayName: Brake fluid changed
+            displayName: Brake fluid change
             description: Brake fluid was drained and refilled.
             fields:
               - id: brand
@@ -280,7 +343,7 @@ categories:
                 longDisplayName: What is the new fluid's part number?
                 type: string
           - id: coolantChange
-            displayName: Coolant flushed
+            displayName: Coolant flush
             description: Engine coolant was drained and refilled.
             fields:
               - id: brand
@@ -293,6 +356,35 @@ categories:
                 shortDisplayName: Part number
                 longDisplayName: What is the new coolant's part number?
                 type: string
+      - id: belts
+        displayName: Belts
+        types:
+          - id: timingBeltChange
+            displayName: Timing belt replacement
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the new belt's brand?
+                type: string
+                example: FilterCo
+                defaultValueFrom: vehicle.make
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the new belt's part number?
+                type: string
+          - id: serpentineBeltChange
+            displayName: Serpentine belt replacement
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the new belt's brand?
+                type: string
+                example: FilterCo
+                defaultValueFrom: vehicle.make
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the new belt's part number?
+                type: string
       - id: filters
         displayName: Filters
         subcategories:
@@ -302,7 +394,7 @@ categories:
               sfsymbols: drop.triangle
             types:
               - id: engineOilFilterChange
-                displayName: Engine oil filter replaced
+                displayName: Engine oil filter replacement
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -315,7 +407,7 @@ categories:
                     longDisplayName: What is the new oil filter's part number?
                     type: string
               - id: transmissionFluidFilterChange
-                displayName: Transmission fluid filter replaced
+                displayName: Transmission fluid filter replacement
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -333,7 +425,7 @@ categories:
               sfsymbols: wind
             types:
               - id: engineAirFilterChange
-                displayName: Engine air filter replaced
+                displayName: Engine air filter replacement
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -346,7 +438,7 @@ categories:
                     longDisplayName: What is the new air filter's part number?
                     type: string
               - id: cabinAirFilterChange
-                displayName: Cabin air filter replaced
+                displayName: Cabin air filter replacement
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -364,7 +456,7 @@ categories:
           sfsymbols: circle.circle
         types:
           - id: tireRotation
-            displayName: Tires rotated
+            displayName: Tires rotation
             icon:
               sfsymbols: repeat.circle
             fields:
@@ -388,19 +480,25 @@ categories:
                     displayName: Rearward cross
                     description: Typically used for rear-wheel drive and all-wheel drive vehicles. Front tires moved to opposite sides of rear axle, and rear tires moved to front.
           - id: mountedTires
-            displayName: Tire set mounted
+            displayName: Tire set mounting
             fields:
               - id: tireSet
                 shortDisplayName: Tire set
                 longDisplayName: Which tire set was mounted?
                 type: tireSet
           - id: dismountedTires
-            displayName: Tire set dismounted
+            displayName: Tire set dismounting
             fields:
               - id: tireSet
                 shortDisplayName: Tire set
                 longDisplayName: Which tire set was dismounted?
                 type: tireSet
+  
+  - id: repair
+    displayName: Repairs
+    icon:
+      sfsymbols: screwdriver
+    types: []
   
   - id: registration
     displayName: Registration
@@ -408,7 +506,7 @@ categories:
       sfsymbols: rectangle.and.paperclip
     types:
       - id: stateRegistration
-        displayName: Registered with state
+        displayName: State registration
         fields:
           - id: state
             shortDisplayName: State
