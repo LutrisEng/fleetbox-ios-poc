@@ -36,6 +36,10 @@ struct TireSetView: View {
                     }
                 }
             }
+            Section(header: Text("Odometer")) {
+                PartOdometerRowView(name: "Tires", milesSince: tireSet.odometer, timeSince: tireSet.age)
+                FleetboxTextField(value: $tireSet.treadwearWarranty, name: "Treadlife Warranty", example: 30000)
+            }
             Section(header: Text("Specs")) {
                 Text("Examples based on P225/70R16 91S").foregroundColor(.secondary)
                 HStack {

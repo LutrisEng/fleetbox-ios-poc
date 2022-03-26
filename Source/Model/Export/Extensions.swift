@@ -67,6 +67,7 @@ extension Fleetbox_Export_TireSet {
         if let tin = tireSet.tin {
             self.tin = tin
         }
+        treadwearWarranty = tireSet.treadwearWarranty
     }
 
     func importTireSet(context: NSManagedObjectContext) -> TireSet {
@@ -82,6 +83,7 @@ extension Fleetbox_Export_TireSet {
         tireSet.vehicleType = vehicleType
         tireSet.width = Int16(width)
         tireSet.tin = tin
+        tireSet.treadwearWarranty = treadwearWarranty
         return tireSet
     }
 }
@@ -143,7 +145,7 @@ extension Fleetbox_Export_OdometerReading {
         if let performedAt = odometerReading.at {
             self.performedAt = Int64(performedAt.timeIntervalSince1970)
         }
-        self.reading = UInt64(odometerReading.reading)
+        self.reading = odometerReading.reading
     }
 
     func importOdometerReading(context: NSManagedObjectContext, vehicle: Vehicle) -> OdometerReading {
@@ -152,7 +154,7 @@ extension Fleetbox_Export_OdometerReading {
         if hasPerformedAt {
             odometerReading.at = Date(timeIntervalSince1970: TimeInterval(performedAt))
         }
-        odometerReading.reading = Int64(reading)
+        odometerReading.reading = reading
         return odometerReading
     }
 }
@@ -169,13 +171,13 @@ extension Fleetbox_Export_LogItem {
             Fleetbox_Export_LineItem(envelope: envelope, lineItem: $0)
         }
         if let odometerReading = logItem.odometerReading {
-            self.odometerReading = UInt64(odometerReading.reading)
+            self.odometerReading = odometerReading.reading
         }
         if let shop = logItem.shop {
             if let idx = envelope.shops.firstIndex(of: shop) {
-                self.shop = UInt64(idx)
+                self.shop = Int64(idx)
             } else {
-                self.shop = UInt64(envelope.shops.count)
+                self.shop = Int64(envelope.shops.count)
                 envelope.shops.append(shop)
             }
         }
@@ -282,9 +284,9 @@ extension Fleetbox_Export_LineItemField {
         }
         if let tireSet = lineItemField.tireSetValue {
             if let idx = envelope.tireSets.firstIndex(of: tireSet) {
-                tireSetValue = UInt64(idx)
+                tireSetValue = Int64(idx)
             } else {
-                tireSetValue = UInt64(envelope.tireSets.count)
+                tireSetValue = Int64(envelope.tireSets.count)
                 envelope.tireSets.append(tireSet)
             }
         }
