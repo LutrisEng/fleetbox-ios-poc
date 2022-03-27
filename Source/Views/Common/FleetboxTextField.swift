@@ -23,15 +23,16 @@ struct FleetboxTextField: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     var value: Binding<String?>
-    var wrappedValue: Binding<String>
+    private var wrappedValue: Binding<String>
     @State private var tempValue: String = ""
     @State private var pageShown: Bool = false
     let name: LocalizedStringKey?
     let description: LocalizedStringKey?
     let example: String?
-    var unitName: LocalizedStringKey?
-    var number: Bool = false
-    var previewAsNumber: Bool = false
+    private var unitName: LocalizedStringKey?
+    private var number: Bool = false
+    private var previewAsNumber: Bool = false
+    private var captionKey: LocalizedStringKey?
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: LocalizedStringKey? = nil) {
         self.value = value
@@ -69,6 +70,12 @@ struct FleetboxTextField: View {
         return view
     }
 
+    func caption(_ caption: LocalizedStringKey?) -> FleetboxTextField {
+        var view = self
+        view.captionKey = caption
+        return view
+    }
+
     func previewAsString() -> FleetboxTextField {
         var view = self
         view.previewAsNumber = false
@@ -83,7 +90,15 @@ struct FleetboxTextField: View {
         }
     }
 
-    var numberValue: Int64? {
+    private var maybeCaption: Text {
+        if let caption = captionKey {
+            return Text("\n") + Text(caption).font(.caption)
+        } else {
+            return Text("")
+        }
+    }
+
+    private var numberValue: Int64? {
         if number, let value = value.wrappedValue {
             return try? Int64(value, format: .number)
         } else {
@@ -91,7 +106,7 @@ struct FleetboxTextField: View {
         }
     }
 
-    var previewValue: LocalizedStringKey {
+    private var previewValue: LocalizedStringKey {
         if previewAsNumber, let numberValue = numberValue {
             return "\(numberValue)"
         } else if let value = value.wrappedValue {
@@ -108,8 +123,9 @@ struct FleetboxTextField: View {
                 Text(name)
             }
             Spacer()
-            (Text(previewValue) + maybeUnitName)
+            (Text(previewValue) + maybeUnitName + maybeCaption)
                 .foregroundColor(.secondary)
+                .multilineTextAlignment(.trailing)
         }
     }
 

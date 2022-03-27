@@ -32,25 +32,29 @@ struct TireSetView: View {
         FleetboxTextField(value: $tireSet.diameter, name: "Rim Diameter", example: 16)
     }
 
+    var loadCapacityCaption: LocalizedStringKey? {
+        if let loadCapacity = tireSet.loadCapacity {
+            return "\(loadCapacity)lbs/wheel"
+        } else {
+            return nil
+        }
+    }
+
+    var topSpeedCaption: LocalizedStringKey? {
+        if let topSpeed = tireSet.topSpeed {
+            return "\(topSpeed)mph"
+        } else {
+            return nil
+        }
+    }
+
     @ViewBuilder
     var specForm: some View {
         baseSpecForm
         FleetboxTextField(value: $tireSet.loadIndex, name: "Load Index", example: 91)
-        if let loadCapacity = tireSet.loadCapacity {
-            HStack {
-                Text("Load Capacity")
-                Spacer()
-                Text("\(loadCapacity)lbs/wheel").foregroundColor(.secondary)
-            }
-        }
+            .caption(loadCapacityCaption)
         FleetboxTextField(value: $tireSet.speedRating, name: "Speed Rating", example: "S")
-        if let topSpeed = tireSet.topSpeed {
-            HStack {
-                Text("Top Speed")
-                Spacer()
-                Text("\(topSpeed)mph").foregroundColor(.secondary)
-            }
-        }
+            .caption(topSpeedCaption)
     }
 
     var body: some View {
