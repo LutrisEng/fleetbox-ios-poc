@@ -86,7 +86,7 @@ class UILaunchTests: XCTestCase {
         }
         app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "The Mazda CX-5")).element.tap()
         app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "Break-in oil change")).element.tap()
-        app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "Engine oil changed")).element.tap()
+        app.tables.cells.containing(NSPredicate(format: "label contains[c] %@", "Engine oil change")).element.tap()
 
         let attachment = XCTAttachment(screenshot: app.screenshot())
         attachment.name = "Line item"
