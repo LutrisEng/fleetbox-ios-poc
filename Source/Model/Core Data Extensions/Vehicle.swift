@@ -58,19 +58,38 @@ extension Vehicle {
     }
 
     func lastLineItem(type: String) -> LineItem? {
-        for logItem in logItemsInverseChrono {
-            for lineItem in logItem.lineItems where lineItem.typeId == type {
-                return lineItem
-            }
-        }
-        return nil
+        return logItemsInverseChrono
+            .flatMap(\.lineItems)
+            .first(where: { $0.typeId == type })
+    }
+
+    func lastLineItem(type: String, where pred: (LineItem) -> Bool) -> LineItem? {
+        return logItemsInverseChrono
+            .flatMap(\.lineItems)
+            .first(where: { $0.typeId == type && pred($0) })
     }
 
     var currentTireSet: TireSet? {
-        do {
-            return try lastLineItem(type: "mountedTires")?.getFieldValueTireSet("tireSet")
-        } catch {
-            SentrySDK.capture(error: error)
+        guard let mountedLineItem = lastLineItem(
+            type: "mountedTires",
+            where: { (try? $0.getFieldValueTireSet("tireSet")) != nil }
+        ) else {
+            return nil
+        }
+        guard let tireSet = try? mountedLineItem.getFieldValueTireSet("tireSet") else {
+            return nil
+        }
+        let dismountedLogItems = lastLineItem(
+            type: "dismountedTires",
+            where: {
+                (try? $0.getFieldValueTireSet("tireSet")) == tireSet &&
+                ($0.logItem?.performedAt ?? Date.distantPast) >
+                    (mountedLineItem.logItem?.performedAt ?? Date.distantFuture)
+            }
+        )
+        if dismountedLogItems == nil {
+            return tireSet
+        } else {
             return nil
         }
     }

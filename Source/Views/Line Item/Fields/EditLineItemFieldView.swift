@@ -30,6 +30,8 @@ struct EditLineItemFieldView: View {
             action: { withAnimation { showInfo.toggle() } },
             label: { Image(systemName: "info.circle") }
         )
+        .buttonStyle(.plain)
+        .foregroundColor(.accentColor)
     }
 
     @ViewBuilder func info(type: LineItemTypeField, alignment: Alignment = .trailing) -> some View {

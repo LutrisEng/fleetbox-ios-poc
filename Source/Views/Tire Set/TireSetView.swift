@@ -29,13 +29,6 @@ struct TireSetView: View {
             FleetboxTextField(value: $tireSet.make, name: "Make", example: "TireCo")
             FleetboxTextField(value: $tireSet.model, name: "Model", example: "Aviator Sport")
             FleetboxTextField(value: $tireSet.tin, name: "TIN", example: "DOT U2LL LMLR5107")
-            if let vehicle = tireSet.vehicle {
-                Section(header: Text("Current vehicle")) {
-                    NavigationLink(vehicle.displayNameWithFallback) {
-                        VehicleView(vehicle: vehicle)
-                    }
-                }
-            }
             if tireSet.hidden {
                 Button("Un-hide") {
                     tireSet.hidden = false
@@ -51,24 +44,56 @@ struct TireSetView: View {
                     }
                 }
             }
+            if let vehicle = tireSet.vehicle {
+                Section(header: Text("Current vehicle")) {
+                    NavigationLink(vehicle.displayNameWithFallback) {
+                        VehicleView(vehicle: vehicle)
+                    }
+                }
+            }
             Section(header: Text("Odometer")) {
                 PartOdometerRowView(name: "Tires", milesSince: tireSet.odometer, timeSince: tireSet.age)
                 FleetboxTextField(value: $tireSet.treadwearWarranty, name: "Treadlife Warranty", example: 30000)
             }
             Section(header: Text("Specs")) {
-                Text("Examples based on P225/70R16 91S").foregroundColor(.secondary)
                 HStack {
                     Text("Tire specs")
                     Spacer()
-                    Text(tireSet.specs).foregroundColor(.secondary)
+                    VStack {
+                        (
+                            Text(tireSet.specs) +
+                            Text("\nExamples based on P225/70R16 91S")
+                                .font(.caption)
+                        )
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.trailing)
+                    }
                 }
                 FleetboxTextField(value: $tireSet.vehicleType, name: "Vehicle Type", example: "P")
                 FleetboxTextField(value: $tireSet.width, name: "Width", example: 225)
                 FleetboxTextField(value: $tireSet.aspectRatio, name: "Aspect Ratio", example: 70)
                 FleetboxTextField(value: $tireSet.construction, name: "Construction", example: "R")
                 FleetboxTextField(value: $tireSet.diameter, name: "Rim Diameter", example: 16)
-                FleetboxTextField(value: $tireSet.loadIndex, name: "Load Index", example: 91)
-                FleetboxTextField(value: $tireSet.speedRating, name: "Speed Rating", example: "S")
+                VStack {
+                    FleetboxTextField(value: $tireSet.loadIndex, name: "Load Index", example: 91)
+                    if let loadCapacity = tireSet.loadCapacity {
+                        HStack {
+                            Text("Load Capacity")
+                            Spacer()
+                            Text("\(loadCapacity)lbs/wheel").foregroundColor(.secondary)
+                        }
+                    }
+                }
+                VStack {
+                    FleetboxTextField(value: $tireSet.speedRating, name: "Speed Rating", example: "S")
+                    if let topSpeed = tireSet.topSpeed {
+                        HStack {
+                            Text("Top Speed")
+                            Spacer()
+                            Text("\(topSpeed)mph").foregroundColor(.secondary)
+                        }
+                    }
+                }
             }
             let logItems = tireSet.logItemsInverseChrono
             if !logItems.isEmpty {

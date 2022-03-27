@@ -51,6 +51,7 @@ struct LogItemView: View {
                     DatePicker(
                             "Performed",
                             selection: convertToNonNilBinding(date: $logItem.performedAt),
+                            in: ...Date.now,
                             displayedComponents: [.date]
                     )
                 } else if let performedAt = logItem.performedAt {
