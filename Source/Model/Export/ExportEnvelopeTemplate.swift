@@ -22,6 +22,13 @@ class ExportEnvelopeTemplate {
     var vehicle: Vehicle?
     var shops: [Shop] = []
     var tireSets: [TireSet] = []
+    
+    init(allFromContext context: NSManagedObjectContext) throws {
+        let shopFetchRequest = NSFetchRequest<Shop>(entityName: "Shop")
+        shops = try context.fetch(shopFetchRequest)
+        let tireSetFetchRequest = NSFetchRequest<TireSet>(entityName: "TireSet")
+        tireSets = try context.fetch(tireSetFetchRequest)
+    }
 
     init(vehicle: Vehicle) {
         self.vehicle = vehicle
@@ -31,6 +38,11 @@ class ExportEnvelopeTemplate {
         shops = envelope.shops.map { $0.importShop(context: context) }
         tireSets = envelope.tireSets.map { $0.importTireSet(context: context) }
         vehicle = envelope.vehicle.importVehicle(context: context, envelope: self)
+    }
+    
+    init(context: NSManagedObjectContext, backup: Fleetbox_Export_BackupExport) {
+        shops = backup.shops.map { $0.importShop(context: context) }
+        tireSets = backup.tireSets.map { $0.importTireSet(context: context) }
     }
 
     func export() -> Fleetbox_Export_ExportEnvelope? {

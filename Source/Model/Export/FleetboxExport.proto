@@ -7,6 +7,12 @@ message ExportEnvelope {
     repeated Shop shops = 3;
 }
 
+message BackupExport {
+    repeated Vehicle vehicles = 1;
+    repeated TireSet tireSets = 2;
+    repeated Shop shops = 3;
+}
+
 message Vehicle {
     optional string displayName = 1;
     optional string make = 2;

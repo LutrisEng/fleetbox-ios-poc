@@ -21,8 +21,26 @@ extension Fleetbox_Export_ExportEnvelope {
     init(vehicle: Vehicle) {
         let tmpl = ExportEnvelopeTemplate(vehicle: vehicle)
         self.vehicle = Fleetbox_Export_Vehicle(envelope: tmpl, vehicle: vehicle)
-        self.shops = tmpl.shops.map { Fleetbox_Export_Shop(shop: $0) }
-        self.tireSets = tmpl.tireSets.map { Fleetbox_Export_TireSet(tireSet: $0) }
+        shops = tmpl.shops.map { Fleetbox_Export_Shop(shop: $0) }
+        tireSets = tmpl.tireSets.map { Fleetbox_Export_TireSet(tireSet: $0) }
+    }
+}
+
+extension Fleetbox_Export_BackupExport {
+    init(context: NSManagedObjectContext) throws {
+        let tmpl = try ExportEnvelopeTemplate(allFromContext: context)
+        let vehiclesFetchRequest = NSFetchRequest<Vehicle>(entityName: "Vehicle")
+        vehicles = try context.fetch(vehiclesFetchRequest)
+            .map { Fleetbox_Export_Vehicle(envelope: tmpl, vehicle: $0) }
+        shops = tmpl.shops.map { Fleetbox_Export_Shop(shop: $0) }
+        tireSets = tmpl.tireSets.map { Fleetbox_Export_TireSet(tireSet: $0) }
+    }
+    
+    func importBackup(context: NSManagedObjectContext) throws {
+        let tmpl = ExportEnvelopeTemplate(context: context, backup: self)
+        for vehicle in vehicles {
+            _ = vehicle.importVehicle(context: context, envelope: tmpl)
+        }
     }
 }
 
