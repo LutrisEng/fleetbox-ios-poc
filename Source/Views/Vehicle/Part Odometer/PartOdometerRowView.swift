@@ -34,7 +34,7 @@ struct PartOdometerRowView: View {
 
     var milesSinceText: Text {
         if let milesSince = milesSince {
-            return Text("\(milesSince) miles")
+            return Text("About \(milesSince) miles")
         } else {
             return Text("")
         }

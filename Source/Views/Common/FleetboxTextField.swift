@@ -76,7 +76,7 @@ struct FleetboxTextField: View {
     }
 
     private var maybeUnitName: Text {
-        if let unitName = unitName {
+        if let unitName = unitName, value.wrappedValue != nil {
             return (Text(" ") + Text(unitName))
         } else {
             return Text("")

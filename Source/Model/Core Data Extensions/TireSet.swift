@@ -73,10 +73,14 @@ extension TireSet {
     }
 
     var vehicle: Vehicle? {
-        guard let mountedLogItem = lastLineItem(
+        guard let mountedLineItem = lastLineItem(
             type: "mountedTires",
             where: { (try? $0.getFieldValueTireSet("tireSet")) != nil }
-        )?.logItem else {
+        ) else {
+            return nil
+        }
+        guard let mountedLogItem = mountedLineItem.logItem else { return nil }
+        if (try? mountedLineItem.getFieldValueTireSet("tireSet")) != self {
             return nil
         }
         let dismountedLogItems = lastLineItem(

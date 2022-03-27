@@ -23,6 +23,36 @@ struct TireSetView: View {
 
     @ObservedObject var tireSet: TireSet
 
+    @ViewBuilder
+    var baseSpecForm: some View {
+        FleetboxTextField(value: $tireSet.vehicleType, name: "Vehicle Type", example: "P")
+        FleetboxTextField(value: $tireSet.width, name: "Width", example: 225)
+        FleetboxTextField(value: $tireSet.aspectRatio, name: "Aspect Ratio", example: 70)
+        FleetboxTextField(value: $tireSet.construction, name: "Construction", example: "R")
+        FleetboxTextField(value: $tireSet.diameter, name: "Rim Diameter", example: 16)
+    }
+
+    @ViewBuilder
+    var specForm: some View {
+        baseSpecForm
+        FleetboxTextField(value: $tireSet.loadIndex, name: "Load Index", example: 91)
+        if let loadCapacity = tireSet.loadCapacity {
+            HStack {
+                Text("Load Capacity")
+                Spacer()
+                Text("\(loadCapacity)lbs/wheel").foregroundColor(.secondary)
+            }
+        }
+        FleetboxTextField(value: $tireSet.speedRating, name: "Speed Rating", example: "S")
+        if let topSpeed = tireSet.topSpeed {
+            HStack {
+                Text("Top Speed")
+                Spacer()
+                Text("\(topSpeed)mph").foregroundColor(.secondary)
+            }
+        }
+    }
+
     var body: some View {
         Form {
             FleetboxTextField(value: $tireSet.userDisplayName, name: "Name", example: "My Summer Tires")
@@ -54,6 +84,7 @@ struct TireSetView: View {
             Section(header: Text("Odometer")) {
                 PartOdometerRowView(name: "Tires", milesSince: tireSet.odometer, timeSince: tireSet.age)
                 FleetboxTextField(value: $tireSet.treadwearWarranty, name: "Treadlife Warranty", example: 30000)
+                    .unit("miles")
             }
             Section(header: Text("Specs")) {
                 HStack {
@@ -69,31 +100,7 @@ struct TireSetView: View {
                         .multilineTextAlignment(.trailing)
                     }
                 }
-                FleetboxTextField(value: $tireSet.vehicleType, name: "Vehicle Type", example: "P")
-                FleetboxTextField(value: $tireSet.width, name: "Width", example: 225)
-                FleetboxTextField(value: $tireSet.aspectRatio, name: "Aspect Ratio", example: 70)
-                FleetboxTextField(value: $tireSet.construction, name: "Construction", example: "R")
-                FleetboxTextField(value: $tireSet.diameter, name: "Rim Diameter", example: 16)
-                VStack {
-                    FleetboxTextField(value: $tireSet.loadIndex, name: "Load Index", example: 91)
-                    if let loadCapacity = tireSet.loadCapacity {
-                        HStack {
-                            Text("Load Capacity")
-                            Spacer()
-                            Text("\(loadCapacity)lbs/wheel").foregroundColor(.secondary)
-                        }
-                    }
-                }
-                VStack {
-                    FleetboxTextField(value: $tireSet.speedRating, name: "Speed Rating", example: "S")
-                    if let topSpeed = tireSet.topSpeed {
-                        HStack {
-                            Text("Top Speed")
-                            Spacer()
-                            Text("\(topSpeed)mph").foregroundColor(.secondary)
-                        }
-                    }
-                }
+                specForm
             }
             let logItems = tireSet.logItemsInverseChrono
             if !logItems.isEmpty {
