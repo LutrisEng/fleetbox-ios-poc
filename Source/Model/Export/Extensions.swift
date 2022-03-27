@@ -35,7 +35,7 @@ extension Fleetbox_Export_BackupExport {
         shops = tmpl.shops.map { Fleetbox_Export_Shop(shop: $0) }
         tireSets = tmpl.tireSets.map { Fleetbox_Export_TireSet(tireSet: $0) }
     }
-    
+
     func importBackup(context: NSManagedObjectContext) throws {
         let tmpl = ExportEnvelopeTemplate(context: context, backup: self)
         for vehicle in vehicles {
