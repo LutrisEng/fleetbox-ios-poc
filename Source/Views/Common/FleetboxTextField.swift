@@ -184,6 +184,7 @@ struct FleetboxTextField: View {
                                     pageShown = false
                                 }
                                 .keyboardType(number ? .decimalPad : .default)
+                                .modifier(WithDoneButton())
                                 if let value = value.wrappedValue, !value.isEmpty {
                                     Button(
                                         action: {

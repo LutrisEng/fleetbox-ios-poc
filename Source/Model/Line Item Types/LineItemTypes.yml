@@ -595,8 +595,13 @@ categories:
                 type: integer
                 unit: years
                 exampleInteger: 4
+      - id: windshieldProtection
+        displayName: Windshield protection
+        icon:
+          sfsymbols: eyeglasses
+        types:
           - id: windshieldSealant
-            displayName: Windshield ealant application
+            displayName: Windshield sealant application
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -645,3 +650,7 @@ categories:
     types:
       - id: misc
         displayName: Miscellaneous
+      - id: manufactured
+        displayName: Vehicle manufacturing
+        icon:
+          sfsymbols: car

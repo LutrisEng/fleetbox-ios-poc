@@ -37,6 +37,7 @@
     </entity>
     <entity name="Shop" representedClassName="Shop" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" defaultValueString="Maintenance Shop"/>
+        <attribute name="notes" attributeType="String" defaultValueString=""/>
         <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="logItemsNs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LogItem" inverseName="shop" inverseEntity="LogItem"/>
     </entity>
@@ -88,7 +89,7 @@
         <element name="LineItemField" positionX="270" positionY="36" width="128" height="104"/>
         <element name="LogItem" positionX="406.38671875" positionY="-9.95703125" width="128" height="134"/>
         <element name="OdometerReading" positionX="270" positionY="108" width="128" height="89"/>
-        <element name="Shop" positionX="279" positionY="45" width="128" height="74"/>
+        <element name="Shop" positionX="279" positionY="45" width="128" height="89"/>
         <element name="TireSet" positionX="279" positionY="63" width="128" height="299"/>
         <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="209"/>
         <element name="Warranty" positionX="270" positionY="135" width="128" height="119"/>

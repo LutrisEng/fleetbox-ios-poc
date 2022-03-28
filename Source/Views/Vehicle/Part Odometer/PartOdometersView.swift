@@ -146,21 +146,23 @@ struct PartOdometersView: View {
                 .progressColor((tireSet.breakinProgress ?? 0) < 1 ? .yellow : .green)
             }
         }
-        Section(header: Text("Part Odometers")) {
-            if let tires = vehicle.currentTireSet {
-                PartOdometerRowView(
-                    name: "Tires",
-                    milesSince: tires.approximateOdometer,
-                    timeSince: tires.age
-                )
-            }
-            ForEach(partOdometers) { odometer in
-                odometer.view(vehicle: vehicle)
-            }
-        }
         .onChange(of: vehicle.approximateOdometer) { newOdometer in
             // Cache the vehicle odometer to reduce time spent calculating it
             _vehicleOdometer = newOdometer
+        }
+        if vehicle.currentTireSet != nil || !partOdometers.isEmpty {
+            Section(header: Text("Part Odometers")) {
+                if let tires = vehicle.currentTireSet {
+                    PartOdometerRowView(
+                        name: "Tires",
+                        milesSince: tires.approximateOdometer,
+                        timeSince: tires.age
+                    )
+                }
+                ForEach(partOdometers) { odometer in
+                    odometer.view(vehicle: vehicle)
+                }
+            }
         }
     }
 }

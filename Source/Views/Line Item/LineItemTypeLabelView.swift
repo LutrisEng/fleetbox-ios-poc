@@ -24,6 +24,7 @@ struct LineItemTypeLabelView<Content: View>: View {
     let descriptionColor: Color?
     let iconWidth: CGFloat?
     let iconHeight: CGFloat?
+    let showCategories: Bool
     let details: () -> Content
 
     init(
@@ -33,6 +34,7 @@ struct LineItemTypeLabelView<Content: View>: View {
         descriptionColor: Color? = nil,
         iconWidth: CGFloat? = 30,
         iconHeight: CGFloat? = nil,
+        showCategories: Bool = false,
         @ViewBuilder details: @escaping () -> Content
     ) {
         self.type = type
@@ -41,6 +43,7 @@ struct LineItemTypeLabelView<Content: View>: View {
         self.descriptionColor = descriptionColor
         self.iconWidth = iconWidth
         self.iconHeight = iconHeight
+        self.showCategories = showCategories
         self.details = details
     }
 
@@ -50,6 +53,18 @@ struct LineItemTypeLabelView<Content: View>: View {
                     .frame(width: iconWidth, height: iconHeight, alignment: .center)
                     .padding([.leading, .trailing], 4)
             VStack {
+                if showCategories, let type = type {
+                    Text(
+                        type.categoryPath
+                            .compactMap({ lineItemTypes.allCategoriesById[$0] })
+                            .map({ $0.displayName })
+                            .joined(separator: " / ")
+                    )
+                    .foregroundColor(.secondary)
+                    .font(.caption)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                }
                 Text(type?.displayName ?? "Unknown line item")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .minimumScaleFactor(font == .body ? 0.5 : 1)

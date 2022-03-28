@@ -112,21 +112,6 @@ struct LogItemView: View {
                     }
                 }
                 Section(header: Text("Line items")) {
-                    if editable {
-                        NavigationLink(
-                            destination: {
-                                LineItemTypePickerView {
-                                    _ = createLineItem(type: $0)
-                                }
-                                .navigationTitle("Add line item")
-                                .navigationBarTitleDisplayMode(.inline)
-                            },
-                            label: {
-                                Text("\(Image(systemName: "plus")) Add line item")
-                                    .foregroundColor(.accentColor)
-                            }
-                        )
-                    }
                     let lineItems = logItem.lineItems.sorted
                     if lineItems.isEmpty {
                         Text("No line items")
@@ -143,6 +128,21 @@ struct LogItemView: View {
                         }
                         .onDelete(deleteFrom: lineItems, context: viewContext)
                         .onMove(moveIn: lineItems)
+                    }
+                    if editable {
+                        NavigationLink(
+                            destination: {
+                                LineItemTypePickerView {
+                                    _ = createLineItem(type: $0)
+                                }
+                                .navigationTitle("Add line item")
+                                .navigationBarTitleDisplayMode(.inline)
+                            },
+                            label: {
+                                Text("\(Image(systemName: "plus")) Add line item")
+                                    .foregroundColor(.accentColor)
+                            }
+                        )
                     }
                 }
                 Section(header: Text("Attachments")) {

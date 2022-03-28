@@ -24,34 +24,42 @@ struct LineItemLabelView: View {
     var detailFont: Font = .caption
     var iconWidth: CGFloat? = 30
     var iconHeight: CGFloat?
+    var showCategories = true
 
     var details: LineItemLabelView {
-        var newView = self
-        newView.showDetails = true
-        return newView
+        var view = self
+        view.showDetails = true
+        return view
     }
 
     func font(item: Font? = nil, detail: Font? = nil) -> LineItemLabelView {
-        var newView = self
+        var view = self
         if let item = item {
-            newView.itemFont = item
+            view.itemFont = item
         }
         if let detail = detail {
-            newView.detailFont = detail
+            view.detailFont = detail
         }
-        return newView
+        return view
     }
 
     func iconFrame(width: CGFloat?, height: CGFloat?) -> LineItemLabelView {
-        var newView = self
-        newView.iconWidth = width
-        newView.iconHeight = height
-        return newView
+        var view = self
+        view.iconWidth = width
+        view.iconHeight = height
+        return view
     }
 
-    var mini: LineItemLabelView {
+    var withoutCategories: Self {
+        var view = self
+        view.showCategories = false
+        return view
+    }
+
+    var mini: Self {
         font(item: .caption)
-                .iconFrame(width: 12.5, height: 12.5)
+            .iconFrame(width: 12.5, height: 12.5)
+            .withoutCategories
     }
 
     var body: some View {
@@ -62,7 +70,8 @@ struct LineItemLabelView: View {
                 descriptionFont: detailFont,
                 descriptionColor: .gray,
                 iconWidth: iconWidth,
-                iconHeight: iconHeight
+                iconHeight: iconHeight,
+                showCategories: showCategories
             ) {
                 ForEach(showDetails ? lineItem.fields : []) { field in
                     LineItemFieldLabelView(field: field, font: detailFont)
