@@ -92,6 +92,7 @@
 		86C0620527F16E3600020C08 /* TireSetActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620427F16E3600020C08 /* TireSetActionsView.swift */; };
 		86C0620927F16F4E00020C08 /* FormLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620827F16F4E00020C08 /* FormLinkLabel.swift */; };
 		86C0620D27F187C200020C08 /* NewWarrantyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620C27F187C200020C08 /* NewWarrantyView.swift */; };
+		86C0620F27F196FB00020C08 /* onMove Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620E27F196FB00020C08 /* onMove Helper.swift */; };
 		86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
 		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
@@ -236,6 +237,7 @@
 		86C0620427F16E3600020C08 /* TireSetActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSetActionsView.swift; sourceTree = "<group>"; };
 		86C0620827F16F4E00020C08 /* FormLinkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLinkLabel.swift; sourceTree = "<group>"; };
 		86C0620C27F187C200020C08 /* NewWarrantyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWarrantyView.swift; sourceTree = "<group>"; };
+		86C0620E27F196FB00020C08 /* onMove Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "onMove Helper.swift"; sourceTree = "<group>"; };
 		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
 		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 				86C061F027F156D300020C08 /* Badge.swift */,
 				86C061F827F1689E00020C08 /* onDelete Helper.swift */,
 				86C0620827F16F4E00020C08 /* FormLinkLabel.swift */,
+				86C0620E27F196FB00020C08 /* onMove Helper.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -852,6 +855,7 @@
 				861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */,
 				86B189A727EAFEBE001CFBD3 /* QuickViewController.swift in Sources */,
 				86500C8F27DC0DE900A5111E /* PartOdometer.swift in Sources */,
+				86C0620F27F196FB00020C08 /* onMove Helper.swift in Sources */,
 				86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */,
 				861E4D9C27DC13D00072B6DD /* LineItemTypeLabelView.swift in Sources */,
 				8652AA7727DAB5F300D8D56D /* Dummy Data.swift in Sources */,

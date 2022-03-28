@@ -36,6 +36,7 @@ struct TireSetsView: View {
             )
         }
         .onDelete(deleteFrom: sets, context: viewContext)
+        .onMove(moveIn: sets)
     }
 
     var body: some View {

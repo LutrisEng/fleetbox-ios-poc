@@ -20,8 +20,8 @@ import SwiftUI
 import CoreData
 
 extension DynamicViewContent {
-    func onDelete<T, C>(deleteFrom: C, context: NSManagedObjectContext) -> some DynamicViewContent
-    where T: NSManagedObject, C: RandomAccessCollection, C.Element == T, C.Index == Int {
+    func onDelete<T>(deleteFrom: [T], context: NSManagedObjectContext) -> some DynamicViewContent
+    where T: NSManagedObject {
 
         return onDelete { indices in
             withAnimation {

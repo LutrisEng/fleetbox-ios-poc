@@ -142,6 +142,7 @@ struct LogItemView: View {
                             }
                         }
                         .onDelete(deleteFrom: lineItems, context: viewContext)
+                        .onMove(moveIn: lineItems)
                     }
                 }
                 Section(header: Text("Attachments")) {
@@ -152,7 +153,7 @@ struct LogItemView: View {
                         }
                     }
                     .onDelete(deleteFrom: attachments, context: viewContext)
-                    .deleteDisabled(!editable)
+                    .onMove(moveIn: attachments)
                     if addingAttachments {
                         ProgressView()
                     }

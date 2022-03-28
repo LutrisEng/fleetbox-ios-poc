@@ -58,3 +58,11 @@ extension Sequence where Iterator.Element: Sortable {
         (map(\.sortOrder).max() ?? -1) + 1
     }
 }
+
+extension Array where Array.Element: Sortable {
+    mutating func setSortOrder() {
+        for index in 0..<count {
+            self[index].sortOrder = Int16(index)
+        }
+    }
+}

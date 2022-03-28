@@ -47,7 +47,6 @@ struct MaintenanceLogView: View {
                     }
                 }
                 .onDelete(deleteFrom: logItems, context: viewContext)
-                .deleteDisabled(!editable)
             }
         }
     }

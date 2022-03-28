@@ -42,6 +42,7 @@ struct WarrantiesView: View {
                 WarrantyListingView(warranty: warranty)
             }
             .onDelete(deleteFrom: warranties, context: viewContext)
+            .onMove(moveIn: warranties)
             if editable, let underlying = underlying {
                 NavigationLink(
                     destination: {

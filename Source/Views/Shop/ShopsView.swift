@@ -19,6 +19,7 @@ import SwiftUI
 import Sentry
 
 struct ShopsView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -29,6 +30,7 @@ struct ShopsView: View {
     var body: some View {
         NavigationView {
             List {
+                let shops = shops.map { $0 }
                 ForEach(shops, id: \.self) { shop in
                     NavigationLink(
                             shop.name ?? "Unknown shop",
@@ -36,6 +38,7 @@ struct ShopsView: View {
                     )
                 }
                 .onDelete(deleteFrom: shops, context: viewContext)
+                .onMove(moveIn: shops)
             }
                     .navigationTitle("Shops")
                     .toolbar {
