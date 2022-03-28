@@ -56,11 +56,12 @@ struct OdometerReadingsView: View {
                 )
             }
             .onDelete(deleteFrom: odometerReadings, context: viewContext)
-            .deleteDisabled(!editable)
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
+                if editable {
+                    EditButton()
+                }
             }
         }
         .navigationTitle("Odometer readings")

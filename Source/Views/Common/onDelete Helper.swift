@@ -22,6 +22,7 @@ import CoreData
 extension DynamicViewContent {
     func onDelete<T, C>(deleteFrom: C, context: NSManagedObjectContext) -> some DynamicViewContent
     where T: NSManagedObject, C: RandomAccessCollection, C.Element == T, C.Index == Int {
+
         return onDelete { indices in
             withAnimation {
                 let objects = indices.map({ deleteFrom[$0] })

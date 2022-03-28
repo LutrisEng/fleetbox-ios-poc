@@ -142,7 +142,6 @@ struct LogItemView: View {
                             }
                         }
                         .onDelete(deleteFrom: lineItems, context: viewContext)
-                        .deleteDisabled(!editable)
                     }
                 }
                 Section(header: Text("Attachments")) {

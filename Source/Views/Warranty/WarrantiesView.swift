@@ -18,6 +18,7 @@
 import SwiftUI
 
 struct WarrantiesView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     var warranties: [Warranty]
@@ -41,7 +42,7 @@ struct WarrantiesView: View {
                 WarrantyListingView(warranty: warranty)
             }
             .onDelete(deleteFrom: warranties, context: viewContext)
-            if let underlying = underlying {
+            if editable, let underlying = underlying {
                 NavigationLink(
                     destination: {
                         NewWarrantyView(underlying: underlying)

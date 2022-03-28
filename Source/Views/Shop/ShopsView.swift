@@ -40,10 +40,12 @@ struct ShopsView: View {
                     .navigationTitle("Shops")
                     .toolbar {
                         ToolbarItemGroup(placement: .navigationBarTrailing) {
-                            Button(action: addShop) {
-                                Label("Add Shop", systemImage: "plus")
+                            if editable {
+                                Button(action: addShop) {
+                                    Label("Add Shop", systemImage: "plus")
+                                }
+                                EditButton()
                             }
-                            EditButton()
                         }
                     }
             Text("Select a shop")

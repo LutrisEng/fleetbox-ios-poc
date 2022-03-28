@@ -112,6 +112,8 @@ struct FleetboxAppMainWindow: View {
                 }
                 .environment(\.managedObjectContext, previewImportState.persistence.container.viewContext)
                 .environment(\.editable, false)
+                .deleteDisabled(true)
+                .moveDisabled(true)
             } else {
                 ProgressView()
             }

@@ -21,6 +21,7 @@ import CoreSpotlight
 import Sentry
 
 struct VehiclesView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -55,20 +56,22 @@ struct VehiclesView: View {
             .navigationTitle("Vehicles")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    NavigationLink(
-                        destination: {
-                            NewVehicleView()
-                        },
-                        label: {
-                            Label("Add Vehicle", systemImage: "plus")
+                    if editable {
+                        NavigationLink(
+                            destination: {
+                                NewVehicleView()
+                            },
+                            label: {
+                                Label("Add Vehicle", systemImage: "plus")
+                            }
+                        )
+                        #if DEBUG
+                        Button(action: addFixtures) {
+                            Label("Add Fixtures", systemImage: "questionmark.folder")
                         }
-                    )
-                    #if DEBUG
-                    Button(action: addFixtures) {
-                        Label("Add Fixtures", systemImage: "questionmark.folder")
+                        #endif
+                        EditButton()
                     }
-                    #endif
-                    EditButton()
                 }
             }
             Image(systemName: "car")

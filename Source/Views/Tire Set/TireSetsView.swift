@@ -19,6 +19,7 @@ import SwiftUI
 import Sentry
 
 struct TireSetsView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
@@ -62,10 +63,12 @@ struct TireSetsView: View {
             .navigationTitle("Tire sets")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(action: addTireSet) {
-                        Label("Add Tire Set", systemImage: "plus")
+                    if editable {
+                        Button(action: addTireSet) {
+                            Label("Add Tire Set", systemImage: "plus")
+                        }
+                        EditButton()
                     }
-                    EditButton()
                 }
             }
             Text("Select a tire set")
