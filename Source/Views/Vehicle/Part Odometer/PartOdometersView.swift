@@ -26,6 +26,30 @@ struct PartOdometersView: View {
     @State private var createPresented: Bool = false
     @StateObject private var createReading = NumbersOnly()
 
+    var breakinBadge: FleetboxTextField.Badge? {
+        if vehicle.breakin != 0 {
+            let odo = vehicle.odometer
+            if odo > vehicle.breakin {
+                return .success
+            } else {
+                return .warning
+            }
+        }
+        return nil
+    }
+
+    var warrantyBadge: FleetboxTextField.Badge? {
+        if vehicle.warranty != 0 {
+            let odo = vehicle.odometer
+            if odo > vehicle.warranty {
+                return .warning
+            } else {
+                return .success
+            }
+        }
+        return nil
+    }
+
     var body: some View {
         Section(header: Text("Odometer")) {
             if editable {
@@ -55,6 +79,12 @@ struct PartOdometersView: View {
                 milesSince: vehicle.odometer,
                 timeSince: vehicle.age
             )
+            FleetboxTextField(value: $vehicle.breakin, name: "Break-in period", example: 1000)
+                .unit("miles")
+                .badge(breakinBadge)
+            FleetboxTextField(value: $vehicle.warranty, name: "Main warranty", example: 50000)
+                .unit("miles")
+                .badge(warrantyBadge)
             if let tires = vehicle.currentTireSet {
                 PartOdometerRowView(
                     name: "Tires",

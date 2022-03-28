@@ -22,6 +22,8 @@ message Vehicle {
     optional bytes image = 6;
     repeated LogItem logItems = 7;
     repeated OdometerReading freeOdometerReadings = 8;
+    optional int64 breakin = 9;
+    optional int64 warranty = 10;
 }
 
 message LogItem {
@@ -73,4 +75,5 @@ message TireSet {
     optional string tin = 11;
     optional int64 treadwearWarranty = 12;
     optional bool hidden = 13;
+    optional int64 breakin = 14;
 }

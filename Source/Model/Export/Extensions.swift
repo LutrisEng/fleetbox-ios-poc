@@ -87,6 +87,7 @@ extension Fleetbox_Export_TireSet {
         }
         treadwearWarranty = tireSet.treadwearWarranty
         hidden = tireSet.hidden
+        breakin = tireSet.breakin
     }
 
     func importTireSet(context: NSManagedObjectContext) -> TireSet {
@@ -104,6 +105,7 @@ extension Fleetbox_Export_TireSet {
         tireSet.tin = tin
         tireSet.treadwearWarranty = treadwearWarranty
         tireSet.hidden = hidden
+        tireSet.breakin = breakin
         return tireSet
     }
 }
@@ -134,6 +136,8 @@ extension Fleetbox_Export_Vehicle {
                 .map {
                     Fleetbox_Export_OdometerReading(odometerReading: $0)
                 }
+        breakin = vehicle.breakin
+        warranty = vehicle.warranty
     }
 
     func importVehicle(context: NSManagedObjectContext, envelope: ExportEnvelopeTemplate) -> Vehicle {
@@ -156,6 +160,8 @@ extension Fleetbox_Export_Vehicle {
         for odometerReading in freeOdometerReadings {
             _ = odometerReading.importOdometerReading(context: context, vehicle: vehicle)
         }
+        vehicle.breakin = breakin
+        vehicle.warranty = warranty
         return vehicle
     }
 }

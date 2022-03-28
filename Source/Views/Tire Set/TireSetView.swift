@@ -57,6 +57,30 @@ struct TireSetView: View {
             .caption(topSpeedCaption)
     }
 
+    var warrantyBadge: FleetboxTextField.Badge? {
+        if tireSet.treadwearWarranty != 0 {
+            let odo = tireSet.odometer
+            if odo > tireSet.treadwearWarranty {
+                return .warning
+            } else {
+                return .success
+            }
+        }
+        return nil
+    }
+
+    var breakinBadge: FleetboxTextField.Badge? {
+        if tireSet.breakin != 0 {
+            let odo = tireSet.odometer
+            if odo > tireSet.breakin {
+                return .success
+            } else {
+                return .warning
+            }
+        }
+        return nil
+    }
+
     var body: some View {
         Form {
             FleetboxTextField(value: $tireSet.userDisplayName, name: "Name", example: "My Summer Tires")
@@ -89,6 +113,10 @@ struct TireSetView: View {
                 PartOdometerRowView(name: "Tires", milesSince: tireSet.odometer, timeSince: tireSet.age)
                 FleetboxTextField(value: $tireSet.treadwearWarranty, name: "Treadlife Warranty", example: 30000)
                     .unit("miles")
+                    .badge(warrantyBadge)
+                FleetboxTextField(value: $tireSet.breakin, name: "Break-in period", example: 500)
+                    .unit("miles")
+                    .badge(breakinBadge)
             }
             Section(header: Text("Specs")) {
                 HStack {

@@ -19,6 +19,22 @@ import SwiftUI
 import Introspect
 
 struct FleetboxTextField: View {
+    enum Badge: View {
+        case success, warning
+
+        @ViewBuilder
+        var body: some View {
+            switch self {
+            case .success:
+                Image(systemName: "checkmark.circle")
+                    .foregroundColor(.green)
+            case .warning:
+                Image(systemName: "exclamationmark.circle")
+                    .foregroundColor(.yellow)
+            }
+        }
+    }
+
     @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -33,6 +49,7 @@ struct FleetboxTextField: View {
     private var number: Bool = false
     private var previewAsNumber: Bool = false
     private var captionKey: LocalizedStringKey?
+    private var _badge: Badge?
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: LocalizedStringKey? = nil) {
         self.value = value
@@ -82,6 +99,12 @@ struct FleetboxTextField: View {
         return view
     }
 
+    func badge(_ badge: Badge?) -> FleetboxTextField {
+        var view = self
+        view._badge = badge
+        return view
+    }
+
     private var maybeUnitName: Text {
         if let unitName = unitName, value.wrappedValue != nil {
             return (Text(" ") + Text(unitName))
@@ -126,6 +149,9 @@ struct FleetboxTextField: View {
             (Text(previewValue) + maybeUnitName + maybeCaption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.trailing)
+            if let badge = _badge {
+                badge
+            }
         }
     }
 
