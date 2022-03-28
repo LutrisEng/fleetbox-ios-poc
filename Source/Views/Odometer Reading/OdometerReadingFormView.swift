@@ -18,35 +18,72 @@
 import SwiftUI
 
 struct OdometerReadingFormView: View {
-    let previousReading: Int64
-    let onSubmit: (Int64) -> Void
-    let onDismiss: () -> Void
+    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.dismiss) private var dismiss
+
+    @ObservedObject var vehicle: Vehicle
+    @State private var initialized = false
     @State private var reading: Int64 = 0
 
     var body: some View {
         Form {
-            PartOdometerRowView(name: "Previous", milesSince: previousReading, timeSince: nil)
+            if let lastReading = vehicle.odometerReadings.chrono.last {
+                let timeLine: String = {
+                    if let lastReadingAt = lastReading.at {
+                        return "\n" + Formatter.format(
+                            durationLabel: Date.now.timeIntervalSinceReferenceDate -
+                                lastReadingAt.timeIntervalSinceReferenceDate
+                        ) + " ago"
+                    } else {
+                        return ""
+                    }
+                }()
+                FormLinkLabel(
+                    title: "Last reading",
+                    value: "\(Formatter.format(number: lastReading.reading)) miles\(timeLine)"
+                )
+            }
             FleetboxTextField(
                 value: $reading,
-                name: "Current",
-                example: 0
+                name: "Current reading",
+                example: vehicle.approximateOdometer
             )
             .unit("miles")
-            Button("Save", action: { onSubmit(reading) })
-            Button("Cancel", action: onDismiss)
         }
-        .modifier(WithDoneButton())
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button(action: save) {
+                    Label("Save", systemImage: "square.and.arrow.down")
+                }
+            }
+        }
+        .navigationTitle("Odometer reading")
+        .navigationBarTitleDisplayMode(.inline)
         .onAppear {
-            reading = previousReading
+            if !initialized {
+                reading = vehicle.approximateOdometer
+                initialized = true
+            }
         }
+    }
+
+    func save() {
+        let reading = OdometerReading(context: viewContext)
+        reading.at = Date.now
+        reading.vehicle = vehicle
+        reading.reading = self.reading
+        ignoreErrors {
+            try viewContext.save()
+        }
+        dismiss()
     }
 }
 
 #if DEBUG
 struct OdometerReadingFormView_Previews: PreviewProvider {
     static var previews: some View {
-        PreviewWrapper { _ in
-            OdometerReadingFormView(previousReading: 1000, onSubmit: { _ in }, onDismiss: {})
+        PreviewWrapper { fixtures in
+            OdometerReadingFormView(vehicle: fixtures.vehicle)
         }
     }
 }

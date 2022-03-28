@@ -23,7 +23,6 @@ struct PartOdometersView: View {
 
     @ObservedObject var vehicle: Vehicle
 
-    @State private var createPresented: Bool = false
     @State private var _vehicleOdometer: Int64?
     private var vehicleOdometer: Int64 {
         if let vehicleOdometer = _vehicleOdometer {
@@ -38,7 +37,6 @@ struct PartOdometersView: View {
             return odo
         }
     }
-    @StateObject private var createReading = NumbersOnly()
 
     var breakinBadge: Badge? {
         if vehicle.breakin != 0 {
@@ -90,28 +88,15 @@ struct PartOdometersView: View {
     var body: some View {
         Section(header: Text("Odometer")) {
             if editable {
-                Button(
-                    action: {
-                        createPresented = true
+                NavigationLink(
+                    destination: {
+                        OdometerReadingFormView(vehicle: vehicle)
                     },
                     label: {
                         Text("\(Image(systemName: "plus")) Add odometer reading")
                             .foregroundColor(.accentColor)
                     }
                 )
-                .sheet(isPresented: $createPresented) {
-                    NavigationView {
-                        OdometerReadingFormView(previousReading: vehicleOdometer) { value in
-                            let reading = OdometerReading(context: viewContext)
-                            reading.vehicle = vehicle
-                            reading.at = Date.now
-                            reading.reading = value
-                            createPresented = false
-                        } onDismiss: {
-                            createPresented = false
-                        }
-                    }
-                }
             }
             if let lastReading = vehicle.odometerReadings.chrono.last {
                 let timeLine: String = {
