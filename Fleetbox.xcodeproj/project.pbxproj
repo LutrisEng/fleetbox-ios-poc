@@ -143,6 +143,7 @@
 		861DAE0D27CDD59F00AFE972 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		861DAE1227CDD59F00AFE972 /* Fleetbox Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fleetbox Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		861E4D9B27DC13CF0072B6DD /* LineItemTypeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeLabelView.swift; sourceTree = "<group>"; };
+		864713F827F1374400A12A23 /* 0.1.0.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 0.1.0.md; sourceTree = "<group>"; };
 		864C731A27CDF54E00047165 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleSpotlightDelegate.swift; sourceTree = "<group>"; };
 		864C732027D06A7F00047165 /* LogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
@@ -251,6 +252,7 @@
 			children = (
 				86EB569C27E17681007FA2DD /* README.md */,
 				86EB569D27E176AC007FA2DD /* LICENSE.md */,
+				864713F727F1372C00A12A23 /* Changelogs */,
 				861DAE0727CDD59D00AFE972 /* Source */,
 				8664C23927D9FED600AE9ADB /* Test Plans */,
 				8690C7E827D9EBD90042F543 /* Unit Tests */,
@@ -291,6 +293,14 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		864713F727F1372C00A12A23 /* Changelogs */ = {
+			isa = PBXGroup;
+			children = (
+				864713F827F1374400A12A23 /* 0.1.0.md */,
+			);
+			path = Changelogs;
 			sourceTree = "<group>";
 		};
 		864C731927CDF54000047165 /* Model */ = {
