@@ -35,6 +35,11 @@ struct FleetboxTextField: View {
         }
     }
 
+    private enum Caption {
+        case localized(LocalizedStringKey)
+        case string(String)
+    }
+
     @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -48,7 +53,7 @@ struct FleetboxTextField: View {
     private var unitName: LocalizedStringKey?
     private var number: Bool = false
     private var previewAsNumber: Bool = false
-    private var captionKey: LocalizedStringKey?
+    private var _caption: Caption?
     private var _badge: Badge?
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: LocalizedStringKey? = nil) {
@@ -89,7 +94,21 @@ struct FleetboxTextField: View {
 
     func caption(_ caption: LocalizedStringKey?) -> FleetboxTextField {
         var view = self
-        view.captionKey = caption
+        if let caption = caption {
+            view._caption = .localized(caption)
+        } else {
+            view._caption = nil
+        }
+        return view
+    }
+
+    func caption(_ caption: String?) -> FleetboxTextField {
+        var view = self
+        if let caption = caption {
+            view._caption = .string(caption)
+        } else {
+            view._caption = nil
+        }
         return view
     }
 
@@ -114,9 +133,12 @@ struct FleetboxTextField: View {
     }
 
     private var maybeCaption: Text {
-        if let caption = captionKey {
+        switch _caption {
+        case .localized(let caption):
             return Text("\n") + Text(caption).font(.caption)
-        } else {
+        case .string(let caption):
+            return Text("\n") + Text(caption).font(.caption)
+        case nil:
             return Text("")
         }
     }

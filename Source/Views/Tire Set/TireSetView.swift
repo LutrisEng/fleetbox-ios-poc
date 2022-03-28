@@ -57,6 +57,15 @@ struct TireSetView: View {
             .caption(topSpeedCaption)
     }
 
+    var warrantyProgress: String? {
+        let odo = tireSet.odometer
+        if tireSet.treadwearWarranty != 0 && odo <= tireSet.treadwearWarranty {
+            return Formatter.formatWholePercentage(numerator: odo, denominator: tireSet.treadwearWarranty)
+        } else {
+            return nil
+        }
+    }
+
     var warrantyBadge: FleetboxTextField.Badge? {
         if tireSet.treadwearWarranty != 0 {
             let odo = tireSet.odometer
@@ -67,6 +76,15 @@ struct TireSetView: View {
             }
         }
         return nil
+    }
+
+    var breakinProgress: String? {
+        let odo = tireSet.odometer
+        if tireSet.breakin != 0 && odo <= tireSet.breakin {
+            return Formatter.formatWholePercentage(numerator: odo, denominator: tireSet.breakin)
+        } else {
+            return nil
+        }
     }
 
     var breakinBadge: FleetboxTextField.Badge? {
@@ -114,9 +132,11 @@ struct TireSetView: View {
                 FleetboxTextField(value: $tireSet.treadwearWarranty, name: "Treadlife Warranty", example: 30000)
                     .unit("miles")
                     .badge(warrantyBadge)
+                    .caption(warrantyProgress)
                 FleetboxTextField(value: $tireSet.breakin, name: "Break-in period", example: 500)
                     .unit("miles")
                     .badge(breakinBadge)
+                    .caption(breakinProgress)
             }
             Section(header: Text("Specs")) {
                 HStack {

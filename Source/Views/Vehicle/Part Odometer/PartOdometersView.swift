@@ -38,6 +38,15 @@ struct PartOdometersView: View {
         return nil
     }
 
+    var breakinProgress: String? {
+        let odo = vehicle.odometer
+        if vehicle.breakin != 0 && odo <= vehicle.breakin {
+            return Formatter.formatWholePercentage(numerator: odo, denominator: vehicle.breakin)
+        } else {
+            return nil
+        }
+    }
+
     var warrantyBadge: FleetboxTextField.Badge? {
         if vehicle.warranty != 0 {
             let odo = vehicle.odometer
@@ -48,6 +57,15 @@ struct PartOdometersView: View {
             }
         }
         return nil
+    }
+
+    var warrantyProgress: String? {
+        let odo = vehicle.odometer
+        if vehicle.warranty != 0 && odo <= vehicle.warranty {
+            return Formatter.formatWholePercentage(numerator: odo, denominator: vehicle.warranty)
+        } else {
+            return nil
+        }
     }
 
     var body: some View {
@@ -82,9 +100,11 @@ struct PartOdometersView: View {
             FleetboxTextField(value: $vehicle.breakin, name: "Break-in period", example: 1000)
                 .unit("miles")
                 .badge(breakinBadge)
+                .caption(breakinProgress)
             FleetboxTextField(value: $vehicle.warranty, name: "Main warranty", example: 50000)
                 .unit("miles")
                 .badge(warrantyBadge)
+                .caption(warrantyProgress)
             if let tires = vehicle.currentTireSet {
                 PartOdometerRowView(
                     name: "Tires",
