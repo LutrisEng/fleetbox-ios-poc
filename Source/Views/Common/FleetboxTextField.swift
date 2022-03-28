@@ -158,6 +158,8 @@ struct FleetboxTextField: View {
                     Form {
                         if let description = description {
                             description
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
                         }
                         HStack {
                             ZStack(alignment: .trailing) {

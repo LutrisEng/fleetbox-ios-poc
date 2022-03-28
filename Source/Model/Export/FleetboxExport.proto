@@ -78,6 +78,7 @@ message TireSet {
     optional bool hidden = 12;
     optional int64 breakin = 13;
     repeated Warranty warranties = 14;
+    optional int64 baseMiles = 15;
 }
 
 message Warranty {

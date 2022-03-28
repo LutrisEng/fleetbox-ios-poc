@@ -42,6 +42,7 @@
     </entity>
     <entity name="TireSet" representedClassName="TireSet" syncable="YES" codeGenerationType="class">
         <attribute name="aspectRatio" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="baseMiles" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="breakin" optional="YES" attributeType="Integer 64" defaultValueString="500" usesScalarValueType="YES"/>
         <attribute name="construction" optional="YES" attributeType="String"/>
         <attribute name="diameter" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -88,7 +89,7 @@
         <element name="LogItem" positionX="406.38671875" positionY="-9.95703125" width="128" height="134"/>
         <element name="OdometerReading" positionX="270" positionY="108" width="128" height="89"/>
         <element name="Shop" positionX="279" positionY="45" width="128" height="74"/>
-        <element name="TireSet" positionX="279" positionY="63" width="128" height="284"/>
+        <element name="TireSet" positionX="279" positionY="63" width="128" height="299"/>
         <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="209"/>
         <element name="Warranty" positionX="270" positionY="135" width="128" height="119"/>
     </elements>

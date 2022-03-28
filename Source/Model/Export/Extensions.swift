@@ -88,6 +88,7 @@ extension Fleetbox_Export_TireSet {
         hidden = tireSet.hidden
         breakin = tireSet.breakin
         warranties = tireSet.warranties.map { Fleetbox_Export_Warranty(warranty: $0) }
+        baseMiles = tireSet.baseMiles
     }
 
     func importTireSet(context: NSManagedObjectContext) -> TireSet {
@@ -108,6 +109,7 @@ extension Fleetbox_Export_TireSet {
         for warranty in warranties {
             _ = warranty.importWarranty(context: context, underlying: tireSet)
         }
+        tireSet.baseMiles = baseMiles
         return tireSet
     }
 }

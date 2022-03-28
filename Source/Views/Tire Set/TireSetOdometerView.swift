@@ -22,6 +22,14 @@ struct TireSetOdometerView: View {
 
     var body: some View {
         Section(header: Text("Odometer")) {
+            FleetboxTextField(
+                value: $tireSet.baseMiles,
+                name: "Base miles",
+                example: 0,
+                description: Text("How many miles are unaccounted for by Fleetbox?\n") +
+                    Text("(e.g. from a previous vehicle which is not tracked in Fleetbox)").font(.caption)
+            )
+            .unit("miles")
             FormLinkLabel(
                 title: "Verified distance",
                 value: "\(Formatter.format(number: tireSet.odometer)) miles"

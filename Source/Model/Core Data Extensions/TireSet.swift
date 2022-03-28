@@ -103,7 +103,7 @@ extension TireSet: Sortable,
         if let mountedAt = mountedAt, let mountedOn = mountedOn {
             counter += mountedOn.odometer - mountedAt
         }
-        return counter
+        return counter + baseMiles
     }
 
     var approximateOdometer: Int64 {
