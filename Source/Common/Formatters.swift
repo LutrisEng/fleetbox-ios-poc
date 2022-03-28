@@ -33,8 +33,16 @@ struct Formatter {
 
     static let number: NumberFormatter = createNumberFormatter()
 
+    static func format(number: NSNumber) -> String {
+        return self.number.string(from: number) ?? "\(number)"
+    }
+
     static func format(number: Int64) -> String {
         return self.number.string(from: number) ?? "\(number)"
+    }
+
+    static func format(number: Int16) -> String {
+        return self.number.string(from: NSNumber(value: number)) ?? "\(number)"
     }
 
     static let wholeNumber: NumberFormatter = createNumberFormatter { formatter in

@@ -35,6 +35,7 @@ struct FleetboxTextField: View {
     private var _caption: Text?
     private var _badge: Badge?
     private var _progress: Double?
+    private var _progressColor: Color?
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: Textable? = nil) {
         self.value = value
@@ -66,13 +67,13 @@ struct FleetboxTextField: View {
         previewAsNumber = true
     }
 
-    func unit<Unit: Textable>(_ unit: Unit) -> FleetboxTextField {
+    func unit<Unit: Textable>(_ unit: Unit) -> Self {
         var view = self
         view.unitName = unit.text
         return view
     }
 
-    func caption<Caption: Textable>(_ caption: Caption?) -> FleetboxTextField {
+    func caption<Caption: Textable>(_ caption: Caption?) -> Self {
         var view = self
         if let caption = caption {
             view._caption = caption.text
@@ -82,19 +83,25 @@ struct FleetboxTextField: View {
         return view
     }
 
-    func progress(_ progress: Double?) -> FleetboxTextField {
+    func progress(_ progress: Double?) -> Self {
         var view = self
         view._progress = progress
         return view
     }
 
-    func previewAsString() -> FleetboxTextField {
+    func progressColor(_ color: Color?) -> Self {
+        var view = self
+        view._progressColor = color
+        return view
+    }
+
+    func previewAsString() -> Self {
         var view = self
         view.previewAsNumber = false
         return view
     }
 
-    func badge(_ badge: Badge?) -> FleetboxTextField {
+    func badge(_ badge: Badge?) -> Self {
         var view = self
         view._badge = badge
         return view
@@ -126,11 +133,20 @@ struct FleetboxTextField: View {
         }
     }
 
+    private var tempValueBinding: Binding<String> {
+        if previewAsNumber {
+            return convertToNumberFormattingBinding(string: $tempValue)
+        } else {
+            return $tempValue
+        }
+    }
+
     @ViewBuilder
     private var label: some View {
         FormLinkLabel(title: name ?? "", value: Text(previewValue) + maybeUnitName)
             .caption(_caption)
             .progress(_progress)
+            .progressColor(_progressColor)
             .badge(_badge)
     }
 
@@ -147,7 +163,7 @@ struct FleetboxTextField: View {
                             ZStack(alignment: .trailing) {
                                 TextField(
                                     example ?? "",
-                                    text: $tempValue
+                                    text: tempValueBinding
                                 )
                                 .introspectTextField { textField in
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {

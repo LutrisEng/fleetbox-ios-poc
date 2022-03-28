@@ -49,6 +49,7 @@ struct FormLinkLabel: View {
     private var _caption: Text?
     private var _badge: Badge?
     private var _progress: Double?
+    private var _progressColor: Color?
 
     init<Title: Textable, Value: Textable>(title: Title, value: Value) {
         self.title = title.text
@@ -78,6 +79,12 @@ struct FormLinkLabel: View {
     func progress(_ progress: Double?) -> Self {
         var view = self
         view._progress = progress
+        return view
+    }
+
+    func progressColor(_ color: Color?) -> Self {
+        var view = self
+        view._progressColor = color
         return view
     }
 
@@ -125,6 +132,7 @@ struct FormLinkLabel: View {
             VStack {
                 label
                 ProgressView(value: progress)
+                    .tint(_progressColor)
             }
         } else {
             label

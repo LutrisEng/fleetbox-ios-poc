@@ -20,16 +20,8 @@ import SwiftUI
 struct VehicleDetailsView: View {
     @ObservedObject var vehicle: Vehicle
 
-    var milesPerYearDescription: LocalizedStringKey? {
-        if let calculated = vehicle.calculatedAverageMilesPerYear {
-            return "Fleetbox has estimated that you drive this vehicle about \(calculated) miles in a year."
-        } else {
-            return nil
-        }
-    }
-
     var body: some View {
-        Section(header: Text("Vehicle details")) {
+        Section(header: Text("Details")) {
             FleetboxTextField(value: $vehicle.displayName, name: "Name", example: dummyData.vehicleName)
             VINDetailView(vehicle: vehicle)
             FleetboxTextField(value: $vehicle.year, name: "Year", example: 2020)
@@ -38,12 +30,6 @@ struct VehicleDetailsView: View {
                 .textInputAutocapitalization(.words)
             FleetboxTextField(value: $vehicle.model, name: "Model", example: dummyData.vehicleModel)
                 .textInputAutocapitalization(.words)
-            FleetboxTextField(
-                value: $vehicle.milesPerYear,
-                name: "Approx. miles per year",
-                example: vehicle.calculatedAverageMilesPerYear ?? 12000,
-                description: milesPerYearDescription
-            )
             if let tireSet = vehicle.currentTireSet {
                 TireDetailView(tireSet: tireSet)
             }

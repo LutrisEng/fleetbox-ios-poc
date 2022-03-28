@@ -37,9 +37,9 @@ struct WarrantyListingView: View {
             let milesPercentage = warranty.milesPercentage
             let monthsPercentage = warranty.monthsPercentage
             if let milesPercentage = milesPercentage, let monthsPercentage = monthsPercentage {
-                return "\(percentage) complete\n(\(milesPercentage) distance, \(monthsPercentage) time)"
+                return "About \(percentage) complete\n(\(milesPercentage) distance, \(monthsPercentage) time)"
             } else {
-                return "\(percentage) complete"
+                return "About \(percentage) complete"
             }
         } else {
             return nil
@@ -49,9 +49,11 @@ struct WarrantyListingView: View {
     @ViewBuilder
     var label: some View {
         VStack {
+            let progress = warranty.progress
             FormLinkLabel(title: warranty.title ?? "Warranty", value: value)
                 .badge(warranty.badge)
-                .progress(warranty.progress)
+                .progress(progress)
+                .progressColor((progress ?? 0) < 1 ? .green : .yellow)
                 .titleCaption(caption)
         }
     }

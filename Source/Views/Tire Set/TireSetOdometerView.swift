@@ -21,9 +21,11 @@ struct TireSetOdometerView: View {
     @ObservedObject var tireSet: TireSet
 
     var breakinPercentage: String? {
-        let odo = tireSet.odometer
+        let odo = tireSet.approximateOdometer
         if tireSet.breakin != 0 && odo <= tireSet.breakin {
-            return Formatter.format(wholePercentage: Double(odo) / Double(tireSet.breakin))
+            return "About " +
+                Formatter.format(wholePercentage: Double(odo) / Double(tireSet.breakin)) +
+                " complete"
         } else {
             return nil
         }
@@ -31,7 +33,7 @@ struct TireSetOdometerView: View {
 
     var breakinProgress: Double? {
         if tireSet.breakin != 0 {
-            return min(1, Double(tireSet.odometer) / Double(tireSet.breakin))
+            return min(1, Double(tireSet.approximateOdometer) / Double(tireSet.breakin))
         } else {
             return nil
         }
@@ -51,12 +53,13 @@ struct TireSetOdometerView: View {
 
     var body: some View {
         Section(header: Text("Odometer")) {
-            PartOdometerRowView(name: "Tires", milesSince: tireSet.odometer, timeSince: tireSet.age)
+            PartOdometerRowView(name: "Tires", milesSince: tireSet.approximateOdometer, timeSince: tireSet.age)
             FleetboxTextField(value: $tireSet.breakin, name: "Break-in period", example: 500)
                 .unit("miles")
                 .badge(breakinBadge)
                 .caption(breakinPercentage)
                 .progress(breakinProgress)
+                .progressColor((breakinProgress ?? 0) < 1 ? .yellow : .green)
         }
     }
 }

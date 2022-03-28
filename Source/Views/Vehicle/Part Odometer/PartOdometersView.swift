@@ -53,16 +53,24 @@ struct PartOdometersView: View {
     }
 
     var breakinPercentage: String? {
-        if vehicle.breakin != 0 && vehicleOdometer <= vehicle.breakin {
-            return Formatter.format(wholePercentage: Double(vehicleOdometer) / Double(vehicle.breakin))
+        if let progress = breakinProgress {
+            return "About \(Formatter.format(wholePercentage: progress)) complete"
         } else {
             return nil
         }
     }
 
     var breakinProgress: Double? {
-        if vehicle.breakin != 0 {
-            return min(1, Double(vehicleOdometer) / Double(vehicle.breakin))
+        if vehicle.breakin != 0 && vehicleOdometer <= vehicle.breakin {
+            return Double(vehicleOdometer) / Double(vehicle.breakin)
+        } else {
+            return nil
+        }
+    }
+
+    var milesPerYearDescription: LocalizedStringKey? {
+        if let calculated = vehicle.calculatedAverageMilesPerYear {
+            return "Fleetbox has estimated that you drive this vehicle about \(calculated) miles in a year."
         } else {
             return nil
         }
@@ -94,20 +102,29 @@ struct PartOdometersView: View {
                     }
                 }
             }
-            NavigationLink("View odometer readings") {
+            FleetboxTextField(
+                value: $vehicle.milesPerYear,
+                name: "Est. miles per year",
+                example: vehicle.calculatedAverageMilesPerYear ?? 12000,
+                description: milesPerYearDescription
+            )
+            FormLinkLabel(title: "Distance", value: "About \(Formatter.format(number: vehicleOdometer)) miles")
+            if let age = vehicle.age {
+                FormLinkLabel(title: "Age", value: "\(Formatter.format(durationLabel: age)) old")
+                    .titleCaption("Inaccurate? Add a log item for your vehicle's manufacturing.")
+            }
+            NavigationLink("View history") {
                 OdometerReadingsView(vehicle: vehicle)
                     .navigationTitle("Odometer readings")
             }
-            PartOdometerRowView(
-                name: "Vehicle",
-                milesSince: vehicleOdometer,
-                timeSince: vehicle.age
-            )
             FleetboxTextField(value: $vehicle.breakin, name: "Break-in period", example: 1000)
                 .unit("miles")
                 .badge(breakinBadge)
                 .caption(breakinPercentage)
                 .progress(breakinProgress)
+                .progressColor((breakinProgress ?? 0) < 1 ? .yellow : .green)
+        }
+        Section(header: Text("Part Odometers")) {
             if let tires = vehicle.currentTireSet {
                 PartOdometerRowView(
                     name: "Tires",

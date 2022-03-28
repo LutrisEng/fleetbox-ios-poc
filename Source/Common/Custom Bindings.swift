@@ -47,7 +47,7 @@ func convertToStringBinding(int64: Binding<Int64>) -> Binding<String> {
                 if int64.wrappedValue == 0 {
                     return ""
                 } else {
-                    return String(int64.wrappedValue)
+                    return Formatter.format(number: int64.wrappedValue)
                 }
             },
             set: { value in
@@ -65,7 +65,7 @@ func convertToStringBinding(int16: Binding<Int16>) -> Binding<String> {
                 if int16.wrappedValue == 0 {
                     return ""
                 } else {
-                    return String(int16.wrappedValue)
+                    return Formatter.format(number: int16.wrappedValue)
                 }
             },
             set: { value in
@@ -73,6 +73,21 @@ func convertToStringBinding(int16: Binding<Int16>) -> Binding<String> {
                     $0.isNumber
                 }
                 int16.wrappedValue = Int16(filtered) ?? 0
+            }
+    )
+}
+
+func convertToNumberFormattingBinding(string: Binding<String>) -> Binding<String> {
+    Binding<String>(
+            get: {
+                if let number = Formatter.number.number(from: string.wrappedValue.filter { $0.isNumber }) {
+                    return Formatter.format(number: number)
+                } else {
+                    return string.wrappedValue
+                }
+            },
+            set: { value in
+                string.wrappedValue = value
             }
     )
 }
