@@ -87,8 +87,15 @@
             "string",
             "tireSet",
             "enum",
-            "boolean"
+            "boolean",
+            "integer"
           ]
+        },
+        "unit": {
+          "type": "string"
+        },
+        "exampleInteger": {
+          "type": "number"
         },
         "booleanFormat": {
           "type": "object",

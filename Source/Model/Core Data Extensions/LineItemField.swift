@@ -61,6 +61,21 @@ extension LineItemField {
             } else {
                 return nil
             }
+        case .integer:
+            if integerValue == 0 {
+                return nil
+            } else {
+                let formatter = NumberFormatter()
+                if let formatted = formatter.string(from: NSNumber(value: integerValue)) {
+                    if let unit = type?.unit {
+                        return "\(formatted) \(unit)"
+                    } else {
+                        return formatted
+                    }
+                } else {
+                    return "\(integerValue)"
+                }
+            }
         case nil: return nil
         }
     }

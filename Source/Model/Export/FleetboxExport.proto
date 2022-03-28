@@ -45,6 +45,7 @@ message LineItemField {
     optional string typeID = 1;
     optional string stringValue = 2;
     optional int64 tireSetValue = 3;
+    optional int64 integerValue = 4;
 }
 
 message OdometerReading {

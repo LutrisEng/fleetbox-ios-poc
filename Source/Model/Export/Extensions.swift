@@ -316,6 +316,7 @@ extension Fleetbox_Export_LineItemField {
                 envelope.tireSets.append(tireSet)
             }
         }
+        integerValue = lineItemField.integerValue
     }
 
     func importLineItemField(
@@ -329,6 +330,9 @@ extension Fleetbox_Export_LineItemField {
         field.stringValue = stringValue
         if hasTireSetValue {
             field.tireSetValue = envelope.tireSets[Int(tireSetValue)]
+        }
+        if hasIntegerValue {
+            field.integerValue = integerValue
         }
         return field
     }

@@ -22,6 +22,7 @@ enum FieldValue {
     case string(String)
     case tireSet(TireSet)
     case boolean(Bool)
+    case integer(Int64)
 }
 
 enum FieldValueError: Error {
@@ -88,15 +89,7 @@ extension LineItem {
         getFields(create: false)
     }
 
-    func getFieldValue(_ id: String) throws -> FieldValue? {
-        guard let field = (fields.first {
-            $0.typeId == id
-        }) else {
-            throw FieldValueError.invalidField
-        }
-        guard let fieldType = field.type else {
-            throw FieldValueError.invalidField
-        }
+    private func getFieldValue(_ id: String, field: LineItemField, fieldType: LineItemTypeField) -> FieldValue? {
         switch fieldType.type {
         case .string, .enumeration:
             guard let value = field.stringValue else {
@@ -114,7 +107,21 @@ extension LineItem {
             case "false": return .boolean(false)
             default: return nil
             }
+        case .integer:
+            return .integer(field.integerValue)
         }
+    }
+
+    func getFieldValue(_ id: String) throws -> FieldValue? {
+        guard let field = (fields.first {
+            $0.typeId == id
+        }) else {
+            throw FieldValueError.invalidField
+        }
+        guard let fieldType = field.type else {
+            throw FieldValueError.invalidField
+        }
+        return getFieldValue(id, field: field, fieldType: fieldType)
     }
 
     func getFieldValueString(_ id: String) throws -> String? {
@@ -125,6 +132,7 @@ extension LineItem {
         case .string(let value): return value
         case .tireSet: throw FieldValueError.invalidType(expected: .string, received: .tireSet)
         case .boolean: throw FieldValueError.invalidType(expected: .string, received: .boolean)
+        case .integer: throw FieldValueError.invalidType(expected: .string, received: .integer)
         }
     }
 
@@ -136,6 +144,7 @@ extension LineItem {
         case .tireSet(let value): return value
         case .string: throw FieldValueError.invalidType(expected: .tireSet, received: .string)
         case .boolean: throw FieldValueError.invalidType(expected: .tireSet, received: .boolean)
+        case .integer: throw FieldValueError.invalidType(expected: .tireSet, received: .integer)
         }
     }
 
@@ -147,6 +156,19 @@ extension LineItem {
         case .boolean(let value): return value
         case .string: throw FieldValueError.invalidType(expected: .boolean, received: .string)
         case .tireSet: throw FieldValueError.invalidType(expected: .boolean, received: .tireSet)
+        case .integer: throw FieldValueError.invalidType(expected: .boolean, received: .integer)
+        }
+    }
+
+    func getFieldValueInteger(_ id: String) throws -> Int64? {
+        guard let value = try getFieldValue(id) else {
+            return nil
+        }
+        switch value {
+        case .integer(let value): return value
+        case .string: throw FieldValueError.invalidType(expected: .integer, received: .string)
+        case .tireSet: throw FieldValueError.invalidType(expected: .integer, received: .tireSet)
+        case .boolean: throw FieldValueError.invalidType(expected: .integer, received: .boolean)
         }
     }
 
@@ -209,6 +231,19 @@ extension LineItem {
         }
     }
 
+    func setFieldValue(_ id: String, value: Int64) throws {
+        let field = getField(id: id)
+        guard let fieldType = field.type else {
+            return
+        }
+        switch fieldType.type {
+        case .integer:
+            field.integerValue = value
+        default:
+            throw FieldValueError.invalidType(expected: fieldType.type, received: .integer)
+        }
+    }
+
     func setFieldValue(_ id: String, value: FieldValue?) throws {
         switch value {
         case nil:
@@ -218,6 +253,7 @@ extension LineItem {
         case .string(let value): try setFieldValue(id, value: value)
         case .tireSet(let value): try setFieldValue(id, value: value)
         case .boolean(let value): try setFieldValue(id, value: value)
+        case .integer(let value): try setFieldValue(id, value: value)
         }
     }
 

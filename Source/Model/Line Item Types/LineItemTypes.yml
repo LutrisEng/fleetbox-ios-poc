@@ -514,6 +514,67 @@ categories:
             type: string
             example: Texas
 
+  - id: cosmetic
+    displayName: Cosmetic
+    icon:
+      sfsymbols: sparkles
+    subcategories:
+      - id: wash
+        displayName: Washing
+        types:
+          - id: washRinse
+            displayName: Rinse
+          - id: washSoap
+            displayName: Soap
+      - id: detailing
+        displayName: Detailing
+        types:
+          - id: interiorDetail
+            displayName: Interior detail
+          - id: exteriorDetail
+            displayName: Exterior detail
+      - id: paintProtection
+        displayName: Paint protection
+        icon:
+          sfsymbols: paintbrush
+        types:
+          - id: washWax
+            displayName: Wax
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the brand of the wax product?
+                type: string
+              - id: productName
+                shortDisplayName: Product
+                longDisplayName: What is the name of the wax product?
+                type: string
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the part number of the ceramic wax product?
+                type: string
+          - id: ceramicCoat
+            displayName: Ceramic coating
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the brand of the ceramic coat product?
+                type: string
+              - id: productName
+                shortDisplayName: Product
+                longDisplayName: What is the name of the ceramic coat product?
+                type: string
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the part number of the ceramic coat product?
+                type: string
+              - id: warranty
+                shortDisplayName: Warranty
+                longDisplayName: How many years is the ceramic coat product warrantied for?
+                type: integer
+                unit: years
+                exampleInteger: 4
+
   - id: misc
     displayName: Miscellaneous
     icon:

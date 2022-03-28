@@ -41,6 +41,14 @@ struct EditLineItemFieldView: View {
             .padding([.top, .bottom], 1.5)
     }
 
+    var showInfoButton: Bool {
+        if let type = field.type {
+            return type.type != .string && type.type != .integer && type.type != .boolean
+        } else {
+            return true
+        }
+    }
+
     var body: some View {
         if let type = field.type {
             VStack {
@@ -53,6 +61,18 @@ struct EditLineItemFieldView: View {
                                 example: type.example,
                                 description: type.longDisplayNameLocal
                         )
+                    case .integer:
+                        let textField = FleetboxTextField(
+                            value: $field.integerValue,
+                            name: type.shortDisplayNameLocal,
+                            example: type.exampleInteger ?? 0,
+                            description: type.longDisplayNameLocal
+                        )
+                        if let unit = type.unitLocal {
+                            textField.unit(unit)
+                        } else {
+                            textField
+                        }
                     case .enumeration:
                         Picker(
                             type.shortDisplayNameLocal,
@@ -89,11 +109,11 @@ struct EditLineItemFieldView: View {
                             .pickerStyle(SegmentedPickerStyle())
                         }
                     }
-                    if type.type != .boolean && type.type != .string {
+                    if showInfoButton {
                         infoButton(type: type)
                     }
                 }
-                if showInfo && type.type != .boolean {
+                if showInfoButton && showInfo {
                     info(type: type)
                 }
             }

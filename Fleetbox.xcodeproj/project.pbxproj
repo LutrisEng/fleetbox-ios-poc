@@ -23,6 +23,7 @@
 		861DAE3B27CDD59F00AFE972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861DAE0D27CDD59F00AFE972 /* Assets.xcassets */; };
 		861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE4D27CDDAD700AFE972 /* Sentry */; };
 		861E4D9C27DC13D00072B6DD /* LineItemTypeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E4D9B27DC13CF0072B6DD /* LineItemTypeLabelView.swift */; };
+		864713FA27F13FF400A12A23 /* LineItemTypes Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864713F927F13FF400A12A23 /* LineItemTypes Structs.swift */; };
 		864C731B27CDF54E00047165 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731A27CDF54E00047165 /* Vehicle.swift */; };
 		864C731E27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */; };
 		864C732127D06A7F00047165 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C732027D06A7F00047165 /* LogItem.swift */; };
@@ -144,6 +145,7 @@
 		861DAE1227CDD59F00AFE972 /* Fleetbox Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fleetbox Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		861E4D9B27DC13CF0072B6DD /* LineItemTypeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeLabelView.swift; sourceTree = "<group>"; };
 		864713F827F1374400A12A23 /* 0.1.0.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 0.1.0.md; sourceTree = "<group>"; };
+		864713F927F13FF400A12A23 /* LineItemTypes Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineItemTypes Structs.swift"; sourceTree = "<group>"; };
 		864C731A27CDF54E00047165 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		864C731D27CDFA0A00047165 /* VehicleSpotlightDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleSpotlightDelegate.swift; sourceTree = "<group>"; };
 		864C732027D06A7F00047165 /* LogItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				86B17F8E27D467EF001E52C6 /* LineItemTypes.schema.json */,
 				86B17F8827D45E0D001E52C6 /* LineItemTypes.yml */,
 				86B17F8B27D45EDF001E52C6 /* LineItemTypes.swift */,
+				864713F927F13FF400A12A23 /* LineItemTypes Structs.swift */,
 			);
 			path = "Line Item Types";
 			sourceTree = "<group>";
@@ -796,6 +799,7 @@
 				86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */,
 				8664C23F27DA907A00AE9ADB /* TireSetsView.swift in Sources */,
 				86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */,
+				864713FA27F13FF400A12A23 /* LineItemTypes Structs.swift in Sources */,
 				8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */,
 				8664C23D27DA906A00AE9ADB /* TireSetView.swift in Sources */,
 				86F8F80927EE748F00442694 /* NewLogItemView.swift in Sources */,
