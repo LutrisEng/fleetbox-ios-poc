@@ -150,6 +150,16 @@ struct PartOdometersView: View {
                 .caption(breakinPercentage)
                 .progress(breakinProgress)
                 .progressColor((breakinProgress ?? 0) < 1 ? .yellow : .green)
+            if let tireSet = vehicle.currentTireSet {
+                FormLinkLabel(
+                    title: "Tire break-in period",
+                    value: "\(Formatter.format(number: tireSet.breakin)) miles"
+                )
+                .badge(tireSet.breakinBadge)
+                .caption(tireSet.breakinPercentage)
+                .progress(tireSet.breakinProgress)
+                .progressColor((tireSet.breakinProgress ?? 0) < 1 ? .yellow : .green)
+            }
         }
         Section(header: Text("Part Odometers")) {
             if let tires = vehicle.currentTireSet {

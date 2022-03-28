@@ -20,37 +20,6 @@ import SwiftUI
 struct TireSetOdometerView: View {
     @ObservedObject var tireSet: TireSet
 
-    var breakinPercentage: String? {
-        let odo = tireSet.approximateOdometer
-        if tireSet.breakin != 0 && odo <= tireSet.breakin {
-            return "About " +
-                Formatter.format(wholePercentage: Double(odo) / Double(tireSet.breakin)) +
-                " complete"
-        } else {
-            return nil
-        }
-    }
-
-    var breakinProgress: Double? {
-        if tireSet.breakin != 0 {
-            return min(1, Double(tireSet.approximateOdometer) / Double(tireSet.breakin))
-        } else {
-            return nil
-        }
-    }
-
-    var breakinBadge: Badge? {
-        if tireSet.breakin != 0 {
-            let odo = tireSet.odometer
-            if odo > tireSet.breakin {
-                return .success
-            } else {
-                return .warning
-            }
-        }
-        return nil
-    }
-
     var body: some View {
         Section(header: Text("Odometer")) {
             FormLinkLabel(
@@ -69,10 +38,10 @@ struct TireSetOdometerView: View {
             }
             FleetboxTextField(value: $tireSet.breakin, name: "Break-in period", example: 500)
                 .unit("miles")
-                .badge(breakinBadge)
-                .caption(breakinPercentage)
-                .progress(breakinProgress)
-                .progressColor((breakinProgress ?? 0) < 1 ? .yellow : .green)
+                .badge(tireSet.breakinBadge)
+                .caption(tireSet.breakinPercentage)
+                .progress(tireSet.breakinProgress)
+                .progressColor((tireSet.breakinProgress ?? 0) < 1 ? .yellow : .green)
         }
     }
 }
