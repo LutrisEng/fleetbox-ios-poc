@@ -57,10 +57,18 @@ struct TireSetView: View {
             .caption(topSpeedCaption)
     }
 
-    var warrantyProgress: String? {
+    var warrantyPercentage: String? {
         let odo = tireSet.odometer
         if tireSet.treadwearWarranty != 0 && odo <= tireSet.treadwearWarranty {
             return Formatter.formatWholePercentage(numerator: odo, denominator: tireSet.treadwearWarranty)
+        } else {
+            return nil
+        }
+    }
+
+    var warrantyProgress: Double? {
+        if tireSet.treadwearWarranty != 0 {
+            return min(1, Double(tireSet.odometer) / Double(tireSet.treadwearWarranty))
         } else {
             return nil
         }
@@ -78,10 +86,18 @@ struct TireSetView: View {
         return nil
     }
 
-    var breakinProgress: String? {
+    var breakinPercentage: String? {
         let odo = tireSet.odometer
         if tireSet.breakin != 0 && odo <= tireSet.breakin {
             return Formatter.formatWholePercentage(numerator: odo, denominator: tireSet.breakin)
+        } else {
+            return nil
+        }
+    }
+
+    var breakinProgress: Double? {
+        if tireSet.breakin != 0 {
+            return min(1, Double(tireSet.odometer) / Double(tireSet.breakin))
         } else {
             return nil
         }
@@ -132,11 +148,13 @@ struct TireSetView: View {
                 FleetboxTextField(value: $tireSet.treadwearWarranty, name: "Treadlife Warranty", example: 30000)
                     .unit("miles")
                     .badge(warrantyBadge)
-                    .caption(warrantyProgress)
+                    .caption(warrantyPercentage)
+                    .progress(warrantyProgress)
                 FleetboxTextField(value: $tireSet.breakin, name: "Break-in period", example: 500)
                     .unit("miles")
                     .badge(breakinBadge)
-                    .caption(breakinProgress)
+                    .caption(breakinPercentage)
+                    .progress(breakinProgress)
             }
             Section(header: Text("Specs")) {
                 HStack {

@@ -55,6 +55,7 @@ struct FleetboxTextField: View {
     private var previewAsNumber: Bool = false
     private var _caption: Caption?
     private var _badge: Badge?
+    private var _progress: Double?
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: LocalizedStringKey? = nil) {
         self.value = value
@@ -112,6 +113,12 @@ struct FleetboxTextField: View {
         return view
     }
 
+    func progress(_ progress: Double?) -> FleetboxTextField {
+        var view = self
+        view._progress = progress
+        return view
+    }
+
     func previewAsString() -> FleetboxTextField {
         var view = self
         view.previewAsNumber = false
@@ -162,7 +169,7 @@ struct FleetboxTextField: View {
     }
 
     @ViewBuilder
-    private var label: some View {
+    private var labelInternal: some View {
         HStack {
             if let name = name {
                 Text(name)
@@ -171,9 +178,22 @@ struct FleetboxTextField: View {
             (Text(previewValue) + maybeUnitName + maybeCaption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.trailing)
+                .fixedSize(horizontal: false, vertical: true)
             if let badge = _badge {
                 badge
             }
+        }
+    }
+
+    @ViewBuilder
+    private var label: some View {
+        if let progress = _progress {
+            VStack {
+                labelInternal
+                ProgressView(value: progress)
+            }
+        } else {
+            labelInternal
         }
     }
 
