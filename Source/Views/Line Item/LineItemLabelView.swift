@@ -68,7 +68,7 @@ struct LineItemLabelView: View {
                 type: lineItem.type,
                 font: itemFont,
                 descriptionFont: detailFont,
-                descriptionColor: .gray,
+                descriptionColor: .secondary,
                 iconWidth: iconWidth,
                 iconHeight: iconHeight,
                 showCategories: showCategories
