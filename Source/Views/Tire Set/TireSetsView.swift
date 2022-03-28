@@ -34,14 +34,7 @@ struct TireSetsView: View {
                     destination: TireSetView(tireSet: tireSet)
             )
         }
-                .onDelete { offsets in
-                    withAnimation {
-                        offsets.map {
-                                    sets[$0]
-                                }
-                                .forEach(viewContext.delete)
-                    }
-                }
+        .onDelete(deleteFrom: sets, context: viewContext)
     }
 
     var body: some View {

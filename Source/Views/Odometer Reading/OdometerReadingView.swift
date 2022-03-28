@@ -32,11 +32,7 @@ struct OdometerReadingView: View {
                         displayedComponents: [.date]
                 )
             } else if let readAt = odometerReading.at {
-                HStack {
-                    Text("Performed")
-                    Spacer()
-                    Text(readAt.formatted(date: .abbreviated, time: .omitted)).foregroundColor(.secondary)
-                }
+                FormLinkLabel(title: "Performed", value: readAt.formatted(date: .abbreviated, time: .omitted))
             }
             FleetboxTextField(
                     value: Binding(

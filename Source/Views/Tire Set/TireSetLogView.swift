@@ -17,24 +17,24 @@
 
 import SwiftUI
 
-struct TireDetailView: View {
+struct TireSetLogView: View {
     @ObservedObject var tireSet: TireSet
 
     var body: some View {
-        NavigationLink(destination: { TireSetView(tireSet: tireSet) }, label: {
-            FormLinkLabel(title: "Tires", value: tireSet.displayName)
-        })
-    }
-}
-
-#if DEBUG
-struct TireDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewWrapper { fixtures in
-            List {
-                TireDetailView(tireSet: fixtures.tireSet)
+        let logItems = tireSet.logItems.inverseChrono
+        if !logItems.isEmpty {
+            Section(header: Text("Log items")) {
+                ForEach(logItems) { logItem in
+                    NavigationLink(
+                        destination: {
+                            LogItemView(logItem: logItem)
+                        },
+                        label: {
+                            LogItemLabelView(logItem: logItem, showVehicle: true)
+                        }
+                    )
+                }
             }
         }
     }
 }
-#endif

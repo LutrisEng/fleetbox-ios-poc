@@ -50,12 +50,7 @@ struct VehiclesView: View {
                         }
                     )
                 }
-                .onDelete { offsets in
-                    withAnimation {
-                        let toDelete = offsets.map { vehicles[$0] }
-                        toDelete.forEach(viewContext.delete)
-                    }
-                }
+                .onDelete(deleteFrom: vehicles, context: viewContext)
             }
             .navigationTitle("Vehicles")
             .toolbar {

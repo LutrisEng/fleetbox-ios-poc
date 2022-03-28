@@ -30,11 +30,12 @@ enum FieldValueError: Error {
     case invalidType(expected: LineItemTypeFieldType, received: LineItemTypeFieldType)
 }
 
-extension LineItem {
+extension LineItem: Dated, Sortable,
+    HasRawLineItemFields, HasLineItemFields {
     convenience init(context: NSManagedObjectContext, logItem: LogItem) {
         self.init(context: context)
         self.logItem = logItem
-        sortOrder = logItem.nextLineItemSortOrder
+        sortOrder = logItem.lineItems.nextSortOrder
     }
 
     convenience init(context: NSManagedObjectContext, logItem: LogItem, typeId: String) {
@@ -45,6 +46,16 @@ extension LineItem {
 
     convenience init(context: NSManagedObjectContext, logItem: LogItem, type: LineItemType) {
         self.init(context: context, logItem: logItem, typeId: type.id)
+    }
+
+    // swiftlint:disable:next identifier_name
+    var at: Date? {
+        get {
+            logItem?.at
+        }
+        set {
+            logItem?.at = newValue
+        }
     }
 
     var type: LineItemType? {
@@ -58,10 +69,6 @@ extension LineItem {
         set {
             typeId = newValue?.id
         }
-    }
-
-    var fieldSet: Set<LineItemField> {
-        fieldsNs as? Set<LineItemField> ?? []
     }
 
     func getFields(create: Bool = false) -> [LineItemField] {
@@ -173,7 +180,7 @@ extension LineItem {
     }
 
     func getFieldWithoutCreating(id: String) -> LineItemField? {
-        return fieldSet.first(where: { $0.typeId == id })
+        return fieldsSet.first(where: { $0.typeId == id })
     }
 
     func getField(id: String) -> LineItemField {

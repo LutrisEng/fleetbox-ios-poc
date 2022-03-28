@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>FILEHEADER</key>
-	<string>//  SPDX-License-Identifier: GPL-3.0-or-later
+	<string>  SPDX-License-Identifier: GPL-3.0-or-later
 //  Fleetbox, a tool for managing vehicle maintenance logs
 //  Copyright (C) 2022 Lutris, Inc
 //

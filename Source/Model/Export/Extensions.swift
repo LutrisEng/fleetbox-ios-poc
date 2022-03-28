@@ -85,9 +85,9 @@ extension Fleetbox_Export_TireSet {
         if let tin = tireSet.tin {
             self.tin = tin
         }
-        treadwearWarranty = tireSet.treadwearWarranty
         hidden = tireSet.hidden
         breakin = tireSet.breakin
+        warranties = tireSet.warranties.map { Fleetbox_Export_Warranty(warranty: $0) }
     }
 
     func importTireSet(context: NSManagedObjectContext) -> TireSet {
@@ -103,9 +103,11 @@ extension Fleetbox_Export_TireSet {
         tireSet.vehicleType = vehicleType
         tireSet.width = Int16(width)
         tireSet.tin = tin
-        tireSet.treadwearWarranty = treadwearWarranty
         tireSet.hidden = hidden
         tireSet.breakin = breakin
+        for warranty in warranties {
+            _ = warranty.importWarranty(context: context, tireSet: tireSet)
+        }
         return tireSet
     }
 }
@@ -131,13 +133,13 @@ extension Fleetbox_Export_Vehicle {
         logItems = vehicle.logItems.map {
             Fleetbox_Export_LogItem(envelope: envelope, logItem: $0)
         }
-        freeOdometerReadings = vehicle.odometerReadingsChrono
+        freeOdometerReadings = vehicle.odometerReadings.chrono
                 .filter({ $0.logItem == nil })
                 .map {
                     Fleetbox_Export_OdometerReading(odometerReading: $0)
                 }
         breakin = vehicle.breakin
-        warranty = vehicle.warranty
+        warranties = vehicle.warranties.map { Fleetbox_Export_Warranty(warranty: $0) }
     }
 
     func importVehicle(context: NSManagedObjectContext, envelope: ExportEnvelopeTemplate) -> Vehicle {
@@ -161,7 +163,9 @@ extension Fleetbox_Export_Vehicle {
             _ = odometerReading.importOdometerReading(context: context, vehicle: vehicle)
         }
         vehicle.breakin = breakin
-        vehicle.warranty = warranty
+        for warranty in warranties {
+            _ = warranty.importWarranty(context: context, vehicle: vehicle)
+        }
         return vehicle
     }
 }
@@ -335,5 +339,29 @@ extension Fleetbox_Export_LineItemField {
             field.integerValue = integerValue
         }
         return field
+    }
+}
+
+extension Fleetbox_Export_Warranty {
+    init(warranty: Warranty) {
+        title = warranty.title ?? ""
+        miles = warranty.miles
+        months = warranty.months
+    }
+
+    func importWarranty(context: NSManagedObjectContext, vehicle: Vehicle) -> Warranty {
+        let warranty = Warranty(context: context, vehicle: vehicle)
+        warranty.title = title
+        warranty.miles = miles
+        warranty.months = months
+        return warranty
+    }
+
+    func importWarranty(context: NSManagedObjectContext, tireSet: TireSet) -> Warranty {
+        let warranty = Warranty(context: context, tireSet: tireSet)
+        warranty.title = title
+        warranty.miles = miles
+        warranty.months = months
+        return warranty
     }
 }

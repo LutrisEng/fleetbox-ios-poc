@@ -23,3 +23,38 @@ extension Sequence where Iterator.Element: Hashable {
         return filter { seen.insert($0).inserted }
     }
 }
+
+extension Sequence where Iterator.Element: Dated {
+    var chrono: [Iterator.Element] {
+        return sorted { ($0.at ?? Date.distantPast) < ($1.at ?? Date.distantPast) }
+    }
+
+    var inverseChrono: [Iterator.Element] {
+        return sorted { ($0.at ?? Date.distantPast) > ($1.at ?? Date.distantPast) }
+    }
+
+    func first(before: Date) -> Iterator.Element? {
+        return inverseChrono.first { ($0.at ?? Date.distantFuture) < before }
+    }
+
+    func first(after: Date) -> Iterator.Element? {
+        return chrono.first { ($0.at ?? Date.distantFuture) > after }
+    }
+}
+
+extension Sequence where Iterator.Element: Sortable {
+    var sorted: [Iterator.Element] {
+        return sorted { $0.sortOrder < $1.sortOrder }
+    }
+
+    func fixSortOrder() {
+        var arr = sorted
+        for index in 0..<arr.count {
+            arr[index].sortOrder = Int16(index)
+        }
+    }
+
+    var nextSortOrder: Int16 {
+        (map(\.sortOrder).max() ?? -1) + 1
+    }
+}

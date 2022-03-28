@@ -26,39 +26,56 @@ struct LogItemLabelView: View {
         self.showVehicle = showVehicle
     }
 
+    var header: Text {
+        var useNewline = false
+        var text: Text = Text("")
+
+        func append(_ newText: Text) {
+            // swiftlint:disable:next shorthand_operator
+            text = text + newText
+        }
+        func newline() -> Text {
+            if useNewline {
+                return Text("\n")
+            } else {
+                useNewline = true
+                return Text("")
+            }
+        }
+        func withNewline<T: Textable>(_ newText: T) -> Text {
+            return newline() + newText.text
+        }
+
+        if showVehicle, let vehicle = logItem.vehicle {
+            append(withNewline(vehicle.displayNameWithFallback).foregroundColor(.secondary))
+        }
+        if let odometerReading = logItem.odometerReading {
+            append(withNewline("\(odometerReading.reading) miles").foregroundColor(.secondary))
+        }
+        if let displayName = logItem.displayName, !displayName.isEmpty {
+            append(withNewline(displayName).font(.body.bold()))
+            if let formattedDate = logItem.formattedDate {
+                append(withNewline(formattedDate))
+            }
+        } else {
+            append(withNewline(logItem.formattedDate ?? "Log item").font(.body.bold()))
+        }
+        if let shop = logItem.shop {
+            append(withNewline("Performed by \(shop.name ?? "a shop")"))
+        } else {
+            append(withNewline("Performed by owner"))
+        }
+
+        return text
+    }
+
     var body: some View {
         VStack {
-            if showVehicle, let vehicle = logItem.vehicle {
-                Text(vehicle.displayNameWithFallback)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            if let odometerReading = logItem.odometerReading {
-                Text("\(odometerReading.reading) miles")
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            if let displayName = logItem.displayName, !displayName.isEmpty {
-                Text(displayName)
-                        .font(.body.bold())
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                if let formattedDate = logItem.formattedDate {
-                    Text(formattedDate)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            } else {
-                Text(logItem.formattedDate ?? "Log item")
-                        .font(.body.bold())
-                        .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            if let shop = logItem.shop {
-                Text("Performed by \(shop.name ?? "a shop")")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-            } else {
-                Text("Performed by owner")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            ForEach(logItem.lineItems) { lineItem in
+            header
+                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: true)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+            ForEach(logItem.lineItems.sorted) { lineItem in
                 LineItemLabelView(lineItem: lineItem).mini
             }
         }

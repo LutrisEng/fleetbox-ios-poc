@@ -20,53 +20,14 @@ import CoreData
 import Sentry
 import UIKit
 
-extension Vehicle {
-    var logItems: Set<LogItem> {
-        logItemsNs as? Set<LogItem> ?? []
-    }
-
-    var logItemsChrono: [LogItem] {
-        logItems.sorted {
-            ($0.performedAt ?? Date.distantPast) < ($1.performedAt ?? Date.distantPast)
-        }
-    }
-
-    var logItemsInverseChrono: [LogItem] {
-        logItems.sorted {
-            ($0.performedAt ?? Date.distantPast) > ($1.performedAt ?? Date.distantPast)
-        }
-    }
-
-    var odometerReadingSet: Set<OdometerReading> {
-        odometerReadingsNs as? Set<OdometerReading> ?? []
-    }
-
-    var odometerReadingsChrono: [OdometerReading] {
-        odometerReadingSet.sorted {
-            ($0.at ?? Date.distantPast) < ($1.at ?? Date.distantPast)
-        }
-    }
-
-    var odometerReadingsInverseChrono: [OdometerReading] {
-        odometerReadingSet.sorted {
-            ($0.at ?? Date.distantPast) > ($1.at ?? Date.distantPast)
-        }
-    }
-
+extension Vehicle: Sortable,
+    TracksTime, TracksMiles,
+    HasRawLogItems, HasLogItems,
+    HasLogItemLineItems, HasLineItems,
+    HasRawOdometerReadings, HasOdometerReadings,
+    HasRawWarranties, HasWarranties {
     var odometer: Int64 {
-        odometerReadingsInverseChrono.first?.reading ?? 0
-    }
-
-    func lastLineItem(type: String) -> LineItem? {
-        return logItemsInverseChrono
-            .flatMap(\.lineItems)
-            .first(where: { $0.typeId == type })
-    }
-
-    func lastLineItem(type: String, where pred: (LineItem) -> Bool) -> LineItem? {
-        return logItemsInverseChrono
-            .flatMap(\.lineItems)
-            .first(where: { $0.typeId == type && pred($0) })
+        odometerReadings.inverseChrono.first?.reading ?? 0
     }
 
     var currentTireSet: TireSet? {
@@ -92,31 +53,6 @@ extension Vehicle {
         } else {
             return nil
         }
-    }
-
-    func closestOdometerReadingTo(date: Date?) -> Int64 {
-        odometerReadingsChrono
-                .sorted(by: { dateDifference($0.at, date) < dateDifference($1.at, date) })
-                .first?
-                .reading
-                ?? odometer
-    }
-
-    func milesSince(lineItemType: String) -> Int64? {
-        guard let lineItem = lastLineItem(type: lineItemType) else { return nil }
-        guard let logItem = lineItem.logItem else { return nil }
-        if let reading = logItem.odometerReading?.reading {
-            return odometer - reading
-        } else {
-            return odometer - closestOdometerReadingTo(date: logItem.performedAt ?? Date.distantPast)
-        }
-    }
-
-    func timeSince(lineItemType: String) -> TimeInterval? {
-        guard let lineItem = lastLineItem(type: lineItemType) else { return nil }
-        guard let logItem = lineItem.logItem else { return nil }
-        guard let performedAt = logItem.performedAt else { return nil }
-        return Date.now.timeIntervalSinceReferenceDate - performedAt.timeIntervalSinceReferenceDate
     }
 
     var fullModelName: String {
@@ -178,15 +114,6 @@ extension Vehicle {
 
         set {
             imageData = newValue?.pngData()
-        }
-    }
-
-    var age: TimeInterval? {
-        if let firstLogItemAt = logItemsChrono.compactMap(\.performedAt).first {
-            return Date.now.timeIntervalSinceReferenceDate -
-                firstLogItemAt.timeIntervalSinceReferenceDate
-        } else {
-            return nil
         }
     }
 

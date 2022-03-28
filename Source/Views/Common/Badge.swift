@@ -17,24 +17,24 @@
 
 import SwiftUI
 
-struct TireDetailView: View {
-    @ObservedObject var tireSet: TireSet
+enum Badge: View {
+    case success, warning
 
+    @ViewBuilder
     var body: some View {
-        NavigationLink(destination: { TireSetView(tireSet: tireSet) }, label: {
-            FormLinkLabel(title: "Tires", value: tireSet.displayName)
-        })
-    }
-}
-
-#if DEBUG
-struct TireDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewWrapper { fixtures in
-            List {
-                TireDetailView(tireSet: fixtures.tireSet)
-            }
+        switch self {
+        case .success:
+            Image(systemName: "checkmark.circle")
+                .foregroundColor(.green)
+        case .warning:
+            Image(systemName: "exclamationmark.circle")
+                .foregroundColor(.yellow)
         }
     }
 }
-#endif
+
+struct Badge_Previews: PreviewProvider {
+    static var previews: some View {
+        Badge.success
+    }
+}

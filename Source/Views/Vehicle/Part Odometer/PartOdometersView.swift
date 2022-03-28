@@ -30,13 +30,17 @@ struct PartOdometersView: View {
             return vehicleOdometer
         } else {
             let odo = vehicle.odometer
-            _vehicleOdometer = odo
+            DispatchQueue.main.async {
+                if _vehicleOdometer == nil {
+                    _vehicleOdometer = odo
+                }
+            }
             return odo
         }
     }
     @StateObject private var createReading = NumbersOnly()
 
-    var breakinBadge: FleetboxTextField.Badge? {
+    var breakinBadge: Badge? {
         if vehicle.breakin != 0 {
             let odo = vehicle.odometer
             if odo > vehicle.breakin {
@@ -50,10 +54,7 @@ struct PartOdometersView: View {
 
     var breakinPercentage: String? {
         if vehicle.breakin != 0 && vehicleOdometer <= vehicle.breakin {
-            return Formatter.formatWholePercentage(
-                numerator: vehicleOdometer,
-                denominator: vehicle.breakin
-            )
+            return Formatter.format(wholePercentage: Double(vehicleOdometer) / Double(vehicle.breakin))
         } else {
             return nil
         }
@@ -67,43 +68,18 @@ struct PartOdometersView: View {
         }
     }
 
-    var warrantyBadge: FleetboxTextField.Badge? {
-        if vehicle.warranty != 0 {
-            let odo = vehicle.odometer
-            if odo > vehicle.warranty {
-                return .warning
-            } else {
-                return .success
-            }
-        }
-        return nil
-    }
-
-    var warrantyPercentage: String? {
-        if vehicle.warranty != 0 && vehicleOdometer <= vehicle.warranty {
-            return Formatter.formatWholePercentage(
-                numerator: vehicleOdometer,
-                denominator: vehicle.warranty
-            )
-        } else {
-            return nil
-        }
-    }
-
-    var warrantyProgress: Double? {
-        if vehicle.breakin != 0 {
-            return min(1, Double(vehicleOdometer) / Double(vehicle.warranty))
-        } else {
-            return nil
-        }
-    }
-
     var body: some View {
         Section(header: Text("Odometer")) {
             if editable {
-                Button("Record odometer reading") {
-                    createPresented = true
-                }
+                Button(
+                    action: {
+                        createPresented = true
+                    },
+                    label: {
+                        Text("\(Image(systemName: "plus")) Add odometer reading")
+                            .foregroundColor(.accentColor)
+                    }
+                )
                 .sheet(isPresented: $createPresented) {
                     NavigationView {
                         OdometerReadingFormView(previousReading: vehicle.odometer) { value in
@@ -132,11 +108,6 @@ struct PartOdometersView: View {
                 .badge(breakinBadge)
                 .caption(breakinPercentage)
                 .progress(breakinProgress)
-            FleetboxTextField(value: $vehicle.warranty, name: "Main warranty", example: 50000)
-                .unit("miles")
-                .badge(warrantyBadge)
-                .caption(warrantyPercentage)
-                .progress(warrantyProgress)
             if let tires = vehicle.currentTireSet {
                 PartOdometerRowView(
                     name: "Tires",

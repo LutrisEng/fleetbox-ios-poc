@@ -553,8 +553,71 @@ categories:
                 shortDisplayName: Part number
                 longDisplayName: What is the part number of the ceramic wax product?
                 type: string
+          - id: washSealant
+            displayName: Sealant application
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the brand of the sealant?
+                type: string
+              - id: productName
+                shortDisplayName: Product
+                longDisplayName: What is the name of the sealant?
+                type: string
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the part number of the sealant?
+                type: string
+              - id: warranty
+                shortDisplayName: Warranty
+                longDisplayName: How many months is the sealant warrantied for?
+                type: integer
+                unit: months
+                exampleInteger: 6
           - id: ceramicCoat
             displayName: Ceramic coating
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the brand of the ceramic coat product?
+                type: string
+              - id: productName
+                shortDisplayName: Product
+                longDisplayName: What is the name of the ceramic coat product?
+                type: string
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the part number of the ceramic coat product?
+                type: string
+              - id: warranty
+                shortDisplayName: Warranty
+                longDisplayName: How many years is the ceramic coat product warrantied for?
+                type: integer
+                unit: years
+                exampleInteger: 4
+          - id: windshieldSealant
+            displayName: Windshield ealant application
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the brand of the sealant?
+                type: string
+              - id: productName
+                shortDisplayName: Product
+                longDisplayName: What is the name of the sealant?
+                type: string
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the part number of the sealant?
+                type: string
+              - id: warranty
+                shortDisplayName: Warranty
+                longDisplayName: How many months is the sealant warrantied for?
+                type: integer
+                unit: months
+                exampleInteger: 6
+          - id: windshieldCeramicCoat
+            displayName: Windshield ceramic coating
             fields:
               - id: brand
                 shortDisplayName: Brand

@@ -18,7 +18,7 @@
 import Foundation
 import CoreData
 
-extension Shop {
+extension Shop: HasRawLogItems, HasLogItems {
     var logItemsUnordered: Set<LogItem> {
         logItemsNs as? Set<LogItem> ?? []
     }
@@ -27,10 +27,6 @@ extension Shop {
         logItemsUnordered.sorted {
             ($0.performedAt ?? Date.distantPast) > ($1.performedAt ?? Date.distantPast)
         }
-    }
-
-    var vehicles: [Vehicle] {
-        logItemsInverseChrono.compactMap({ $0.vehicle }).unique()
     }
 
     func mergeWith(_ other: Shop) {

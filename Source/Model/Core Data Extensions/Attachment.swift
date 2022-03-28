@@ -15,26 +15,12 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import SwiftUI
+import Foundation
 
-struct TireDetailView: View {
-    @ObservedObject var tireSet: TireSet
-
-    var body: some View {
-        NavigationLink(destination: { TireSetView(tireSet: tireSet) }, label: {
-            FormLinkLabel(title: "Tires", value: tireSet.displayName)
-        })
+extension Attachment: Sortable {
+    override public func willChangeValue(forKey key: String) {
+        super.willChangeValue(forKey: key)
+        self.objectWillChange.send()
+        logItem?.objectWillChange.send()
     }
 }
-
-#if DEBUG
-struct TireDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewWrapper { fixtures in
-            List {
-                TireDetailView(tireSet: fixtures.tireSet)
-            }
-        }
-    }
-}
-#endif

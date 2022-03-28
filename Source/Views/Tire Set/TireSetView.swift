@@ -18,124 +18,13 @@
 import SwiftUI
 
 struct TireSetView: View {
-    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var tireSet: TireSet
 
-    @ViewBuilder
-    var baseSpecForm: some View {
-        FleetboxTextField(value: $tireSet.vehicleType, name: "Vehicle Type", example: "P")
-        FleetboxTextField(value: $tireSet.width, name: "Width", example: 225)
-        FleetboxTextField(value: $tireSet.aspectRatio, name: "Aspect Ratio", example: 70)
-        FleetboxTextField(value: $tireSet.construction, name: "Construction", example: "R")
-        FleetboxTextField(value: $tireSet.diameter, name: "Rim Diameter", example: 16)
-    }
-
-    var loadCapacityCaption: LocalizedStringKey? {
-        if let loadCapacity = tireSet.loadCapacity {
-            return "\(loadCapacity)lbs/wheel"
-        } else {
-            return nil
-        }
-    }
-
-    var topSpeedCaption: LocalizedStringKey? {
-        if let topSpeed = tireSet.topSpeed {
-            return "\(topSpeed)mph"
-        } else {
-            return nil
-        }
-    }
-
-    @ViewBuilder
-    var specForm: some View {
-        baseSpecForm
-        FleetboxTextField(value: $tireSet.loadIndex, name: "Load Index", example: 91)
-            .caption(loadCapacityCaption)
-        FleetboxTextField(value: $tireSet.speedRating, name: "Speed Rating", example: "S")
-            .caption(topSpeedCaption)
-    }
-
-    var warrantyPercentage: String? {
-        let odo = tireSet.odometer
-        if tireSet.treadwearWarranty != 0 && odo <= tireSet.treadwearWarranty {
-            return Formatter.formatWholePercentage(numerator: odo, denominator: tireSet.treadwearWarranty)
-        } else {
-            return nil
-        }
-    }
-
-    var warrantyProgress: Double? {
-        if tireSet.treadwearWarranty != 0 {
-            return min(1, Double(tireSet.odometer) / Double(tireSet.treadwearWarranty))
-        } else {
-            return nil
-        }
-    }
-
-    var warrantyBadge: FleetboxTextField.Badge? {
-        if tireSet.treadwearWarranty != 0 {
-            let odo = tireSet.odometer
-            if odo > tireSet.treadwearWarranty {
-                return .warning
-            } else {
-                return .success
-            }
-        }
-        return nil
-    }
-
-    var breakinPercentage: String? {
-        let odo = tireSet.odometer
-        if tireSet.breakin != 0 && odo <= tireSet.breakin {
-            return Formatter.formatWholePercentage(numerator: odo, denominator: tireSet.breakin)
-        } else {
-            return nil
-        }
-    }
-
-    var breakinProgress: Double? {
-        if tireSet.breakin != 0 {
-            return min(1, Double(tireSet.odometer) / Double(tireSet.breakin))
-        } else {
-            return nil
-        }
-    }
-
-    var breakinBadge: FleetboxTextField.Badge? {
-        if tireSet.breakin != 0 {
-            let odo = tireSet.odometer
-            if odo > tireSet.breakin {
-                return .success
-            } else {
-                return .warning
-            }
-        }
-        return nil
-    }
-
     var body: some View {
         Form {
-            FleetboxTextField(value: $tireSet.userDisplayName, name: "Name", example: "My Summer Tires")
-            FleetboxTextField(value: $tireSet.make, name: "Make", example: "TireCo")
-            FleetboxTextField(value: $tireSet.model, name: "Model", example: "Aviator Sport")
-            FleetboxTextField(value: $tireSet.tin, name: "TIN", example: "DOT U2LL LMLR5107")
-            if tireSet.hidden {
-                Button("Un-hide") {
-                    tireSet.hidden = false
-                    ignoreErrors {
-                        try viewContext.save()
-                    }
-                }
-            } else {
-                Button("Hide") {
-                    tireSet.hidden = true
-                    ignoreErrors {
-                        try viewContext.save()
-                    }
-                }
-            }
+            TireSetDetailsView(tireSet: tireSet)
             if let vehicle = tireSet.vehicle {
                 Section(header: Text("Current vehicle")) {
                     NavigationLink(vehicle.displayNameWithFallback) {
@@ -143,65 +32,10 @@ struct TireSetView: View {
                     }
                 }
             }
-            Section(header: Text("Odometer")) {
-                PartOdometerRowView(name: "Tires", milesSince: tireSet.odometer, timeSince: tireSet.age)
-                FleetboxTextField(value: $tireSet.treadwearWarranty, name: "Treadlife Warranty", example: 30000)
-                    .unit("miles")
-                    .badge(warrantyBadge)
-                    .caption(warrantyPercentage)
-                    .progress(warrantyProgress)
-                FleetboxTextField(value: $tireSet.breakin, name: "Break-in period", example: 500)
-                    .unit("miles")
-                    .badge(breakinBadge)
-                    .caption(breakinPercentage)
-                    .progress(breakinProgress)
-            }
-            Section(header: Text("Specs")) {
-                HStack {
-                    Text("Tire specs")
-                    Spacer()
-                    VStack {
-                        (
-                            Text(tireSet.specs) +
-                            Text("\nExamples based on P225/70R16 91S")
-                                .font(.caption)
-                        )
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.trailing)
-                    }
-                }
-                specForm
-            }
-            let logItems = tireSet.logItemsInverseChrono
-            if !logItems.isEmpty {
-                Section(header: Text("Log items")) {
-                    ForEach(logItems) { logItem in
-                        NavigationLink(
-                            destination: {
-                                LogItemView(logItem: logItem)
-                            },
-                            label: {
-                                LogItemLabelView(logItem: logItem, showVehicle: true)
-                            }
-                        )
-                    }
-                }
-            }
-            if editable {
-                Section(header: Text("Actions")) {
-                    NavigationLink("Merge with other tire set") {
-                        TireSetPickerView(
-                            selected: nil,
-                            allowNone: false,
-                            exclude: [tireSet]
-                        ) {
-                            tireSet.mergeWith($0!)
-                        }
-                        .navigationTitle("Merge tire sets")
-                        .navigationBarTitleDisplayMode(.inline)
-                    }
-                }
-            }
+            TireSetOdometerView(tireSet: tireSet)
+            WarrantiesView(warranties: tireSet.warranties, tireSet: tireSet)
+            TireSetSpecView(tireSet: tireSet)
+            TireSetActionsView(tireSet: tireSet)
         }
         .modifier(WithDoneButton())
         .modifier(SaveOnLeave())

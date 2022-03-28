@@ -79,21 +79,21 @@ struct LineItemLabelView_Previews: PreviewProvider {
         Group {
             PreviewWrapper { fixtures in
                 List {
-                    ForEach(fixtures.logItem.lineItems) { lineItem in
+                    ForEach(fixtures.logItem.lineItems.sorted) { lineItem in
                         LineItemLabelView(lineItem: lineItem)
                     }
                 }
             }
             PreviewWrapper { fixtures in
                 List {
-                    ForEach(fixtures.logItem.lineItems) { lineItem in
+                    ForEach(fixtures.logItem.lineItems.sorted) { lineItem in
                         LineItemLabelView(lineItem: lineItem).details
                     }
                 }
             }
             PreviewWrapper { fixtures in
                 List {
-                    ForEach(fixtures.logItem.lineItems) { lineItem in
+                    ForEach(fixtures.logItem.lineItems.sorted) { lineItem in
                         LineItemLabelView(lineItem: lineItem).mini
                     }
                 }

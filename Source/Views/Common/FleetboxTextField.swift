@@ -19,22 +19,6 @@ import SwiftUI
 import Introspect
 
 struct FleetboxTextField: View {
-    enum Badge: View {
-        case success, warning
-
-        @ViewBuilder
-        var body: some View {
-            switch self {
-            case .success:
-                Image(systemName: "checkmark.circle")
-                    .foregroundColor(.green)
-            case .warning:
-                Image(systemName: "exclamationmark.circle")
-                    .foregroundColor(.yellow)
-            }
-        }
-    }
-
     private enum Caption {
         case localized(LocalizedStringKey)
         case string(String)
@@ -53,7 +37,7 @@ struct FleetboxTextField: View {
     private var unitName: LocalizedStringKey?
     private var number: Bool = false
     private var previewAsNumber: Bool = false
-    private var _caption: Caption?
+    private var _caption: Text?
     private var _badge: Badge?
     private var _progress: Double?
 
@@ -93,20 +77,10 @@ struct FleetboxTextField: View {
         return view
     }
 
-    func caption(_ caption: LocalizedStringKey?) -> FleetboxTextField {
+    func caption<Caption: Textable>(_ caption: Caption?) -> FleetboxTextField {
         var view = self
         if let caption = caption {
-            view._caption = .localized(caption)
-        } else {
-            view._caption = nil
-        }
-        return view
-    }
-
-    func caption(_ caption: String?) -> FleetboxTextField {
-        var view = self
-        if let caption = caption {
-            view._caption = .string(caption)
+            view._caption = caption.text
         } else {
             view._caption = nil
         }
@@ -139,17 +113,6 @@ struct FleetboxTextField: View {
         }
     }
 
-    private var maybeCaption: Text {
-        switch _caption {
-        case .localized(let caption):
-            return Text("\n") + Text(caption).font(.caption)
-        case .string(let caption):
-            return Text("\n") + Text(caption).font(.caption)
-        case nil:
-            return Text("")
-        }
-    }
-
     private var numberValue: Int64? {
         if number, let value = value.wrappedValue {
             return try? Int64(value, format: .number)
@@ -158,43 +121,22 @@ struct FleetboxTextField: View {
         }
     }
 
-    private var previewValue: LocalizedStringKey {
+    private var previewValue: String {
         if previewAsNumber, let numberValue = numberValue {
-            return "\(numberValue)"
+            return Formatter.format(number: numberValue)
         } else if let value = value.wrappedValue {
-            return "\(value)"
+            return value
         } else {
             return ""
         }
     }
 
     @ViewBuilder
-    private var labelInternal: some View {
-        HStack {
-            if let name = name {
-                Text(name)
-            }
-            Spacer()
-            (Text(previewValue) + maybeUnitName + maybeCaption)
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.trailing)
-                .fixedSize(horizontal: false, vertical: true)
-            if let badge = _badge {
-                badge
-            }
-        }
-    }
-
-    @ViewBuilder
     private var label: some View {
-        if let progress = _progress {
-            VStack {
-                labelInternal
-                ProgressView(value: progress)
-            }
-        } else {
-            labelInternal
-        }
+        FormLinkLabel(title: name ?? "", value: Text(previewValue) + maybeUnitName)
+            .caption(_caption)
+            .progress(_progress)
+            .badge(_badge)
     }
 
     var body: some View {

@@ -57,6 +57,7 @@
         <attribute name="vehicleType" optional="YES" attributeType="String"/>
         <attribute name="width" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="lineItemFieldsNs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LineItemField" inverseName="tireSetValue" inverseEntity="LineItemField"/>
+        <relationship name="warrantiesNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Warranty" inverseName="tireSet" inverseEntity="Warranty"/>
     </entity>
     <entity name="Vehicle" representedClassName="Vehicle" syncable="YES" codeGenerationType="class">
         <attribute name="breakin" optional="YES" attributeType="Integer 64" defaultValueString="1000" usesScalarValueType="YES"/>
@@ -66,10 +67,18 @@
         <attribute name="model" optional="YES" attributeType="String"/>
         <attribute name="sortOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="vin" optional="YES" attributeType="String" spotlightIndexingEnabled="YES"/>
-        <attribute name="warranty" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="year" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
         <relationship name="logItemsNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LogItem" inverseName="vehicle" inverseEntity="LogItem"/>
         <relationship name="odometerReadingsNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OdometerReading" inverseName="vehicle" inverseEntity="OdometerReading"/>
+        <relationship name="warrantiesNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Warranty" inverseName="vehicle" inverseEntity="Warranty"/>
+    </entity>
+    <entity name="Warranty" representedClassName="Warranty" syncable="YES" codeGenerationType="class">
+        <attribute name="miles" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="months" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <relationship name="tireSet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TireSet" inverseName="warrantiesNs" inverseEntity="TireSet"/>
+        <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="warrantiesNs" inverseEntity="Vehicle"/>
     </entity>
     <elements>
         <element name="Attachment" positionX="270" positionY="108" width="128" height="89"/>
@@ -78,7 +87,8 @@
         <element name="LogItem" positionX="406.38671875" positionY="-9.95703125" width="128" height="134"/>
         <element name="OdometerReading" positionX="270" positionY="108" width="128" height="89"/>
         <element name="Shop" positionX="279" positionY="45" width="128" height="74"/>
-        <element name="TireSet" positionX="279" positionY="63" width="128" height="269"/>
+        <element name="TireSet" positionX="279" positionY="63" width="128" height="284"/>
         <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="194"/>
+        <element name="Warranty" positionX="270" positionY="135" width="128" height="119"/>
     </elements>
 </model>

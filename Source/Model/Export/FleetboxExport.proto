@@ -23,7 +23,7 @@ message Vehicle {
     repeated LogItem logItems = 7;
     repeated OdometerReading freeOdometerReadings = 8;
     optional int64 breakin = 9;
-    optional int64 warranty = 10;
+    repeated Warranty warranties = 10;
 }
 
 message LogItem {
@@ -74,7 +74,13 @@ message TireSet {
     optional string vehicleType = 9;
     optional int32 width = 10;
     optional string tin = 11;
-    optional int64 treadwearWarranty = 12;
-    optional bool hidden = 13;
-    optional int64 breakin = 14;
+    optional bool hidden = 12;
+    optional int64 breakin = 13;
+    repeated Warranty warranties = 14;
+}
+
+message Warranty {
+    optional int64 miles = 1;
+    optional int64 months = 2;
+    optional string title = 3;
 }

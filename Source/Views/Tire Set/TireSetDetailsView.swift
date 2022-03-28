@@ -17,22 +17,31 @@
 
 import SwiftUI
 
-struct EditTireSetLineItemFieldView: View {
+struct TireSetDetailsView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
-    @ObservedObject var field: LineItemField
-    let type: LineItemTypeField
-    @State private var sheetPresented: Bool = false
+
+    @ObservedObject var tireSet: TireSet
 
     var body: some View {
-        Button(action: { sheetPresented = true }, label: {
-            FormLinkLabel(title: type.shortDisplayNameLocal, value: field.tireSetValue?.displayName ?? "None")
-        })
-        .buttonStyle(.plain)
-        .sheet(isPresented: $sheetPresented) {
-            TireSetPickerView(selected: field.tireSetValue) { tireSet in
-                withAnimation {
-                    field.tireSetValue = tireSet
-                    sheetPresented = false
+        FleetboxTextField(value: $tireSet.userDisplayName, name: "Name", example: "My Summer Tires")
+        FleetboxTextField(value: $tireSet.make, name: "Make", example: "TireCo")
+        FleetboxTextField(value: $tireSet.model, name: "Model", example: "Aviator Sport")
+        FleetboxTextField(value: $tireSet.tin, name: "TIN", example: "DOT U2LL LMLR5107")
+        if editable {
+            if tireSet.hidden {
+                Button("Un-hide") {
+                    tireSet.hidden = false
+                    ignoreErrors {
+                        try viewContext.save()
+                    }
+                }
+            } else {
+                Button("Hide") {
+                    tireSet.hidden = true
+                    ignoreErrors {
+                        try viewContext.save()
+                    }
                 }
             }
         }

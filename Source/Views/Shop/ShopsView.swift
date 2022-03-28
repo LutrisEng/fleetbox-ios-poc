@@ -35,12 +35,7 @@ struct ShopsView: View {
                             destination: ShopView(shop: shop)
                     )
                 }
-                .onDelete { offsets in
-                    withAnimation {
-                        let toDelete = offsets.map { shops[$0] }
-                        toDelete.forEach(viewContext.delete)
-                    }
-                }
+                .onDelete(deleteFrom: shops, context: viewContext)
             }
                     .navigationTitle("Shops")
                     .toolbar {

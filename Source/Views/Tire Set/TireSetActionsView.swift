@@ -17,24 +17,26 @@
 
 import SwiftUI
 
-struct TireDetailView: View {
+struct TireSetActionsView: View {
+    @Environment(\.editable) private var editable
+
     @ObservedObject var tireSet: TireSet
 
     var body: some View {
-        NavigationLink(destination: { TireSetView(tireSet: tireSet) }, label: {
-            FormLinkLabel(title: "Tires", value: tireSet.displayName)
-        })
-    }
-}
-
-#if DEBUG
-struct TireDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewWrapper { fixtures in
-            List {
-                TireDetailView(tireSet: fixtures.tireSet)
+        if editable {
+            Section(header: Text("Actions")) {
+                NavigationLink("Merge with other tire set") {
+                    TireSetPickerView(
+                        selected: nil,
+                        allowNone: false,
+                        exclude: [tireSet]
+                    ) {
+                        tireSet.mergeWith($0!)
+                    }
+                    .navigationTitle("Merge tire sets")
+                    .navigationBarTitleDisplayMode(.inline)
+                }
             }
         }
     }
 }
-#endif

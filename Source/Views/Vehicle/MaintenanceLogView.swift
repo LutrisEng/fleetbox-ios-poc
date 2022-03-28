@@ -31,16 +31,12 @@ struct MaintenanceLogView: View {
                         NewLogItemView(vehicle: vehicle)
                     },
                     label: {
-                        HStack {
-                            Image(systemName: "plus")
-                            Text("Add log item")
-                            Spacer()
-                        }
-                        .foregroundColor(.accentColor)
+                        Text("\(Image(systemName: "plus")) Add log item")
+                            .foregroundColor(.accentColor)
                     }
                 )
             }
-            let logItems = vehicle.logItemsInverseChrono
+            let logItems = vehicle.logItems.inverseChrono
             if logItems.isEmpty {
                 Text("Empty")
                     .foregroundColor(.secondary)
@@ -50,13 +46,7 @@ struct MaintenanceLogView: View {
                         LogItemLabelView(logItem: logItem)
                     }
                 }
-                .onDelete { offsets in
-                    withAnimation {
-                        offsets
-                            .map { logItems[$0] }
-                            .forEach(viewContext.delete)
-                    }
-                }
+                .onDelete(deleteFrom: logItems, context: viewContext)
                 .deleteDisabled(!editable)
             }
         }

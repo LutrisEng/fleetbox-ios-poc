@@ -18,23 +18,51 @@
 import Foundation
 
 struct Formatter {
+    static let number: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        return formatter
+    }()
+
+    static func format(number: Int64) -> String {
+        return self.number.string(from: number) ?? "\(number)"
+    }
+
+    static let wholeNumber: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
+        formatter.maximumFractionDigits = 0
+        return formatter
+    }()
+
+    static func format(wholeNumber: Double) -> String {
+        return self.wholeNumber.string(from: wholeNumber) ?? "\(wholeNumber)"
+    }
+
     static let wholePercentage: NumberFormatter = {
         let formatter = NumberFormatter()
+        formatter.usesGroupingSeparator = true
         formatter.numberStyle = .percent
         formatter.maximumFractionDigits = 0
         return formatter
     }()
 
-    static func formatWholePercentage(proportion: Double) -> String {
-        return wholePercentage.string(from: proportion) ?? "\(proportion / 100)%"
+    static func format(wholePercentage: Double) -> String {
+        return self.wholePercentage.string(from: wholePercentage) ?? "\(wholePercentage / 100)%"
     }
 
-    static func formatWholePercentage(numerator: Double, denominator: Double) -> String {
-        return formatWholePercentage(proportion: numerator / denominator)
-    }
+    static let durationLabel: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.month, .weekOfMonth, .day]
+        formatter.unitsStyle = .full
+        formatter.maximumUnitCount = 1
+        formatter.includesApproximationPhrase = true
+        formatter.zeroFormattingBehavior = .dropAll
+        return formatter
+    }()
 
-    static func formatWholePercentage(numerator: Int64, denominator: Int64) -> String {
-        return formatWholePercentage(numerator: Double(numerator), denominator: Double(denominator))
+    static func format(durationLabel: TimeInterval) -> String {
+        return self.durationLabel.string(from: durationLabel) ?? ""
     }
 }
 

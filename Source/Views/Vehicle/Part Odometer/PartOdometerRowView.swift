@@ -22,49 +22,32 @@ struct PartOdometerRowView: View {
     let milesSince: Int64?
     let timeSince: TimeInterval?
 
-    static let formatter: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.month, .weekOfMonth, .day]
-        formatter.unitsStyle = .full
-        formatter.maximumUnitCount = 1
-        formatter.includesApproximationPhrase = true
-        formatter.zeroFormattingBehavior = .dropAll
-        return formatter
-    }()
-
-    var milesSinceText: Text {
+    var formattedMilesSince: String {
         if let milesSince = milesSince {
-            return Text("About \(milesSince) miles")
+            return "About \(Formatter.format(number: milesSince)) miles"
         } else {
-            return Text("")
+            return ""
         }
     }
 
-    var separator: Text {
+    var separator: String {
         if milesSince != nil && timeSince != nil {
-            return Text("\n")
+            return "\n"
         } else {
-            return Text("")
+            return ""
         }
     }
 
-    var timeSinceText: Text {
-        if let timeSince = timeSince,
-           let str = PartOdometerRowView.formatter.string(from: timeSince) {
-            return Text("\(str) old")
+    var formattedTimeSince: String {
+        if let timeSince = timeSince {
+            return "\(Formatter.format(durationLabel: timeSince)) old"
         } else {
-            return Text("")
+            return ""
         }
     }
 
     var body: some View {
-        HStack {
-            Text(LocalizedStringKey(name))
-            Spacer()
-            (milesSinceText + separator + timeSinceText)
-                .multilineTextAlignment(.trailing)
-                .foregroundColor(.secondary)
-        }
+        FormLinkLabel(title: name, value: formattedMilesSince + separator + formattedTimeSince)
     }
 }
 

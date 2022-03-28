@@ -15,26 +15,20 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+import Foundation
 import SwiftUI
+import CoreData
 
-struct TireDetailView: View {
-    @ObservedObject var tireSet: TireSet
-
-    var body: some View {
-        NavigationLink(destination: { TireSetView(tireSet: tireSet) }, label: {
-            FormLinkLabel(title: "Tires", value: tireSet.displayName)
-        })
-    }
-}
-
-#if DEBUG
-struct TireDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewWrapper { fixtures in
-            List {
-                TireDetailView(tireSet: fixtures.tireSet)
+extension DynamicViewContent {
+    func onDelete<T, C>(deleteFrom: C, context: NSManagedObjectContext) -> some DynamicViewContent
+    where T: NSManagedObject, C: RandomAccessCollection, C.Element == T, C.Index == Int {
+        return onDelete { indices in
+            withAnimation {
+                let objects = indices.map({ deleteFrom[$0] })
+                for object in objects {
+                    context.delete(object)
+                }
             }
         }
     }
 }
-#endif

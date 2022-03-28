@@ -25,7 +25,7 @@ struct OdometerReadingsView: View {
 
     var body: some View {
         List {
-            let odometerReadings = vehicle.odometerReadingsInverseChrono
+            let odometerReadings = vehicle.odometerReadings.inverseChrono
             ForEach(odometerReadings, id: \.self) { odometerReading in
                 NavigationLink(
                     destination: {
@@ -55,13 +55,7 @@ struct OdometerReadingsView: View {
                     }
                 )
             }
-            .onDelete { offsets in
-                withAnimation {
-                    offsets
-                        .map { odometerReadings[$0] }
-                        .forEach(viewContext.delete)
-                }
-            }
+            .onDelete(deleteFrom: odometerReadings, context: viewContext)
             .deleteDisabled(!editable)
         }
         .toolbar {

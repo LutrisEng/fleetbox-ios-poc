@@ -59,7 +59,7 @@ struct AttachmentView: View {
     }
 
     var body: some View {
-        HStack {
+        Group {
             if loading {
                 ProgressView()
             } else if let fileURL = fileURL {

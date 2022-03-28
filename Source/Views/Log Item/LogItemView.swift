@@ -55,11 +55,7 @@ struct LogItemView: View {
                             displayedComponents: [.date]
                     )
                 } else if let performedAt = logItem.performedAt {
-                    HStack {
-                        Text("Performed")
-                        Spacer()
-                        Text(performedAt.formatted(date: .abbreviated, time: .omitted)).foregroundColor(.secondary)
-                    }
+                    FormLinkLabel(title: "Performed", value: performedAt.formatted(date: .abbreviated, time: .omitted))
                 }
                 if let vehicle = logItem.vehicle {
                     Section(header: Text("Vehicle")) {
@@ -126,16 +122,12 @@ struct LogItemView: View {
                                 .navigationBarTitleDisplayMode(.inline)
                             },
                             label: {
-                                HStack {
-                                    Image(systemName: "plus")
-                                    Text("Add line item")
-                                    Spacer()
-                                }
-                                .foregroundColor(.accentColor)
+                                Text("\(Image(systemName: "plus")) Add line item")
+                                    .foregroundColor(.accentColor)
                             }
                         )
                     }
-                    let lineItems = logItem.lineItems
+                    let lineItems = logItem.lineItems.sorted
                     if lineItems.isEmpty {
                         Text("No line items")
                             .foregroundColor(.secondary)
@@ -149,14 +141,7 @@ struct LogItemView: View {
                                 LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
                             }
                         }
-                        .onDelete { offsets in
-                            withAnimation {
-                                offsets.map {
-                                            lineItems[$0]
-                                        }
-                                        .forEach(viewContext.delete)
-                            }
-                        }
+                        .onDelete(deleteFrom: lineItems, context: viewContext)
                         .deleteDisabled(!editable)
                     }
                 }
@@ -167,13 +152,7 @@ struct LogItemView: View {
                             AttachmentView(attachment: attachment)
                         }
                     }
-                    .onDelete { offsets in
-                        withAnimation {
-                            offsets
-                                .map { attachments[$0] }
-                                .forEach(viewContext.delete)
-                        }
-                    }
+                    .onDelete(deleteFrom: attachments, context: viewContext)
                     .deleteDisabled(!editable)
                     if addingAttachments {
                         ProgressView()
