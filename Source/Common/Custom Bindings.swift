@@ -47,7 +47,7 @@ func convertToStringBinding(int64: Binding<Int64>) -> Binding<String> {
                 if int64.wrappedValue == 0 {
                     return ""
                 } else {
-                    return Formatter.format(number: int64.wrappedValue)
+                    return String(int64.wrappedValue)
                 }
             },
             set: { value in
@@ -65,7 +65,7 @@ func convertToStringBinding(int16: Binding<Int16>) -> Binding<String> {
                 if int16.wrappedValue == 0 {
                     return ""
                 } else {
-                    return Formatter.format(number: int16.wrappedValue)
+                    return String(int16.wrappedValue)
                 }
             },
             set: { value in
