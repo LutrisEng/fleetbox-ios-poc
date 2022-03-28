@@ -53,7 +53,20 @@ struct TireSetOdometerView: View {
 
     var body: some View {
         Section(header: Text("Odometer")) {
-            PartOdometerRowView(name: "Tires", milesSince: tireSet.approximateOdometer, timeSince: tireSet.age)
+            FormLinkLabel(
+                title: "Verified distance",
+                value: "\(Formatter.format(number: tireSet.odometer)) miles"
+            )
+            if let vehicle = tireSet.vehicle {
+                FormLinkLabel(
+                    title: "Est. distance per year",
+                    value: "\(Formatter.format(number: vehicle.milesPerYear)) miles/year"
+                )
+                FormLinkLabel(
+                    title: "Est. distance",
+                    value: "\(Formatter.format(number: tireSet.approximateOdometer)) miles"
+                )
+            }
             FleetboxTextField(value: $tireSet.breakin, name: "Break-in period", example: 500)
                 .unit("miles")
                 .badge(breakinBadge)

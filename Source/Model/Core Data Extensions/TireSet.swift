@@ -20,7 +20,7 @@ import CoreData
 import Sentry
 
 extension TireSet: Sortable,
-    TracksTime, TracksMiles,
+    TracksTime, TracksMiles, TracksApproximateMiles,
     HasRawLineItemFields, HasLineItemFields,
     HasLineItemFieldLineItems, HasLineItems,
     HasLineItemLogItems, HasLogItems,

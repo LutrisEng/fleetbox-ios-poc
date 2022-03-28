@@ -135,12 +135,11 @@ struct PartOdometersView: View {
                 example: roundedMilesPerYear ?? 12000,
                 description: milesPerYearDescription
             )
-            .unit("miles")
-            FormLinkLabel(title: "Est. distance", value: "About \(Formatter.format(number: vehicleOdometer)) miles")
-            if let age = vehicle.age {
-                FormLinkLabel(title: "Est. age", value: "\(Formatter.format(durationLabel: age)) old")
-                    .titleCaption("Inaccurate? Add a log item for your vehicle's manufacturing.")
-            }
+            .unit("miles/year")
+            FormLinkLabel(
+                title: "Est. current reading",
+                value: "\(Formatter.format(number: vehicleOdometer)) miles"
+            )
             NavigationLink("View history") {
                 OdometerReadingsView(vehicle: vehicle)
                     .navigationTitle("Odometer readings")

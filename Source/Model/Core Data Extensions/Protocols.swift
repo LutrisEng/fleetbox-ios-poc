@@ -42,6 +42,10 @@ protocol TracksMiles {
     var odometer: Int64 { get }
 }
 
+protocol TracksApproximateMiles {
+    var approximateOdometer: Int64 { get }
+}
+
 protocol TracksTime {
     var origin: Date? { get }
 }

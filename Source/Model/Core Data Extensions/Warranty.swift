@@ -19,7 +19,7 @@ import Foundation
 import CoreData
 
 extension Warranty: Sortable {
-    typealias Underlying = TracksTime & TracksMiles & HasRawWarranties & HasWarranties
+    typealias Underlying = TracksTime & TracksApproximateMiles & HasRawWarranties & HasWarranties
 
     convenience init(context: NSManagedObjectContext, underlying: Underlying) {
         self.init(context: context)
@@ -63,7 +63,7 @@ extension Warranty: Sortable {
         }
     }
 
-    var underlyingEntity: (TracksTime & TracksMiles)? {
+    var underlyingEntity: Underlying? {
         if let vehicle = vehicle {
             return vehicle
         } else if let tireSet = tireSet {
@@ -74,7 +74,7 @@ extension Warranty: Sortable {
     }
 
     var underlyingOdometer: Int64? {
-        underlyingEntity?.odometer
+        underlyingEntity?.approximateOdometer
     }
 
     var underlyingOrigin: Date? {

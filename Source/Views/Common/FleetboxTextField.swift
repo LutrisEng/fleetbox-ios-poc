@@ -191,6 +191,7 @@ struct FleetboxTextField: View {
                             if let unitName = unitName {
                                 Spacer()
                                 unitName
+                                    .foregroundColor(.secondary)
                             }
                         }
                         .onAppear(perform: prepare)

@@ -25,16 +25,19 @@ struct WarrantyView: View {
             FleetboxTextField(value: $warranty.title, name: "Title", example: "New Vehicle Warranty")
             FleetboxTextField(value: $warranty.miles, name: "Valid for (distance)", example: 36000).unit("miles")
             if let odometer = warranty.underlyingOdometer {
-                FormLinkLabel(title: "Distance elapsed", value: "\(Formatter.format(number: odometer)) miles")
+                FormLinkLabel(title: "Distance elapsed", value: "About \(Formatter.format(number: odometer)) miles")
                     .progress(warranty.milesProgress)
                     .caption(warranty.milesPercentage)
             }
             FleetboxTextField(value: $warranty.months, name: "Valid for (time)", example: 36).unit("months")
             if let origin = warranty.underlyingOrigin {
                 let monthsSince = Warranty.monthsSince(origin: origin)
-                FormLinkLabel(title: "Time elapsed", value: "\(Formatter.format(wholeNumber: monthsSince)) months")
-                    .progress(warranty.monthsProgress)
-                    .caption(warranty.monthsPercentage)
+                FormLinkLabel(
+                    title: "Time elapsed",
+                    value: "About \(Formatter.format(wholeNumber: monthsSince)) months"
+                )
+                .progress(warranty.monthsProgress)
+                .caption(warranty.monthsPercentage)
             }
 
             if let vehicle = warranty.vehicle {

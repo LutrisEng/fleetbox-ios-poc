@@ -21,7 +21,7 @@ import Sentry
 import UIKit
 
 extension Vehicle: Sortable,
-    TracksTime, TracksMiles,
+    TracksTime, TracksMiles, TracksApproximateMiles,
     HasRawLogItems, HasLogItems,
     HasLogItemLineItems, HasLineItems,
     HasRawOdometerReadings, HasOdometerReadings,
