@@ -19,11 +19,6 @@ import SwiftUI
 import Introspect
 
 struct FleetboxTextField: View {
-    private enum Caption {
-        case localized(LocalizedStringKey)
-        case string(String)
-    }
-
     @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -32,24 +27,24 @@ struct FleetboxTextField: View {
     @State private var tempValue: String = ""
     @State private var pageShown: Bool = false
     let name: LocalizedStringKey?
-    let description: LocalizedStringKey?
+    let description: Text?
     let example: String?
-    private var unitName: LocalizedStringKey?
+    private var unitName: Text?
     private var number: Bool = false
     private var previewAsNumber: Bool = false
     private var _caption: Text?
     private var _badge: Badge?
     private var _progress: Double?
 
-    init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: LocalizedStringKey? = nil) {
+    init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: Textable? = nil) {
         self.value = value
         wrappedValue = convertToNonNilBinding(string: value)
         self.name = name
         self.example = example
-        self.description = description
+        self.description = description?.text
     }
 
-    init(value: Binding<Int64>, name: LocalizedStringKey?, example: Int64, description: LocalizedStringKey? = nil) {
+    init(value: Binding<Int64>, name: LocalizedStringKey?, example: Int64, description: Textable? = nil) {
         self.init(
             value: convertToNillableBinding(string: convertToStringBinding(int64: value)),
             name: name,
@@ -60,7 +55,7 @@ struct FleetboxTextField: View {
         previewAsNumber = true
     }
 
-    init(value: Binding<Int16>, name: LocalizedStringKey?, example: Int16, description: LocalizedStringKey? = nil) {
+    init(value: Binding<Int16>, name: LocalizedStringKey?, example: Int16, description: Textable? = nil) {
         self.init(
             value: convertToNillableBinding(string: convertToStringBinding(int16: value)),
             name: name,
@@ -71,9 +66,9 @@ struct FleetboxTextField: View {
         previewAsNumber = true
     }
 
-    func unit(_ unit: LocalizedStringKey) -> FleetboxTextField {
+    func unit<Unit: Textable>(_ unit: Unit) -> FleetboxTextField {
         var view = self
-        view.unitName = unit
+        view.unitName = unit.text
         return view
     }
 
@@ -107,7 +102,7 @@ struct FleetboxTextField: View {
 
     private var maybeUnitName: Text {
         if let unitName = unitName, value.wrappedValue != nil {
-            return (Text(" ") + Text(unitName))
+            return (Text(" ") + unitName)
         } else {
             return Text("")
         }
@@ -146,7 +141,7 @@ struct FleetboxTextField: View {
                 destination: {
                     Form {
                         if let description = description {
-                            Text(description)
+                            description
                         }
                         HStack {
                             ZStack(alignment: .trailing) {
@@ -179,7 +174,7 @@ struct FleetboxTextField: View {
                             }
                             if let unitName = unitName {
                                 Spacer()
-                                Text(unitName)
+                                unitName
                             }
                         }
                         .onAppear(perform: prepare)

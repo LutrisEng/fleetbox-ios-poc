@@ -21,27 +21,18 @@ struct WarrantiesView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     var warranties: [Warranty]
-    let vehicle: Vehicle?
-    let tireSet: TireSet?
+    let underlying: Warranty.Underlying?
 
     @State private var creatingWarranty: Warranty?
 
-    init(warranties: [Warranty], vehicle: Vehicle) {
+    init(warranties: [Warranty], underlying: Warranty.Underlying) {
         self.warranties = warranties
-        self.vehicle = vehicle
-        self.tireSet = nil
-    }
-
-    init(warranties: [Warranty], tireSet: TireSet) {
-        self.warranties = warranties
-        self.vehicle = nil
-        self.tireSet = tireSet
+        self.underlying = underlying
     }
 
     init(warranties: [Warranty]) {
         self.warranties = warranties
-        self.vehicle = nil
-        self.tireSet = nil
+        self.underlying = nil
     }
 
     var body: some View {
@@ -50,23 +41,10 @@ struct WarrantiesView: View {
                 WarrantyListingView(warranty: warranty)
             }
             .onDelete(deleteFrom: warranties, context: viewContext)
-            if vehicle != nil || tireSet != nil {
+            if let underlying = underlying {
                 NavigationLink(
                     destination: {
-                        Group {
-                            if let creatingWarranty = creatingWarranty {
-                                WarrantyView(warranty: creatingWarranty)
-                            } else {
-                                ProgressView()
-                            }
-                        }
-                        .onAppear {
-                            if let vehicle = vehicle {
-                                creatingWarranty = Warranty(context: viewContext, vehicle: vehicle)
-                            } else if let tireSet = tireSet {
-                                creatingWarranty = Warranty(context: viewContext, tireSet: tireSet)
-                            }
-                        }
+                        NewWarrantyView(underlying: underlying)
                     },
                     label: {
                         Text("\(Image(systemName: "plus")) Add warranty")

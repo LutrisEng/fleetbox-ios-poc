@@ -23,10 +23,14 @@ extension OdometerReading: Dated {
         self.logItem = logItem
         vehicle = logItem.vehicle
         at = logItem.performedAt ?? Date.now
-        reading = logItem
-            .vehicle?
-            .closestOdometerReadingTo(date: at)
-            ?? (logItem.vehicle?.odometer) ?? 0
+        if Date.now.timeIntervalSinceReferenceDate - (at ?? Date.distantPast).timeIntervalSinceReferenceDate < 60 {
+            reading = logItem.vehicle?.approximateOdometer ?? 0
+        } else {
+            reading = logItem
+                .vehicle?
+                .closestOdometerReadingTo(date: at)
+                ?? (logItem.vehicle?.approximateOdometer) ?? 0
+        }
     }
 
     override public func willChangeValue(forKey key: String) {

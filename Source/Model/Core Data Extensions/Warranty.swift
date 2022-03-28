@@ -19,16 +19,12 @@ import Foundation
 import CoreData
 
 extension Warranty: Sortable {
-    convenience init(context: NSManagedObjectContext, vehicle: Vehicle) {
-        self.init(context: context)
-        self.sortOrder = (vehicle.warranties.last?.sortOrder ?? -1) + 1
-        self.vehicle = vehicle
-    }
+    typealias Underlying = TracksTime & TracksMiles & HasRawWarranties & HasWarranties
 
-    convenience init(context: NSManagedObjectContext, tireSet: TireSet) {
+    convenience init(context: NSManagedObjectContext, underlying: Underlying) {
         self.init(context: context)
-        self.sortOrder = (tireSet.warranties.last?.sortOrder ?? -1) + 1
-        self.tireSet = tireSet
+        self.sortOrder = (underlying.warranties.last?.sortOrder ?? -1) + 1
+        underlying.addToWarrantiesNs(self)
     }
 
     func calculateProgress(atMiles: Int64) -> Double? {

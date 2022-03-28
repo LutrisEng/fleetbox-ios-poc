@@ -18,34 +18,37 @@
 import Foundation
 
 struct Formatter {
-    static let number: NumberFormatter = {
+    static func createNumberFormatter() -> NumberFormatter {
         let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
         formatter.usesGroupingSeparator = true
         return formatter
-    }()
+    }
+
+    static func createNumberFormatter(_ block: (NumberFormatter) -> Void) -> NumberFormatter {
+        let formatter = createNumberFormatter()
+        block(formatter)
+        return formatter
+    }
+
+    static let number: NumberFormatter = createNumberFormatter()
 
     static func format(number: Int64) -> String {
         return self.number.string(from: number) ?? "\(number)"
     }
 
-    static let wholeNumber: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.usesGroupingSeparator = true
+    static let wholeNumber: NumberFormatter = createNumberFormatter { formatter in
         formatter.maximumFractionDigits = 0
-        return formatter
-    }()
+    }
 
     static func format(wholeNumber: Double) -> String {
         return self.wholeNumber.string(from: wholeNumber) ?? "\(wholeNumber)"
     }
 
-    static let wholePercentage: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.usesGroupingSeparator = true
+    static let wholePercentage: NumberFormatter = createNumberFormatter { formatter in
         formatter.numberStyle = .percent
         formatter.maximumFractionDigits = 0
-        return formatter
-    }()
+    }
 
     static func format(wholePercentage: Double) -> String {
         return self.wholePercentage.string(from: wholePercentage) ?? "\(wholePercentage / 100)%"

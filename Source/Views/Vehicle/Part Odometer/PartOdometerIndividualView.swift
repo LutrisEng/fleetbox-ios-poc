@@ -23,7 +23,7 @@ struct PartOdometerIndividualView: View {
     let name: String
 
     var milesSince: Int64? {
-        vehicle.milesSince(lineItemType: lineItemType)
+        vehicle.approximateMilesSince(lineItemType: lineItemType)
     }
 
     var timeSince: TimeInterval? {

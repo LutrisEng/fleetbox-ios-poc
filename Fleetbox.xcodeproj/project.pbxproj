@@ -91,6 +91,7 @@
 		86C0620327F16E1800020C08 /* TireSetLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620227F16E1800020C08 /* TireSetLogView.swift */; };
 		86C0620527F16E3600020C08 /* TireSetActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620427F16E3600020C08 /* TireSetActionsView.swift */; };
 		86C0620927F16F4E00020C08 /* FormLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620827F16F4E00020C08 /* FormLinkLabel.swift */; };
+		86C0620D27F187C200020C08 /* NewWarrantyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620C27F187C200020C08 /* NewWarrantyView.swift */; };
 		86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
 		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
@@ -234,6 +235,7 @@
 		86C0620227F16E1800020C08 /* TireSetLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSetLogView.swift; sourceTree = "<group>"; };
 		86C0620427F16E3600020C08 /* TireSetActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSetActionsView.swift; sourceTree = "<group>"; };
 		86C0620827F16F4E00020C08 /* FormLinkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLinkLabel.swift; sourceTree = "<group>"; };
+		86C0620C27F187C200020C08 /* NewWarrantyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWarrantyView.swift; sourceTree = "<group>"; };
 		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
 		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
@@ -612,6 +614,7 @@
 				86C061E927F151C000020C08 /* WarrantyListingView.swift */,
 				86C061F627F1685000020C08 /* WarrantiesView.swift */,
 				86C061FA27F16BF200020C08 /* WarrantyView.swift */,
+				86C0620C27F187C200020C08 /* NewWarrantyView.swift */,
 			);
 			path = Warranty;
 			sourceTree = "<group>";
@@ -818,6 +821,7 @@
 				86C0620127F16DE900020C08 /* TireSetSpecView.swift in Sources */,
 				8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */,
 				861DA48727E11DFF00775276 /* ExportEnvelopeTemplate.swift in Sources */,
+				86C0620D27F187C200020C08 /* NewWarrantyView.swift in Sources */,
 				86500C7827DC00DF00A5111E /* OdometerReadingsView.swift in Sources */,
 				86C061FF27F16DB100020C08 /* TireSetOdometerView.swift in Sources */,
 				86F8F82127EEACFD00442694 /* FleetboxExport.pb.swift in Sources */,

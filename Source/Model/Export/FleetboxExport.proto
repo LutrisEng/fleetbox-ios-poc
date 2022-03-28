@@ -24,6 +24,7 @@ message Vehicle {
     repeated OdometerReading freeOdometerReadings = 8;
     optional int64 breakin = 9;
     repeated Warranty warranties = 10;
+    optional int64 milesPerYear = 11;
 }
 
 message LogItem {

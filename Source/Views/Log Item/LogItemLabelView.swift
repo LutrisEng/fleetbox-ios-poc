@@ -50,7 +50,9 @@ struct LogItemLabelView: View {
             append(withNewline(vehicle.displayNameWithFallback).foregroundColor(.secondary))
         }
         if let odometerReading = logItem.odometerReading {
-            append(withNewline("\(odometerReading.reading) miles").foregroundColor(.secondary))
+            append(withNewline(
+                "\(Formatter.format(number: odometerReading.reading)) miles"
+            ).foregroundColor(.secondary))
         }
         if let displayName = logItem.displayName, !displayName.isEmpty {
             append(withNewline(displayName).font(.body.bold()))

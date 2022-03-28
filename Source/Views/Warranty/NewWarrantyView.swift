@@ -17,38 +17,25 @@
 
 import SwiftUI
 
-struct TireSetView: View {
+struct NewWarrantyView: View {
     @Environment(\.managedObjectContext) private var viewContext
-
-    @ObservedObject var tireSet: TireSet
+    let underlying: Warranty.Underlying
+    @State private var warranty: Warranty?
 
     var body: some View {
-        Form {
-            TireSetDetailsView(tireSet: tireSet)
-            if let vehicle = tireSet.vehicle {
-                Section(header: Text("Current vehicle")) {
-                    NavigationLink(vehicle.displayNameWithFallback) {
-                        VehicleView(vehicle: vehicle)
-                    }
+        Group {
+            if let warranty = warranty {
+                WarrantyView(warranty: warranty)
+            } else {
+                ProgressView()
+            }
+        }
+        .onAppear {
+            if warranty == nil {
+                withAnimation {
+                    warranty = Warranty(context: viewContext, underlying: underlying)
                 }
             }
-            TireSetOdometerView(tireSet: tireSet)
-            WarrantiesView(warranties: tireSet.warranties, underlying: tireSet)
-            TireSetSpecView(tireSet: tireSet)
-            TireSetActionsView(tireSet: tireSet)
-        }
-        .modifier(WithDoneButton())
-        .modifier(SaveOnLeave())
-        .navigationTitle("Tire set")
-    }
-}
-
-#if DEBUG
-struct TireSetView_Previews: PreviewProvider {
-    static var previews: some View {
-        PreviewWrapper { fixtures in
-            TireSetView(tireSet: fixtures.tireSet)
         }
     }
 }
-#endif

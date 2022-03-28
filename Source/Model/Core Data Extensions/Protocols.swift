@@ -115,7 +115,7 @@ extension HasLineItems {
 }
 
 extension HasLineItems where Self: TracksMiles, Self: HasOdometerReadings {
-    func milesSince(lineItemType: String) -> Int64? {
+    func milesSince(lineItemType: String, odometerReading: Int64) -> Int64? {
         guard let lineItem = lastLineItem(type: lineItemType) else { return nil }
         guard let logItem = lineItem.logItem else { return nil }
         if let reading = logItem.odometerReading?.reading {
@@ -123,6 +123,14 @@ extension HasLineItems where Self: TracksMiles, Self: HasOdometerReadings {
         } else {
             return odometer - closestOdometerReadingTo(date: logItem.performedAt ?? Date.distantPast)
         }
+    }
+
+    func milesSince(lineItemType: String) -> Int64? {
+        return milesSince(lineItemType: lineItemType, odometerReading: odometer)
+    }
+
+    func approximateMilesSince(lineItemType: String) -> Int64? {
+        return milesSince(lineItemType: lineItemType, odometerReading: approximateOdometer)
     }
 
     func timeSince(lineItemType: String) -> TimeInterval? {
@@ -151,8 +159,51 @@ extension HasRawOdometerReadings {
     }
 }
 
+protocol HasMilesPerYear {
+    var milesPerYear: Int64 { get set }
+}
+
 protocol HasOdometerReadings {
     var odometerReadings: Set<OdometerReading> { get }
+}
+
+let daysPerYear: Double = 365.2425
+let hoursPerDay: Double = 24
+let secondsPerHour: Double = 3600
+
+extension HasOdometerReadings {
+    var calculatedAverageMilesPerSecond: Double? {
+        let readings = odometerReadings.chrono
+        guard let first = readings.first(where: { $0.at != nil }) else { return nil }
+        guard let last = readings.last(where: { $0.at != nil }) else { return nil }
+        if first == last { return nil }
+
+        let miles = last.reading - first.reading
+        let interval = last.at!.timeIntervalSinceReferenceDate - first.at!.timeIntervalSinceReferenceDate
+
+        return Double(miles) / interval
+    }
+
+    var calculatedAverageMilesPerYear: Int64? {
+        guard let calculatedAverageMilesPerSecond = calculatedAverageMilesPerSecond else {
+            return nil
+        }
+        return Int64(round(calculatedAverageMilesPerSecond * secondsPerHour * hoursPerDay * daysPerYear))
+    }
+
+    var averageMilesPerSecond: Double? {
+        calculatedAverageMilesPerSecond
+    }
+}
+
+extension HasOdometerReadings where Self: HasMilesPerYear {
+    var averageMilesPerSecond: Double? {
+        if milesPerYear != 0 {
+            return Double(milesPerYear) / daysPerYear / hoursPerDay / secondsPerHour
+        } else {
+            return calculatedAverageMilesPerSecond
+        }
+    }
 }
 
 extension HasOdometerReadings where Self: TracksMiles {
@@ -163,10 +214,29 @@ extension HasOdometerReadings where Self: TracksMiles {
             .reading
             ?? odometer
     }
+
+    var approximateOdometerOffset: Int64 {
+        if let averageMilesPerSecond = averageMilesPerSecond {
+            guard let lastOdometerReading = odometerReadings.inverseChrono.first(where: { $0.at != nil }) else {
+                return 0
+            }
+            let timeSinceLastOdometer = Date.now.timeIntervalSinceReferenceDate -
+                lastOdometerReading.at!.timeIntervalSinceReferenceDate
+            let approxMilesSinceLastOdometer = averageMilesPerSecond * timeSinceLastOdometer
+            return Int64(round(approxMilesSinceLastOdometer))
+        } else {
+            return 0
+        }
+    }
+
+    var approximateOdometer: Int64 {
+        odometer + approximateOdometerOffset
+    }
 }
 
 protocol HasRawWarranties {
     var warrantiesNs: NSSet? { get }
+    func addToWarrantiesNs(_ value: Warranty)
 }
 
 extension HasRawWarranties {

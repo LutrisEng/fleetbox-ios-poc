@@ -106,7 +106,7 @@ extension Fleetbox_Export_TireSet {
         tireSet.hidden = hidden
         tireSet.breakin = breakin
         for warranty in warranties {
-            _ = warranty.importWarranty(context: context, tireSet: tireSet)
+            _ = warranty.importWarranty(context: context, underlying: tireSet)
         }
         return tireSet
     }
@@ -140,6 +140,7 @@ extension Fleetbox_Export_Vehicle {
                 }
         breakin = vehicle.breakin
         warranties = vehicle.warranties.map { Fleetbox_Export_Warranty(warranty: $0) }
+        milesPerYear = vehicle.milesPerYear
     }
 
     func importVehicle(context: NSManagedObjectContext, envelope: ExportEnvelopeTemplate) -> Vehicle {
@@ -164,8 +165,9 @@ extension Fleetbox_Export_Vehicle {
         }
         vehicle.breakin = breakin
         for warranty in warranties {
-            _ = warranty.importWarranty(context: context, vehicle: vehicle)
+            _ = warranty.importWarranty(context: context, underlying: vehicle)
         }
+        vehicle.milesPerYear = milesPerYear
         return vehicle
     }
 }
@@ -349,16 +351,8 @@ extension Fleetbox_Export_Warranty {
         months = warranty.months
     }
 
-    func importWarranty(context: NSManagedObjectContext, vehicle: Vehicle) -> Warranty {
-        let warranty = Warranty(context: context, vehicle: vehicle)
-        warranty.title = title
-        warranty.miles = miles
-        warranty.months = months
-        return warranty
-    }
-
-    func importWarranty(context: NSManagedObjectContext, tireSet: TireSet) -> Warranty {
-        let warranty = Warranty(context: context, tireSet: tireSet)
+    func importWarranty(context: NSManagedObjectContext, underlying: Warranty.Underlying) -> Warranty {
+        let warranty = Warranty(context: context, underlying: underlying)
         warranty.title = title
         warranty.miles = miles
         warranty.months = months

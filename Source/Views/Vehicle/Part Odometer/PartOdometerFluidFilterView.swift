@@ -24,9 +24,9 @@ struct PartOdometerFluidFilterView: View {
     let fluidName: String
 
     var body: some View {
-        let milesSinceFluid = vehicle.milesSince(lineItemType: fluidLineItemType)
+        let milesSinceFluid = vehicle.approximateMilesSince(lineItemType: fluidLineItemType)
         let timeSinceFluid = vehicle.timeSince(lineItemType: fluidLineItemType)
-        let milesSinceFilter = vehicle.milesSince(lineItemType: filterLineItemType)
+        let milesSinceFilter = vehicle.approximateMilesSince(lineItemType: filterLineItemType)
         let timeSinceFilter = vehicle.timeSince(lineItemType: filterLineItemType)
         if milesSinceFluid != nil &&
             milesSinceFluid == milesSinceFilter &&

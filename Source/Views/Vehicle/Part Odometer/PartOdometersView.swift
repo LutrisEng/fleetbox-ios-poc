@@ -29,7 +29,7 @@ struct PartOdometersView: View {
         if let vehicleOdometer = _vehicleOdometer {
             return vehicleOdometer
         } else {
-            let odo = vehicle.odometer
+            let odo = vehicle.approximateOdometer
             DispatchQueue.main.async {
                 if _vehicleOdometer == nil {
                     _vehicleOdometer = odo
@@ -82,7 +82,7 @@ struct PartOdometersView: View {
                 )
                 .sheet(isPresented: $createPresented) {
                     NavigationView {
-                        OdometerReadingFormView(previousReading: vehicle.odometer) { value in
+                        OdometerReadingFormView(previousReading: vehicleOdometer) { value in
                             let reading = OdometerReading(context: viewContext)
                             reading.vehicle = vehicle
                             reading.at = Date.now
@@ -111,7 +111,7 @@ struct PartOdometersView: View {
             if let tires = vehicle.currentTireSet {
                 PartOdometerRowView(
                     name: "Tires",
-                    milesSince: tires.odometer,
+                    milesSince: tires.approximateOdometer,
                     timeSince: tires.age
                 )
             }
@@ -119,7 +119,7 @@ struct PartOdometersView: View {
                 odometer.view(vehicle: vehicle)
             }
         }
-        .onChange(of: vehicle.odometer) { newOdometer in
+        .onChange(of: vehicle.approximateOdometer) { newOdometer in
             // Cache the vehicle odometer to reduce time spent calculating it
             _vehicleOdometer = newOdometer
         }

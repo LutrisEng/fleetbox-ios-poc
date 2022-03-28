@@ -106,6 +106,14 @@ extension TireSet: Sortable,
         return counter
     }
 
+    var approximateOdometer: Int64 {
+        if let vehicle = vehicle {
+            return odometer + vehicle.approximateOdometerOffset
+        } else {
+            return odometer
+        }
+    }
+
     var specs: String {
         func maybe(_ number: Int16) -> String {
             if number == 0 {

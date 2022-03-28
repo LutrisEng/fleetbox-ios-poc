@@ -54,7 +54,7 @@ struct VehicleView: View {
                         VehicleImageView(imageData: $vehicle.imageData)
                         VehicleDetailsView(vehicle: vehicle)
                         PartOdometersView(vehicle: vehicle)
-                        WarrantiesView(warranties: vehicle.warranties, vehicle: vehicle)
+                        WarrantiesView(warranties: vehicle.warranties, underlying: vehicle)
                         MaintenanceLogView(vehicle: vehicle)
                     }
                 }
