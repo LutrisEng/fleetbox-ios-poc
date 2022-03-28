@@ -156,6 +156,16 @@ extension TireSet: Sortable,
         }
     }
 
+    var vehicleTypeDescription: String? {
+        guard let vehicleType = vehicleType else { return nil }
+        return tireVehicleTypeMap[vehicleType]
+    }
+
+    var constructionDescription: String? {
+        guard let construction = construction else { return nil }
+        return tireConstructionMap[construction]
+    }
+
     var loadCapacity: Int? {
         tireLoadCapacityMap[loadIndex]
     }

@@ -20,15 +20,6 @@ import SwiftUI
 struct TireSetSpecView: View {
     @ObservedObject var tireSet: TireSet
 
-    @ViewBuilder
-    var baseSpecForm: some View {
-        FleetboxTextField(value: $tireSet.vehicleType, name: "Vehicle Type", example: "P")
-        FleetboxTextField(value: $tireSet.width, name: "Width", example: 225)
-        FleetboxTextField(value: $tireSet.aspectRatio, name: "Aspect Ratio", example: 70)
-        FleetboxTextField(value: $tireSet.construction, name: "Construction", example: "R")
-        FleetboxTextField(value: $tireSet.diameter, name: "Rim Diameter", example: 16)
-    }
-
     var loadCapacityCaption: LocalizedStringKey? {
         if let loadCapacity = tireSet.loadCapacity {
             return "\(loadCapacity)lbs/wheel"
@@ -47,11 +38,20 @@ struct TireSetSpecView: View {
 
     @ViewBuilder
     var specForm: some View {
-        baseSpecForm
+        FleetboxTextField(value: $tireSet.vehicleType, name: "Vehicle Type", example: "P")
+            .caption(tireSet.vehicleTypeDescription)
+            .textInputAutocapitalization(.characters)
+        FleetboxTextField(value: $tireSet.width, name: "Width", example: 225)
+        FleetboxTextField(value: $tireSet.aspectRatio, name: "Aspect Ratio", example: 70)
+        FleetboxTextField(value: $tireSet.construction, name: "Construction", example: "R")
+            .caption(tireSet.constructionDescription)
+            .textInputAutocapitalization(.characters)
+        FleetboxTextField(value: $tireSet.diameter, name: "Rim Diameter", example: 16)
         FleetboxTextField(value: $tireSet.loadIndex, name: "Load Index", example: 91)
             .caption(loadCapacityCaption)
         FleetboxTextField(value: $tireSet.speedRating, name: "Speed Rating", example: "S")
             .caption(topSpeedCaption)
+            .textInputAutocapitalization(.characters)
     }
 
     @Environment(\.editable) private var editable

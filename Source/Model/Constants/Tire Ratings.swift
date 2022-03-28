@@ -17,6 +17,20 @@
 
 import Foundation
 
+let tireVehicleTypeMap: [String: String] = [
+    "P": "Passenger",
+    "LT": "Light truck",
+    "ST": "Special trailer",
+    "T": "Temporary"
+]
+
+let tireConstructionMap: [String: String] = [
+    "B": "Bias belt",
+    "D": "Diagonal",
+    "R": "Radial",
+    "ZR": "Radial (high-performance)"
+]
+
 let tireLoadCapacityMap: [Int16: Int] = [
     0: 99,
     1: 102,

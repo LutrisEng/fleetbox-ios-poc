@@ -26,8 +26,11 @@ struct TireSetDetailsView: View {
     var body: some View {
         FleetboxTextField(value: $tireSet.userDisplayName, name: "Name", example: "My Summer Tires")
         FleetboxTextField(value: $tireSet.make, name: "Make", example: "TireCo")
+            .textInputAutocapitalization(.words)
         FleetboxTextField(value: $tireSet.model, name: "Model", example: "Aviator Sport")
+            .textInputAutocapitalization(.words)
         FleetboxTextField(value: $tireSet.tin, name: "TIN", example: "DOT U2LL LMLR5107")
+            .textInputAutocapitalization(.characters)
         if editable {
             if tireSet.hidden {
                 Button("Un-hide") {

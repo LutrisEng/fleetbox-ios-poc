@@ -36,6 +36,7 @@ struct FleetboxTextField: View {
     private var _badge: Badge?
     private var _progress: Double?
     private var _progressColor: Color?
+    private var _autocapitalization: TextInputAutocapitalization?
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: Textable? = nil) {
         self.value = value
@@ -107,6 +108,12 @@ struct FleetboxTextField: View {
         return view
     }
 
+    func textInputAutocapitalization(_ autocapitalization: TextInputAutocapitalization?) -> Self {
+        var view = self
+        view._autocapitalization = autocapitalization
+        return view
+    }
+
     private var maybeUnitName: Text {
         if let unitName = unitName, value.wrappedValue != nil {
             return (Text(" ") + unitName)
@@ -172,6 +179,7 @@ struct FleetboxTextField: View {
                                         textField.becomeFirstResponder()
                                     }
                                 }
+                                .textInputAutocapitalization(_autocapitalization)
                                 .onSubmit {
                                     pageShown = false
                                 }

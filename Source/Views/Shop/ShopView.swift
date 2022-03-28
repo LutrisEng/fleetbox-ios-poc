@@ -26,6 +26,7 @@ struct ShopView: View {
     var body: some View {
         Form {
             FleetboxTextField(value: $shop.name, name: "Name", example: "Quick Lube of Anytown USA")
+                .textInputAutocapitalization(.words)
             let vehicles = shop.vehicles
             if !vehicles.isEmpty {
                 Section(header: Text("Performed service on")) {
