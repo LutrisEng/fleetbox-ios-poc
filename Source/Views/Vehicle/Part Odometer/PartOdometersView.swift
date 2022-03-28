@@ -68,9 +68,20 @@ struct PartOdometersView: View {
         }
     }
 
-    var milesPerYearDescription: LocalizedStringKey? {
+    var roundedMilesPerYear: Int64? {
         if let calculated = vehicle.calculatedAverageMilesPerYear {
-            return "Fleetbox has estimated that you drive this vehicle about \(calculated) miles in a year."
+            return calculated - (calculated % 1000)
+        } else {
+            return nil
+        }
+    }
+
+    var milesPerYearDescription: LocalizedStringKey? {
+        if let roundedMilesPerYear = roundedMilesPerYear {
+            let formatted = Formatter.format(number: roundedMilesPerYear)
+            return (
+                "Fleetbox has estimated that you drive this vehicle about \(formatted) miles in a year."
+            )
         } else {
             return nil
         }
@@ -102,15 +113,32 @@ struct PartOdometersView: View {
                     }
                 }
             }
+            if let lastReading = vehicle.odometerReadings.chrono.last {
+                let timeLine: String = {
+                    if let lastReadingAt = lastReading.at {
+                        return "\n" + Formatter.format(
+                            durationLabel: Date.now.timeIntervalSinceReferenceDate -
+                                lastReadingAt.timeIntervalSinceReferenceDate
+                        ) + " ago"
+                    } else {
+                        return ""
+                    }
+                }()
+                FormLinkLabel(
+                    title: "Last reading",
+                    value: "\(Formatter.format(number: lastReading.reading)) miles\(timeLine)"
+                )
+            }
             FleetboxTextField(
                 value: $vehicle.milesPerYear,
-                name: "Est. miles per year",
-                example: vehicle.calculatedAverageMilesPerYear ?? 12000,
+                name: "Est. distance per year",
+                example: roundedMilesPerYear ?? 12000,
                 description: milesPerYearDescription
             )
-            FormLinkLabel(title: "Distance", value: "About \(Formatter.format(number: vehicleOdometer)) miles")
+            .unit("miles")
+            FormLinkLabel(title: "Est. distance", value: "About \(Formatter.format(number: vehicleOdometer)) miles")
             if let age = vehicle.age {
-                FormLinkLabel(title: "Age", value: "\(Formatter.format(durationLabel: age)) old")
+                FormLinkLabel(title: "Est. age", value: "\(Formatter.format(durationLabel: age)) old")
                     .titleCaption("Inaccurate? Add a log item for your vehicle's manufacturing.")
             }
             NavigationLink("View history") {

@@ -49,7 +49,7 @@ struct FleetboxTextField: View {
         self.init(
             value: convertToNillableBinding(string: convertToStringBinding(int64: value)),
             name: name,
-            example: String(example),
+            example: Formatter.format(number: example),
             description: description
         )
         number = true
@@ -60,7 +60,7 @@ struct FleetboxTextField: View {
         self.init(
             value: convertToNillableBinding(string: convertToStringBinding(int16: value)),
             name: name,
-            example: String(example),
+            example: Formatter.format(number: example),
             description: description
         )
         number = true
