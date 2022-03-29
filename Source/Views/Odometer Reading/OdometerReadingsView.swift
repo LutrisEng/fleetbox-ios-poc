@@ -18,7 +18,6 @@
 import SwiftUI
 
 struct OdometerReadingsView: View {
-    @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var vehicle: Vehicle
@@ -57,13 +56,7 @@ struct OdometerReadingsView: View {
             }
             .onDelete(deleteFrom: odometerReadings, context: viewContext)
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                if editable {
-                    EditButton()
-                }
-            }
-        }
+        .modifier(WithEditButton())
         .navigationTitle("Odometer readings")
     }
 }

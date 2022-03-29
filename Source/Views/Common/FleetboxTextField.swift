@@ -175,7 +175,7 @@ struct FleetboxTextField: View {
                                     text: tempValueBinding
                                 )
                                 .introspectTextField { textField in
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                                         textField.becomeFirstResponder()
                                     }
                                 }
@@ -184,7 +184,6 @@ struct FleetboxTextField: View {
                                     pageShown = false
                                 }
                                 .keyboardType(number ? .decimalPad : .default)
-                                .modifier(WithDoneButton())
                                 if let value = value.wrappedValue, !value.isEmpty {
                                     Button(
                                         action: {
@@ -203,6 +202,16 @@ struct FleetboxTextField: View {
                                 Spacer()
                                 unitName
                                     .foregroundColor(.secondary)
+                            }
+                        }
+                        .toolbar {
+                            ToolbarItemGroup(placement: .keyboard) {
+                                Spacer()
+                                Button("Done") {
+                                    withAnimation {
+                                        pageShown = false
+                                    }
+                                }
                             }
                         }
                         .onAppear(perform: prepare)

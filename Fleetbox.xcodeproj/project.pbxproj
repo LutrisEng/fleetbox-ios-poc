@@ -10,7 +10,6 @@
 		8612CD6227E1956D00976E8F /* Array Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6127E1956D00976E8F /* Array Extensions.swift */; };
 		8612CD6627E1A58300976E8F /* VehicleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6527E1A58300976E8F /* VehicleImageView.swift */; };
 		8612CD6927E1A68B00976E8F /* ImagePickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 8612CD6827E1A68B00976E8F /* ImagePickerView */; };
-		8612CD6B27E1C77D00976E8F /* WithDoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6A27E1C77D00976E8F /* WithDoneButton.swift */; };
 		8612CD6D27E1CF4400976E8F /* UIImage Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6C27E1CF4400976E8F /* UIImage Extensions.swift */; };
 		8612CD6F27E2DEF200976E8F /* SaveOnLeave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612CD6E27E2DEF200976E8F /* SaveOnLeave.swift */; };
 		861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861BA8FE27D8546700DD729A /* LineItemView.swift */; };
@@ -77,6 +76,7 @@
 		86B189AD27EB0109001CFBD3 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189AC27EB0109001CFBD3 /* AttachmentView.swift */; };
 		86B189AF27EB0C6C001CFBD3 /* UIApplication Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */; };
 		86B189B227EB0F6B001CFBD3 /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = 86B189B127EB0F6B001CFBD3 /* Gzip */; };
+		86B487A227F289D00015CDB4 /* WithEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B487A127F289D00015CDB4 /* WithEditButton.swift */; };
 		86C061EA27F151C000020C08 /* WarrantyListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061E927F151C000020C08 /* WarrantyListingView.swift */; };
 		86C061EC27F152B800020C08 /* Tire Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061EB27F152B800020C08 /* Tire Ratings.swift */; };
 		86C061F127F156D300020C08 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061F027F156D300020C08 /* Badge.swift */; };
@@ -147,7 +147,6 @@
 		1B206C79650C16573AAB5A64 /* workflows */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = workflows; path = .github/workflows; sourceTree = "<group>"; };
 		8612CD6127E1956D00976E8F /* Array Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array Extensions.swift"; sourceTree = "<group>"; };
 		8612CD6527E1A58300976E8F /* VehicleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleImageView.swift; sourceTree = "<group>"; };
-		8612CD6A27E1C77D00976E8F /* WithDoneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithDoneButton.swift; sourceTree = "<group>"; };
 		8612CD6C27E1CF4400976E8F /* UIImage Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extensions.swift"; sourceTree = "<group>"; };
 		8612CD6E27E2DEF200976E8F /* SaveOnLeave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveOnLeave.swift; sourceTree = "<group>"; };
 		861BA8FD27D8537100DD729A /* Fleetbox.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Fleetbox.entitlements; sourceTree = "<group>"; };
@@ -221,6 +220,7 @@
 		86B189A827EAFF5D001CFBD3 /* Temporary Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Temporary Files.swift"; sourceTree = "<group>"; };
 		86B189AC27EB0109001CFBD3 /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
 		86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication Extensions.swift"; sourceTree = "<group>"; };
+		86B487A127F289D00015CDB4 /* WithEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithEditButton.swift; sourceTree = "<group>"; };
 		86B5D09427D076B70040399C /* LineItemTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeTest.swift; sourceTree = "<group>"; };
 		86C061E927F151C000020C08 /* WarrantyListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarrantyListingView.swift; sourceTree = "<group>"; };
 		86C061EB27F152B800020C08 /* Tire Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tire Ratings.swift"; sourceTree = "<group>"; };
@@ -444,7 +444,6 @@
 			children = (
 				8664C24427DA91E100AE9ADB /* PreviewWrapper.swift */,
 				86500C6F27DAD84F00A5111E /* FleetboxTextField.swift */,
-				8612CD6A27E1C77D00976E8F /* WithDoneButton.swift */,
 				8612CD6E27E2DEF200976E8F /* SaveOnLeave.swift */,
 				86B189A627EAFEBE001CFBD3 /* QuickViewController.swift */,
 				86F8F80627EB197600442694 /* Editable.swift */,
@@ -452,6 +451,7 @@
 				86C061F827F1689E00020C08 /* onDelete Helper.swift */,
 				86C0620827F16F4E00020C08 /* FormLinkLabel.swift */,
 				86C0620E27F196FB00020C08 /* onMove Helper.swift */,
+				86B487A127F289D00015CDB4 /* WithEditButton.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -832,7 +832,6 @@
 				864C732727D06C6800047165 /* LineItem.swift in Sources */,
 				86500C7427DBEDC500A5111E /* TireSetPickerView.swift in Sources */,
 				861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
-				8612CD6B27E1C77D00976E8F /* WithDoneButton.swift in Sources */,
 				861DAE3927CDD59F00AFE972 /* Persistence.swift in Sources */,
 				86C0620327F16E1800020C08 /* TireSetLogView.swift in Sources */,
 				86C061FD27F16D6500020C08 /* TireSetDetailsView.swift in Sources */,
@@ -860,6 +859,7 @@
 				861E4D9C27DC13D00072B6DD /* LineItemTypeLabelView.swift in Sources */,
 				8652AA7727DAB5F300D8D56D /* Dummy Data.swift in Sources */,
 				86B17F9E27D48D14001E52C6 /* LogItemView.swift in Sources */,
+				86B487A227F289D00015CDB4 /* WithEditButton.swift in Sources */,
 				86500C9C27DC111800A5111E /* TireDetailView.swift in Sources */,
 				861BA8FF27D8546800DD729A /* LineItemView.swift in Sources */,
 				864C731B27CDF54E00047165 /* Vehicle.swift in Sources */,

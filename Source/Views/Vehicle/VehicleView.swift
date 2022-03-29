@@ -60,7 +60,6 @@ struct VehicleView: View {
                 }
             }
         }
-        .modifier(WithDoneButton())
         .modifier(SaveOnLeave())
         .navigationTitle(vehicle.fullModelName)
         .toolbar {
@@ -73,14 +72,6 @@ struct VehicleView: View {
                             Label("Share", systemImage: "square.and.arrow.up")
                         }
                     }
-                    NavigationLink(
-                        destination: {
-                            NewLogItemView(vehicle: vehicle)
-                        },
-                        label: {
-                            Label("Add Log Item", systemImage: "plus")
-                        }
-                    )
                     EditButton()
                 }
             }
@@ -88,7 +79,9 @@ struct VehicleView: View {
     }
 
     private func share() {
-        exporting = true
+        withAnimation {
+            exporting = true
+        }
         DispatchQueue.global(qos: .userInitiated).async {
             do {
                 guard let data = try vehicle.export() else {
@@ -98,18 +91,22 @@ struct VehicleView: View {
                 let fileURL = temporaryFileURL(filename: "\(vehicle.displayNameWithFallback).fleetboxvehicle")
                 try gzipped.write(to: fileURL)
                 DispatchQueue.main.async {
-                    if let keyWindow = UIApplication.shared.keyWindow {
-                        let activityViewController = UIActivityViewController(
-                            activityItems: [fileURL], applicationActivities: nil
-                        )
-                        keyWindow.rootViewController?.present(activityViewController, animated: true) {
-                            exporting = false
+                    withAnimation {
+                        if let keyWindow = UIApplication.shared.keyWindow {
+                            let activityViewController = UIActivityViewController(
+                                activityItems: [fileURL], applicationActivities: nil
+                            )
+                            keyWindow.rootViewController?.present(activityViewController, animated: true) {
+                                exporting = false
+                            }
                         }
                     }
                 }
             } catch {
                 SentrySDK.capture(error: error)
-                exporting = false
+                withAnimation {
+                    exporting = false
+                }
             }
         }
     }

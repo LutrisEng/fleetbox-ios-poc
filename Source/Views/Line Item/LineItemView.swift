@@ -29,13 +29,12 @@ struct LineItemView: View {
             }
             if !lineItem.fields.isEmpty {
                 Section(header: Text("Fields")) {
-                    ForEach(lineItem.fields) { field in
+                    ForEach(lineItem.fields, id: \.self) { field in
                         EditLineItemFieldView(field: field)
                     }
                 }
             }
         }
-        .modifier(WithDoneButton())
         .modifier(SaveOnLeave())
         .navigationTitle(lineItem.type?.displayName ?? "Unknown Line Item")
         .navigationBarTitleDisplayMode(.inline)

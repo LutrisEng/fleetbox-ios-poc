@@ -27,6 +27,8 @@ struct TireSetsView: View {
             animation: .default)
     private var tireSets: FetchedResults<TireSet>
 
+    @State private var showHidden = false
+
     @ViewBuilder
     func setList(_ sets: [TireSet]) -> some View {
         ForEach(sets, id: \.self) { tireSet in
@@ -55,7 +57,7 @@ struct TireSetsView: View {
                     }
                 }
                 let hidden = tireSets.filter { $0.category == .hidden }
-                if !hidden.isEmpty {
+                if showHidden && !hidden.isEmpty {
                     Section(header: Text("Hidden")) {
                         setList(hidden)
                     }
@@ -64,6 +66,20 @@ struct TireSetsView: View {
             .navigationTitle("Tire sets")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button(
+                        action: {
+                            withAnimation {
+                                showHidden.toggle()
+                            }
+                        },
+                        label: {
+                            if showHidden {
+                                Label("Show hidden items", systemImage: "eye")
+                            } else {
+                                Label("Hide hidden items", systemImage: "eye.slash")
+                            }
+                        }
+                    )
                     if editable {
                         Button(action: addTireSet) {
                             Label("Add Tire Set", systemImage: "plus")

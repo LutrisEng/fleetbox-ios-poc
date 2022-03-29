@@ -117,7 +117,7 @@ struct LogItemView: View {
                         Text("No line items")
                             .foregroundColor(.secondary)
                     } else {
-                        ForEach(lineItems) { lineItem in
+                        ForEach(lineItems, id: \.self) { lineItem in
                             if editable {
                                 NavigationLink(destination: LineItemView(lineItem: lineItem)) {
                                     LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
@@ -147,7 +147,7 @@ struct LogItemView: View {
                 }
                 Section(header: Text("Attachments")) {
                     let attachments = logItem.attachments.sorted { $0.sortOrder < $1.sortOrder }
-                    ForEach(attachments) { attachment in
+                    ForEach(attachments, id: \.self) { attachment in
                         NavigationLink(attachment.fileName ?? "Attachment") {
                             AttachmentView(attachment: attachment)
                         }
@@ -168,27 +168,10 @@ struct LogItemView: View {
                 }
             }
         }
-        .modifier(WithDoneButton())
         .modifier(SaveOnLeave())
+        .modifier(WithEditButton())
         .navigationTitle("Log item")
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                if editable {
-                    NavigationLink(
-                        destination: {
-                            LineItemTypePickerView {
-                                _ = createLineItem(type: $0)
-                            }
-                            .navigationTitle("Add line item")
-                            .navigationBarTitleDisplayMode(.inline)
-                        },
-                        label: { Label("Add Line Item", systemImage: "plus") }
-                    )
-                    EditButton()
-                }
-            }
-        }
     }
 
     private func addAttachments(urls: [URL]) {

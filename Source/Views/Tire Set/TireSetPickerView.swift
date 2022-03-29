@@ -64,10 +64,7 @@ struct TireSetPickerView: View {
                     Text("No eligible tire sets").foregroundColor(.secondary)
                 }
             }
-            ForEach(
-                filteredTireSets,
-                id: \.self
-            ) { tireSet in
+            ForEach(filteredTireSets, id: \.self) { tireSet in
                 Button(
                     action: {
                         action(tireSet)

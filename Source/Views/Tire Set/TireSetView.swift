@@ -37,8 +37,8 @@ struct TireSetView: View {
             TireSetSpecView(tireSet: tireSet)
             TireSetActionsView(tireSet: tireSet)
         }
-        .modifier(WithDoneButton())
         .modifier(SaveOnLeave())
+        .modifier(WithEditButton())
         .navigationTitle("Tire set")
     }
 }

@@ -45,10 +45,7 @@ struct ShopPickerView: View {
                     Text("No eligible shops").foregroundColor(.secondary)
                 }
             } else {
-                ForEach(
-                    filteredShops,
-                    id: \.self
-                ) { shop in
+                ForEach(filteredShops, id: \.self) { shop in
                     Button(
                         action: {
                             action(shop)

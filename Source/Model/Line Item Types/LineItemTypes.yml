@@ -533,115 +533,118 @@ categories:
             displayName: Interior detail
           - id: exteriorDetail
             displayName: Exterior detail
-      - id: paintProtection
-        displayName: Paint protection
-        icon:
-          sfsymbols: paintbrush
-        types:
-          - id: washWax
-            displayName: Wax
-            fields:
-              - id: brand
-                shortDisplayName: Brand
-                longDisplayName: What is the brand of the wax product?
-                type: string
-              - id: productName
-                shortDisplayName: Product
-                longDisplayName: What is the name of the wax product?
-                type: string
-              - id: partNumber
-                shortDisplayName: Part number
-                longDisplayName: What is the part number of the ceramic wax product?
-                type: string
-          - id: washSealant
-            displayName: Sealant application
-            fields:
-              - id: brand
-                shortDisplayName: Brand
-                longDisplayName: What is the brand of the sealant?
-                type: string
-              - id: productName
-                shortDisplayName: Product
-                longDisplayName: What is the name of the sealant?
-                type: string
-              - id: partNumber
-                shortDisplayName: Part number
-                longDisplayName: What is the part number of the sealant?
-                type: string
-              - id: warranty
-                shortDisplayName: Warranty
-                longDisplayName: How many months is the sealant warrantied for?
-                type: integer
-                unit: months
-                exampleInteger: 6
-          - id: ceramicCoat
-            displayName: Ceramic coating
-            fields:
-              - id: brand
-                shortDisplayName: Brand
-                longDisplayName: What is the brand of the ceramic coat product?
-                type: string
-              - id: productName
-                shortDisplayName: Product
-                longDisplayName: What is the name of the ceramic coat product?
-                type: string
-              - id: partNumber
-                shortDisplayName: Part number
-                longDisplayName: What is the part number of the ceramic coat product?
-                type: string
-              - id: warranty
-                shortDisplayName: Warranty
-                longDisplayName: How many years is the ceramic coat product warrantied for?
-                type: integer
-                unit: years
-                exampleInteger: 4
-      - id: windshieldProtection
-        displayName: Windshield protection
-        icon:
-          sfsymbols: eyeglasses
-        types:
-          - id: windshieldSealant
-            displayName: Windshield sealant application
-            fields:
-              - id: brand
-                shortDisplayName: Brand
-                longDisplayName: What is the brand of the sealant?
-                type: string
-              - id: productName
-                shortDisplayName: Product
-                longDisplayName: What is the name of the sealant?
-                type: string
-              - id: partNumber
-                shortDisplayName: Part number
-                longDisplayName: What is the part number of the sealant?
-                type: string
-              - id: warranty
-                shortDisplayName: Warranty
-                longDisplayName: How many months is the sealant warrantied for?
-                type: integer
-                unit: months
-                exampleInteger: 6
-          - id: windshieldCeramicCoat
-            displayName: Windshield ceramic coating
-            fields:
-              - id: brand
-                shortDisplayName: Brand
-                longDisplayName: What is the brand of the ceramic coat product?
-                type: string
-              - id: productName
-                shortDisplayName: Product
-                longDisplayName: What is the name of the ceramic coat product?
-                type: string
-              - id: partNumber
-                shortDisplayName: Part number
-                longDisplayName: What is the part number of the ceramic coat product?
-                type: string
-              - id: warranty
-                shortDisplayName: Warranty
-                longDisplayName: How many years is the ceramic coat product warrantied for?
-                type: integer
-                unit: years
-                exampleInteger: 4
+      - id: coatings
+        displayName: Coatings
+        subcategories:
+          - id: paintCoatings
+            displayName: Paint coatings
+            icon:
+              sfsymbols: paintbrush
+            types:
+              - id: washWax
+                displayName: Wax
+                fields:
+                  - id: brand
+                    shortDisplayName: Brand
+                    longDisplayName: What is the brand of the wax product?
+                    type: string
+                  - id: productName
+                    shortDisplayName: Product
+                    longDisplayName: What is the name of the wax product?
+                    type: string
+                  - id: partNumber
+                    shortDisplayName: Part number
+                    longDisplayName: What is the part number of the ceramic wax product?
+                    type: string
+              - id: washSealant
+                displayName: Sealant application
+                fields:
+                  - id: brand
+                    shortDisplayName: Brand
+                    longDisplayName: What is the brand of the sealant?
+                    type: string
+                  - id: productName
+                    shortDisplayName: Product
+                    longDisplayName: What is the name of the sealant?
+                    type: string
+                  - id: partNumber
+                    shortDisplayName: Part number
+                    longDisplayName: What is the part number of the sealant?
+                    type: string
+                  - id: warranty
+                    shortDisplayName: Warranty
+                    longDisplayName: How many months is the sealant warrantied for?
+                    type: integer
+                    unit: months
+                    exampleInteger: 6
+              - id: ceramicCoat
+                displayName: Ceramic coating
+                fields:
+                  - id: brand
+                    shortDisplayName: Brand
+                    longDisplayName: What is the brand of the ceramic coat product?
+                    type: string
+                  - id: productName
+                    shortDisplayName: Product
+                    longDisplayName: What is the name of the ceramic coat product?
+                    type: string
+                  - id: partNumber
+                    shortDisplayName: Part number
+                    longDisplayName: What is the part number of the ceramic coat product?
+                    type: string
+                  - id: warranty
+                    shortDisplayName: Warranty
+                    longDisplayName: How many years is the ceramic coat product warrantied for?
+                    type: integer
+                    unit: years
+                    exampleInteger: 4
+          - id: windshieldCoatings
+            displayName: Windshield coatings
+            icon:
+              sfsymbols: eyeglasses
+            types:
+              - id: windshieldSealant
+                displayName: Windshield sealant application
+                fields:
+                  - id: brand
+                    shortDisplayName: Brand
+                    longDisplayName: What is the brand of the sealant?
+                    type: string
+                  - id: productName
+                    shortDisplayName: Product
+                    longDisplayName: What is the name of the sealant?
+                    type: string
+                  - id: partNumber
+                    shortDisplayName: Part number
+                    longDisplayName: What is the part number of the sealant?
+                    type: string
+                  - id: warranty
+                    shortDisplayName: Warranty
+                    longDisplayName: How many months is the sealant warrantied for?
+                    type: integer
+                    unit: months
+                    exampleInteger: 6
+              - id: windshieldCeramicCoat
+                displayName: Windshield ceramic coating
+                fields:
+                  - id: brand
+                    shortDisplayName: Brand
+                    longDisplayName: What is the brand of the ceramic coat product?
+                    type: string
+                  - id: productName
+                    shortDisplayName: Product
+                    longDisplayName: What is the name of the ceramic coat product?
+                    type: string
+                  - id: partNumber
+                    shortDisplayName: Part number
+                    longDisplayName: What is the part number of the ceramic coat product?
+                    type: string
+                  - id: warranty
+                    shortDisplayName: Warranty
+                    longDisplayName: How many years is the ceramic coat product warrantied for?
+                    type: integer
+                    unit: years
+                    exampleInteger: 4
 
   - id: misc
     displayName: Miscellaneous

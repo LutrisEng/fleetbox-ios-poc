@@ -33,7 +33,7 @@ struct ShopView: View {
             let vehicles = shop.vehicles
             if !vehicles.isEmpty {
                 Section(header: Text("Performed service on")) {
-                    ForEach(shop.vehicles) { vehicle in
+                    ForEach(shop.vehicles, id: \.self) { vehicle in
                         NavigationLink(vehicle.displayNameWithFallback) {
                             VehicleView(vehicle: vehicle)
                         }
@@ -43,7 +43,7 @@ struct ShopView: View {
             let logItems = shop.logItemsInverseChrono
             if !logItems.isEmpty {
                 Section(header: Text("Log items")) {
-                    ForEach(shop.logItemsInverseChrono) { logItem in
+                    ForEach(shop.logItemsInverseChrono, id: \.self) { logItem in
                         NavigationLink(
                             destination: {
                                 LogItemView(logItem: logItem)
@@ -72,7 +72,6 @@ struct ShopView: View {
                 }
             }
         }
-        .modifier(WithDoneButton())
         .modifier(SaveOnLeave())
         .navigationTitle("Shop")
     }

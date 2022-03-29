@@ -24,7 +24,7 @@ struct TireSetLogView: View {
         let logItems = tireSet.logItems.inverseChrono
         if !logItems.isEmpty {
             Section(header: Text("Log items")) {
-                ForEach(logItems) { logItem in
+                ForEach(logItems, id: \.self) { logItem in
                     NavigationLink(
                         destination: {
                             LogItemView(logItem: logItem)

@@ -38,7 +38,7 @@ struct WarrantiesView: View {
 
     var body: some View {
         Section(header: Text("Warranties")) {
-            ForEach(warranties) { warranty in
+            ForEach(warranties, id: \.self) { warranty in
                 WarrantyListingView(warranty: warranty)
             }
             .onDelete(deleteFrom: warranties, context: viewContext)
