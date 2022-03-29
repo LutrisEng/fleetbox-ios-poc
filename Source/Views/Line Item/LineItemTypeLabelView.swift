@@ -50,8 +50,9 @@ struct LineItemTypeLabelView<Content: View>: View {
     var body: some View {
         HStack {
             Image(systemName: type?.icon ?? "wrench.and.screwdriver")
-                    .frame(width: iconWidth, height: iconHeight, alignment: .center)
-                    .padding([.leading, .trailing], 4)
+                .symbolRenderingMode(.hierarchical)
+                .frame(width: iconWidth, height: iconHeight, alignment: .center)
+                .padding([.leading, .trailing], 4)
             VStack {
                 if showCategories, let type = type {
                     Text(

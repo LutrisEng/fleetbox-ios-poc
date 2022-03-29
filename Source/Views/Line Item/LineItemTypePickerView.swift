@@ -36,7 +36,8 @@ struct LineItemTypePickerView: View {
             case .category(let category, _, _):
                 HStack {
                     Image(systemName: category.icon)
-                            .frame(width: 30, alignment: .center)
+                        .symbolRenderingMode(.hierarchical)
+                        .frame(width: 30, alignment: .center)
                     Text(category.displayName)
                     Spacer()
                 }
