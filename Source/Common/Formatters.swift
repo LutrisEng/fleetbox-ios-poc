@@ -64,7 +64,7 @@ struct Formatter {
 
     static let durationLabel: DateComponentsFormatter = {
         let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.month, .weekOfMonth, .day]
+        formatter.allowedUnits = [.month, .weekOfMonth, .day, .hour, .minute]
         formatter.unitsStyle = .full
         formatter.maximumUnitCount = 1
         formatter.includesApproximationPhrase = true

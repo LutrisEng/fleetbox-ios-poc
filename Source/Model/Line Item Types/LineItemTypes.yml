@@ -200,26 +200,25 @@ categories:
     displayName: Maintenance
     icon:
       sfsymbols: wrench.and.screwdriver
-    types:
-      - id: wiperBladeChange
-        displayName: Wiper blades replaced
-        fields:
-          - id: brand
-            shortDisplayName: Brand
-            longDisplayName: What is the new wiper blades' brand?
-            type: string
-            example: PartCo
-            defaultValueFrom: vehicle.make
-          - id: partNumber
-            shortDisplayName: Part number
-            longDisplayName: What is the new wiper blades' part number?
-            type: string
     subcategories:
       - id: mechanical
         displayName: Mechanical
         icon:
           sfsymbols: wrench.and.screwdriver
         types:
+          - id: wiperBladeChange
+            displayName: Wiper blades replaced
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the new wiper blades' brand?
+                type: string
+                example: PartCo
+                defaultValueFrom: vehicle.make
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the new wiper blades' part number?
+                type: string
           - id: sparkPlugReplacement
             displayName: Spark plug(s) replaced
             icon:
@@ -280,6 +279,64 @@ categories:
                 shortDisplayName: Serial number
                 longDisplayName: What is the new battery's serial number?
                 type: string
+        subcategories:
+          - id: brakes
+            displayName: Brakes
+            icon:
+              sfsymbols: octagon
+            types:
+              - id: frontBrakePadChange
+                displayName: Front brake pads changed
+                fields:
+                  - id: brand
+                    shortDisplayName: Brand
+                    longDisplayName: What is the new brake pads' brand?
+                    type: string
+                    example: BrakeCo
+                    defaultValueFrom: vehicle.make
+                  - id: partNumber
+                    shortDisplayName: Part number
+                    longDisplayName: What is the new brake pads' part number?
+                    type: string
+              - id: rearBrakePadChange
+                displayName: Rear brake pads changed
+                fields:
+                  - id: brand
+                    shortDisplayName: Brand
+                    longDisplayName: What is the new brake pads' brand?
+                    type: string
+                    example: BrakeCo
+                    defaultValueFrom: vehicle.make
+                  - id: partNumber
+                    shortDisplayName: Part number
+                    longDisplayName: What is the new brake pads' part number?
+                    type: string
+              - id: frontBrakeRotorChange
+                displayName: Front brake rotors changed
+                fields:
+                  - id: brand
+                    shortDisplayName: Brand
+                    longDisplayName: What is the new brake rotors' brand?
+                    type: string
+                    example: BrakeCo
+                    defaultValueFrom: vehicle.make
+                  - id: partNumber
+                    shortDisplayName: Part number
+                    longDisplayName: What is the new brake rotors' part number?
+                    type: string
+              - id: rearBrakeRotorChange
+                displayName: Front brake pads changed
+                fields:
+                  - id: brand
+                    shortDisplayName: Brand
+                    longDisplayName: What is the new brake rotors' brand?
+                    type: string
+                    example: BrakeCo
+                    defaultValueFrom: vehicle.make
+                  - id: partNumber
+                    shortDisplayName: Part number
+                    longDisplayName: What is the new brake rotors' part number?
+                    type: string
       - id: fluids
         displayName: Fluids
         icon:
@@ -319,9 +376,23 @@ categories:
                 shortDisplayName: Part number
                 longDisplayName: What is the new fluid's part number?
                 type: string
-          - id: transferCaseFluidChange
-            displayName: Transfer case fluid changed
-            description: Transfer case fluid was drained and refilled.
+          - id: frontDiffFluidChange
+            displayName: Front differential fluid changed
+            description: Front differential fluid was drained and refilled.
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the new fluid's brand?
+                type: string
+                example: FluidCo
+                defaultValueFrom: vehicle.make
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the new fluid's part number?
+                type: string
+          - id: rearDiffFluidChange
+            displayName: Rear differential fluid changed
+            description: Rear differential fluid was drained and refilled.
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -371,7 +442,7 @@ categories:
                 shortDisplayName: Brand
                 longDisplayName: What is the new belt's brand?
                 type: string
-                example: FilterCo
+                example: BeltCo
                 defaultValueFrom: vehicle.make
               - id: partNumber
                 shortDisplayName: Part number
@@ -384,7 +455,46 @@ categories:
                 shortDisplayName: Brand
                 longDisplayName: What is the new belt's brand?
                 type: string
-                example: FilterCo
+                example: BeltCo
+                defaultValueFrom: vehicle.make
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the new belt's part number?
+                type: string
+          - id: acBeltChange
+            displayName: Air conditioning belt replaced
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the new belt's brand?
+                type: string
+                example: BeltCo
+                defaultValueFrom: vehicle.make
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the new belt's part number?
+                type: string
+          - id: alternatorBeltChange
+            displayName: Alternator conditioning belt replaced
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the new belt's brand?
+                type: string
+                example: BeltCo
+                defaultValueFrom: vehicle.make
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the new belt's part number?
+                type: string
+          - id: psBeltChange
+            displayName: Power steering pump belt replaced
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the new belt's brand?
+                type: string
+                example: BeltCo
                 defaultValueFrom: vehicle.make
               - id: partNumber
                 shortDisplayName: Part number
@@ -503,7 +613,39 @@ categories:
     displayName: Repairs
     icon:
       sfsymbols: screwdriver
-    types: []
+    subcategories:
+      - id: wheelRepair
+        displayName: Wheels & Tires
+        icon:
+          sfsymbols: circle.circle
+        types:
+          - id: alignment
+            displayName: Wheels aligned
+          - id: patchedTire
+            displayName: Tire patched
+            icon:
+              sfsymbols: bandage
+            fields:
+              - id: tireSet
+                shortDisplayName: Tire set
+                longDisplayName: Which tire set was patched?
+                type: tireSet
+              - id: tire
+                shortDisplayName: Tire
+                longDisplayName: Which tire was patched?
+                type: enum
+                enumValues:
+                  - id: frontDriver
+                    displayName: Front driver's side
+                  - id: frontPassenger
+                    displayName: Front passenger's side
+                  - id: rearDriver
+                    displayName: Rear driver's side
+                  - id: rearPassenger
+                    displayName: Rear passenger's side
+    types:
+      - id: miscellaneousRepair
+        displayName: Miscellaneous repair
   
   - id: registration
     displayName: Registration
