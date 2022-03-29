@@ -28,29 +28,31 @@ struct ShopsView: View {
     private var shops: FetchedResults<Shop>
 
     var body: some View {
-        NavigationView {
+        RootNavigationView {
             List {
                 let shops = shops.map { $0 }
                 ForEach(shops, id: \.self) { shop in
                     NavigationLink(
                             shop.name ?? "Unknown shop",
-                            destination: ShopView(shop: shop)
+                            destination: InternalNavigationView {
+                                ShopView(shop: shop)
+                            }
                     )
                 }
                 .onDelete(deleteFrom: shops, context: viewContext)
                 .onMove(moveIn: shops)
             }
-                    .navigationTitle("Shops")
-                    .toolbar {
-                        ToolbarItemGroup(placement: .navigationBarTrailing) {
-                            if editable {
-                                Button(action: addShop) {
-                                    Label("Add Shop", systemImage: "plus")
-                                }
-                                EditButton()
-                            }
+            .navigationTitle("Shops")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    if editable {
+                        Button(action: addShop) {
+                            Label("Add Shop", systemImage: "plus")
                         }
+                        EditButton()
                     }
+                }
+            }
             Text("Select a shop")
         }
     }

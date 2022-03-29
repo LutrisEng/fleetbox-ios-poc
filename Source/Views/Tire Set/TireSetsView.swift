@@ -34,7 +34,9 @@ struct TireSetsView: View {
         ForEach(sets, id: \.self) { tireSet in
             NavigationLink(
                     tireSet.displayName,
-                    destination: TireSetView(tireSet: tireSet)
+                    destination: InternalNavigationView {
+                        TireSetView(tireSet: tireSet)
+                    }
             )
         }
         .onDelete(deleteFrom: sets, context: viewContext)
@@ -42,7 +44,7 @@ struct TireSetsView: View {
     }
 
     var body: some View {
-        NavigationView {
+        RootNavigationView {
             List {
                 let mounted = tireSets.filter { $0.category == .mounted }
                 if !mounted.isEmpty {

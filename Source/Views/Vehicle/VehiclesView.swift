@@ -31,12 +31,14 @@ struct VehiclesView: View {
     private var vehicles: FetchedResults<Vehicle>
 
     var body: some View {
-        NavigationView {
+        RootNavigationView {
             List {
                 let vehicles = vehicles.map { $0 }
                 ForEach(vehicles, id: \.self) { vehicle in
                     NavigationLink(
-                        destination: VehicleView(vehicle: vehicle),
+                        destination: InternalNavigationView {
+                            VehicleView(vehicle: vehicle)
+                        },
                         label: {
                             if let displayName = vehicle.displayName {
                                 VStack {
@@ -60,7 +62,7 @@ struct VehiclesView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     if editable {
                         NavigationLink(
-                            destination: {
+                            destination: InternalNavigationView {
                                 NewVehicleView()
                             },
                             label: {
