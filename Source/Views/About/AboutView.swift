@@ -114,6 +114,7 @@ struct AboutView: View {
             }
             .navigationTitle("About Fleetbox")
         }
+        .navigationViewStyle(.stack)
     }
 }
 
