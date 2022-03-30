@@ -176,10 +176,7 @@ struct FleetboxTextField: View {
                                 )
                                 .firstResponder()
                                 .introspectTextField { textField in
-                                    let binding = tempValueBinding
-                                    DispatchQueue.main.async {
-                                        textField.text = binding.wrappedValue
-                                    }
+                                    textField.text = tempValueBinding.wrappedValue
                                 }
                                 .textInputAutocapitalization(_autocapitalization)
                                 .onSubmit {
