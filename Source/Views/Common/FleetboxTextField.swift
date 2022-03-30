@@ -175,9 +175,7 @@ struct FleetboxTextField: View {
                                     text: tempValueBinding
                                 )
                                 .introspectTextField { textField in
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                                        textField.becomeFirstResponder()
-                                    }
+                                    textField.becomeFirstResponder()
                                 }
                                 .textInputAutocapitalization(_autocapitalization)
                                 .onSubmit {
@@ -204,21 +202,21 @@ struct FleetboxTextField: View {
                                     .foregroundColor(.secondary)
                             }
                         }
-                        .toolbar {
-                            ToolbarItemGroup(placement: .keyboard) {
-                                Spacer()
-                                Button("Done") {
-                                    withAnimation {
-                                        pageShown = false
-                                    }
+                    }
+                    .toolbar {
+                        ToolbarItemGroup(placement: .keyboard) {
+                            Spacer()
+                            Button("Done") {
+                                withAnimation {
+                                    pageShown = false
                                 }
                             }
                         }
-                        .onAppear(perform: prepare)
-                        .onDisappear(perform: save)
-                        .navigationTitle(name ?? "")
-                        .navigationBarTitleDisplayMode(.inline)
                     }
+                    .onAppear(perform: prepare)
+                    .onDisappear(perform: save)
+                    .navigationTitle(name ?? "")
+                    .navigationBarTitleDisplayMode(.inline)
                 },
                 label: { label }
             )

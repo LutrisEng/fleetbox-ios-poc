@@ -99,6 +99,11 @@ struct FleetboxAppMainWindow: View {
                 NavigationView {
                     VehicleView(vehicle: previewImportState.vehicle)
                         .toolbar {
+                            ToolbarItemGroup(placement: .navigationBarLeading) {
+                                Button(action: cancelPreview) {
+                                    Label("Close preview", systemImage: "xmark")
+                                }
+                            }
                             ToolbarItemGroup(placement: .navigationBarTrailing) {
                                 if importing {
                                     ProgressView()
@@ -144,6 +149,15 @@ struct FleetboxAppMainWindow: View {
                     }
                 }
             }
+        }
+    }
+
+    private func cancelPreview() {
+        withAnimation {
+            previewError = false
+            showPreview = false
+            importing = false
+            previewImportState = nil
         }
     }
 

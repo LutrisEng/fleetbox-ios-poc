@@ -77,6 +77,7 @@
 		86B189AF27EB0C6C001CFBD3 /* UIApplication Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */; };
 		86B189B227EB0F6B001CFBD3 /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = 86B189B127EB0F6B001CFBD3 /* Gzip */; };
 		86B487A227F289D00015CDB4 /* WithEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B487A127F289D00015CDB4 /* WithEditButton.swift */; };
+		86B9190227F42DE0007DB163 /* View Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9190127F42DE0007DB163 /* View Extensions.swift */; };
 		86C061EA27F151C000020C08 /* WarrantyListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061E927F151C000020C08 /* WarrantyListingView.swift */; };
 		86C061EC27F152B800020C08 /* Tire Ratings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061EB27F152B800020C08 /* Tire Ratings.swift */; };
 		86C061F127F156D300020C08 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061F027F156D300020C08 /* Badge.swift */; };
@@ -224,6 +225,7 @@
 		86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication Extensions.swift"; sourceTree = "<group>"; };
 		86B487A127F289D00015CDB4 /* WithEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithEditButton.swift; sourceTree = "<group>"; };
 		86B5D09427D076B70040399C /* LineItemTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeTest.swift; sourceTree = "<group>"; };
+		86B9190127F42DE0007DB163 /* View Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View Extensions.swift"; sourceTree = "<group>"; };
 		86C061E927F151C000020C08 /* WarrantyListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarrantyListingView.swift; sourceTree = "<group>"; };
 		86C061EB27F152B800020C08 /* Tire Ratings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tire Ratings.swift"; sourceTree = "<group>"; };
 		86C061F027F156D300020C08 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
@@ -458,6 +460,7 @@
 				86B487A127F289D00015CDB4 /* WithEditButton.swift */,
 				86EE1BF027F3C6E1006417C0 /* InternalNavigationView.swift */,
 				86EE1BF127F3C6E1006417C0 /* RootNavigationView.swift */,
+				86B9190127F42DE0007DB163 /* View Extensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -864,6 +867,7 @@
 				86C0620F27F196FB00020C08 /* onMove Helper.swift in Sources */,
 				86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */,
 				861E4D9C27DC13D00072B6DD /* LineItemTypeLabelView.swift in Sources */,
+				86B9190227F42DE0007DB163 /* View Extensions.swift in Sources */,
 				8652AA7727DAB5F300D8D56D /* Dummy Data.swift in Sources */,
 				86B17F9E27D48D14001E52C6 /* LogItemView.swift in Sources */,
 				86B487A227F289D00015CDB4 /* WithEditButton.swift in Sources */,
@@ -1091,7 +1095,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1131,7 +1135,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZE_OBJECT_LIFETIME = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,6";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
