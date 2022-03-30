@@ -174,9 +174,7 @@ struct FleetboxTextField: View {
                                     example ?? "",
                                     text: tempValueBinding
                                 )
-                                .introspectTextField { textField in
-                                    textField.becomeFirstResponder()
-                                }
+                                .firstResponder()
                                 .textInputAutocapitalization(_autocapitalization)
                                 .onSubmit {
                                     pageShown = false

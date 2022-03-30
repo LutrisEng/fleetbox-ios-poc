@@ -36,3 +36,12 @@ extension View {
         self.maybe(value, callback: callback, nilCallback: { view in view })
     }
 }
+
+extension TextField {
+    @ViewBuilder
+    func firstResponder() -> some View {
+        introspectTextField { textField in
+            textField.becomeFirstResponder()
+        }
+    }
+}
