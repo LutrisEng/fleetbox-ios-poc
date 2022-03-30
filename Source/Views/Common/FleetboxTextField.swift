@@ -115,7 +115,7 @@ struct FleetboxTextField: View {
     }
 
     private var maybeUnitName: Text {
-        if let unitName = unitName, value.wrappedValue != nil {
+        if let unitName = unitName, !wrappedValue.wrappedValue.isEmpty {
             return (Text(" ") + unitName)
         } else {
             return Text("")
@@ -123,8 +123,8 @@ struct FleetboxTextField: View {
     }
 
     private var numberValue: Int64? {
-        if number, let value = value.wrappedValue {
-            return try? Int64(value, format: .number)
+        if number, !wrappedValue.wrappedValue.isEmpty {
+            return try? Int64(wrappedValue.wrappedValue, format: .number)
         } else {
             return nil
         }
@@ -133,8 +133,8 @@ struct FleetboxTextField: View {
     private var previewValue: String {
         if previewAsNumber, let numberValue = numberValue {
             return Formatter.format(number: numberValue)
-        } else if let value = value.wrappedValue {
-            return value
+        } else if !wrappedValue.wrappedValue.isEmpty {
+            return wrappedValue.wrappedValue
         } else {
             return ""
         }
@@ -175,12 +175,18 @@ struct FleetboxTextField: View {
                                     text: tempValueBinding
                                 )
                                 .firstResponder()
+                                .introspectTextField { textField in
+                                    let binding = tempValueBinding
+                                    DispatchQueue.main.async {
+                                        textField.text = binding.wrappedValue
+                                    }
+                                }
                                 .textInputAutocapitalization(_autocapitalization)
                                 .onSubmit {
                                     pageShown = false
                                 }
                                 .keyboardType(number ? .decimalPad : .default)
-                                if let value = value.wrappedValue, !value.isEmpty {
+                                if !tempValue.isEmpty {
                                     Button(
                                         action: {
                                             self.tempValue = ""
