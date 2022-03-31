@@ -21,11 +21,11 @@ struct WarrantiesView<
     Underlying: Warranty.Underlying & ObservableObject
 >: View {
     @Environment(\.editable) private var editable
-    @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.editMode) private var editMode
 
     @ObservedObject var underlying: Underlying
 
-    @State private var creatingWarranty: Warranty?
+    @State private var showingAll: Bool = false
 
     @ViewBuilder
     func list(warranties: [Warranty], allowMove: Bool) -> some View {
@@ -40,6 +40,11 @@ struct WarrantiesView<
             NavigationLink(
                 destination: {
                     NewWarrantyView(underlying: underlying)
+                        .onAppear {
+                            withAnimation {
+                                showingAll = true
+                            }
+                        }
                 },
                 label: {
                     Text("\(Image(systemName: "plus")) Add warranty")
@@ -56,24 +61,33 @@ struct WarrantiesView<
     @ViewBuilder
     var allWarranties: some View {
         list(warranties: warranties, allowMove: true)
-        addWarranty
+    }
+
+    var buttonContent: LocalizedStringKey {
+        if showingAll {
+            return "\(Image(systemName: "square.3.stack.3d.slash")) Show fewer"
+        } else {
+            return "\(Image(systemName: "square.3.stack.3d")) Show all"
+        }
     }
 
     var body: some View {
         Section(header: Text("Warranties")) {
-            if warranties.count > 3 {
-                list(warranties: Array(warranties[0...2]), allowMove: false)
-                NavigationLink("All warranties...") {
-                    List {
-                        allWarranties
-                    }
-                    .navigationTitle("Warranties")
-                    .modifier(WithEditButton())
+            if warranties.count > 3 && editMode?.wrappedValue.isEditing != true {
+                if showingAll {
+                    allWarranties
+                } else {
+                    list(warranties: Array(warranties[0...2]), allowMove: false)
                 }
-                addWarranty
+                Button(buttonContent) {
+                    withAnimation {
+                        showingAll.toggle()
+                    }
+                }
             } else {
                 allWarranties
             }
+            addWarranty
         }
     }
 }
