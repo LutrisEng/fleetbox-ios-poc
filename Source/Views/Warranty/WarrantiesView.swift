@@ -65,9 +65,9 @@ struct WarrantiesView<
 
     var buttonContent: LocalizedStringKey {
         if showingAll {
-            return "\(Image(systemName: "square.3.stack.3d.slash")) Show fewer"
+            return "\(Image(systemName: "eye.slash")) Show fewer"
         } else {
-            return "\(Image(systemName: "square.3.stack.3d")) Show all"
+            return "\(Image(systemName: "eye")) Show all"
         }
     }
 
