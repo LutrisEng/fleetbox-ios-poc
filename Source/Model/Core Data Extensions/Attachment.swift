@@ -18,4 +18,34 @@
 import Foundation
 
 extension Attachment: Sortable {
+    func normalize() {
+        if fileExtension == nil || fileExtension == "" {
+            if var split = fileName?.split(separator: ".") {
+                if let newExtension = split.popLast() {
+                    fileExtension = String(newExtension)
+                }
+                fileName = split.joined(separator: ".")
+            }
+        }
+        if fileSize == 0, let fileContents = fileContents {
+            fileSize = Int64(fileContents.count)
+        }
+    }
+
+    func importFile(url: URL) throws {
+        let contents = try Data(contentsOf: url)
+        fileContents = contents
+        fileName = url.deletingPathExtension().lastPathComponent
+        fileExtension = url.pathExtension
+        fileSize = Int64(contents.count)
+    }
+}
+
+extension Array where Element == Attachment {
+    func normalize() -> Self {
+        for attachment in self {
+            attachment.normalize()
+        }
+        return self
+    }
 }

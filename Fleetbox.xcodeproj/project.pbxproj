@@ -22,6 +22,7 @@
 		861DAE3B27CDD59F00AFE972 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 861DAE0D27CDD59F00AFE972 /* Assets.xcassets */; };
 		861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE4D27CDDAD700AFE972 /* Sentry */; };
 		861E4D9C27DC13D00072B6DD /* LineItemTypeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E4D9B27DC13CF0072B6DD /* LineItemTypeLabelView.swift */; };
+		8625125127F6366600FE0587 /* AttachmentLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8625125027F6366600FE0587 /* AttachmentLabelView.swift */; };
 		864713FA27F13FF400A12A23 /* LineItemTypes Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864713F927F13FF400A12A23 /* LineItemTypes Structs.swift */; };
 		864713FC27F1455700A12A23 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864713FB27F1455700A12A23 /* Formatters.swift */; };
 		864C731B27CDF54E00047165 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731A27CDF54E00047165 /* Vehicle.swift */; };
@@ -164,6 +165,7 @@
 		861DAE0D27CDD59F00AFE972 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		861DAE1227CDD59F00AFE972 /* Fleetbox Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fleetbox Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		861E4D9B27DC13CF0072B6DD /* LineItemTypeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeLabelView.swift; sourceTree = "<group>"; };
+		8625125027F6366600FE0587 /* AttachmentLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentLabelView.swift; sourceTree = "<group>"; };
 		864713F827F1374400A12A23 /* 0.1.0.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 0.1.0.md; sourceTree = "<group>"; };
 		864713F927F13FF400A12A23 /* LineItemTypes Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineItemTypes Structs.swift"; sourceTree = "<group>"; };
 		864713FB27F1455700A12A23 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
@@ -339,6 +341,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		8625125227F63D5000FE0587 /* Attachment */ = {
+			isa = PBXGroup;
+			children = (
+				86B189AC27EB0109001CFBD3 /* AttachmentView.swift */,
+				8625125027F6366600FE0587 /* AttachmentLabelView.swift */,
+			);
+			path = Attachment;
+			sourceTree = "<group>";
+		};
 		864713F727F1372C00A12A23 /* Changelogs */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,7 +392,6 @@
 			children = (
 				86B17F9D27D48D14001E52C6 /* LogItemView.swift */,
 				86638D2227D970F300149689 /* LogItemLabelView.swift */,
-				86B189AC27EB0109001CFBD3 /* AttachmentView.swift */,
 				86F8F80827EE748F00442694 /* NewLogItemView.swift */,
 			);
 			path = "Log Item";
@@ -604,6 +614,7 @@
 				86500C7B27DC092B00A5111E /* Vehicle */,
 				86EC636027F1518300882C64 /* Warranty */,
 				86500C7C27DC093A00A5111E /* Log Item */,
+				8625125227F63D5000FE0587 /* Attachment */,
 				86500C7D27DC094500A5111E /* Line Item */,
 				86500C8127DC098C00A5111E /* Odometer Reading */,
 				86500C8027DC098500A5111E /* Shop */,
@@ -899,6 +910,7 @@
 				864713FA27F13FF400A12A23 /* LineItemTypes Structs.swift in Sources */,
 				8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */,
 				8664C23D27DA906A00AE9ADB /* TireSetView.swift in Sources */,
+				8625125127F6366600FE0587 /* AttachmentLabelView.swift in Sources */,
 				86C061F527F15DEE00020C08 /* Attachment.swift in Sources */,
 				86F8F80927EE748F00442694 /* NewLogItemView.swift in Sources */,
 				86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */,

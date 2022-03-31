@@ -97,6 +97,12 @@ struct Formatter {
     static func format(dateTimeLabel: Date) -> String {
         return self.dateTimeLabel.string(from: dateTimeLabel)
     }
+
+    static let bytes: ByteCountFormatter = ByteCountFormatter()
+
+    static func format(bytes: Int64) -> String {
+        return self.bytes.string(fromByteCount: bytes)
+    }
 }
 
 extension NumberFormatter {

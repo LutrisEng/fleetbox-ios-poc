@@ -17,7 +17,32 @@
 
 import Foundation
 
-func temporaryFileURL(filename: String? = nil) -> URL {
-    let temporaryFilename = filename ?? ProcessInfo().globallyUniqueString
-    return FileManager.default.temporaryDirectory.appendingPathComponent(temporaryFilename)
+func temporaryFileURL(fileName: String? = nil, fileExtension: String? = nil) -> URL {
+    let temporaryFileName = fileName ?? ProcessInfo().globallyUniqueString
+    let temporaryFileExtension: String = {
+        if let fileExtension = fileExtension {
+            return ".\(fileExtension)"
+        } else {
+            return ""
+        }
+    }()
+    return FileManager.default.temporaryDirectory.appendingPathComponent(
+        temporaryFileName + temporaryFileExtension
+    )
+}
+
+extension FileManager {
+    // https://stackoverflow.com/a/48008323/2329281
+    func clearTmpDirectory() {
+        ignoreErrors {
+            let url = temporaryDirectory
+            let contents = try contentsOfDirectory(atPath: url.path)
+            contents.forEach { file in
+                ignoreErrors {
+                    let fileUrl = url.appendingPathComponent(file)
+                    try removeItem(atPath: fileUrl.path)
+                }
+            }
+        }
+    }
 }

@@ -19,9 +19,12 @@ import SwiftUI
 import Sentry
 
 struct AttachmentView: View {
-    let attachment: Attachment
+    @Environment(\.editable) private var editable
+
+    @ObservedObject var attachment: Attachment
     @State private var fileURL: URL?
     @State private var loading: Bool = true
+    @State private var editing: Bool = false
 
     init(attachment: Attachment) {
         self.attachment = attachment
@@ -30,7 +33,10 @@ struct AttachmentView: View {
     func tryToWriteFile() {
         DispatchQueue.global(qos: .userInteractive).async {
             if let contents = attachment.fileContents {
-                let tempFileURL = temporaryFileURL(filename: attachment.fileName)
+                let tempFileURL = temporaryFileURL(
+                    fileName: attachment.fileName,
+                    fileExtension: attachment.fileExtension
+                )
                 ignoreErrors {
                     try contents.write(to: tempFileURL)
                 }
@@ -58,6 +64,21 @@ struct AttachmentView: View {
         fileURL = nil
     }
 
+    @ViewBuilder
+    var form: some View {
+        NavigationView {
+            Form {
+                FleetboxTextField(value: $attachment.fileName, name: "File name", example: "Receipt")
+            }
+            .navigationTitle("Editing attachment")
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button("Done", action: endEdit)
+                }
+            }
+        }
+    }
+
     var body: some View {
         Group {
             if loading {
@@ -65,20 +86,40 @@ struct AttachmentView: View {
             } else if let fileURL = fileURL {
                 QuickViewController(url: fileURL)
             } else {
-                Text("An error occurred previewing this attachment")
+                VStack {
+                    Image(systemName: "xmark.circle")
+                        .foregroundColor(.red)
+                    Text("An error occurred previewing this attachment.")
+                }
             }
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button(action: share) {
-                    Label("Share", systemImage: "square.and.arrow.up")
+                if fileURL != nil {
+                    Button(action: share) {
+                        Label("Share", systemImage: "square.and.arrow.up")
+                    }
+                }
+                if editable {
+                    Button(action: beginEdit) {
+                        Label("Edit", systemImage: "pencil")
+                    }
                 }
             }
         }
+        .sheet(isPresented: $editing, content: { form })
         .navigationTitle(attachment.fileName ?? "Attachment")
         .navigationBarTitleDisplayMode(.inline)
         .onAppear(perform: tryToWriteFile)
         .onDisappear(perform: tryToRemoveFile)
+    }
+
+    private func beginEdit() {
+        editing = true
+    }
+
+    private func endEdit() {
+        editing = false
     }
 
     private func share() {

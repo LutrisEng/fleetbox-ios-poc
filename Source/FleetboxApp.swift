@@ -92,6 +92,12 @@ struct FleetboxAppMainWindow: View {
                 }
             }
         )
+        .onReceive(
+            NotificationCenter.default.publisher(for: UIApplication.willTerminateNotification),
+            perform: { _ in
+                FileManager.default.clearTmpDirectory()
+            }
+        )
         .sheet(isPresented: $showPreview) {
             if previewError {
                 Text("An error occurred opening this file.")
@@ -213,7 +219,15 @@ struct FleetboxApp: App {
         WindowGroup {
             FleetboxAppMainWindow()
                 // Sometimes SwiftUI decides not to apply the accent color from the bundle
-                .accentColor(Color(debug ? "AccentColor-Debug" : "AccentColor"))
+                .onAppear {
+                    let window = UIApplication
+                        .shared
+                        .connectedScenes
+                        .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+                        .first { $0.isKeyWindow }
+                    let tint = UIColor(named: debug ? "AccentColor-Debug" : "AccentColor")
+                    window?.tintColor = tint
+                }
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .navigationViewStyle(.columns)
         }

@@ -147,11 +147,16 @@ struct LogItemView: View {
                     }
                 }
                 Section(header: Text("Attachments")) {
-                    let attachments = logItem.attachments.sorted { $0.sortOrder < $1.sortOrder }
+                    let attachments = logItem.attachments.sorted.normalize()
                     ForEach(attachments, id: \.self) { attachment in
-                        NavigationLink(attachment.fileName ?? "Attachment") {
-                            AttachmentView(attachment: attachment)
-                        }
+                        NavigationLink(
+                            destination: {
+                                AttachmentView(attachment: attachment)
+                            },
+                            label: {
+                                AttachmentLabelView(attachment: attachment)
+                            }
+                        )
                     }
                     .onDelete(deleteFrom: attachments, context: viewContext)
                     .onMove(moveIn: attachments)
@@ -182,10 +187,8 @@ struct LogItemView: View {
         DispatchQueue.global(qos: .userInitiated).async {
             let attachments = urls.compactMap { url -> Attachment? in
                 do {
-                    let contents = try Data(contentsOf: url)
                     let attachment = Attachment(context: viewContext)
-                    attachment.fileContents = contents
-                    attachment.fileName = url.lastPathComponent
+                    try attachment.importFile(url: url)
                     return attachment
                 } catch {
                     SentrySDK.capture(error: error)

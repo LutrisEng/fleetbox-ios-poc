@@ -88,7 +88,10 @@ struct VehicleView: View {
                     throw ExportError.unknownError
                 }
                 let gzipped = try data.gzipped()
-                let fileURL = temporaryFileURL(filename: "\(vehicle.displayNameWithFallback).fleetboxvehicle")
+                let fileURL = temporaryFileURL(
+                    fileName: vehicle.displayNameWithFallback,
+                    fileExtension: "fleetboxvehicle"
+                )
                 try gzipped.write(to: fileURL)
                 DispatchQueue.main.async {
                     withAnimation {
