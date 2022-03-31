@@ -18,7 +18,7 @@
 import Foundation
 import CoreData
 
-extension LogItem: Dated,
+extension LogItem: Dated, MaybeTimed,
     HasRawLineItems, HasLineItems,
     HasRawAttachments, HasAttachments {
     // swiftlint:disable:next identifier_name
@@ -49,11 +49,5 @@ extension LogItem: Dated,
             } ?? nil)
                     : nil
         }
-    }
-
-    override public func willChangeValue(forKey key: String) {
-        super.willChangeValue(forKey: key)
-        self.objectWillChange.send()
-        vehicle?.objectWillChange.send()
     }
 }

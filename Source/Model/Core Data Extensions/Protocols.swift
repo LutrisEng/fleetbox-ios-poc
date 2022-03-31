@@ -29,9 +29,25 @@ protocol Dated {
 extension Dated {
     var formattedDate: String? {
         if let date = at {
-            let formatter = DateFormatter()
-            formatter.setLocalizedDateFormatFromTemplate("dd MMMM YYYY")
-            return formatter.string(from: date)
+            return Formatter.format(dateLabel: date)
+        } else {
+            return nil
+        }
+    }
+}
+
+protocol MaybeTimed {
+    var includeTime: Bool { get set }
+}
+
+extension MaybeTimed where Self: Dated {
+    var formattedDate: String? {
+        if let date = at {
+            if includeTime {
+                return Formatter.format(dateTimeLabel: date)
+            } else {
+                return Formatter.format(dateLabel: date)
+            }
         } else {
             return nil
         }

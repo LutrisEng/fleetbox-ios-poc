@@ -128,9 +128,4 @@ extension Vehicle: Sortable,
         let tmpl = ExportEnvelopeTemplate(context: context, envelope: envelope)
         return tmpl.vehicle
     }
-
-    override public func willChangeValue(forKey key: String) {
-        super.willChangeValue(forKey: key)
-        self.objectWillChange.send()
-    }
 }

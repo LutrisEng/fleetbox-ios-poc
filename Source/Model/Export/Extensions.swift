@@ -220,6 +220,7 @@ extension Fleetbox_Export_LogItem {
         attachments = logItem.attachments.map {
             Fleetbox_Export_Attachment(attachment: $0)
         }
+        includeTime = logItem.includeTime
     }
 
     func importLogItem(
@@ -251,8 +252,8 @@ extension Fleetbox_Export_LogItem {
         for (index, attachment) in attachments.enumerated() {
             let obj = attachment.importAttachment(context: context, index: index)
             obj.logItem = logItem
-
         }
+        logItem.includeTime = includeTime
         return logItem
     }
 }

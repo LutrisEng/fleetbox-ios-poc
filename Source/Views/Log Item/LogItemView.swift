@@ -52,10 +52,11 @@ struct LogItemView: View {
                             "Performed",
                             selection: convertToNonNilBinding(date: $logItem.performedAt),
                             in: ...Date.now,
-                            displayedComponents: [.date]
+                            displayedComponents: logItem.includeTime ? [.date, .hourAndMinute] : [.date]
                     )
-                } else if let performedAt = logItem.performedAt {
-                    FormLinkLabel(title: "Performed", value: performedAt.formatted(date: .abbreviated, time: .omitted))
+                    Toggle("Include time", isOn: $logItem.includeTime)
+                } else if let formattedDate = logItem.formattedDate {
+                    FormLinkLabel(title: "Performed", value: formattedDate)
                 }
                 if let vehicle = logItem.vehicle {
                     Section(header: Text("Vehicle")) {

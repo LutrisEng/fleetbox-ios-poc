@@ -32,11 +32,4 @@ extension OdometerReading: Dated {
                 ?? (logItem.vehicle?.approximateOdometer) ?? 0
         }
     }
-
-    override public func willChangeValue(forKey key: String) {
-        super.willChangeValue(forKey: key)
-        self.objectWillChange.send()
-        vehicle?.objectWillChange.send()
-        logItem?.objectWillChange.send()
-    }
 }

@@ -34,6 +34,7 @@ message LogItem {
     optional int64 shop = 4;
     repeated LineItem lineItems = 5;
     repeated Attachment attachments = 6;
+    optional bool includeTime = 7;
 }
 
 message LineItem {

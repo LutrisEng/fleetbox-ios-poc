@@ -96,12 +96,4 @@ extension LineItemField {
             }
         }
     }
-
-    override public func willChangeValue(forKey key: String) {
-        super.willChangeValue(forKey: key)
-        self.objectWillChange.send()
-        lineItem?.objectWillChange.send()
-        lineItem?.logItem?.objectWillChange.send()
-        lineItem?.logItem?.vehicle?.objectWillChange.send()
-    }
 }

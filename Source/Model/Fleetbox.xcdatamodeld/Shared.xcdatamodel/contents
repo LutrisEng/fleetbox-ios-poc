@@ -22,6 +22,7 @@
     </entity>
     <entity name="LogItem" representedClassName="LogItem" syncable="YES" codeGenerationType="class">
         <attribute name="displayName" optional="YES" attributeType="String"/>
+        <attribute name="includeTime" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="performedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="attachmentsNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attachment" inverseName="logItem" inverseEntity="Attachment"/>
         <relationship name="lineItemsNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="LineItem" inverseName="logItem" inverseEntity="LineItem"/>
@@ -87,7 +88,7 @@
         <element name="Attachment" positionX="270" positionY="108" width="128" height="89"/>
         <element name="LineItem" positionX="288" positionY="63" width="128" height="104"/>
         <element name="LineItemField" positionX="270" positionY="36" width="128" height="104"/>
-        <element name="LogItem" positionX="406.38671875" positionY="-9.95703125" width="128" height="134"/>
+        <element name="LogItem" positionX="406.38671875" positionY="-9.95703125" width="128" height="149"/>
         <element name="OdometerReading" positionX="270" positionY="108" width="128" height="89"/>
         <element name="Shop" positionX="279" positionY="45" width="128" height="89"/>
         <element name="TireSet" positionX="279" positionY="63" width="128" height="299"/>

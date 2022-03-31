@@ -263,11 +263,4 @@ extension LineItem: Dated, Sortable,
         case .integer(let value): try setFieldValue(id, value: value)
         }
     }
-
-    override public func willChangeValue(forKey key: String) {
-        super.willChangeValue(forKey: key)
-        self.objectWillChange.send()
-        logItem?.objectWillChange.send()
-        logItem?.vehicle?.objectWillChange.send()
-    }
 }

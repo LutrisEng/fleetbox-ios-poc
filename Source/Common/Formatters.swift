@@ -75,6 +75,28 @@ struct Formatter {
     static func format(durationLabel: TimeInterval) -> String {
         return self.durationLabel.string(from: durationLabel) ?? ""
     }
+
+    static let dateLabel: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }()
+
+    static func format(dateLabel: Date) -> String {
+        return self.dateLabel.string(from: dateLabel)
+    }
+
+    static let dateTimeLabel: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .short
+        return formatter
+    }()
+
+    static func format(dateTimeLabel: Date) -> String {
+        return self.dateTimeLabel.string(from: dateTimeLabel)
+    }
 }
 
 extension NumberFormatter {

@@ -38,12 +38,4 @@ extension Shop: Sortable, HasRawLogItems, HasLogItems {
             context.delete(other)
         }
     }
-
-    override public func willChangeValue(forKey key: String) {
-        super.willChangeValue(forKey: key)
-        self.objectWillChange.send()
-        for logItem in logItemsUnordered {
-            logItem.objectWillChange.send()
-        }
-    }
 }
