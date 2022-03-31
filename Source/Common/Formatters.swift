@@ -78,7 +78,7 @@ struct Formatter {
 
     static let dateLabel: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
+        formatter.dateStyle = .medium
         formatter.timeStyle = .none
         return formatter
     }()
@@ -89,7 +89,7 @@ struct Formatter {
 
     static let dateTimeLabel: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateStyle = .short
+        formatter.dateStyle = .medium
         formatter.timeStyle = .short
         return formatter
     }()

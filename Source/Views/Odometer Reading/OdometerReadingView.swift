@@ -52,6 +52,7 @@ struct OdometerReadingView: View {
                     .unit("miles")
         }
         .modifier(SaveOnLeave())
+        .navigationTitle("Odometer reading")
     }
 }
 

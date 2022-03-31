@@ -35,22 +35,7 @@ struct OdometerReadingsView: View {
                         }
                     },
                     label: {
-                        if let logItem = odometerReading.logItem {
-                            LogItemLabelView(logItem: logItem)
-                        } else {
-                            VStack {
-                                Text("\(odometerReading.reading) miles")
-                                    .foregroundColor(.secondary)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                Text(
-                                    odometerReading.formattedDate
-                                    ?? "Odometer reading"
-                                )
-                                .font(.body.bold())
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                            .padding([.top, .bottom], 10)
-                        }
+                        OdometerReadingLabelView(odometerReading: odometerReading)
                     }
                 )
             }
