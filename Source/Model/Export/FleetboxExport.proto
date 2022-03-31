@@ -53,6 +53,7 @@ message LineItemField {
 message OdometerReading {
     optional int64 performedAt = 1;
     optional int64 reading = 2;
+    optional bool includeTime = 3;
 }
 
 message Attachment {

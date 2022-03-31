@@ -181,7 +181,8 @@ extension Fleetbox_Export_OdometerReading {
         if let performedAt = odometerReading.at {
             self.performedAt = Int64(performedAt.timeIntervalSince1970)
         }
-        self.reading = odometerReading.reading
+        reading = odometerReading.reading
+        includeTime = odometerReading.includeTime
     }
 
     func importOdometerReading(context: NSManagedObjectContext, vehicle: Vehicle) -> OdometerReading {
@@ -191,6 +192,7 @@ extension Fleetbox_Export_OdometerReading {
             odometerReading.at = Date(timeIntervalSince1970: TimeInterval(performedAt))
         }
         odometerReading.reading = reading
+        odometerReading.includeTime = includeTime
         return odometerReading
     }
 }

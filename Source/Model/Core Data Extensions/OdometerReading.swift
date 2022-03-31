@@ -17,7 +17,7 @@
 
 import CoreData
 
-extension OdometerReading: Dated {
+extension OdometerReading: Dated, MaybeTimed {
     convenience init(context: NSManagedObjectContext, logItem: LogItem) {
         self.init(context: context)
         self.logItem = logItem

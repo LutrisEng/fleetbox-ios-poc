@@ -43,7 +43,7 @@ struct OdometerReadingsView: View {
                                     .foregroundColor(.secondary)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 Text(
-                                    odometerReading.at?.formatted(date: .abbreviated, time: .omitted)
+                                    odometerReading.formattedDate
                                     ?? "Odometer reading"
                                 )
                                 .font(.body.bold())

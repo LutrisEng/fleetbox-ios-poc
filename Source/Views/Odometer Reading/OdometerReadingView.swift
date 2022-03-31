@@ -29,10 +29,17 @@ struct OdometerReadingView: View {
                 DatePicker(
                         "Performed",
                         selection: convertToNonNilBinding(date: $odometerReading.at),
-                        displayedComponents: [.date]
+                        displayedComponents:
+                            odometerReading.includeTime
+                                ? [.date, .hourAndMinute]
+                                : [.date]
                 )
-            } else if let readAt = odometerReading.at {
-                FormLinkLabel(title: "Performed", value: readAt.formatted(date: .abbreviated, time: .omitted))
+                Toggle("Include time", isOn: $odometerReading.includeTime)
+            } else if let formattedDate = odometerReading.formattedDate {
+                FormLinkLabel(
+                    title: "Performed",
+                    value: formattedDate
+                )
             }
             FleetboxTextField(
                     value: Binding(
