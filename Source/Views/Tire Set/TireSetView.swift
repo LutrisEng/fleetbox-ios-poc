@@ -33,7 +33,7 @@ struct TireSetView: View {
                 }
             }
             TireSetOdometerView(tireSet: tireSet)
-            WarrantiesView(warranties: tireSet.warranties, underlying: tireSet)
+            WarrantiesView(underlying: tireSet)
             TireSetSpecView(tireSet: tireSet)
             TireSetActionsView(tireSet: tireSet)
         }

@@ -23,6 +23,7 @@
 		861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 861DAE4D27CDDAD700AFE972 /* Sentry */; };
 		861E4D9C27DC13D00072B6DD /* LineItemTypeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 861E4D9B27DC13CF0072B6DD /* LineItemTypeLabelView.swift */; };
 		8625125127F6366600FE0587 /* AttachmentLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8625125027F6366600FE0587 /* AttachmentLabelView.swift */; };
+		8625125427F6469800FE0587 /* ForEachObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8625125327F6469800FE0587 /* ForEachObjects.swift */; };
 		864713FA27F13FF400A12A23 /* LineItemTypes Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864713F927F13FF400A12A23 /* LineItemTypes Structs.swift */; };
 		864713FC27F1455700A12A23 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864713FB27F1455700A12A23 /* Formatters.swift */; };
 		864C731B27CDF54E00047165 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731A27CDF54E00047165 /* Vehicle.swift */; };
@@ -85,7 +86,6 @@
 		86C061F327F1573100020C08 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061F227F1573100020C08 /* Protocols.swift */; };
 		86C061F527F15DEE00020C08 /* Attachment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061F427F15DEE00020C08 /* Attachment.swift */; };
 		86C061F727F1685000020C08 /* WarrantiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061F627F1685000020C08 /* WarrantiesView.swift */; };
-		86C061F927F1689E00020C08 /* onDelete Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061F827F1689E00020C08 /* onDelete Helper.swift */; };
 		86C061FB27F16BF200020C08 /* WarrantyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061FA27F16BF200020C08 /* WarrantyView.swift */; };
 		86C061FD27F16D6500020C08 /* TireSetDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061FC27F16D6500020C08 /* TireSetDetailsView.swift */; };
 		86C061FF27F16DB100020C08 /* TireSetOdometerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061FE27F16DB100020C08 /* TireSetOdometerView.swift */; };
@@ -94,7 +94,6 @@
 		86C0620527F16E3600020C08 /* TireSetActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620427F16E3600020C08 /* TireSetActionsView.swift */; };
 		86C0620927F16F4E00020C08 /* FormLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620827F16F4E00020C08 /* FormLinkLabel.swift */; };
 		86C0620D27F187C200020C08 /* NewWarrantyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620C27F187C200020C08 /* NewWarrantyView.swift */; };
-		86C0620F27F196FB00020C08 /* onMove Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620E27F196FB00020C08 /* onMove Helper.swift */; };
 		86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
 		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
@@ -166,6 +165,7 @@
 		861DAE1227CDD59F00AFE972 /* Fleetbox Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fleetbox Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		861E4D9B27DC13CF0072B6DD /* LineItemTypeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeLabelView.swift; sourceTree = "<group>"; };
 		8625125027F6366600FE0587 /* AttachmentLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentLabelView.swift; sourceTree = "<group>"; };
+		8625125327F6469800FE0587 /* ForEachObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachObjects.swift; sourceTree = "<group>"; };
 		864713F827F1374400A12A23 /* 0.1.0.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 0.1.0.md; sourceTree = "<group>"; };
 		864713F927F13FF400A12A23 /* LineItemTypes Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineItemTypes Structs.swift"; sourceTree = "<group>"; };
 		864713FB27F1455700A12A23 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
@@ -234,7 +234,6 @@
 		86C061F227F1573100020C08 /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		86C061F427F15DEE00020C08 /* Attachment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Attachment.swift; sourceTree = "<group>"; };
 		86C061F627F1685000020C08 /* WarrantiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarrantiesView.swift; sourceTree = "<group>"; };
-		86C061F827F1689E00020C08 /* onDelete Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "onDelete Helper.swift"; sourceTree = "<group>"; };
 		86C061FA27F16BF200020C08 /* WarrantyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarrantyView.swift; sourceTree = "<group>"; };
 		86C061FC27F16D6500020C08 /* TireSetDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSetDetailsView.swift; sourceTree = "<group>"; };
 		86C061FE27F16DB100020C08 /* TireSetOdometerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSetOdometerView.swift; sourceTree = "<group>"; };
@@ -243,7 +242,6 @@
 		86C0620427F16E3600020C08 /* TireSetActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSetActionsView.swift; sourceTree = "<group>"; };
 		86C0620827F16F4E00020C08 /* FormLinkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLinkLabel.swift; sourceTree = "<group>"; };
 		86C0620C27F187C200020C08 /* NewWarrantyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWarrantyView.swift; sourceTree = "<group>"; };
-		86C0620E27F196FB00020C08 /* onMove Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "onMove Helper.swift"; sourceTree = "<group>"; };
 		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
 		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
@@ -464,13 +462,12 @@
 				86B189A627EAFEBE001CFBD3 /* QuickViewController.swift */,
 				86F8F80627EB197600442694 /* Editable.swift */,
 				86C061F027F156D300020C08 /* Badge.swift */,
-				86C061F827F1689E00020C08 /* onDelete Helper.swift */,
 				86C0620827F16F4E00020C08 /* FormLinkLabel.swift */,
-				86C0620E27F196FB00020C08 /* onMove Helper.swift */,
 				86B487A127F289D00015CDB4 /* WithEditButton.swift */,
 				86EE1BF027F3C6E1006417C0 /* InternalNavigationView.swift */,
 				86EE1BF127F3C6E1006417C0 /* RootNavigationView.swift */,
 				86B9190127F42DE0007DB163 /* View Extensions.swift */,
+				8625125327F6469800FE0587 /* ForEachObjects.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -875,7 +872,6 @@
 				861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */,
 				86B189A727EAFEBE001CFBD3 /* QuickViewController.swift in Sources */,
 				86500C8F27DC0DE900A5111E /* PartOdometer.swift in Sources */,
-				86C0620F27F196FB00020C08 /* onMove Helper.swift in Sources */,
 				86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */,
 				861E4D9C27DC13D00072B6DD /* LineItemTypeLabelView.swift in Sources */,
 				86B9190227F42DE0007DB163 /* View Extensions.swift in Sources */,
@@ -894,7 +890,6 @@
 				86C0620527F16E3600020C08 /* TireSetActionsView.swift in Sources */,
 				86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */,
 				8612CD6627E1A58300976E8F /* VehicleImageView.swift in Sources */,
-				86C061F927F1689E00020C08 /* onDelete Helper.swift in Sources */,
 				864C732127D06A7F00047165 /* LogItem.swift in Sources */,
 				86500C8B27DC0D8600A5111E /* VINDetailView.swift in Sources */,
 				86F8F81B27EE9EB600442694 /* Extensions.swift in Sources */,
@@ -918,6 +913,7 @@
 				86B189AD27EB0109001CFBD3 /* AttachmentView.swift in Sources */,
 				861DAE3727CDD59F00AFE972 /* VehiclesView.swift in Sources */,
 				86500C9E27DC125200A5111E /* EditTireSetLineItemFieldView.swift in Sources */,
+				8625125427F6469800FE0587 /* ForEachObjects.swift in Sources */,
 				8690C7AD27D9AA260042F543 /* OdometerReadingView.swift in Sources */,
 				86EE1BF227F3C6E1006417C0 /* InternalNavigationView.swift in Sources */,
 				86EC635F27F1503B00882C64 /* Warranty.swift in Sources */,

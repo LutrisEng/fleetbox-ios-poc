@@ -31,7 +31,7 @@ struct ShopsView: View {
         RootNavigationView {
             List {
                 let shops = shops.map { $0 }
-                ForEach(shops, id: \.self) { shop in
+                ForEachObjects(shops) { shop in
                     NavigationLink(
                             shop.name ?? "Unknown shop",
                             destination: InternalNavigationView {
@@ -39,8 +39,6 @@ struct ShopsView: View {
                             }
                     )
                 }
-                .onDelete(deleteFrom: shops, context: viewContext)
-                .onMove(moveIn: shops)
             }
             .navigationTitle("Shops")
             .toolbar {

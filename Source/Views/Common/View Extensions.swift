@@ -16,6 +16,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import SwiftUI
+import CoreData
 
 extension View {
     @ViewBuilder
@@ -51,6 +52,31 @@ extension TextField {
     func firstResponder() -> some View {
         introspectTextField { textField in
             textField.becomeFirstResponder()
+        }
+    }
+}
+
+extension DynamicViewContent {
+    func onDelete<T>(deleteFrom: [T], context: NSManagedObjectContext) -> some DynamicViewContent
+    where T: NSManagedObject {
+        return onDelete { indices in
+            withAnimation {
+                let objects = indices.map({ deleteFrom[$0] })
+                for object in objects {
+                    context.delete(object)
+                }
+            }
+        }
+    }
+
+    func onMove<T>(moveIn: [T]) -> some DynamicViewContent
+    where T: Sortable & Hashable {
+        return onMove { indices, offset in
+            withAnimation {
+                var arr = moveIn
+                arr.move(fromOffsets: indices, toOffset: offset)
+                arr.setSortOrder()
+            }
         }
     }
 }

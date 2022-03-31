@@ -77,7 +77,7 @@ struct LogItemLabelView: View {
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
-            ForEach(logItem.lineItems.sorted, id: \.self) { lineItem in
+            ForEachObjects(logItem.lineItems.sorted, allowDelete: false, allowMove: false) { lineItem in
                 LineItemLabelView(lineItem: lineItem).mini
             }
         }

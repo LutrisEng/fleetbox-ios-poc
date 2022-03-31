@@ -31,7 +31,7 @@ struct TireSetsView: View {
 
     @ViewBuilder
     func setList(_ sets: [TireSet]) -> some View {
-        ForEach(sets, id: \.self) { tireSet in
+        ForEachObjects(sets) { tireSet in
             NavigationLink(
                     tireSet.displayName,
                     destination: InternalNavigationView {
@@ -39,8 +39,6 @@ struct TireSetsView: View {
                     }
             )
         }
-        .onDelete(deleteFrom: sets, context: viewContext)
-        .onMove(moveIn: sets)
     }
 
     var body: some View {

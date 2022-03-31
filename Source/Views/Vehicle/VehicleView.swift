@@ -53,7 +53,7 @@ struct VehicleView: View {
                     Form {
                         VehicleImageView(imageData: $vehicle.imageData)
                         VehicleDetailsView(vehicle: vehicle)
-                        WarrantiesView(warranties: vehicle.warranties, underlying: vehicle)
+                        WarrantiesView(underlying: vehicle)
                         MaintenanceLogView(vehicle: vehicle)
                     }
                 }

@@ -17,39 +17,26 @@
 
 import SwiftUI
 
-struct WarrantiesView: View {
+struct WarrantiesView<
+    Underlying: Warranty.Underlying & ObservableObject
+>: View {
     @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
-    var warranties: [Warranty]
-    let underlying: Warranty.Underlying?
+    @ObservedObject var underlying: Underlying
 
     @State private var creatingWarranty: Warranty?
 
-    init(warranties: [Warranty], underlying: Warranty.Underlying) {
-        self.warranties = warranties
-        self.underlying = underlying
-    }
-
-    init(warranties: [Warranty]) {
-        self.warranties = warranties
-        self.underlying = nil
-    }
-
     @ViewBuilder
-    func list(warranties: [Warranty], allowMoving: Bool) -> some View {
-        ForEach(warranties, id: \.self) { warranty in
+    func list(warranties: [Warranty], allowMove: Bool) -> some View {
+        ForEachObjects(warranties, allowMove: allowMove) { warranty in
             WarrantyListingView(warranty: warranty)
-        }
-        .onDelete(deleteFrom: warranties, context: viewContext)
-        .ifTrue(allowMoving) { view in
-            view.onMove(moveIn: warranties)
         }
     }
 
     @ViewBuilder
     var addWarranty: some View {
-        if editable, let underlying = underlying {
+        if editable {
             NavigationLink(
                 destination: {
                     NewWarrantyView(underlying: underlying)
@@ -62,23 +49,28 @@ struct WarrantiesView: View {
         }
     }
 
+    var warranties: [Warranty] {
+        underlying.warranties.sorted
+    }
+
     @ViewBuilder
     var allWarranties: some View {
-        list(warranties: warranties, allowMoving: true)
+        list(warranties: warranties, allowMove: true)
         addWarranty
     }
 
     var body: some View {
         Section(header: Text("Warranties")) {
             if warranties.count > 3 {
-                list(warranties: Array(warranties[0...2]), allowMoving: false)
-                NavigationLink("All warranties") {
+                list(warranties: Array(warranties[0...2]), allowMove: false)
+                NavigationLink("All warranties...") {
                     List {
                         allWarranties
                     }
                     .navigationTitle("Warranties")
                     .modifier(WithEditButton())
                 }
+                addWarranty
             } else {
                 allWarranties
             }

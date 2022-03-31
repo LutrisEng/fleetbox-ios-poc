@@ -118,7 +118,7 @@ struct LogItemView: View {
                         Text("No line items")
                             .foregroundColor(.secondary)
                     } else {
-                        ForEach(lineItems, id: \.self) { lineItem in
+                        ForEach(lineItems) { lineItem in
                             if editable {
                                 NavigationLink(destination: LineItemView(lineItem: lineItem)) {
                                     LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
@@ -127,8 +127,6 @@ struct LogItemView: View {
                                 LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
                             }
                         }
-                        .onDelete(deleteFrom: lineItems, context: viewContext)
-                        .onMove(moveIn: lineItems)
                     }
                     if editable {
                         NavigationLink(
@@ -148,7 +146,7 @@ struct LogItemView: View {
                 }
                 Section(header: Text("Attachments")) {
                     let attachments = logItem.attachments.sorted.normalize()
-                    ForEach(attachments, id: \.self) { attachment in
+                    ForEachObjects(attachments) { attachment in
                         NavigationLink(
                             destination: {
                                 AttachmentView(attachment: attachment)
@@ -158,8 +156,6 @@ struct LogItemView: View {
                             }
                         )
                     }
-                    .onDelete(deleteFrom: attachments, context: viewContext)
-                    .onMove(moveIn: attachments)
                     if addingAttachments {
                         ProgressView()
                     }

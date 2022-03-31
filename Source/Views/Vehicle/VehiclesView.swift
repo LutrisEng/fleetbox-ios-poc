@@ -34,7 +34,7 @@ struct VehiclesView: View {
         RootNavigationView {
             List {
                 let vehicles = vehicles.map { $0 }
-                ForEach(vehicles, id: \.self) { vehicle in
+                ForEachObjects(vehicles) { vehicle in
                     NavigationLink(
                         destination: InternalNavigationView {
                             VehicleView(vehicle: vehicle)
@@ -54,8 +54,6 @@ struct VehiclesView: View {
                         }
                     )
                 }
-                .onDelete(deleteFrom: vehicles, context: viewContext)
-                .onMove(moveIn: vehicles)
             }
             .navigationTitle("Vehicles")
             .toolbar {

@@ -73,9 +73,11 @@ struct LineItemLabelView: View {
                 iconHeight: iconHeight,
                 showCategories: showCategories
             ) {
-                ForEach(showDetails ? lineItem.fields : [], id: \.self) { field in
-                    LineItemFieldLabelView(field: field, font: detailFont)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                if showDetails {
+                    ForEach(lineItem.fields, id: \.self) { field in
+                        LineItemFieldLabelView(field: field, font: detailFont)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
                 }
             }
         }
