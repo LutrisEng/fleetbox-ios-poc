@@ -53,7 +53,6 @@ struct VehicleView: View {
                     Form {
                         VehicleImageView(imageData: $vehicle.imageData)
                         VehicleDetailsView(vehicle: vehicle)
-                        PartOdometersView(vehicle: vehicle)
                         WarrantiesView(warranties: vehicle.warranties, underlying: vehicle)
                         MaintenanceLogView(vehicle: vehicle)
                     }
@@ -72,6 +71,14 @@ struct VehicleView: View {
                             Label("Share", systemImage: "square.and.arrow.up")
                         }
                     }
+                    NavigationLink(
+                        destination: {
+                            OdometerReadingFormView(vehicle: vehicle)
+                        },
+                        label: {
+                            Label("Add odometer reading", systemImage: "123.rectangle")
+                        }
+                    )
                     EditButton()
                 }
             }

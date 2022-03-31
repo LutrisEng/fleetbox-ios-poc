@@ -36,23 +36,51 @@ struct WarrantiesView: View {
         self.underlying = nil
     }
 
+    @ViewBuilder
+    func list(warranties: [Warranty], allowMoving: Bool) -> some View {
+        ForEach(warranties, id: \.self) { warranty in
+            WarrantyListingView(warranty: warranty)
+        }
+        .onDelete(deleteFrom: warranties, context: viewContext)
+        .ifTrue(allowMoving) { view in
+            view.onMove(moveIn: warranties)
+        }
+    }
+
+    @ViewBuilder
+    var addWarranty: some View {
+        if editable, let underlying = underlying {
+            NavigationLink(
+                destination: {
+                    NewWarrantyView(underlying: underlying)
+                },
+                label: {
+                    Text("\(Image(systemName: "plus")) Add warranty")
+                        .foregroundColor(.accentColor)
+                }
+            )
+        }
+    }
+
+    @ViewBuilder
+    var allWarranties: some View {
+        list(warranties: warranties, allowMoving: true)
+        addWarranty
+    }
+
     var body: some View {
         Section(header: Text("Warranties")) {
-            ForEach(warranties, id: \.self) { warranty in
-                WarrantyListingView(warranty: warranty)
-            }
-            .onDelete(deleteFrom: warranties, context: viewContext)
-            .onMove(moveIn: warranties)
-            if editable, let underlying = underlying {
-                NavigationLink(
-                    destination: {
-                        NewWarrantyView(underlying: underlying)
-                    },
-                    label: {
-                        Text("\(Image(systemName: "plus")) Add warranty")
-                            .foregroundColor(.accentColor)
+            if warranties.count > 3 {
+                list(warranties: Array(warranties[0...2]), allowMoving: false)
+                NavigationLink("All warranties") {
+                    List {
+                        allWarranties
                     }
-                )
+                    .navigationTitle("Warranties")
+                    .modifier(WithEditButton())
+                }
+            } else {
+                allWarranties
             }
         }
     }

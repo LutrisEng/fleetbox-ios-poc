@@ -33,6 +33,20 @@ struct VehicleDetailsView: View {
             if let tireSet = vehicle.currentTireSet {
                 TireDetailView(tireSet: tireSet)
             }
+            NavigationLink(
+                destination: {
+                    Form {
+                        PartOdometersView(vehicle: vehicle)
+                    }
+                    .navigationTitle("Odometer")
+                },
+                label: {
+                    FormLinkLabel(
+                        title: "Odometer",
+                        value: "About \(Formatter.format(number: vehicle.approximateOdometer)) miles"
+                    )
+                }
+            )
         }
     }
 }

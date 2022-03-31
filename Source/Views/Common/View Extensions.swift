@@ -35,6 +35,15 @@ extension View {
     func maybe<T, V: View>(_ value: T?, @ViewBuilder callback: (T, Self) -> V) -> some View {
         self.maybe(value, callback: callback, nilCallback: { view in view })
     }
+
+    @ViewBuilder
+    func ifTrue<V: View>(_ cond: Bool, @ViewBuilder callback: (Self) -> V) -> some View {
+        if cond {
+            callback(self)
+        } else {
+            self
+        }
+    }
 }
 
 extension TextField {
