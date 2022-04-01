@@ -80,6 +80,7 @@
 		86B189AD27EB0109001CFBD3 /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189AC27EB0109001CFBD3 /* AttachmentView.swift */; };
 		86B189AF27EB0C6C001CFBD3 /* UIApplication Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */; };
 		86B189B227EB0F6B001CFBD3 /* Gzip in Frameworks */ = {isa = PBXBuildFile; productRef = 86B189B127EB0F6B001CFBD3 /* Gzip */; };
+		86B299DA27F6B5E200311957 /* VehicleLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B299D927F6B5E200311957 /* VehicleLabelView.swift */; };
 		86B487A227F289D00015CDB4 /* WithEditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B487A127F289D00015CDB4 /* WithEditButton.swift */; };
 		86B9190227F42DE0007DB163 /* View Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B9190127F42DE0007DB163 /* View Extensions.swift */; };
 		86C061EA27F151C000020C08 /* WarrantyListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C061E927F151C000020C08 /* WarrantyListingView.swift */; };
@@ -229,6 +230,7 @@
 		86B189A827EAFF5D001CFBD3 /* Temporary Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Temporary Files.swift"; sourceTree = "<group>"; };
 		86B189AC27EB0109001CFBD3 /* AttachmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
 		86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication Extensions.swift"; sourceTree = "<group>"; };
+		86B299D927F6B5E200311957 /* VehicleLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleLabelView.swift; sourceTree = "<group>"; };
 		86B487A127F289D00015CDB4 /* WithEditButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithEditButton.swift; sourceTree = "<group>"; };
 		86B5D09427D076B70040399C /* LineItemTypeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemTypeTest.swift; sourceTree = "<group>"; };
 		86B9190127F42DE0007DB163 /* View Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View Extensions.swift"; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				86500C9F27DC134C00A5111E /* MaintenanceLogView.swift */,
 				8612CD6527E1A58300976E8F /* VehicleImageView.swift */,
 				86F8F80C27EE774200442694 /* NewVehicleView.swift */,
+				86B299D927F6B5E200311957 /* VehicleLabelView.swift */,
 			);
 			path = Vehicle;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 				8664C24327DA91C200AE9ADB /* ShopView.swift in Sources */,
 				86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */,
 				86500C9127DC0DFE00A5111E /* PartOdometerRowView.swift in Sources */,
+				86B299DA27F6B5E200311957 /* VehicleLabelView.swift in Sources */,
 				864713FC27F1455700A12A23 /* Formatters.swift in Sources */,
 				86F8F80727EB197600442694 /* Editable.swift in Sources */,
 				86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */,

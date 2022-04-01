@@ -40,17 +40,7 @@ struct VehiclesView: View {
                             VehicleView(vehicle: vehicle)
                         },
                         label: {
-                            if let displayName = vehicle.displayName {
-                                VStack {
-                                    Text(displayName)
-                                        .font(.body.bold())
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                    Text(vehicle.fullModelName)
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                }
-                            } else {
-                                Text(vehicle.fullModelName)
-                            }
+                            VehicleLabelView(vehicle: vehicle)
                         }
                     )
                 }
