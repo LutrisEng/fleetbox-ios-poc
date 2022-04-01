@@ -34,7 +34,7 @@ struct AttachmentView: View {
         DispatchQueue.global(qos: .userInteractive).async {
             if let contents = attachment.fileContents {
                 let tempFileURL = temporaryFileURL(
-                    fileName: attachment.fileName,
+                    fileName: attachment.fileName?.replacingOccurrences(of: "/", with: "_"),
                     fileExtension: attachment.fileExtension
                 )
                 ignoreErrors {
