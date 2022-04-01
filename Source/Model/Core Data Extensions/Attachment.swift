@@ -18,6 +18,29 @@
 import Foundation
 
 extension Attachment: Sortable {
+    var owner: HasRawAttachments? {
+        get {
+            if let logItem = logItem {
+                return logItem
+            } else if let vehicle = vehicle {
+                return vehicle
+            } else if let tireSet = tireSet {
+                return tireSet
+            } else {
+                return nil
+            }
+        }
+        set {
+            if let logItem = newValue as? LogItem {
+                self.logItem = logItem
+            } else if let vehicle = newValue as? Vehicle {
+                self.vehicle = vehicle
+            } else if let tireSet = newValue as? TireSet {
+                self.tireSet = tireSet
+            }
+        }
+    }
+
     func normalize() {
         if fileExtension == nil || fileExtension == "" {
             if var split = fileName?.split(separator: ".") {

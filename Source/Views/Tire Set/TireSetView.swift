@@ -35,6 +35,9 @@ struct TireSetView: View {
             TireSetOdometerView(tireSet: tireSet)
             WarrantiesView(underlying: tireSet)
             TireSetSpecView(tireSet: tireSet)
+            Section(header: Text("Attachments")) {
+                AttachmentsView(owner: tireSet)
+            }
             TireSetActionsView(tireSet: tireSet)
         }
         .modifier(SaveOnLeave())

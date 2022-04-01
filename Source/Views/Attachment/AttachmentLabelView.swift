@@ -36,7 +36,7 @@ struct AttachmentLabelView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             HStack {
                 if let fileExtension = attachment.fileExtension {
-                    badge(text: fileExtension)
+                    badge(text: fileExtension.uppercased())
                 }
                 badge(text: Formatter.format(bytes: attachment.fileSize))
                 Spacer()

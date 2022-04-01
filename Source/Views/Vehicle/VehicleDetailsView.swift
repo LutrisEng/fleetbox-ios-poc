@@ -30,6 +30,9 @@ struct VehicleDetailsView: View {
                 .textInputAutocapitalization(.words)
             FleetboxTextField(value: $vehicle.model, name: "Model", example: dummyData.vehicleModel)
                 .textInputAutocapitalization(.words)
+            if let licensePlateNumber = vehicle.licensePlateNumber {
+                FormLinkLabel(title: "License plate", value: licensePlateNumber)
+            }
             if let tireSet = vehicle.currentTireSet {
                 TireDetailView(tireSet: tireSet)
             }

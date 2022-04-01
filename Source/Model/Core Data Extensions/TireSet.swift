@@ -24,7 +24,8 @@ extension TireSet: Sortable,
     HasRawLineItemFields, HasLineItemFields,
     HasLineItemFieldLineItems, HasLineItems,
     HasLineItemLogItems, HasLogItems,
-    HasRawWarranties, HasWarranties {
+    HasRawWarranties, HasWarranties,
+    HasRawAttachments, HasAttachments {
     var displayName: String {
         userDisplayName ?? "\(make ?? "Unknown Make") \(model ?? "Unknown Model")"
     }

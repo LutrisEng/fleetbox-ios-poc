@@ -25,6 +25,7 @@ message Vehicle {
     optional int64 breakin = 9;
     repeated Warranty warranties = 10;
     optional int64 milesPerYear = 11;
+    repeated Attachment attachments = 12;
 }
 
 message LogItem {
@@ -82,6 +83,7 @@ message TireSet {
     optional int64 breakin = 13;
     repeated Warranty warranties = 14;
     optional int64 baseMiles = 15;
+    repeated Attachment attachments = 16;
 }
 
 message Warranty {

@@ -25,7 +25,8 @@ extension Vehicle: Sortable,
     HasRawLogItems, HasLogItems,
     HasLogItemLineItems, HasLineItems,
     HasRawOdometerReadings, HasOdometerReadings,
-    HasRawWarranties, HasWarranties {
+    HasRawWarranties, HasWarranties,
+    HasRawAttachments, HasAttachments {
     var odometer: Int64 {
         odometerReadings.inverseChrono.first?.reading ?? 0
     }
@@ -115,6 +116,12 @@ extension Vehicle: Sortable,
         set {
             imageData = newValue?.pngData()
         }
+    }
+
+    var licensePlateNumber: String? {
+        ignoreErrors {
+            try lastLineItem(type: "stateRegistration")?.getFieldValueString("licensePlateNumber")
+        } ?? nil
     }
 
     func export() throws -> Data? {

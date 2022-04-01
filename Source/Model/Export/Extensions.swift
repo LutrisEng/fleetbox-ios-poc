@@ -91,6 +91,9 @@ extension Fleetbox_Export_TireSet {
         breakin = tireSet.breakin
         warranties = tireSet.warranties.map { Fleetbox_Export_Warranty(warranty: $0) }
         baseMiles = tireSet.baseMiles
+        attachments = tireSet.attachments.map {
+            Fleetbox_Export_Attachment(attachment: $0)
+        }
     }
 
     func importTireSet(context: NSManagedObjectContext) -> TireSet {
@@ -112,6 +115,10 @@ extension Fleetbox_Export_TireSet {
             _ = warranty.importWarranty(context: context, underlying: tireSet)
         }
         tireSet.baseMiles = baseMiles
+        for (index, attachment) in attachments.enumerated() {
+            let obj = attachment.importAttachment(context: context, index: index)
+            obj.tireSet = tireSet
+        }
         return tireSet
     }
 }
@@ -145,6 +152,9 @@ extension Fleetbox_Export_Vehicle {
         breakin = vehicle.breakin
         warranties = vehicle.warranties.map { Fleetbox_Export_Warranty(warranty: $0) }
         milesPerYear = vehicle.milesPerYear
+        attachments = vehicle.attachments.map {
+            Fleetbox_Export_Attachment(attachment: $0)
+        }
     }
 
     func importVehicle(context: NSManagedObjectContext, envelope: ExportEnvelopeTemplate) -> Vehicle {
@@ -172,6 +182,10 @@ extension Fleetbox_Export_Vehicle {
             _ = warranty.importWarranty(context: context, underlying: vehicle)
         }
         vehicle.milesPerYear = milesPerYear
+        for (index, attachment) in attachments.enumerated() {
+            let obj = attachment.importAttachment(context: context, index: index)
+            obj.vehicle = vehicle
+        }
         return vehicle
     }
 }

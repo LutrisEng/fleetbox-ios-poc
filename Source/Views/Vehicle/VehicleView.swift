@@ -31,6 +31,15 @@ struct VehicleView: View {
 
     @State private var exporting: Bool = false
 
+    @ViewBuilder
+    var formList: some View {
+        VehicleDetailsView(vehicle: vehicle)
+        Section(header: Text("Attachments")) {
+            AttachmentsView(owner: vehicle)
+        }
+        MaintenanceLogView(vehicle: vehicle)
+    }
+
     var body: some View {
         VStack {
             GeometryReader { geometry in
@@ -43,18 +52,14 @@ struct VehicleView: View {
                             Spacer()
                         }
                         Form {
-                            VehicleDetailsView(vehicle: vehicle)
-                            PartOdometersView(vehicle: vehicle)
-                            MaintenanceLogView(vehicle: vehicle)
+                            formList
                         }
                     }
                     .background(Color(UIColor.systemGroupedBackground))
                 } else {
                     Form {
                         VehicleImageView(imageData: $vehicle.imageData)
-                        VehicleDetailsView(vehicle: vehicle)
-                        WarrantiesView(underlying: vehicle)
-                        MaintenanceLogView(vehicle: vehicle)
+                        formList
                     }
                 }
             }

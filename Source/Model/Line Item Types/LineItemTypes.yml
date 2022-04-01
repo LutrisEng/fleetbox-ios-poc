@@ -660,6 +660,11 @@ categories:
             longDisplayName: Which state was this vehicle registered with?
             type: string
             example: Texas
+          - id: licensePlateNumber
+            shortDisplayName: License plate
+            longDisplayName: What is this vehicle's license plate number?
+            type: string
+            example: ABC123
 
   - id: cosmetic
     displayName: Cosmetic

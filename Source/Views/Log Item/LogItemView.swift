@@ -145,28 +145,7 @@ struct LogItemView: View {
                     }
                 }
                 Section(header: Text("Attachments")) {
-                    let attachments = logItem.attachments.sorted.normalize()
-                    ForEachObjects(attachments) { attachment in
-                        NavigationLink(
-                            destination: {
-                                AttachmentView(attachment: attachment)
-                            },
-                            label: {
-                                AttachmentLabelView(attachment: attachment)
-                            }
-                        )
-                    }
-                    if addingAttachments {
-                        ProgressView()
-                    }
-                    if editable {
-                        FilePicker(
-                            types: [.data],
-                            allowMultiple: true,
-                            title: "Add attachment",
-                            onPicked: addAttachments
-                        )
-                    }
+                    AttachmentsView(owner: logItem)
                 }
             }
         }
@@ -174,38 +153,6 @@ struct LogItemView: View {
         .modifier(WithEditButton())
         .navigationTitle("Log item")
         .navigationBarTitleDisplayMode(.inline)
-    }
-
-    private func addAttachments(urls: [URL]) {
-        withAnimation {
-            addingAttachments = true
-        }
-        DispatchQueue.global(qos: .userInitiated).async {
-            let attachments = urls.compactMap { url -> Attachment? in
-                do {
-                    let attachment = Attachment(context: viewContext)
-                    try attachment.importFile(url: url)
-                    return attachment
-                } catch {
-                    SentrySDK.capture(error: error)
-                    return nil
-                }
-            }
-            DispatchQueue.main.async {
-                withAnimation {
-                    var sortOrder = (logItem.attachments.map(\.sortOrder).max() ?? 0) + 1
-                    for attachment in attachments {
-                        attachment.logItem = logItem
-                        attachment.sortOrder = sortOrder
-                        sortOrder += 1
-                    }
-                    addingAttachments = false
-                    ignoreErrors {
-                        try viewContext.save()
-                    }
-                }
-            }
-        }
     }
 }
 
