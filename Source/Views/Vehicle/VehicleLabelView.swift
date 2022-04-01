@@ -22,6 +22,10 @@ struct VehicleLabelView: View {
 
     @State private var image: UIImage?
 
+    var additionalDetails: Text {
+        Text("\(Formatter.format(number: vehicle.approximateOdometer)) miles")
+    }
+
     var body: some View {
         VStack(alignment: .leading) {
             if let image = image {
@@ -34,11 +38,25 @@ struct VehicleLabelView: View {
             if let displayName = vehicle.displayName {
                 (
                     Text(displayName).font(.body.bold()) +
-                        Text("\n") + Text(vehicle.fullModelName)
+                        Text("\n") +
+                        (
+                            Text(vehicle.fullModelName) +
+                            Text(", ") +
+                            additionalDetails
+                        )
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 )
                 .multilineTextAlignment(.leading)
             } else {
-                Text(vehicle.fullModelName)
+                (
+                    Text(vehicle.fullModelName).font(.body.bold()) +
+                        Text("\n") +
+                        additionalDetails
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                )
+                .multilineTextAlignment(.leading)
             }
         }
         .onAppear {
