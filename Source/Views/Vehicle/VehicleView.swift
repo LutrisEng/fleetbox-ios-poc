@@ -34,6 +34,7 @@ struct VehicleView: View {
     @ViewBuilder
     var formList: some View {
         VehicleDetailsView(vehicle: vehicle)
+        WarrantiesView(underlying: vehicle)
         Section(header: Text("Attachments")) {
             AttachmentsView(owner: vehicle)
         }
