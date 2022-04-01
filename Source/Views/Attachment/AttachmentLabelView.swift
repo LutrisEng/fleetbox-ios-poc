@@ -23,8 +23,8 @@ struct AttachmentLabelView: View {
     @ViewBuilder
     func badge<T: Textable>(text: T) -> some View {
         text.text
-            .padding([.leading, .trailing], 10)
-            .padding([.top, .bottom], 5)
+            .padding([.leading, .trailing], 5)
+            .padding([.top, .bottom], 2.5)
             .background(Color.accentColor)
             .foregroundColor(.white)
             .cornerRadius(5)
