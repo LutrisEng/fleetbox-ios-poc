@@ -119,9 +119,14 @@ extension Vehicle: Sortable,
     }
 
     var licensePlateNumber: String? {
-        ignoreErrors {
+        let licensePlateNumber = ignoreErrors {
             try lastLineItem(type: "stateRegistration")?.getFieldValueString("licensePlateNumber")
         } ?? nil
+        if licensePlateNumber == "" {
+            return nil
+        } else {
+            return licensePlateNumber
+        }
     }
 
     func export() throws -> Data? {
