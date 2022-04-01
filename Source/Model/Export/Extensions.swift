@@ -279,6 +279,10 @@ extension Fleetbox_Export_Attachment {
         if let filename = attachment.fileName {
             self.filename = filename
         }
+        if let fileExtension = attachment.fileExtension {
+            self.fileExtension = fileExtension
+        }
+        self.fileSize = attachment.fileSize
         if let contents = attachment.fileContents {
             self.contents = contents
         }
@@ -287,9 +291,17 @@ extension Fleetbox_Export_Attachment {
     func importAttachment(context: NSManagedObjectContext, index: Int) -> Attachment {
         let attachment = Attachment(context: context)
         attachment.sortOrder = Int16(index)
-        attachment.fileName = filename
+        if hasFilename {
+            attachment.fileName = filename
+        }
         if hasContents {
             attachment.fileContents = contents
+        }
+        if hasFileExtension {
+            attachment.fileExtension = fileExtension
+        }
+        if hasFileSize {
+            attachment.fileSize = fileSize
         }
         return attachment
     }

@@ -60,6 +60,8 @@ message OdometerReading {
 message Attachment {
     optional string filename = 1;
     optional bytes contents = 2;
+    optional string fileExtension = 3;
+    optional int64 fileSize = 4;
 }
 
 message Shop {
