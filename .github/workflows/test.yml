@@ -5,7 +5,7 @@ on: [push]
 jobs:
   test:
     name: Test ${{ matrix.scheme }} on ${{ matrix.destination['name'] }}
-    runs-on: macos-11
+    runs-on: macos-12
     strategy:
       matrix:
         destination:
@@ -13,9 +13,8 @@ jobs:
             destination: 'platform=iOS Simulator,name=iPhone 13'
           - name: iPad (9th generation)
             destination: 'platform=iOS Simulator,name=iPad (9th generation)'
-# Waiting for GitHub actions to add macOS 12 support
-#          - name: macOS
-#            destination: 'platform=macOS'
+          - name: macOS
+            destination: 'platform=macOS'
         scheme:
           - Fleetbox Debug
           - Fleetbox Release
@@ -30,7 +29,7 @@ jobs:
       - name: Setup Xcode
         uses: maxim-lobanov/setup-xcode@v1.4.1
         with:
-          xcode-version: '13.2.1'
+          xcode-version: '13.3'
       - name: Build
         run: set -o pipefail && xcodebuild -scheme '${{ matrix.scheme }}' -destination '${{ matrix.destination['destination'] }}' clean build | xcpretty
       - name: Test
