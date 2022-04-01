@@ -20,7 +20,7 @@ import CoreData
 import Sentry
 
 extension TireSet: Sortable,
-    TracksTime, TracksMiles, TracksApproximateMiles,
+    TracksTime, TracksMiles, TracksApproximateMiles, HasBreakin,
     HasRawLineItemFields, HasLineItemFields,
     HasLineItemFieldLineItems, HasLineItems,
     HasLineItemLogItems, HasLogItems,
@@ -174,37 +174,6 @@ extension TireSet: Sortable,
     var topSpeed: Int? {
         guard let firstCh = speedRating?.first else { return nil }
         return tireSpeedRatingMap[firstCh]
-    }
-
-    var breakinPercentage: String? {
-        let odo = approximateOdometer
-        if breakin != 0 && odo <= breakin {
-            return "About " +
-                Formatter.format(wholePercentage: Double(odo) / Double(breakin)) +
-                " complete"
-        } else {
-            return nil
-        }
-    }
-
-    var breakinProgress: Double? {
-        if breakin != 0 {
-            return min(1, Double(approximateOdometer) / Double(breakin))
-        } else {
-            return nil
-        }
-    }
-
-    var breakinBadge: Badge? {
-        if breakin != 0 {
-            let odo = odometer
-            if odo > breakin {
-                return .success
-            } else {
-                return .warning
-            }
-        }
-        return nil
     }
 
     func mergeWith(_ other: TireSet) {

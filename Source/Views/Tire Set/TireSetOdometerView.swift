@@ -44,12 +44,7 @@ struct TireSetOdometerView: View {
                     value: "\(Formatter.format(number: tireSet.approximateOdometer)) miles"
                 )
             }
-            FleetboxTextField(value: $tireSet.breakin, name: "Break-in period", example: 500)
-                .unit("miles")
-                .badge(tireSet.breakinBadge)
-                .caption(tireSet.breakinPercentage)
-                .progress(tireSet.breakinProgress)
-                .progressColor((tireSet.breakinProgress ?? 0) < 1 ? .yellow : .green)
+            BreakinField(obj: tireSet, name: "Break-in period", example: 500)
         }
     }
 }

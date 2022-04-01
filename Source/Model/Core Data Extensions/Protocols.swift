@@ -327,3 +327,37 @@ extension NSManagedObject: Notifiable {
         objectWillChange.send()
     }
 }
+
+protocol HasBreakin: AnyObject, TracksApproximateMiles {
+    var breakin: Int64 { get set }
+}
+
+extension HasBreakin {
+    var breakinBadge: Badge? {
+        if breakin != 0 {
+            if approximateOdometer > breakin {
+                return .success
+            } else {
+                return .warning
+            }
+        }
+        return nil
+    }
+
+    var breakinPercentage: String? {
+        if let progress = breakinProgress {
+            return "About \(Formatter.format(wholePercentage: progress)) complete"
+        } else {
+            return nil
+        }
+    }
+
+    var breakinProgress: Double? {
+        let odo = approximateOdometer
+        if breakin != 0 && odo <= breakin {
+            return Double(odo) / Double(breakin)
+        } else {
+            return nil
+        }
+    }
+}
