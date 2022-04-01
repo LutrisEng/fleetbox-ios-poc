@@ -71,11 +71,17 @@ extension DynamicViewContent {
 
     func onMove<T>(moveIn: [T]) -> some DynamicViewContent
     where T: Sortable & Hashable {
+        return onMove(moveIn: moveIn) {}
+    }
+
+    func onMove<T>(moveIn: [T], callback: (() -> Void)?) -> some DynamicViewContent
+    where T: Sortable & Hashable {
         return onMove { indices, offset in
             withAnimation {
                 var arr = moveIn
                 arr.move(fromOffsets: indices, toOffset: offset)
                 arr.setSortOrder()
+                callback?()
             }
         }
     }

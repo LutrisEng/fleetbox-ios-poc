@@ -16,6 +16,7 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import Foundation
+import CoreData
 
 protocol Sortable {
     var sortOrder: Int16 { get set }
@@ -314,5 +315,15 @@ protocol HasLineItemFieldLineItems: HasLineItemFields {}
 extension HasLineItemFieldLineItems {
     var lineItems: Set<LineItem> {
         Set(fieldsSet.compactMap { $0.lineItem })
+    }
+}
+
+protocol Notifiable {
+    func notifyChange()
+}
+
+extension NSManagedObject: Notifiable {
+    func notifyChange() {
+        objectWillChange.send()
     }
 }

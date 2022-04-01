@@ -19,7 +19,7 @@ import SwiftUI
 import FilePicker
 import ImagePickerView
 
-struct AttachmentsView<T: ObservableObject & HasRawAttachments & HasAttachments>: View {
+struct AttachmentsView<T: ObservableObject & HasRawAttachments & HasAttachments & Notifiable>: View {
     @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -41,10 +41,13 @@ struct AttachmentsView<T: ObservableObject & HasRawAttachments & HasAttachments>
                 }
             )
         }
+        .onMove {
+            print("notify change")
+            owner.notifyChange()
+        }
         if adding {
             ProgressView()
-        }
-        if editable {
+        } else if editable {
             FilePicker(
                 types: [.data],
                 allowMultiple: true,

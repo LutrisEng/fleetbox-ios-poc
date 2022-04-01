@@ -22,6 +22,7 @@ struct ForEachObjects<T: NSManagedObject & Sortable, V: View>: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     let objects: [T]
+    var changeCallback: (() -> Void)?
     let allowDelete: Bool
     let allowMove: Bool
     let content: (T) -> V
@@ -45,17 +46,31 @@ struct ForEachObjects<T: NSManagedObject & Sortable, V: View>: View {
         self.init(objects, allowDelete: true, allowMove: allowMove, content: content)
     }
 
+    func onMove(_ callback: @escaping () -> Void) -> Self {
+        var view = self
+        view.changeCallback = callback
+        return view
+    }
+
+    func addOnDelete<T: DynamicViewContent>(_ view: T) -> some DynamicViewContent {
+        view.onDelete(deleteFrom: objects, context: viewContext)
+    }
+
+    func addOnMove<T: DynamicViewContent>(_ view: T) -> some DynamicViewContent {
+        view.onMove(moveIn: objects, callback: changeCallback)
+    }
+
     var body: some View {
         let baseView = ForEach<[T], T, V>(objects, id: \.self, content: content)
         if allowDelete {
-            let deletableView = baseView.onDelete(deleteFrom: objects, context: viewContext)
+            let deletableView = addOnDelete(baseView)
             if allowMove {
-                deletableView.onMove(moveIn: objects)
+                addOnMove(deletableView)
             } else {
                 deletableView
             }
         } else if allowMove {
-            baseView.onMove(moveIn: objects)
+            addOnMove(baseView)
         } else {
             baseView
         }
