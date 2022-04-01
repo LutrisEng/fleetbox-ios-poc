@@ -22,11 +22,11 @@ struct WarrantyListingView: View {
 
     var value: LocalizedStringKey {
         if warranty.miles != 0 && warranty.months != 0 {
-            return "\(warranty.miles) miles\nor \(warranty.months) months"
+            return "\(warranty.miles) miles\nor \(Formatter.format(monthsLabel: Int(warranty.months)))"
         } else if warranty.miles != 0 {
             return "\(warranty.miles) miles"
         } else if warranty.months != 0 {
-            return "\(warranty.months) months"
+            return "\(Formatter.format(monthsLabel: Int(warranty.months)))"
         } else {
             return ""
         }

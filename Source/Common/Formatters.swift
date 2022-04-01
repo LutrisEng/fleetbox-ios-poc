@@ -18,20 +18,45 @@
 import Foundation
 
 struct Formatter {
-    static func createNumberFormatter() -> NumberFormatter {
+    static func numberFormatter() -> NumberFormatter {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.usesGroupingSeparator = true
         return formatter
     }
 
-    static func createNumberFormatter(_ block: (NumberFormatter) -> Void) -> NumberFormatter {
-        let formatter = createNumberFormatter()
+    static func numberFormatter(_ block: (NumberFormatter) -> Void) -> NumberFormatter {
+        let formatter = numberFormatter()
         block(formatter)
         return formatter
     }
 
-    static let number: NumberFormatter = createNumberFormatter()
+    static func dateComponentsFormatter() -> DateComponentsFormatter {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        formatter.maximumUnitCount = 1
+        formatter.includesApproximationPhrase = true
+        formatter.zeroFormattingBehavior = .dropAll
+        return formatter
+    }
+
+    static func dateComponentsFormatter(_ block: (DateComponentsFormatter) -> Void) -> DateComponentsFormatter {
+        let formatter = dateComponentsFormatter()
+        block(formatter)
+        return formatter
+    }
+
+    static func dateFormatter() -> DateFormatter {
+        return DateFormatter()
+    }
+
+    static func dateFormatter(_ block: (DateFormatter) -> Void) -> DateFormatter {
+        let formatter = dateFormatter()
+        block(formatter)
+        return formatter
+    }
+
+    static let number: NumberFormatter = numberFormatter()
 
     static func format(number: NSNumber) -> String {
         return self.number.string(from: number) ?? "\(number)"
@@ -45,7 +70,7 @@ struct Formatter {
         return self.number.string(from: NSNumber(value: number)) ?? "\(number)"
     }
 
-    static let wholeNumber: NumberFormatter = createNumberFormatter { formatter in
+    static let wholeNumber: NumberFormatter = numberFormatter { formatter in
         formatter.maximumFractionDigits = 0
     }
 
@@ -53,7 +78,7 @@ struct Formatter {
         return self.wholeNumber.string(from: wholeNumber) ?? "\(wholeNumber)"
     }
 
-    static let wholePercentage: NumberFormatter = createNumberFormatter { formatter in
+    static let wholePercentage: NumberFormatter = numberFormatter { formatter in
         formatter.numberStyle = .percent
         formatter.maximumFractionDigits = 0
     }
@@ -62,37 +87,42 @@ struct Formatter {
         return self.wholePercentage.string(from: wholePercentage) ?? "\(wholePercentage / 100)%"
     }
 
-    static let durationLabel: DateComponentsFormatter = {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.month, .weekOfMonth, .day, .hour, .minute]
-        formatter.unitsStyle = .full
-        formatter.maximumUnitCount = 1
-        formatter.includesApproximationPhrase = true
-        formatter.zeroFormattingBehavior = .dropAll
-        return formatter
-    }()
+    static let durationLabel: DateComponentsFormatter = dateComponentsFormatter { formatter in
+        formatter.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute]
+    }
 
     static func format(durationLabel: TimeInterval) -> String {
         return self.durationLabel.string(from: durationLabel) ?? ""
     }
 
-    static let dateLabel: DateFormatter = {
-        let formatter = DateFormatter()
+    static let monthsLabel: DateComponentsFormatter = dateComponentsFormatter { formatter in
+        formatter.allowedUnits = [.year, .month]
+        formatter.includesApproximationPhrase = false
+    }
+
+    static func format(monthsLabel: Int) -> String {
+        let dateComponents = DateComponents(month: monthsLabel)
+        return format(monthsLabel: dateComponents)
+    }
+
+    static func format(monthsLabel: DateComponents) -> String {
+        return self.monthsLabel.string(from: monthsLabel) ??
+            "\(monthsLabel.year ?? 0) year(s) \(monthsLabel.month ?? 0) month(s)"
+    }
+
+    static let dateLabel: DateFormatter = dateFormatter { formatter in
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        return formatter
-    }()
+    }
 
     static func format(dateLabel: Date) -> String {
         return self.dateLabel.string(from: dateLabel)
     }
 
-    static let dateTimeLabel: DateFormatter = {
-        let formatter = DateFormatter()
+    static let dateTimeLabel: DateFormatter = dateFormatter { formatter in
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
-        return formatter
-    }()
+    }
 
     static func format(dateTimeLabel: Date) -> String {
         return self.dateTimeLabel.string(from: dateTimeLabel)

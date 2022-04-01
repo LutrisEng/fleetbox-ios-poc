@@ -34,7 +34,7 @@ struct WarrantyView: View {
                 let monthsSince = Warranty.monthsSince(origin: origin)
                 FormLinkLabel(
                     title: "Time elapsed",
-                    value: "About \(Formatter.format(wholeNumber: monthsSince)) months"
+                    value: "About \(Formatter.format(monthsLabel: Int(round(monthsSince))))"
                 )
                 .progress(warranty.monthsProgress)
                 .caption(warranty.monthsPercentage)
