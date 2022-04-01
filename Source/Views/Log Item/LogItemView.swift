@@ -118,7 +118,7 @@ struct LogItemView: View {
                         Text("No line items")
                             .foregroundColor(.secondary)
                     } else {
-                        ForEach(lineItems) { lineItem in
+                        ForEachObjects(lineItems) { lineItem in
                             if editable {
                                 NavigationLink(destination: LineItemView(lineItem: lineItem)) {
                                     LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
@@ -126,6 +126,9 @@ struct LogItemView: View {
                             } else {
                                 LineItemLabelView(lineItem: lineItem).details.padding([.top, .bottom], 10)
                             }
+                        }
+                        .onMove {
+                            logItem.notifyChange()
                         }
                     }
                     if editable {

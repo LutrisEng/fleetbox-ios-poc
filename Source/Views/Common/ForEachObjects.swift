@@ -27,22 +27,27 @@ struct ForEachObjects<T: NSManagedObject & Sortable, V: View>: View {
     let allowMove: Bool
     let content: (T) -> V
 
-    init(_ objects: [T], allowDelete: Bool, allowMove: Bool, content: @escaping (T) -> V) {
+    init(
+        _ objects: [T],
+        allowDelete: Bool,
+        allowMove: Bool,
+        @ViewBuilder content: @escaping (T) -> V
+    ) {
         self.objects = objects
         self.allowDelete = allowDelete
         self.allowMove = allowMove
         self.content = content
     }
 
-    init(_ objects: [T], content: @escaping (T) -> V) {
+    init(_ objects: [T], @ViewBuilder content: @escaping (T) -> V) {
         self.init(objects, allowDelete: true, allowMove: true, content: content)
     }
 
-    init(_ objects: [T], allowDelete: Bool, content: @escaping (T) -> V) {
+    init(_ objects: [T], allowDelete: Bool, @ViewBuilder content: @escaping (T) -> V) {
         self.init(objects, allowDelete: allowDelete, allowMove: true, content: content)
     }
 
-    init(_ objects: [T], allowMove: Bool, content: @escaping (T) -> V) {
+    init(_ objects: [T], allowMove: Bool, @ViewBuilder content: @escaping (T) -> V) {
         self.init(objects, allowDelete: true, allowMove: allowMove, content: content)
     }
 
