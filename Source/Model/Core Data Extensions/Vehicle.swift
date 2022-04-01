@@ -135,6 +135,34 @@ extension Vehicle: Sortable,
         return try exportable?.serializedData()
     }
 
+    var breakinBadge: Badge? {
+        if breakin != 0 {
+            if odometer > breakin {
+                return .success
+            } else {
+                return .warning
+            }
+        }
+        return nil
+    }
+
+    var breakinPercentage: String? {
+        if let progress = breakinProgress {
+            return "About \(Formatter.format(wholePercentage: progress)) complete"
+        } else {
+            return nil
+        }
+    }
+
+    var breakinProgress: Double? {
+        let odo = odometer
+        if breakin != 0 && odo <= breakin {
+            return Double(odo) / Double(breakin)
+        } else {
+            return nil
+        }
+    }
+
     static func importData(_ data: Data, context: NSManagedObjectContext) throws -> Vehicle? {
         let envelope = try Fleetbox_Export_ExportEnvelope(serializedData: data)
         let tmpl = ExportEnvelopeTemplate(context: context, envelope: envelope)

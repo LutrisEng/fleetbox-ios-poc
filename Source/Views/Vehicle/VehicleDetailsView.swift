@@ -36,6 +36,22 @@ struct VehicleDetailsView: View {
             if let tireSet = vehicle.currentTireSet {
                 TireDetailView(tireSet: tireSet)
             }
+            FleetboxTextField(value: $vehicle.breakin, name: "Break-in period", example: 1000)
+                .unit("miles")
+                .badge(vehicle.breakinBadge)
+                .caption(vehicle.breakinPercentage)
+                .progress(vehicle.breakinProgress)
+                .progressColor((vehicle.breakinProgress ?? 0) < 1 ? .yellow : .green)
+            if let tireSet = vehicle.currentTireSet {
+                FormLinkLabel(
+                    title: "Tire break-in period",
+                    value: "\(Formatter.format(number: tireSet.breakin)) miles"
+                )
+                .badge(tireSet.breakinBadge)
+                .caption(tireSet.breakinPercentage)
+                .progress(tireSet.breakinProgress)
+                .progressColor((tireSet.breakinProgress ?? 0) < 1 ? .yellow : .green)
+            }
             NavigationLink(
                 destination: {
                     Form {

@@ -38,34 +38,6 @@ struct PartOdometersView: View {
         }
     }
 
-    var breakinBadge: Badge? {
-        if vehicle.breakin != 0 {
-            let odo = vehicle.odometer
-            if odo > vehicle.breakin {
-                return .success
-            } else {
-                return .warning
-            }
-        }
-        return nil
-    }
-
-    var breakinPercentage: String? {
-        if let progress = breakinProgress {
-            return "About \(Formatter.format(wholePercentage: progress)) complete"
-        } else {
-            return nil
-        }
-    }
-
-    var breakinProgress: Double? {
-        if vehicle.breakin != 0 && vehicleOdometer <= vehicle.breakin {
-            return Double(vehicleOdometer) / Double(vehicle.breakin)
-        } else {
-            return nil
-        }
-    }
-
     var roundedMilesPerYear: Int64? {
         if let calculated = vehicle.calculatedAverageMilesPerYear {
             return calculated - (calculated % 1000)
@@ -128,22 +100,6 @@ struct PartOdometersView: View {
             NavigationLink("View history") {
                 OdometerReadingsView(vehicle: vehicle)
                     .navigationTitle("Odometer readings")
-            }
-            FleetboxTextField(value: $vehicle.breakin, name: "Break-in period", example: 1000)
-                .unit("miles")
-                .badge(breakinBadge)
-                .caption(breakinPercentage)
-                .progress(breakinProgress)
-                .progressColor((breakinProgress ?? 0) < 1 ? .yellow : .green)
-            if let tireSet = vehicle.currentTireSet {
-                FormLinkLabel(
-                    title: "Tire break-in period",
-                    value: "\(Formatter.format(number: tireSet.breakin)) miles"
-                )
-                .badge(tireSet.breakinBadge)
-                .caption(tireSet.breakinPercentage)
-                .progress(tireSet.breakinProgress)
-                .progressColor((tireSet.breakinProgress ?? 0) < 1 ? .yellow : .green)
             }
         }
         .onChange(of: vehicle.approximateOdometer) { newOdometer in
