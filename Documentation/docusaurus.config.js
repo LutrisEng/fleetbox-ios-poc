@@ -105,7 +105,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Lutris, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Lutris, Inc. Lutris and Fleetbox are trademarks of Lutris, Inc. All rights reserved. App Store, Mac App Store, iOS, iPadOS, and macOS are trademarks of Apple, Inc., registered in the U.S. and other countries. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
