@@ -4,7 +4,9 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import styles from './index.module.css';
-import HomepageFeatures from '@site/src/components/HomepageFeatures';
+// import HomepageFeatures from '@site/src/components/HomepageFeatures';
+import DownloadOnTheAppStore from '@site/static/img/appstore.svg';
+import DownloadOnTheMacAppStore from '@site/static/img/macappstore.svg';
 
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
@@ -14,6 +16,14 @@ function HomepageHeader() {
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
         <div className={styles.buttons}>
+          <div className={styles.appstoreButtons}>
+            <Link to="about:blank">
+              <DownloadOnTheAppStore />
+            </Link>
+            <Link to="about:blank">
+              <DownloadOnTheMacAppStore />
+            </Link>
+          </div>
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
