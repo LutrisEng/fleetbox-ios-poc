@@ -22,8 +22,20 @@ struct VehicleLabelView: View {
 
     @State private var image: UIImage?
 
-    var additionalDetails: Text {
+    var vinLine: Text {
+        if let vin = vehicle.vin, vin != "" {
+            return Text("\(vin)\n")
+        } else {
+            return Text("")
+        }
+    }
+
+    var odometerLine: Text {
         Text("\(Formatter.format(number: vehicle.approximateOdometer)) miles")
+    }
+
+    var additionalDetails: Text {
+        (vinLine + odometerLine).font(.caption)
     }
 
     var body: some View {
@@ -44,7 +56,7 @@ struct VehicleLabelView: View {
                         Text("\n") +
                         (
                             Text(vehicle.fullModelName) +
-                            Text(", ") +
+                            Text("\n") +
                             additionalDetails
                         )
                         .foregroundColor(.secondary)
