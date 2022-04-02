@@ -37,3 +37,9 @@
 [data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+@media (min-width: 997px) {
+  p > img {
+    max-width: 25vw;
+  }
+}
