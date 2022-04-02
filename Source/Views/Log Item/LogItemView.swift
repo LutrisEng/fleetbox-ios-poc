@@ -25,19 +25,11 @@ struct LogItemView: View {
 
     @ObservedObject var logItem: LogItem
 
-    enum NavigationState: Hashable {
-        case addLineItem, addShop, addAttachment
-    }
-
-    @State private var navigationState: NavigationState?
-
     func createLineItem(type: LineItemType) -> LineItem {
         withAnimation {
             LineItem(context: viewContext, logItem: logItem, type: type)
         }
     }
-
-    @State private var addingAttachments: Bool = false
 
     var body: some View {
         VStack {

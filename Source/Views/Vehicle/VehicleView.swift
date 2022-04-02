@@ -25,7 +25,6 @@ enum ExportError: Error {
 
 struct VehicleView: View {
     @Environment(\.editable) private var editable
-    @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var vehicle: Vehicle
 
@@ -124,14 +123,6 @@ struct VehicleView: View {
                     exporting = false
                 }
             }
-        }
-    }
-
-    private func addLogItem() {
-        withAnimation {
-            let logItem = LogItem(context: viewContext)
-            logItem.vehicle = vehicle
-            logItem.performedAt = Date.now
         }
     }
 }

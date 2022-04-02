@@ -20,12 +20,11 @@ import CoreData
 import Sentry
 
 struct EditLineItemFieldView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var field: LineItemField
 
     @State private var showInfo: Bool = false
 
-    @ViewBuilder func infoButton(type: LineItemTypeField) -> some View {
+    @ViewBuilder var infoButton: some View {
         Button(
             action: { withAnimation { showInfo.toggle() } },
             label: { Image(systemName: "info.circle") }
@@ -93,7 +92,7 @@ struct EditLineItemFieldView: View {
                             HStack {
                                 Text(type.shortDisplayNameLocal)
                                 Spacer()
-                                infoButton(type: type)
+                                infoButton
                             }
                             if showInfo {
                                 info(type: type, alignment: .leading)
@@ -110,7 +109,7 @@ struct EditLineItemFieldView: View {
                         }
                     }
                     if showInfoButton {
-                        infoButton(type: type)
+                        infoButton
                     }
                 }
                 if showInfoButton && showInfo {

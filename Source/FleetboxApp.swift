@@ -43,7 +43,6 @@ enum ImportError: Error {
 struct FleetboxAppMainWindow: View {
     @Environment(\.scenePhase) var scenePhase
     @Environment(\.managedObjectContext) var viewContext
-    @Environment(\.colorScheme) var colorScheme
 
     struct PreviewImportState {
         let url: URL

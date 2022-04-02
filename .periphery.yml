@@ -1,0 +1,5 @@
+project: Fleetbox.xcodeproj
+schemes:
+- Fleetbox Debug
+targets:
+- Fleetbox

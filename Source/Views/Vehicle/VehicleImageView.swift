@@ -20,7 +20,6 @@ import ImagePickerView
 
 struct VehicleImageView: View {
     @Environment(\.editable) private var editable
-    @Environment(\.managedObjectContext) private var viewContext
 
     @Binding var imageData: Data?
 

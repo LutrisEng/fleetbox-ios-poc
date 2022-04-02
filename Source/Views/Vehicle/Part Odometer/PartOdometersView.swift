@@ -19,7 +19,6 @@ import SwiftUI
 
 struct PartOdometersView: View {
     @Environment(\.editable) private var editable
-    @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var vehicle: Vehicle
 

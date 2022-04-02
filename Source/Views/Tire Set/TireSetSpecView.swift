@@ -54,7 +54,6 @@ struct TireSetSpecView: View {
             .textInputAutocapitalization(.characters)
     }
 
-    @Environment(\.editable) private var editable
     var body: some View {
         Section(header: Text("Specs")) {
             FormLinkLabel(

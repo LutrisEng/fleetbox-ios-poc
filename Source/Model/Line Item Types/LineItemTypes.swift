@@ -82,12 +82,12 @@ struct LineItemTypes {
     private let filePath = Bundle.main.url(forResource: "LineItemTypes", withExtension: "json")!
     private let decoder = JSONDecoder()
     private let yamlContents: YamlContents
-    public let topLevelCategories: [LineItemTypeCategory]
-    public let allCategories: [LineItemTypeCategory]
-    public let allTypes: [LineItemType]
-    public let allCategoriesById: [String: LineItemTypeCategory]
-    public let allTypesById: [String: LineItemType]
-    public let hierarchyItems: [LineItemTypeHierarchyItem]
+    let topLevelCategories: [LineItemTypeCategory]
+    let allCategories: [LineItemTypeCategory]
+    let allTypes: [LineItemType]
+    let allCategoriesById: [String: LineItemTypeCategory]
+    let allTypesById: [String: LineItemType]
+    let hierarchyItems: [LineItemTypeHierarchyItem]
 
     init() throws {
         yamlContents = try decoder.decode(YamlContents.self, from: try Data(contentsOf: filePath))

@@ -22,7 +22,6 @@ struct FleetboxTextField: View {
     @Environment(\.editable) private var editable
     @Environment(\.managedObjectContext) private var viewContext
 
-    var value: Binding<String?>
     private var wrappedValue: Binding<String>
     @State private var tempValue: String = ""
     @State private var pageShown: Bool = false
@@ -39,7 +38,6 @@ struct FleetboxTextField: View {
     private var _autocapitalization: TextInputAutocapitalization?
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: Textable? = nil) {
-        self.value = value
         wrappedValue = convertToNonNilBinding(string: value)
         self.name = name
         self.example = example

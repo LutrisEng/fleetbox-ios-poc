@@ -18,35 +18,6 @@
 import SwiftUI
 import CoreData
 
-extension View {
-    @ViewBuilder
-    func maybe<T, Exists: View, Nil: View>(
-        _ value: T?,
-        @ViewBuilder callback: (T, Self) -> Exists,
-        @ViewBuilder nilCallback: (Self) -> Nil
-    ) -> some View {
-        if let value = value {
-            callback(value, self)
-        } else {
-            nilCallback(self)
-        }
-    }
-
-    @ViewBuilder
-    func maybe<T, V: View>(_ value: T?, @ViewBuilder callback: (T, Self) -> V) -> some View {
-        self.maybe(value, callback: callback, nilCallback: { view in view })
-    }
-
-    @ViewBuilder
-    func ifTrue<V: View>(_ cond: Bool, @ViewBuilder callback: (Self) -> V) -> some View {
-        if cond {
-            callback(self)
-        } else {
-            self
-        }
-    }
-}
-
 extension TextField {
     @ViewBuilder
     func firstResponder() -> some View {
@@ -67,11 +38,6 @@ extension DynamicViewContent {
                 }
             }
         }
-    }
-
-    func onMove<T>(moveIn: [T]) -> some DynamicViewContent
-    where T: Sortable & Hashable {
-        return onMove(moveIn: moveIn) {}
     }
 
     func onMove<T>(moveIn: [T], callback: (() -> Void)?) -> some DynamicViewContent

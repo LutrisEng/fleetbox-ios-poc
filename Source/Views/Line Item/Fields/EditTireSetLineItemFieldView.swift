@@ -18,7 +18,6 @@
 import SwiftUI
 
 struct EditTireSetLineItemFieldView: View {
-    @Environment(\.managedObjectContext) private var viewContext
     @ObservedObject var field: LineItemField
     let type: LineItemTypeField
     @State private var sheetPresented: Bool = false

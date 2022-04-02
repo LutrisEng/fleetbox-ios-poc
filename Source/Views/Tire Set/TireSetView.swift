@@ -18,8 +18,6 @@
 import SwiftUI
 
 struct TireSetView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
     @ObservedObject var tireSet: TireSet
 
     var body: some View {
@@ -38,6 +36,7 @@ struct TireSetView: View {
             Section(header: Text("Attachments")) {
                 AttachmentsView(owner: tireSet)
             }
+            TireSetLogView(tireSet: tireSet)
             TireSetActionsView(tireSet: tireSet)
         }
         .modifier(SaveOnLeave())

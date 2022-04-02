@@ -19,7 +19,6 @@ import SwiftUI
 
 struct OdometerReadingView: View {
     @Environment(\.editable) private var editable
-    @Environment(\.managedObjectContext) private var viewContext
 
     @ObservedObject var odometerReading: OdometerReading
 
