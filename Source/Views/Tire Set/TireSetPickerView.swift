@@ -71,8 +71,7 @@ struct TireSetPickerView: View {
                         dismiss()
                     }, label: {
                         HStack {
-                            Text(tireSet.displayName)
-                                    .foregroundColor(.primary)
+                            TireSetLabelView(tireSet: tireSet)
                             if selected == tireSet {
                                 Spacer()
                                 Image(systemName: "checkmark")

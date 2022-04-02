@@ -27,7 +27,7 @@ extension TireSet: Sortable,
     HasRawWarranties, HasWarranties,
     HasRawAttachments, HasAttachments {
     var displayName: String {
-        userDisplayName ?? "\(make ?? "Unknown Make") \(model ?? "Unknown Model")"
+        userDisplayName ?? makeModel ?? "Unknown tires"
     }
 
     var fieldsNs: NSSet? {
@@ -174,6 +174,18 @@ extension TireSet: Sortable,
     var topSpeed: Int? {
         guard let firstCh = speedRating?.first else { return nil }
         return tireSpeedRatingMap[firstCh]
+    }
+
+    var makeModel: String? {
+        if let make = make, let model = model {
+            return "\(make) \(model)"
+        } else if let make = make {
+            return make
+        } else if let model = model {
+            return model
+        } else {
+            return nil
+        }
     }
 
     func mergeWith(_ other: TireSet) {

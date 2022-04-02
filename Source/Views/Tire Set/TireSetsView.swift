@@ -33,10 +33,14 @@ struct TireSetsView: View {
     func setList(_ sets: [TireSet]) -> some View {
         ForEachObjects(sets) { tireSet in
             NavigationLink(
-                    tireSet.displayName,
-                    destination: InternalNavigationView {
+                destination: {
+                    InternalNavigationView {
                         TireSetView(tireSet: tireSet)
                     }
+                },
+                label: {
+                    TireSetLabelView(tireSet: tireSet)
+                }
             )
         }
     }
