@@ -27,36 +27,40 @@ struct VehicleLabelView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
+        HStack {
             if let image = image {
                 Image(uiImage: image)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(20)
-                    .frame(maxWidth: 200)
+                    .aspectRatio(contentMode: .fill)
+                    .clipShape(Circle())
+                    .frame(width: 85, height: 85)
+                    .padding([.top, .bottom], 5)
+                    .padding(.trailing, 10)
             }
+            let nameFont = Font.title2
             if let displayName = vehicle.displayName {
                 (
-                    Text(displayName).font(.body.bold()) +
+                    Text(displayName).font(nameFont) +
                         Text("\n") +
                         (
                             Text(vehicle.fullModelName) +
                             Text(", ") +
                             additionalDetails
                         )
-                        .font(.caption)
                         .foregroundColor(.secondary)
                 )
                 .multilineTextAlignment(.leading)
+                .lineLimit(4)
+                .fixedSize(horizontal: false, vertical: true)
             } else {
                 (
-                    Text(vehicle.fullModelName).font(.body.bold()) +
+                    Text(vehicle.fullModelName).font(nameFont) +
                         Text("\n") +
-                        additionalDetails
-                            .font(.caption)
-                            .foregroundColor(.secondary)
+                        additionalDetails.foregroundColor(.secondary)
                 )
                 .multilineTextAlignment(.leading)
+                .lineLimit(4)
+                .fixedSize(horizontal: false, vertical: true)
             }
         }
         .onAppear {
