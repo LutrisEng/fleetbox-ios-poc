@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import { LazyIframe } from 'react-lazy-media';
 import styles from './index.module.css';
 // import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import DownloadOnTheAppStore from '@site/static/img/appstore.svg';
@@ -44,7 +45,7 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <main className={styles.video}>
         {/* <HomepageFeatures /> */}
-        <iframe
+        <LazyIframe
           width="560"
           height="315"
           src="https://www.youtube.com/embed/9-wj8eMUEn0"
