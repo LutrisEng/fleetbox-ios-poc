@@ -22,17 +22,14 @@ struct NewVehicleView: View {
     @State private var vehicle: Vehicle?
 
     var body: some View {
-        InternalNavigationView {
-            if let vehicle = vehicle {
-                VehicleView(vehicle: vehicle)
-            } else {
-                ProgressView()
-            }
-        }
-        .onAppear {
-            if vehicle == nil {
-                withAnimation {
-                    vehicle = Vehicle(context: viewContext)
+        if let vehicle = vehicle {
+            VehicleView(vehicle: vehicle)
+        } else {
+            ProgressView().onAppear {
+                if vehicle == nil {
+                    withAnimation {
+                        vehicle = Vehicle(context: viewContext)
+                    }
                 }
             }
         }
