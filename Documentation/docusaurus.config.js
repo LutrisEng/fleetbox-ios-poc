@@ -49,7 +49,7 @@ const config = {
         title: 'Fleetbox',
         logo: {
           alt: 'Fleetbox Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo.png',
         },
         items: [
           {
