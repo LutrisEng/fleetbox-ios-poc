@@ -12,10 +12,10 @@ export type IShop = fleetbox.export_.IShop
 export type ITireSet = fleetbox.export_.ITireSet
 export type IWarranty = fleetbox.export_.IWarranty
 
-export function encodeExportEnvelope(exportEnvelope: IExportEnvelope): Uint8Array {
-    return fleetbox.export_.ExportEnvelope.encode(exportEnvelope).finish()
+export function encodeExportEnvelope(exportEnvelope: IExportEnvelope): ArrayBuffer {
+    return fleetbox.export_.ExportEnvelope.encode(exportEnvelope).finish().buffer
 }
 
-export function decodeExportEnvelope(buf: Uint8Array): IExportEnvelope {
-    return fleetbox.export_.ExportEnvelope.decode(buf)
+export function decodeExportEnvelope(buf: ArrayBuffer): IExportEnvelope {
+    return fleetbox.export_.ExportEnvelope.decode(new Uint8Array(buf))
 }

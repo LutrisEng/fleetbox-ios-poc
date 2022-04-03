@@ -9,3 +9,7 @@ command = "npm run build"
 
 [site]
 bucket = "./build"
+
+[[kv_namespaces]]
+binding = "EXPORTS"
+id = "f6e9d091c8e54e31a7ab407ef5e26b00"
