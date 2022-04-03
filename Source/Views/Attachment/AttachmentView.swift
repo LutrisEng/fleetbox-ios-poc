@@ -66,7 +66,7 @@ struct AttachmentView: View {
 
     @ViewBuilder
     var form: some View {
-        NavigationView {
+        EnsureNavigationView {
             Form {
                 FleetboxTextField(value: $attachment.fileName, name: "File name", example: "Receipt")
             }
@@ -77,6 +77,7 @@ struct AttachmentView: View {
                 }
             }
         }
+        .insideSheet()
     }
 
     var body: some View {

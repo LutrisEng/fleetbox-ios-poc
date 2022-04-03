@@ -101,7 +101,7 @@ struct FleetboxAppMainWindow: View {
             if previewError {
                 Text("An error occurred opening this file.")
             } else if let previewImportState = previewImportState {
-                NavigationView {
+                EnsureNavigationView {
                     VehicleView(vehicle: previewImportState.vehicle)
                         .toolbar {
                             ToolbarItemGroup(placement: .navigationBarLeading) {
@@ -120,10 +120,9 @@ struct FleetboxAppMainWindow: View {
                             }
                         }
                 }
+                .insideSheet()
                 .environment(\.managedObjectContext, previewImportState.persistence.container.viewContext)
-                .environment(\.editable, false)
-                .deleteDisabled(true)
-                .moveDisabled(true)
+                .modifier(NotEditable())
             } else {
                 ProgressView()
             }

@@ -105,8 +105,7 @@
 		86D2DA7227D081490083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7127D081490083254E /* Alamofire */; };
 		86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB569A27E171A0007FA2DD /* AboutView.swift */; };
 		86EC635F27F1503B00882C64 /* Warranty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC635E27F1503B00882C64 /* Warranty.swift */; };
-		86EE1BF227F3C6E1006417C0 /* InternalNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE1BF027F3C6E1006417C0 /* InternalNavigationView.swift */; };
-		86EE1BF327F3C6E1006417C0 /* RootNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE1BF127F3C6E1006417C0 /* RootNavigationView.swift */; };
+		86EE1BF327F3C6E1006417C0 /* EnsureNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE1BF127F3C6E1006417C0 /* EnsureNavigationView.swift */; };
 		86F8F80727EB197600442694 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F80627EB197600442694 /* Editable.swift */; };
 		86F8F80927EE748F00442694 /* NewLogItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F80827EE748F00442694 /* NewLogItemView.swift */; };
 		86F8F80D27EE774200442694 /* NewVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F80C27EE774200442694 /* NewVehicleView.swift */; };
@@ -259,8 +258,7 @@
 		86EB569C27E17681007FA2DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		86EB569D27E176AC007FA2DD /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
 		86EC635E27F1503B00882C64 /* Warranty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Warranty.swift; sourceTree = "<group>"; };
-		86EE1BF027F3C6E1006417C0 /* InternalNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalNavigationView.swift; sourceTree = "<group>"; };
-		86EE1BF127F3C6E1006417C0 /* RootNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNavigationView.swift; sourceTree = "<group>"; };
+		86EE1BF127F3C6E1006417C0 /* EnsureNavigationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnsureNavigationView.swift; sourceTree = "<group>"; };
 		86F8F80627EB197600442694 /* Editable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
 		86F8F80827EE748F00442694 /* NewLogItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewLogItemView.swift; sourceTree = "<group>"; };
 		86F8F80C27EE774200442694 /* NewVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVehicleView.swift; sourceTree = "<group>"; };
@@ -478,8 +476,7 @@
 				86C061F027F156D300020C08 /* Badge.swift */,
 				86C0620827F16F4E00020C08 /* FormLinkLabel.swift */,
 				86B487A127F289D00015CDB4 /* WithEditButton.swift */,
-				86EE1BF027F3C6E1006417C0 /* InternalNavigationView.swift */,
-				86EE1BF127F3C6E1006417C0 /* RootNavigationView.swift */,
+				86EE1BF127F3C6E1006417C0 /* EnsureNavigationView.swift */,
 				86B9190127F42DE0007DB163 /* View Extensions.swift */,
 				8625125327F6469800FE0587 /* ForEachObjects.swift */,
 				86B299DB27F6C5C000311957 /* BreakinField.swift */,
@@ -863,7 +860,7 @@
 				86B299DC27F6C5C000311957 /* BreakinField.swift in Sources */,
 				86F8F80D27EE774200442694 /* NewVehicleView.swift in Sources */,
 				864C732727D06C6800047165 /* LineItem.swift in Sources */,
-				86EE1BF327F3C6E1006417C0 /* RootNavigationView.swift in Sources */,
+				86EE1BF327F3C6E1006417C0 /* EnsureNavigationView.swift in Sources */,
 				86500C7427DBEDC500A5111E /* TireSetPickerView.swift in Sources */,
 				861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
 				861DAE3927CDD59F00AFE972 /* Persistence.swift in Sources */,
@@ -935,7 +932,6 @@
 				86500C9E27DC125200A5111E /* EditTireSetLineItemFieldView.swift in Sources */,
 				8625125427F6469800FE0587 /* ForEachObjects.swift in Sources */,
 				8690C7AD27D9AA260042F543 /* OdometerReadingView.swift in Sources */,
-				86EE1BF227F3C6E1006417C0 /* InternalNavigationView.swift in Sources */,
 				86EC635F27F1503B00882C64 /* Warranty.swift in Sources */,
 				864C732427D06B8C00047165 /* Shop.swift in Sources */,
 				86500C8D27DC0DBC00A5111E /* PartOdometersView.swift in Sources */,

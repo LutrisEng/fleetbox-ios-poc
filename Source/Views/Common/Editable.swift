@@ -27,3 +27,12 @@ extension EnvironmentValues {
         set { self[EditableKey.self] = newValue }
     }
 }
+
+struct NotEditable: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .environment(\.editable, false)
+            .deleteDisabled(true)
+            .moveDisabled(true)
+    }
+}

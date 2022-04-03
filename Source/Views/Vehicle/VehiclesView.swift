@@ -31,12 +31,12 @@ struct VehiclesView: View {
     private var vehicles: FetchedResults<Vehicle>
 
     var body: some View {
-        RootNavigationView {
+        EnsureNavigationView {
             List {
-                let vehicles = vehicles.fixSortOrder().map { $0 }
+                let vehicles = vehicles.map { $0 }
                 ForEachObjects(vehicles) { vehicle in
                     NavigationLink(
-                        destination: InternalNavigationView {
+                        destination: EnsureNavigationView {
                             VehicleView(vehicle: vehicle)
                         },
                         label: {
@@ -45,12 +45,15 @@ struct VehiclesView: View {
                     )
                 }
             }
+            .onAppear {
+                vehicles.fixSortOrder()
+            }
             .navigationTitle("Vehicles")
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     if editable {
                         NavigationLink(
-                            destination: InternalNavigationView {
+                            destination: EnsureNavigationView {
                                 NewVehicleView()
                             },
                             label: {

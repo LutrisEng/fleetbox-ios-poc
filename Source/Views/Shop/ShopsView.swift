@@ -28,13 +28,13 @@ struct ShopsView: View {
     private var shops: FetchedResults<Shop>
 
     var body: some View {
-        RootNavigationView {
+        EnsureNavigationView {
             List {
                 let shops = shops.map { $0 }
                 ForEachObjects(shops) { shop in
                     NavigationLink(
                             shop.name ?? "Unknown shop",
-                            destination: InternalNavigationView {
+                            destination: EnsureNavigationView {
                                 ShopView(shop: shop)
                             }
                     )

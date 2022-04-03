@@ -33,10 +33,8 @@ struct TireSetsView: View {
     func setList(_ sets: [TireSet]) -> some View {
         ForEachObjects(sets) { tireSet in
             NavigationLink(
-                destination: {
-                    InternalNavigationView {
-                        TireSetView(tireSet: tireSet)
-                    }
+                destination: EnsureNavigationView {
+                    TireSetView(tireSet: tireSet)
                 },
                 label: {
                     TireSetLabelView(tireSet: tireSet)
@@ -46,7 +44,7 @@ struct TireSetsView: View {
     }
 
     var body: some View {
-        RootNavigationView {
+        EnsureNavigationView {
             List {
                 let mounted = tireSets.filter { $0.category == .mounted }
                 if !mounted.isEmpty {

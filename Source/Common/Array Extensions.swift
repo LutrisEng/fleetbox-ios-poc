@@ -47,7 +47,7 @@ extension Sequence where Iterator.Element: Sortable {
         return sorted { $0.sortOrder < $1.sortOrder }
     }
 
-    func fixSortOrder() -> Self {
+    @discardableResult func fixSortOrder() -> Self {
         var arr = sorted
         for index in 0..<arr.count {
             arr[index].sortOrder = Int16(index)

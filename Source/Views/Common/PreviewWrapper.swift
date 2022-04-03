@@ -30,16 +30,17 @@ struct PreviewWrapper<Content: View>: View {
 
     var body: some View {
         if navigation {
-            NavigationView {
+            EnsureNavigationView {
                 #if targetEnvironment(macCatalyst)
                 EmptyView()
                 #endif
                 content(PersistenceController.preview.fixtures)
             }
-                    .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
+            .forceRoot()
+            .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
         } else {
             content(PersistenceController.preview.fixtures)
-                    .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
+                .environment(\.managedObjectContext, PersistenceController.preview.viewContext)
         }
     }
 }
