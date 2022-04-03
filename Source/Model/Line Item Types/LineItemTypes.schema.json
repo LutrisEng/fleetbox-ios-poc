@@ -130,7 +130,8 @@
             "required": [
               "id",
               "displayName"
-            ]
+            ],
+            "additionalProperties": false
           }
         },
         "example": {
@@ -167,5 +168,6 @@
   },
   "required": [
     "categories"
-  ]
+  ],
+  "additionalProperties": false
 }
