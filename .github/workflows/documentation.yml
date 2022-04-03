@@ -1,0 +1,13 @@
+name: Documentation
+
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Checkout LFS objects
+        run: git lfs checkout
+      - run: cd Documentation && npm ci && npm run build

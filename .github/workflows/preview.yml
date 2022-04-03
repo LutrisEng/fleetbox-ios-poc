@@ -1,0 +1,21 @@
+name: Preview
+
+on: [push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Checkout LFS objects
+        run: git lfs checkout
+      - run: cd Preview && npm ci && npm run build
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Checkout LFS objects
+        run: git lfs checkout
+      - run: cd Preview && npm ci && npm test
