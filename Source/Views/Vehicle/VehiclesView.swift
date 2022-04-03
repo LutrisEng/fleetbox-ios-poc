@@ -33,7 +33,7 @@ struct VehiclesView: View {
     var body: some View {
         RootNavigationView {
             List {
-                let vehicles = vehicles.map { $0 }
+                let vehicles = vehicles.fixSortOrder().map { $0 }
                 ForEachObjects(vehicles) { vehicle in
                     NavigationLink(
                         destination: InternalNavigationView {

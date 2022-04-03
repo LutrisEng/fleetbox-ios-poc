@@ -23,17 +23,14 @@ struct NewWarrantyView: View {
     @State private var warranty: Warranty?
 
     var body: some View {
-        Group {
-            if let warranty = warranty {
-                WarrantyView(warranty: warranty)
-            } else {
-                ProgressView()
-            }
-        }
-        .onAppear {
-            if warranty == nil {
-                withAnimation {
-                    warranty = Warranty(context: viewContext, underlying: underlying)
+        if let warranty = warranty {
+            WarrantyView(warranty: warranty)
+        } else {
+            ProgressView().onAppear {
+                if warranty == nil {
+                    withAnimation {
+                        warranty = Warranty(context: viewContext, underlying: underlying)
+                    }
                 }
             }
         }

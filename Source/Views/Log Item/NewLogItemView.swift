@@ -23,20 +23,17 @@ struct NewLogItemView: View {
     @State private var logItem: LogItem?
 
     var body: some View {
-        Group {
-            if let logItem = logItem {
-                LogItemView(logItem: logItem)
-            } else {
-                ProgressView()
-            }
-        }
-        .onAppear {
-            if logItem == nil {
-                withAnimation {
-                    let item = LogItem(context: viewContext)
-                    item.performedAt = Date.now
-                    item.vehicle = vehicle
-                    logItem = item
+        if let logItem = logItem {
+            LogItemView(logItem: logItem)
+        } else {
+            ProgressView().onAppear {
+                if logItem == nil {
+                    withAnimation {
+                        let item = LogItem(context: viewContext)
+                        item.performedAt = Date.now
+                        item.vehicle = vehicle
+                        logItem = item
+                    }
                 }
             }
         }

@@ -22,7 +22,7 @@ struct NewVehicleView: View {
     @State private var vehicle: Vehicle?
 
     var body: some View {
-        Group {
+        InternalNavigationView {
             if let vehicle = vehicle {
                 VehicleView(vehicle: vehicle)
             } else {
