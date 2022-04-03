@@ -33,3 +33,5 @@ jobs:
         run: git lfs fetch && git lfs checkout
       - name: Publish
         run: cd Preview && npm ci && npm run publish
+        env:
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
