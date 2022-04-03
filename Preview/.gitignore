@@ -6,4 +6,5 @@ node_modules
 .env
 .env.*
 !.env.example
-src/lib/generated
+/src/lib/generated
+/workers-site
