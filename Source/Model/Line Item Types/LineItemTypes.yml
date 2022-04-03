@@ -432,6 +432,19 @@ categories:
                 shortDisplayName: Part number
                 longDisplayName: What is the new coolant's part number?
                 type: string
+          - id: washerFluidTopOff
+            displayName: Windshield washer fluid topped off
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the new washer fluid's brand?
+                type: string
+                example: FluidCo
+                defaultValueFrom: vehicle.make
+              - id: partNumber
+                shortDisplayName: Part number
+                longDisplayName: What is the new washer fluid's part number?
+                type: string
       - id: belts
         displayName: Belts
         types:

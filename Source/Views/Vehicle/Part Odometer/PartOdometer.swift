@@ -56,6 +56,10 @@ let partOdometers: [PartOdometer] = [
     .individual(
             lineItemType: "cabinAirFilterChange",
             name: "Cabin air filter"
+    ),
+    .individual(
+            lineItemType: "washerFluidTopOff",
+            name: "Windshield washer fluid"
     )
 ]
 
