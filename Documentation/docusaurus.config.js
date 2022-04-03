@@ -39,7 +39,8 @@ const config = {
   ],
 
   plugins: [
-    '@docusaurus/plugin-ideal-image'
+    '@docusaurus/plugin-ideal-image',
+    '@cmfcmf/docusaurus-search-local'
   ],
 
   themeConfig:
