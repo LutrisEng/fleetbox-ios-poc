@@ -4,13 +4,13 @@ sidebar_position: 1
 
 # Vehicle
 
-![The screen seen immediately after selecting a vehicle in Fleetbox](/img/vehicle-landing.jpg)
+![The screen seen immediately after selecting a vehicle in Fleetbox](landing.jpg)
 
 Vehicles are the core of Fleetbox - nearly everything you do will be attached to one. There intentionally isn't a strict definition of what a vehicle is or what the difference between two vehicles is. Even if your vehicle becomes a [Ship of Theseus](https://en.wikipedia.org/wiki/Ship_of_Theseus), you can still keep using the same Fleetbox vehicle and just tweak its attributes as you go.
 
 ## Vehicle Details
 
-![A Fleetbox vehicle's details list](/img/vehicle-details.jpg)
+![A Fleetbox vehicle's details list](details.jpg)
 
 In a vehicle's details, you can customize many properties and see a few status gauges:
 
@@ -50,7 +50,7 @@ Under "Odometer," you can see an estimated current odometer reading, and also vi
 
 By tapping the "Odometer" property under a vehicle's details, you can access the odometer details screen.
 
-![A screenshot of the Fleetbox odometer details screen](/img/odometer-details.jpg)
+![A screenshot of the Fleetbox odometer details screen](odometer.jpg)
 
 ### Last reading
 
@@ -74,12 +74,12 @@ Under "Part odometers," you can see the age of many components of the vehicle in
 
 ## Warranties
 
-![A screenshot of a Fleetbox vehicle's warranties section](/img/vehicle-warranties.jpg)
+![A screenshot of a Fleetbox vehicle's warranties section](warranties.jpg)
 
 ## Attachments
 
-![A screenshot of a Fleetbox vehicle's attachments section](/img/vehicle-attachments.jpg)
+![A screenshot of a Fleetbox vehicle's attachments section](attachments.jpg)
 
 ## Maintenance log
 
-![A screenshot of a Fleetbox vehicle's maintenance log](/img/vehicle-log.jpg)
+![A screenshot of a Fleetbox vehicle's maintenance log](log.jpg)
