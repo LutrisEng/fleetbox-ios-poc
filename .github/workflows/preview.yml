@@ -11,19 +11,19 @@ jobs:
       - name: Checkout LFS objects
         run: git lfs fetch && git lfs checkout
       - run: cd Preview && npm ci && npm run build
-  test:
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: Checkout LFS objects
-        run: git lfs checkout
-      - run: cd Preview && npm ci && npm test
+  # test:
+  #   name: Test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v1
+  #     - name: Checkout LFS objects
+  #       run: git lfs checkout
+  #     - run: cd Preview && npm ci && npm test
   deploy:
     runs-on: ubuntu-latest
     needs:
       - build
-      - test
+      # - test
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v1
