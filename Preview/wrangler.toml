@@ -8,7 +8,7 @@ compatibility_date = "2022-04-03"
 type = "javascript"
 
 [build]
-command = "npm run build"
+command = ""
 
 [build.upload]
 format = "service-worker"
