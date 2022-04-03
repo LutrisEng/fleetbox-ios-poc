@@ -39,6 +39,8 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+    - name: Checkout LFS objects
+      run: git lfs fetch && git lfs checkout
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL

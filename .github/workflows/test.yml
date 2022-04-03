@@ -23,7 +23,7 @@ jobs:
         with:
           lfs: true
       - name: Checkout LFS objects
-        run: git lfs checkout
+        run: git lfs fetch && git lfs checkout
       - name: Install tools
         run: brew bundle && gem install xcpretty
       - name: Setup Xcode
