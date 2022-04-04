@@ -680,6 +680,8 @@ categories:
             example: ABC123
       - id: vanityPlateMounted
         displayName: Vanity plate mounted
+        icon:
+          sfsymbols: heart.rectangle
         fields:
           - id: state
             shortDisplayName: State
