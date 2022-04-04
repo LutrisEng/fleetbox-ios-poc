@@ -52,9 +52,14 @@ struct LogItemView: View {
                 }
                 if let vehicle = logItem.vehicle {
                     Section(header: Text("Vehicle")) {
-                        NavigationLink(vehicle.displayNameWithFallback) {
-                            VehicleView(vehicle: vehicle)
-                        }
+                        NavigationLink(
+                            destination: {
+                                VehicleView(vehicle: vehicle)
+                            },
+                            label: {
+                                VehicleLabelView(vehicle: vehicle)
+                            }
+                        )
                     }
                 }
                 Section(header: Text("Shop")) {

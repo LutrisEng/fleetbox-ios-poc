@@ -25,9 +25,14 @@ struct TireSetView: View {
             TireSetDetailsView(tireSet: tireSet)
             if let vehicle = tireSet.vehicle {
                 Section(header: Text("Current vehicle")) {
-                    NavigationLink(vehicle.displayNameWithFallback) {
-                        VehicleView(vehicle: vehicle)
-                    }
+                    NavigationLink(
+                        destination: {
+                            VehicleView(vehicle: vehicle)
+                        },
+                        label: {
+                            VehicleLabelView(vehicle: vehicle)
+                        }
+                    )
                 }
             }
             TireSetOdometerView(tireSet: tireSet)

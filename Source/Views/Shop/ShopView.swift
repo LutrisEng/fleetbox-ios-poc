@@ -33,9 +33,14 @@ struct ShopView: View {
             if !vehicles.isEmpty {
                 Section(header: Text("Performed service on")) {
                     ForEachObjects(shop.vehicles, allowDelete: false, allowMove: false) { vehicle in
-                        NavigationLink(vehicle.displayNameWithFallback) {
-                            VehicleView(vehicle: vehicle)
-                        }
+                        NavigationLink(
+                            destination: {
+                                VehicleView(vehicle: vehicle)
+                            },
+                            label: {
+                                VehicleLabelView(vehicle: vehicle)
+                            }
+                        )
                     }
                 }
             }
