@@ -65,7 +65,7 @@ extension Attachment: Sortable {
 }
 
 extension Array where Element == Attachment {
-    func normalize() -> Self {
+    @discardableResult func normalize() -> Self {
         for attachment in self {
             attachment.normalize()
         }

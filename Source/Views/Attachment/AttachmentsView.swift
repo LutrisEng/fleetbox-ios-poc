@@ -30,7 +30,7 @@ struct AttachmentsView<T: ObservableObject & HasRawAttachments & HasAttachments 
     @State private var showCamera: Bool = false
 
     var body: some View {
-        let attachments = owner.attachments.sorted.normalize()
+        let attachments = owner.attachments.sorted
         ForEachObjects(attachments) { attachment in
             NavigationLink(
                 destination: {
@@ -44,6 +44,9 @@ struct AttachmentsView<T: ObservableObject & HasRawAttachments & HasAttachments 
         .onMove {
             print("notify change")
             owner.notifyChange()
+        }
+        .onAppear {
+            attachments.normalize()
         }
         if adding {
             ProgressView()
