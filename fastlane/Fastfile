@@ -1,0 +1,35 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    ci = is_ci
+    setup_ci if ci
+    increment_build_number(xcodeproj: "Fleetbox.xcodeproj")
+    match(type: "appstore", platform: "ios", readonly: ci)
+    build_ios_app(scheme: "Fleetbox Release")
+    # match(type: "mac_installer_distribution", platform: "catalyst", readonly: is_ci)
+    # build_mac_app(scheme: "Fleetbox Release")
+    upload_to_testflight(app_platform: "ios")
+    # upload_to_testflight(app_platform: "mac")
+  end
+
+  lane :tests do
+    run_tests(scheme: "Fleetbox Debug", devices: ["iPhone 13"], testplan: "Everything")
+  end
+end
