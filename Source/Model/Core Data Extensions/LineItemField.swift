@@ -40,12 +40,7 @@ extension LineItemField {
 
     var displayValue: String? {
         switch type?.type {
-        case .string:
-            if stringValue == "" {
-                return nil
-            } else {
-                return stringValue
-            }
+        case .string: return stringValue?.normalized
         case .enumeration:
             guard let stringValue = stringValue else {
                 return nil

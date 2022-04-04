@@ -18,7 +18,7 @@
 import Foundation
 import Sentry
 
-func ignoreErrors<T>(_ closure: () throws -> T) -> T? {
+func ignoreErrorsImpl<T>(_ closure: () throws -> T) -> T? {
     do {
         return try closure()
     } catch {
@@ -28,7 +28,15 @@ func ignoreErrors<T>(_ closure: () throws -> T) -> T? {
     }
 }
 
-func ignoreErrors<T>(_ asyncClosure: () async throws -> T) async -> T? {
+func ignoreErrors<T>(_ closure: () throws -> T) -> T? {
+    ignoreErrorsImpl(closure)
+}
+
+func ignoreErrors<T>(_ closure: () throws -> T?) -> T? {
+    ignoreErrorsImpl(closure) ?? nil
+}
+
+func ignoreErrorsImpl<T>(_ asyncClosure: () async throws -> T) async -> T? {
     do {
         return try await asyncClosure()
     } catch {
@@ -36,4 +44,12 @@ func ignoreErrors<T>(_ asyncClosure: () async throws -> T) async -> T? {
         print("error", error)
         return nil
     }
+}
+
+func ignoreErrors<T>(_ asyncClosure: () async throws -> T) async -> T? {
+    await ignoreErrorsImpl(asyncClosure)
+}
+
+func ignoreErrors<T>(_ asyncClosure: () async throws -> T?) async -> T? {
+    await ignoreErrorsImpl(asyncClosure) ?? nil
 }

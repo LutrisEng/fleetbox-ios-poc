@@ -32,22 +32,22 @@ extension LogItem: Dated, MaybeTimed,
     }
 
     var addedTireSets: [TireSet] {
-        lineItems.compactMap { lineItem in
-            lineItem.typeId == "mountedTires"
-                    ? (ignoreErrors {
-                try lineItem.getFieldValueTireSet("tireSet")
-            } ?? nil)
-                    : nil
-        }
+        lineItems
+            .filter({ $0.typeId == "mountedTires" })
+            .compactMap { lineItem in
+                ignoreErrors {
+                    try lineItem.getFieldValueTireSet("tireSet")
+                }
+            }
     }
 
     var removedTireSets: [TireSet] {
-        lineItems.compactMap { lineItem in
-            lineItem.typeId == "dismountedTires"
-                    ? (ignoreErrors {
-                try lineItem.getFieldValueTireSet("tireSet")
-            } ?? nil)
-                    : nil
-        }
+        lineItems
+            .filter({ $0.typeId == "dismountedTires" })
+            .compactMap { lineItem in
+                ignoreErrors {
+                    try lineItem.getFieldValueTireSet("tireSet")
+                }
+            }
     }
 }

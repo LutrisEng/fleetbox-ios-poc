@@ -42,7 +42,7 @@ extension Attachment: Sortable {
     }
 
     func normalize() {
-        if fileExtension == nil || fileExtension == "" {
+        if fileExtension.isEmpty {
             if var split = fileName?.split(separator: ".") {
                 if let newExtension = split.popLast() {
                     fileExtension = String(newExtension)

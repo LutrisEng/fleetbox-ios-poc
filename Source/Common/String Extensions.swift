@@ -16,16 +16,23 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import Foundation
-import CoreData
 
-extension Shop: Sortable, HasRawLogItems, HasLogItems {
-    func mergeWith(_ other: Shop) {
-        if other == self { return }
-        for item in other.logItems {
-            item.shop = self
+extension String {
+    var normalized: String? {
+        isEmpty ? nil : self
+    }
+}
+
+extension Optional where Wrapped == String {
+    var isEmpty: Bool {
+        if let string = self, string.isEmpty {
+            return true
+        } else {
+            return self == nil
         }
-        if let context = managedObjectContext {
-            context.delete(other)
-        }
+    }
+
+    var denormalized: String {
+        self ?? ""
     }
 }

@@ -15,7 +15,6 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import Foundation
 import SwiftUI
 
 func convertToStringBinding(int64: Binding<Int64>) -> Binding<String> {
@@ -57,7 +56,9 @@ func convertToStringBinding(int16: Binding<Int16>) -> Binding<String> {
 func convertToNumberFormattingBinding(string: Binding<String>) -> Binding<String> {
     Binding<String>(
             get: {
-                if let number = Formatter.number.number(from: string.wrappedValue.filter { $0.isNumber }) {
+                if let number = Formatter.number.number(
+                    from: string.wrappedValue.filter { $0.isNumber }
+                ) {
                     return Formatter.format(number: number)
                 } else {
                     return string.wrappedValue
@@ -71,15 +72,9 @@ func convertToNumberFormattingBinding(string: Binding<String>) -> Binding<String
 
 func convertToNillableBinding(string: Binding<String>) -> Binding<String?> {
     Binding<String?>(
-            get: {
-                if string.wrappedValue.isEmpty {
-                    return nil
-                } else {
-                    return string.wrappedValue
-                }
-            },
+            get: { string.wrappedValue.normalized },
             set: { value in
-                string.wrappedValue = value ?? ""
+                string.wrappedValue = value.denormalized
             }
     )
 }
@@ -95,13 +90,9 @@ func convertToNonNilBinding(date: Binding<Date?>) -> Binding<Date> {
 
 func convertToNonNilBinding(string: Binding<String?>) -> Binding<String> {
     Binding<String>(
-            get: { string.wrappedValue ?? "" },
-            set: { value in
-                if value.isEmpty {
-                    string.wrappedValue = nil
-                } else {
-                    string.wrappedValue = value
-                }
-            }
+        get: { string.wrappedValue.denormalized },
+        set: { value in
+            string.wrappedValue = value.normalized
+        }
     )
 }

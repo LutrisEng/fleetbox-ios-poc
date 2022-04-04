@@ -47,7 +47,7 @@ struct ShopView: View {
                     }
                 }
             }
-            let logItems = shop.logItemsInverseChrono
+            let logItems = shop.logItems.inverseChrono
             if !logItems.isEmpty {
                 Section(header: Text("Log items")) {
                     ForEach(shop.logItems.inverseChrono, id: \.self) { logItem in

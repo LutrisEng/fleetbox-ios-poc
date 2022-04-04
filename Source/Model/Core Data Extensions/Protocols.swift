@@ -125,17 +125,17 @@ protocol HasLineItems {
 
 extension HasLineItems {
     func lastLineItem(type: String) -> LineItem? {
-        return lineItems.inverseChrono
+        lineItems.inverseChrono
             .first { $0.typeId == type }
     }
 
     func lastLineItem(type: String, where pred: (LineItem) -> Bool) -> LineItem? {
-        return lineItems.inverseChrono
+        lineItems.inverseChrono
             .first { $0.typeId == type && pred($0) }
     }
 
     func lastLineItem(typeIn: Set<String>) -> LineItem? {
-        return lineItems.inverseChrono
+        lineItems.inverseChrono
             .first {
                 guard let typeId = $0.typeId else { return false }
                 return typeIn.contains(typeId)
@@ -143,11 +143,28 @@ extension HasLineItems {
     }
 
     func lastLineItem(typeIn: Set<String>, where pred: (LineItem) -> Bool) -> LineItem? {
-        return lineItems.inverseChrono
+        lineItems.inverseChrono
             .first {
                 guard let typeId = $0.typeId else { return false }
                 return typeIn.contains(typeId) && pred($0)
             }
+    }
+
+    func lastLineItemField(type: String, field: String) -> LineItemField? {
+        lineItems.inverseChrono
+            .first(where: {
+                $0.typeId == type && $0.getFieldWithoutCreating(id: field) != nil
+            })?
+            .getFieldWithoutCreating(id: field)
+    }
+
+    func lastLineItemField(typeIn: Set<String>, field: String) -> LineItemField? {
+        lineItems.inverseChrono
+            .first(where: {
+                guard let typeId = $0.typeId else { return false }
+                return typeIn.contains(typeId) && $0.getFieldWithoutCreating(id: field) != nil
+            })?
+            .getFieldWithoutCreating(id: field)
     }
 }
 

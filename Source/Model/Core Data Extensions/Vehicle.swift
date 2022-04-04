@@ -87,20 +87,14 @@ extension Vehicle: Sortable,
     }
 
     var registrationState: String? {
-        do {
-            return try lastLineItem(type: "stateRegistration")?.getFieldValueString("state")
-        } catch {
-            SentrySDK.capture(error: error)
-            return nil
+        ignoreErrors {
+            try lastLineItem(type: "stateRegistration")?.getFieldValueString("state")
         }
     }
 
     var lastOilViscosity: String? {
-        do {
-            return try lastLineItem(type: "engineOilChange")?.getFieldValueString("viscosity")
-        } catch {
-            SentrySDK.capture(error: error)
-            return nil
+        ignoreErrors {
+            try lastLineItem(type: "engineOilChange")?.getFieldValueString("viscosity")
         }
     }
 
@@ -119,17 +113,10 @@ extension Vehicle: Sortable,
     }
 
     var licensePlateNumber: String? {
-        let licensePlateNumber = ignoreErrors {
-            try lastLineItem(
-                typeIn: ["stateRegistration", "vanityPlateMounted"],
-                where: { (try? $0.getFieldValueString("licensePlateNumber")) ?? nil != nil }
-            )?.getFieldValueString("licensePlateNumber")
-        } ?? nil
-        if licensePlateNumber == "" {
-            return nil
-        } else {
-            return licensePlateNumber
-        }
+        lastLineItemField(
+            typeIn: ["stateRegistration", "vanityPlateMounted"],
+            field: "licensePlateNumber"
+        )?.stringValue?.normalized
     }
 
     func export(settings: ExportSettings) throws -> Data? {
