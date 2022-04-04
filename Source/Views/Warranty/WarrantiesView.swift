@@ -25,69 +25,26 @@ struct WarrantiesView<
 
     @ObservedObject var underlying: Underlying
 
-    @State private var showingAll: Bool = false
-
-    @ViewBuilder
-    func list(warranties: [Warranty], allowMove: Bool) -> some View {
-        ForEachObjects(warranties, allowMove: allowMove) { warranty in
-            WarrantyListingView(warranty: warranty)
-        }
-    }
-
-    @ViewBuilder
-    var addWarranty: some View {
-        if editable {
-            NavigationLink(
-                destination: {
-                    NewWarrantyView(underlying: underlying)
-                        .onAppear {
-                            withAnimation {
-                                showingAll = true
-                            }
-                        }
-                },
-                label: {
-                    Text("\(Image(systemName: "plus")) Add warranty")
-                        .foregroundColor(.accentColor)
-                }
-            )
-        }
-    }
-
     var warranties: [Warranty] {
         underlying.warranties.sorted
     }
 
-    @ViewBuilder
-    var allWarranties: some View {
-        list(warranties: warranties, allowMove: true)
-    }
-
-    var buttonContent: LocalizedStringKey {
-        if showingAll {
-            return "\(Image(systemName: "eye.slash")) Show fewer"
-        } else {
-            return "\(Image(systemName: "eye")) Show all"
-        }
-    }
-
     var body: some View {
         Section(header: Text("Warranties")) {
-            if warranties.count > 3 && editMode?.wrappedValue.isEditing != true {
-                if showingAll {
-                    allWarranties
-                } else {
-                    list(warranties: Array(warranties[0...2]), allowMove: false)
-                }
-                Button(buttonContent) {
-                    withAnimation {
-                        showingAll.toggle()
-                    }
-                }
-            } else {
-                allWarranties
+            CollapsibleForEach(warranties) { warranty in
+                WarrantyListingView(warranty: warranty)
             }
-            addWarranty
+            if editable {
+                NavigationLink(
+                    destination: {
+                        NewWarrantyView(underlying: underlying)
+                    },
+                    label: {
+                        Text("\(Image(systemName: "plus")) Add warranty")
+                            .foregroundColor(.accentColor)
+                    }
+                )
+            }
         }
     }
 }

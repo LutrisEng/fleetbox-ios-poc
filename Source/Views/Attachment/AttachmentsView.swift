@@ -32,7 +32,7 @@ struct AttachmentsView<T: ObservableObject & HasRawAttachments & HasAttachments 
     var body: some View {
         if !owner.attachments.isEmpty {
             let attachments = owner.attachments.sorted
-            ForEachObjects(attachments) { attachment in
+            CollapsibleForEach(attachments) { attachment in
                 NavigationLink(
                     destination: {
                         AttachmentView(attachment: attachment)

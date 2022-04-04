@@ -64,6 +64,7 @@
 		8664C24527DA91E100AE9ADB /* PreviewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24427DA91E100AE9ADB /* PreviewWrapper.swift */; };
 		8664C24727DA987900AE9ADB /* Custom Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24627DA987800AE9ADB /* Custom Bindings.swift */; };
 		866E70B027FACB940051E712 /* String Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866E70AF27FACB940051E712 /* String Extensions.swift */; };
+		866E70B227FAD0FE0051E712 /* CollapsibleForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866E70B127FAD0FE0051E712 /* CollapsibleForEach.swift */; };
 		8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
 		868692A427F827F5001E1E2C /* TireSetLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692A327F827F5001E1E2C /* TireSetLabelView.swift */; };
 		868692A627FA6CF2001E1E2C /* ExportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692A527FA6CF2001E1E2C /* ExportSettings.swift */; };
@@ -226,6 +227,7 @@
 		8664C24427DA91E100AE9ADB /* PreviewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewWrapper.swift; sourceTree = "<group>"; };
 		8664C24627DA987800AE9ADB /* Custom Bindings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom Bindings.swift"; sourceTree = "<group>"; };
 		866E70AF27FACB940051E712 /* String Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String Extensions.swift"; sourceTree = "<group>"; };
+		866E70B127FAD0FE0051E712 /* CollapsibleForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleForEach.swift; sourceTree = "<group>"; };
 		8683930E27D1450B00D91D96 /* VehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
 		868692A327F827F5001E1E2C /* TireSetLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSetLabelView.swift; sourceTree = "<group>"; };
 		868692A527FA6CF2001E1E2C /* ExportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSettings.swift; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 				86B9190127F42DE0007DB163 /* View Extensions.swift */,
 				8625125327F6469800FE0587 /* ForEachObjects.swift */,
 				86B299DB27F6C5C000311957 /* BreakinField.swift */,
+				866E70B127FAD0FE0051E712 /* CollapsibleForEach.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -930,6 +933,7 @@
 				86500C8F27DC0DE900A5111E /* PartOdometer.swift in Sources */,
 				86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */,
 				866E70B027FACB940051E712 /* String Extensions.swift in Sources */,
+				866E70B227FAD0FE0051E712 /* CollapsibleForEach.swift in Sources */,
 				861E4D9C27DC13D00072B6DD /* LineItemTypeLabelView.swift in Sources */,
 				86B9190227F42DE0007DB163 /* View Extensions.swift in Sources */,
 				8652AA7727DAB5F300D8D56D /* Dummy Data.swift in Sources */,
