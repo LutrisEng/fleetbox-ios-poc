@@ -1,6 +1,5 @@
 brew "yq"
 brew "jq"
-brew "fastlane"
 brew "protobuf"
 brew "swift-protobuf"
 brew "node"
