@@ -91,7 +91,7 @@ struct AboutView: View {
                 Section(header: Text("Private beta")) {
                     Text(
                         "Fleetbox is currently in a private beta. Please report any issues using " +
-                        "TestFlight or by contacting your Lutris contact."
+                        "TestFlight or by sending an email to beta@fleetbox.io."
                     )
                 }
                 Section(header: Text("Open-source projects")) {
