@@ -18,7 +18,7 @@
 import Foundation
 import CoreData
 
-extension Warranty: Sortable {
+extension Warranty: Sortable, HasRawAttachments, HasAttachments {
     typealias Underlying = TracksTime & TracksApproximateMiles & HasRawWarranties & HasWarranties
 
     convenience init(context: NSManagedObjectContext, underlying: Underlying) {

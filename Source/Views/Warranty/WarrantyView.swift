@@ -59,6 +59,10 @@ struct WarrantyView: View {
                     )
                 }
             }
+
+            Section(header: Text("Attachments")) {
+                AttachmentsView(owner: warranty)
+            }
         }
         .navigationTitle("Warranty")
         .modifier(SaveOnLeave())

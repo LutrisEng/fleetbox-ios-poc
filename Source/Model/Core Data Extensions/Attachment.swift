@@ -26,6 +26,8 @@ extension Attachment: Sortable {
                 return vehicle
             } else if let tireSet = tireSet {
                 return tireSet
+            } else if let warranty = warranty {
+                return warranty
             } else {
                 return nil
             }
@@ -37,6 +39,8 @@ extension Attachment: Sortable {
                 self.vehicle = vehicle
             } else if let tireSet = newValue as? TireSet {
                 self.tireSet = tireSet
+            } else if let warranty = newValue as? Warranty {
+                self.warranty = warranty
             }
         }
     }

@@ -93,4 +93,5 @@ message Warranty {
     optional int64 miles = 1;
     optional int64 months = 2;
     optional string title = 3;
+    repeated Attachment attachments = 4;
 }

@@ -22,6 +22,11 @@ extension Fleetbox_Export_Warranty {
         title = warranty.title ?? ""
         miles = warranty.miles
         months = warranty.months
+        if settings.includeAttachments {
+            attachments = warranty.attachments.map {
+                Fleetbox_Export_Attachment(settings: settings, attachment: $0)
+            }
+        }
     }
 
     func importWarranty(context: NSManagedObjectContext, underlying: Warranty.Underlying) -> Warranty {
@@ -29,6 +34,10 @@ extension Fleetbox_Export_Warranty {
         warranty.title = title
         warranty.miles = miles
         warranty.months = months
+        for (index, attachment) in attachments.enumerated() {
+            let obj = attachment.importAttachment(context: context, index: index)
+            obj.warranty = warranty
+        }
         return warranty
     }
 }
