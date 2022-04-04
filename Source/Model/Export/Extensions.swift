@@ -18,22 +18,22 @@
 import CoreData
 
 extension Fleetbox_Export_ExportEnvelope {
-    init(vehicle: Vehicle) {
+    init(settings: ExportSettings, vehicle: Vehicle) {
         let tmpl = ExportEnvelopeTemplate(vehicle: vehicle)
-        self.vehicle = Fleetbox_Export_Vehicle(envelope: tmpl, vehicle: vehicle)
-        shops = tmpl.shops.map { Fleetbox_Export_Shop(shop: $0) }
-        tireSets = tmpl.tireSets.map { Fleetbox_Export_TireSet(tireSet: $0) }
+        self.vehicle = Fleetbox_Export_Vehicle(envelope: tmpl, settings: settings, vehicle: vehicle)
+        shops = tmpl.shops.map { Fleetbox_Export_Shop(settings: settings, shop: $0) }
+        tireSets = tmpl.tireSets.map { Fleetbox_Export_TireSet(settings: settings, tireSet: $0) }
     }
 }
 
 extension Fleetbox_Export_BackupExport {
-    init(context: NSManagedObjectContext) throws {
+    init(context: NSManagedObjectContext, settings: ExportSettings) throws {
         let tmpl = try ExportEnvelopeTemplate(allFromContext: context)
         let vehiclesFetchRequest = NSFetchRequest<Vehicle>(entityName: "Vehicle")
         vehicles = try context.fetch(vehiclesFetchRequest)
-            .map { Fleetbox_Export_Vehicle(envelope: tmpl, vehicle: $0) }
-        shops = tmpl.shops.map { Fleetbox_Export_Shop(shop: $0) }
-        tireSets = tmpl.tireSets.map { Fleetbox_Export_TireSet(tireSet: $0) }
+            .map { Fleetbox_Export_Vehicle(envelope: tmpl, settings: settings, vehicle: $0) }
+        shops = tmpl.shops.map { Fleetbox_Export_Shop(settings: settings, shop: $0) }
+        tireSets = tmpl.tireSets.map { Fleetbox_Export_TireSet(settings: settings, tireSet: $0) }
     }
 
     func importBackup(context: NSManagedObjectContext) throws {
@@ -45,9 +45,11 @@ extension Fleetbox_Export_BackupExport {
 }
 
 extension Fleetbox_Export_Shop {
-    init(shop: Shop) {
+    init(settings: ExportSettings, shop: Shop) {
         if let name = shop.name {
             self.name = name
+        }
+        if let notes = shop.notes {
             self.notes = notes
         }
     }
@@ -61,7 +63,7 @@ extension Fleetbox_Export_Shop {
 }
 
 extension Fleetbox_Export_TireSet {
-    init(tireSet: TireSet) {
+    init(settings: ExportSettings, tireSet: TireSet) {
         aspectRatio = Int32(tireSet.aspectRatio)
         if let construction = tireSet.construction {
             self.construction = construction
@@ -89,10 +91,14 @@ extension Fleetbox_Export_TireSet {
         }
         hidden = tireSet.hidden
         breakin = tireSet.breakin
-        warranties = tireSet.warranties.map { Fleetbox_Export_Warranty(warranty: $0) }
+        warranties = tireSet.warranties.map {
+            Fleetbox_Export_Warranty(settings: settings, warranty: $0)
+        }
         baseMiles = tireSet.baseMiles
-        attachments = tireSet.attachments.map {
-            Fleetbox_Export_Attachment(attachment: $0)
+        if settings.includeAttachments {
+            attachments = tireSet.attachments.map {
+                Fleetbox_Export_Attachment(settings: settings, attachment: $0)
+            }
         }
     }
 
@@ -124,7 +130,7 @@ extension Fleetbox_Export_TireSet {
 }
 
 extension Fleetbox_Export_Vehicle {
-    init(envelope: ExportEnvelopeTemplate, vehicle: Vehicle) {
+    init(envelope: ExportEnvelopeTemplate, settings: ExportSettings, vehicle: Vehicle) {
         if let displayName = vehicle.displayName {
             self.displayName = displayName
         }
@@ -142,18 +148,22 @@ extension Fleetbox_Export_Vehicle {
             self.image = imageData
         }
         logItems = vehicle.logItems.map {
-            Fleetbox_Export_LogItem(envelope: envelope, logItem: $0)
+            Fleetbox_Export_LogItem(envelope: envelope, settings: settings, logItem: $0)
         }
         freeOdometerReadings = vehicle.odometerReadings.chrono
                 .filter({ $0.logItem == nil })
                 .map {
-                    Fleetbox_Export_OdometerReading(odometerReading: $0)
+                    Fleetbox_Export_OdometerReading(settings: settings, odometerReading: $0)
                 }
         breakin = vehicle.breakin
-        warranties = vehicle.warranties.map { Fleetbox_Export_Warranty(warranty: $0) }
+        warranties = vehicle.warranties.map {
+            Fleetbox_Export_Warranty(settings: settings, warranty: $0)
+        }
         milesPerYear = vehicle.milesPerYear
-        attachments = vehicle.attachments.map {
-            Fleetbox_Export_Attachment(attachment: $0)
+        if settings.includeAttachments {
+            attachments = vehicle.attachments.map {
+                Fleetbox_Export_Attachment(settings: settings, attachment: $0)
+            }
         }
     }
 
@@ -191,7 +201,7 @@ extension Fleetbox_Export_Vehicle {
 }
 
 extension Fleetbox_Export_OdometerReading {
-    init(odometerReading: OdometerReading) {
+    init(settings: ExportSettings, odometerReading: OdometerReading) {
         if let performedAt = odometerReading.at {
             self.performedAt = Int64(performedAt.timeIntervalSince1970)
         }
@@ -212,7 +222,7 @@ extension Fleetbox_Export_OdometerReading {
 }
 
 extension Fleetbox_Export_LogItem {
-    init(envelope: ExportEnvelopeTemplate, logItem: LogItem) {
+    init(envelope: ExportEnvelopeTemplate, settings: ExportSettings, logItem: LogItem) {
         if let displayName = logItem.displayName {
             self.displayName = displayName
         }
@@ -220,7 +230,7 @@ extension Fleetbox_Export_LogItem {
             self.performedAt = Int64(performedAt.timeIntervalSince1970)
         }
         lineItems = logItem.lineItems.map {
-            Fleetbox_Export_LineItem(envelope: envelope, lineItem: $0)
+            Fleetbox_Export_LineItem(envelope: envelope, settings: settings, lineItem: $0)
         }
         if let odometerReading = logItem.odometerReading {
             self.odometerReading = odometerReading.reading
@@ -233,8 +243,10 @@ extension Fleetbox_Export_LogItem {
                 envelope.shops.append(shop)
             }
         }
-        attachments = logItem.attachments.map {
-            Fleetbox_Export_Attachment(attachment: $0)
+        if settings.includeAttachments {
+            attachments = logItem.attachments.map {
+                Fleetbox_Export_Attachment(settings: settings, attachment: $0)
+            }
         }
         includeTime = logItem.includeTime
     }
@@ -275,7 +287,7 @@ extension Fleetbox_Export_LogItem {
 }
 
 extension Fleetbox_Export_Attachment {
-    init(attachment: Attachment) {
+    init(settings: ExportSettings, attachment: Attachment) {
         if let filename = attachment.fileName {
             self.filename = filename
         }
@@ -283,7 +295,7 @@ extension Fleetbox_Export_Attachment {
             self.fileExtension = fileExtension
         }
         self.fileSize = attachment.fileSize
-        if let contents = attachment.fileContents {
+        if settings.includeAttachments, let contents = attachment.fileContents {
             self.contents = contents
         }
     }
@@ -308,13 +320,13 @@ extension Fleetbox_Export_Attachment {
 }
 
 extension Fleetbox_Export_LineItem {
-    init(envelope: ExportEnvelopeTemplate, lineItem: LineItem) {
+    init(envelope: ExportEnvelopeTemplate, settings: ExportSettings, lineItem: LineItem) {
         if let notes = lineItem.notes {
             self.notes = notes
         }
         typeID = lineItem.typeId ?? "misc"
         fields = lineItem.fields.map {
-            Fleetbox_Export_LineItemField(envelope: envelope, lineItemField: $0)
+            Fleetbox_Export_LineItemField(envelope: envelope, settings: settings, lineItemField: $0)
         }
     }
 
@@ -340,7 +352,7 @@ extension Fleetbox_Export_LineItem {
 }
 
 extension Fleetbox_Export_LineItemField {
-    init(envelope: ExportEnvelopeTemplate, lineItemField: LineItemField) {
+    init(envelope: ExportEnvelopeTemplate, settings: ExportSettings, lineItemField: LineItemField) {
         if let typeID = lineItemField.typeId {
             self.typeID = typeID
         }
@@ -378,7 +390,7 @@ extension Fleetbox_Export_LineItemField {
 }
 
 extension Fleetbox_Export_Warranty {
-    init(warranty: Warranty) {
+    init(settings: ExportSettings, warranty: Warranty) {
         title = warranty.title ?? ""
         miles = warranty.miles
         months = warranty.months

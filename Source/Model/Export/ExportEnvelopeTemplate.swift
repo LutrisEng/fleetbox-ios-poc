@@ -45,15 +45,29 @@ class ExportEnvelopeTemplate {
         tireSets = backup.tireSets.map { $0.importTireSet(context: context) }
     }
 
-    func export() -> Fleetbox_Export_ExportEnvelope? {
+    func export(settings: ExportSettings = ExportSettings()) -> Fleetbox_Export_ExportEnvelope? {
         guard let vehicle = vehicle else {
             return nil
         }
 
         var envelope = Fleetbox_Export_ExportEnvelope()
-        envelope.vehicle = Fleetbox_Export_Vehicle(envelope: self, vehicle: vehicle)
-        envelope.shops = shops.map { Fleetbox_Export_Shop(shop: $0) }
-        envelope.tireSets = tireSets.map { Fleetbox_Export_TireSet(tireSet: $0) }
+        envelope.vehicle = Fleetbox_Export_Vehicle(
+            envelope: self,
+            settings: settings,
+            vehicle: vehicle
+        )
+        envelope.shops = shops.map {
+            Fleetbox_Export_Shop(
+                settings: settings,
+                shop: $0
+            )
+        }
+        envelope.tireSets = tireSets.map {
+            Fleetbox_Export_TireSet(
+                settings: settings,
+                tireSet: $0
+            )
+        }
         return envelope
     }
 }

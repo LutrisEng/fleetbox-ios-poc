@@ -72,9 +72,25 @@ struct VehicleView: View {
                     if exporting {
                         ProgressView()
                     } else {
-                        Button(action: share) {
-                            Label("Share", systemImage: "square.and.arrow.up")
-                        }
+                        Menu(
+                            content: {
+                                Button(
+                                    "Share with attachments",
+                                    action: {
+                                        share(settings: ExportSettings(includeAttachments: true))
+                                    }
+                                )
+                                Button(
+                                    "Share without attachments",
+                                    action: {
+                                        share(settings: ExportSettings(includeAttachments: false))
+                                    }
+                                )
+                            },
+                            label: {
+                                Label("Share", systemImage: "square.and.arrow.up")
+                            }
+                        )
                     }
                     NavigationLink(
                         destination: {
@@ -90,13 +106,13 @@ struct VehicleView: View {
         }
     }
 
-    private func share() {
+    private func share(settings: ExportSettings) {
         withAnimation {
             exporting = true
         }
         DispatchQueue.global(qos: .userInitiated).async {
             do {
-                guard let data = try vehicle.export() else {
+                guard let data = try vehicle.export(settings: settings) else {
                     throw ExportError.unknownError
                 }
                 let gzipped = try data.gzipped()

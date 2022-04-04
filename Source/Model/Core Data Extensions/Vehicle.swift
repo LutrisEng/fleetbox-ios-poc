@@ -129,9 +129,9 @@ extension Vehicle: Sortable,
         }
     }
 
-    func export() throws -> Data? {
+    func export(settings: ExportSettings) throws -> Data? {
         let ctx = ExportEnvelopeTemplate(vehicle: self)
-        let exportable = ctx.export()
+        let exportable = ctx.export(settings: settings)
         return try exportable?.serializedData()
     }
 
