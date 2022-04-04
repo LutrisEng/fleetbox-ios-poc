@@ -66,6 +66,17 @@
 		8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
 		868692A427F827F5001E1E2C /* TireSetLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692A327F827F5001E1E2C /* TireSetLabelView.swift */; };
 		868692A627FA6CF2001E1E2C /* ExportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692A527FA6CF2001E1E2C /* ExportSettings.swift */; };
+		868692A827FA7B2C001E1E2C /* ExportEnvelope Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692A727FA7B2C001E1E2C /* ExportEnvelope Extensions.swift */; };
+		868692AA27FA7B44001E1E2C /* BackupExport Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692A927FA7B44001E1E2C /* BackupExport Extensions.swift */; };
+		868692AC27FA7B53001E1E2C /* Shop Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692AB27FA7B53001E1E2C /* Shop Extensions.swift */; };
+		868692AE27FA7B60001E1E2C /* TireSet Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692AD27FA7B60001E1E2C /* TireSet Extensions.swift */; };
+		868692B027FA7B71001E1E2C /* Vehicle Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692AF27FA7B71001E1E2C /* Vehicle Extensions.swift */; };
+		868692B227FA7B86001E1E2C /* OdometerReading Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692B127FA7B86001E1E2C /* OdometerReading Extensions.swift */; };
+		868692B427FA7B93001E1E2C /* LogItem Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692B327FA7B93001E1E2C /* LogItem Extensions.swift */; };
+		868692B627FA7BA0001E1E2C /* Attachment Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692B527FA7BA0001E1E2C /* Attachment Extensions.swift */; };
+		868692B827FA7BAA001E1E2C /* LineItem Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692B727FA7BAA001E1E2C /* LineItem Extensions.swift */; };
+		868692BA27FA7BB8001E1E2C /* LineItemField Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692B927FA7BB8001E1E2C /* LineItemField Extensions.swift */; };
+		868692BC27FA7BCB001E1E2C /* Warranty Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692BB27FA7BCB001E1E2C /* Warranty Extensions.swift */; };
 		8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */; };
 		8690C7A727D9A6A80042F543 /* LineItemFieldLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */; };
 		8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690C7A927D9A9170042F543 /* OdometerReading.swift */; };
@@ -112,7 +123,6 @@
 		86F8F80D27EE774200442694 /* NewVehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F80C27EE774200442694 /* NewVehicleView.swift */; };
 		86F8F81027EE827800442694 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 86F8F80F27EE827800442694 /* Introspect */; };
 		86F8F81827EE99DC00442694 /* SwiftProtobuf in Frameworks */ = {isa = PBXBuildFile; productRef = 86F8F81727EE99DC00442694 /* SwiftProtobuf */; };
-		86F8F81B27EE9EB600442694 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F81927EE99EE00442694 /* Extensions.swift */; };
 		86F8F82127EEACFD00442694 /* FleetboxExport.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F8F81427EE99C500442694 /* FleetboxExport.pb.swift */; };
 /* End PBXBuildFile section */
 
@@ -217,6 +227,17 @@
 		8683930E27D1450B00D91D96 /* VehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
 		868692A327F827F5001E1E2C /* TireSetLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSetLabelView.swift; sourceTree = "<group>"; };
 		868692A527FA6CF2001E1E2C /* ExportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSettings.swift; sourceTree = "<group>"; };
+		868692A727FA7B2C001E1E2C /* ExportEnvelope Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExportEnvelope Extensions.swift"; sourceTree = "<group>"; };
+		868692A927FA7B44001E1E2C /* BackupExport Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BackupExport Extensions.swift"; sourceTree = "<group>"; };
+		868692AB27FA7B53001E1E2C /* Shop Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shop Extensions.swift"; sourceTree = "<group>"; };
+		868692AD27FA7B60001E1E2C /* TireSet Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TireSet Extensions.swift"; sourceTree = "<group>"; };
+		868692AF27FA7B71001E1E2C /* Vehicle Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle Extensions.swift"; sourceTree = "<group>"; };
+		868692B127FA7B86001E1E2C /* OdometerReading Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OdometerReading Extensions.swift"; sourceTree = "<group>"; };
+		868692B327FA7B93001E1E2C /* LogItem Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogItem Extensions.swift"; sourceTree = "<group>"; };
+		868692B527FA7BA0001E1E2C /* Attachment Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Attachment Extensions.swift"; sourceTree = "<group>"; };
+		868692B727FA7BAA001E1E2C /* LineItem Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineItem Extensions.swift"; sourceTree = "<group>"; };
+		868692B927FA7BB8001E1E2C /* LineItemField Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineItemField Extensions.swift"; sourceTree = "<group>"; };
+		868692BB27FA7BCB001E1E2C /* Warranty Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Warranty Extensions.swift"; sourceTree = "<group>"; };
 		8690C7A327D9A18D0042F543 /* EditLineItemFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditLineItemFieldView.swift; sourceTree = "<group>"; };
 		8690C7A627D9A6A80042F543 /* LineItemFieldLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineItemFieldLabelView.swift; sourceTree = "<group>"; };
 		8690C7A927D9A9170042F543 /* OdometerReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReading.swift; sourceTree = "<group>"; };
@@ -266,7 +287,6 @@
 		86F8F80C27EE774200442694 /* NewVehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewVehicleView.swift; sourceTree = "<group>"; };
 		86F8F81227EE99B400442694 /* FleetboxExport.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = FleetboxExport.proto; sourceTree = "<group>"; };
 		86F8F81427EE99C500442694 /* FleetboxExport.pb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetboxExport.pb.swift; sourceTree = "<group>"; };
-		86F8F81927EE99EE00442694 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -573,8 +593,18 @@
 				86F8F81227EE99B400442694 /* FleetboxExport.proto */,
 				861DA48627E11DFF00775276 /* ExportEnvelopeTemplate.swift */,
 				86F8F81427EE99C500442694 /* FleetboxExport.pb.swift */,
-				86F8F81927EE99EE00442694 /* Extensions.swift */,
 				868692A527FA6CF2001E1E2C /* ExportSettings.swift */,
+				868692A727FA7B2C001E1E2C /* ExportEnvelope Extensions.swift */,
+				868692A927FA7B44001E1E2C /* BackupExport Extensions.swift */,
+				868692AB27FA7B53001E1E2C /* Shop Extensions.swift */,
+				868692AD27FA7B60001E1E2C /* TireSet Extensions.swift */,
+				868692AF27FA7B71001E1E2C /* Vehicle Extensions.swift */,
+				868692B127FA7B86001E1E2C /* OdometerReading Extensions.swift */,
+				868692B327FA7B93001E1E2C /* LogItem Extensions.swift */,
+				868692B527FA7BA0001E1E2C /* Attachment Extensions.swift */,
+				868692B727FA7BAA001E1E2C /* LineItem Extensions.swift */,
+				868692B927FA7BB8001E1E2C /* LineItemField Extensions.swift */,
+				868692BB27FA7BCB001E1E2C /* Warranty Extensions.swift */,
 			);
 			path = Export;
 			sourceTree = "<group>";
@@ -848,8 +878,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8612CD6227E1956D00976E8F /* Array Extensions.swift in Sources */,
+				868692B827FA7BAA001E1E2C /* LineItem Extensions.swift in Sources */,
 				86500C8927DC0D6E00A5111E /* VehicleDetailsView.swift in Sources */,
 				8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */,
+				868692BC27FA7BCB001E1E2C /* Warranty Extensions.swift in Sources */,
 				8664C24127DA91BB00AE9ADB /* ShopsView.swift in Sources */,
 				864C731E27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */,
 				86B189A927EAFF5D001CFBD3 /* Temporary Files.swift in Sources */,
@@ -858,6 +890,7 @@
 				861DA48727E11DFF00775276 /* ExportEnvelopeTemplate.swift in Sources */,
 				86C0620D27F187C200020C08 /* NewWarrantyView.swift in Sources */,
 				86500C7827DC00DF00A5111E /* OdometerReadingsView.swift in Sources */,
+				868692B027FA7B71001E1E2C /* Vehicle Extensions.swift in Sources */,
 				86C061FF27F16DB100020C08 /* TireSetOdometerView.swift in Sources */,
 				86F8F82127EEACFD00442694 /* FleetboxExport.pb.swift in Sources */,
 				86B299DC27F6C5C000311957 /* BreakinField.swift in Sources */,
@@ -868,8 +901,10 @@
 				861DAE3527CDD59F00AFE972 /* FleetboxApp.swift in Sources */,
 				861DAE3927CDD59F00AFE972 /* Persistence.swift in Sources */,
 				8625125827F6951600FE0587 /* AttachmentsView.swift in Sources */,
+				868692B627FA7BA0001E1E2C /* Attachment Extensions.swift in Sources */,
 				8625125627F6754E00FE0587 /* OdometerReadingLabelView.swift in Sources */,
 				86C0620327F16E1800020C08 /* TireSetLogView.swift in Sources */,
+				868692B427FA7B93001E1E2C /* LogItem Extensions.swift in Sources */,
 				86C061FD27F16D6500020C08 /* TireSetDetailsView.swift in Sources */,
 				8612CD6F27E2DEF200976E8F /* SaveOnLeave.swift in Sources */,
 				8612CD6D27E1CF4400976E8F /* UIImage Extensions.swift in Sources */,
@@ -901,9 +936,11 @@
 				864C731B27CDF54E00047165 /* Vehicle.swift in Sources */,
 				86C061F727F1685000020C08 /* WarrantiesView.swift in Sources */,
 				8664C24527DA91E100AE9ADB /* PreviewWrapper.swift in Sources */,
+				868692A827FA7B2C001E1E2C /* ExportEnvelope Extensions.swift in Sources */,
 				86C061F327F1573100020C08 /* Protocols.swift in Sources */,
 				865D028527D9F1B3006C815D /* Error Handling.swift in Sources */,
 				86B189AF27EB0C6C001CFBD3 /* UIApplication Extensions.swift in Sources */,
+				868692AC27FA7B53001E1E2C /* Shop Extensions.swift in Sources */,
 				86C061FB27F16BF200020C08 /* WarrantyView.swift in Sources */,
 				86C0620527F16E3600020C08 /* TireSetActionsView.swift in Sources */,
 				86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */,
@@ -912,19 +949,22 @@
 				868692A427F827F5001E1E2C /* TireSetLabelView.swift in Sources */,
 				86500C8B27DC0D8600A5111E /* VINDetailView.swift in Sources */,
 				868692A627FA6CF2001E1E2C /* ExportSettings.swift in Sources */,
-				86F8F81B27EE9EB600442694 /* Extensions.swift in Sources */,
 				8664C24327DA91C200AE9ADB /* ShopView.swift in Sources */,
+				868692AE27FA7B60001E1E2C /* TireSet Extensions.swift in Sources */,
 				86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */,
 				86500C9127DC0DFE00A5111E /* PartOdometerRowView.swift in Sources */,
 				86B299DA27F6B5E200311957 /* VehicleLabelView.swift in Sources */,
 				864713FC27F1455700A12A23 /* Formatters.swift in Sources */,
 				86F8F80727EB197600442694 /* Editable.swift in Sources */,
+				868692AA27FA7B44001E1E2C /* BackupExport Extensions.swift in Sources */,
 				86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */,
 				86C061EA27F151C000020C08 /* WarrantyListingView.swift in Sources */,
 				8664C23F27DA907A00AE9ADB /* TireSetsView.swift in Sources */,
 				86B17F9527D47270001E52C6 /* LineItemField.swift in Sources */,
 				864713FA27F13FF400A12A23 /* LineItemTypes Structs.swift in Sources */,
 				8690C7A427D9A18E0042F543 /* EditLineItemFieldView.swift in Sources */,
+				868692BA27FA7BB8001E1E2C /* LineItemField Extensions.swift in Sources */,
+				868692B227FA7B86001E1E2C /* OdometerReading Extensions.swift in Sources */,
 				8664C23D27DA906A00AE9ADB /* TireSetView.swift in Sources */,
 				8625125127F6366600FE0587 /* AttachmentLabelView.swift in Sources */,
 				86C061F527F15DEE00020C08 /* Attachment.swift in Sources */,
