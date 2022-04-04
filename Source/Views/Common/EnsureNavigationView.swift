@@ -67,7 +67,7 @@ struct EnsureNavigationView<Content: View>: View {
     }
 
     private let columnIdioms: Set<UIUserInterfaceIdiom> = [
-        UIUserInterfaceIdiom.phone,
+        UIUserInterfaceIdiom.pad,
         UIUserInterfaceIdiom.mac
     ]
 
