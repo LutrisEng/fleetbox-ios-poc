@@ -30,6 +30,8 @@ platform :ios do
   end
 
   lane :tests do
+    ci = is_ci
+    setup_ci if ci
     run_tests(scheme: "Fleetbox Debug", devices: ["iPhone 13"], testplan: "Everything")
   end
 end

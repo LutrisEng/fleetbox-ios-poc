@@ -99,3 +99,5 @@ Design/Export
 /Fleetbox.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
 
 *.pb.swift
+
+/Fleetbox.app
