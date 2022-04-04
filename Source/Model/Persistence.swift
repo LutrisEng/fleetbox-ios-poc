@@ -169,6 +169,8 @@ struct PersistenceController {
             let description = container.persistentStoreDescriptions.first!
             description.type = NSSQLiteStoreType
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            let remoteChangeKey = "NSPersistentStoreRemoteChangeNotificationOptionKey"
+            description.setOption(true as NSNumber, forKey: remoteChangeKey)
             if !debug {
                 description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(
                     containerIdentifier: "iCloud.engineering.lutris.fleetbox"
@@ -176,6 +178,8 @@ struct PersistenceController {
             }
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        try? container.viewContext.setQueryGenerationFrom(.current)
         let coordinator = container.persistentStoreCoordinator
         container.loadPersistentStores(completionHandler: { (description, error) in
             if let error = error as NSError? {
