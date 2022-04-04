@@ -19,8 +19,10 @@ import Foundation
 
 struct ExportSettings {
     let includeAttachments: Bool
+    let includeImages: Bool
 
-    init(includeAttachments: Bool = true) {
+    init(includeAttachments: Bool = true, includeImages: Bool = true) {
         self.includeAttachments = includeAttachments
+        self.includeImages = includeImages
     }
 }

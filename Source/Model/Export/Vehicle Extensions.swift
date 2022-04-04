@@ -32,7 +32,7 @@ extension Fleetbox_Export_Vehicle {
             self.vin = vin
         }
         year = vehicle.year
-        if let imageData = vehicle.imageData {
+        if settings.includeImages, let imageData = vehicle.imageData {
             self.image = imageData
         }
         logItems = vehicle.logItems.map {

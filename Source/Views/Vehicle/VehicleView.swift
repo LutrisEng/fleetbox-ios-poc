@@ -77,13 +77,23 @@ struct VehicleView: View {
                                 Button(
                                     "Share with attachments",
                                     action: {
-                                        share(settings: ExportSettings(includeAttachments: true))
+                                        share(
+                                            settings: ExportSettings(
+                                                includeAttachments: true,
+                                                includeImages: true
+                                            )
+                                        )
                                     }
                                 )
                                 Button(
                                     "Share without attachments",
                                     action: {
-                                        share(settings: ExportSettings(includeAttachments: false))
+                                        share(
+                                            settings: ExportSettings(
+                                                includeAttachments: false,
+                                                includeImages: false
+                                            )
+                                        )
                                     }
                                 )
                             },
