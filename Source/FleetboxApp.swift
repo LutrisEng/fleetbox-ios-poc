@@ -131,6 +131,7 @@ struct FleetboxAppMainWindow: View {
             showPreview = true
             previewImportState = nil
             let persistence = PersistenceController(inMemory: true)
+            _ = url.startAccessingSecurityScopedResource()
             DispatchQueue.global(qos: .userInitiated).async {
                 do {
                     let gzipped = try Data(contentsOf: url)
@@ -139,6 +140,7 @@ struct FleetboxAppMainWindow: View {
                         throw ImportError.invalidData
                     }
                     DispatchQueue.main.async {
+                        url.stopAccessingSecurityScopedResource()
                         previewImportState = PreviewImportState(
                             url: url,
                             vehicle: vehicle,
@@ -147,8 +149,9 @@ struct FleetboxAppMainWindow: View {
                     }
                 } catch {
                     SentrySDK.capture(error: error)
-                    print(error)
+                    print("error importing", error)
                     DispatchQueue.main.async {
+                        url.stopAccessingSecurityScopedResource()
                         previewError = true
                     }
                 }
@@ -168,6 +171,7 @@ struct FleetboxAppMainWindow: View {
     private func importPreview() {
         if let previewImportState = previewImportState {
             importing = true
+            _ = previewImportState.url.startAccessingSecurityScopedResource()
             DispatchQueue.global(qos: .userInitiated).async {
                 do {
                     let gzipped = try Data(contentsOf: previewImportState.url)
@@ -180,6 +184,7 @@ struct FleetboxAppMainWindow: View {
                             } catch {
                                 SentrySDK.capture(error: error)
                             }
+                            previewImportState.url.stopAccessingSecurityScopedResource()
                             self.previewImportState = nil
                             previewError = false
                             showPreview = false
@@ -188,7 +193,11 @@ struct FleetboxAppMainWindow: View {
                     }
                 } catch {
                     SentrySDK.capture(error: error)
-                    importing = false
+                    print("import error", error)
+                    DispatchQueue.main.async {
+                        previewImportState.url.stopAccessingSecurityScopedResource()
+                        importing = false
+                    }
                 }
             }
         }

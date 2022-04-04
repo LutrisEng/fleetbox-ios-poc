@@ -65,6 +65,7 @@
 		8664C24727DA987900AE9ADB /* Custom Bindings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8664C24627DA987800AE9ADB /* Custom Bindings.swift */; };
 		866E70B027FACB940051E712 /* String Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866E70AF27FACB940051E712 /* String Extensions.swift */; };
 		866E70B227FAD0FE0051E712 /* CollapsibleForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 866E70B127FAD0FE0051E712 /* CollapsibleForEach.swift */; };
+		866E70B427FB6DAF0051E712 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 866E70B327FB6DAF0051E712 /* CloudKit.framework */; };
 		8683930F27D1450B00D91D96 /* VehicleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8683930E27D1450B00D91D96 /* VehicleView.swift */; };
 		868692A427F827F5001E1E2C /* TireSetLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692A327F827F5001E1E2C /* TireSetLabelView.swift */; };
 		868692A627FA6CF2001E1E2C /* ExportSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868692A527FA6CF2001E1E2C /* ExportSettings.swift */; };
@@ -228,6 +229,7 @@
 		8664C24627DA987800AE9ADB /* Custom Bindings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom Bindings.swift"; sourceTree = "<group>"; };
 		866E70AF27FACB940051E712 /* String Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String Extensions.swift"; sourceTree = "<group>"; };
 		866E70B127FAD0FE0051E712 /* CollapsibleForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleForEach.swift; sourceTree = "<group>"; };
+		866E70B327FB6DAF0051E712 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS15.4.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
 		8683930E27D1450B00D91D96 /* VehicleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleView.swift; sourceTree = "<group>"; };
 		868692A327F827F5001E1E2C /* TireSetLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSetLabelView.swift; sourceTree = "<group>"; };
 		868692A527FA6CF2001E1E2C /* ExportSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportSettings.swift; sourceTree = "<group>"; };
@@ -303,6 +305,7 @@
 				86B189B227EB0F6B001CFBD3 /* Gzip in Frameworks */,
 				8612CD6927E1A68B00976E8F /* ImagePickerView in Frameworks */,
 				861DAE4E27CDDAD700AFE972 /* Sentry in Frameworks */,
+				866E70B427FB6DAF0051E712 /* CloudKit.framework in Frameworks */,
 				86F8F81827EE99DC00442694 /* SwiftProtobuf in Frameworks */,
 				86D2DA7227D081490083254E /* Alamofire in Frameworks */,
 			);
@@ -369,6 +372,7 @@
 		861DAE4F27CDDAEB00AFE972 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				866E70B327FB6DAF0051E712 /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1146,7 +1150,7 @@
 				CODE_SIGN_ENTITLEMENTS = Source/Fleetbox.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79A4SD8C3M;
+				DEVELOPMENT_TEAM = A8F3658DHX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Source/Fleetbox-Info.plist";
@@ -1182,9 +1186,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = Source/Fleetbox.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79A4SD8C3M;
+				DEVELOPMENT_TEAM = A8F3658DHX;
 				ENABLE_PREVIEWS = YES;
 				GCC_UNROLL_LOOPS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

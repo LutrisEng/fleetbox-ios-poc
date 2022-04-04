@@ -166,9 +166,14 @@ struct PersistenceController {
                 NSPersistentStoreDescription(url: URL(fileURLWithPath: "/dev/null"))
             ]
         } else {
-            let description = container.persistentStoreDescriptions.first
-            description?.type = NSSQLiteStoreType
-            description?.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            let description = container.persistentStoreDescriptions.first!
+            description.type = NSSQLiteStoreType
+            description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            if !debug {
+                description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(
+                    containerIdentifier: "iCloud.engineering.lutris.fleetbox"
+                )
+            }
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
         let coordinator = container.persistentStoreCoordinator
