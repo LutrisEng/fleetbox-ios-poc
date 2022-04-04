@@ -42,7 +42,6 @@ struct AttachmentsView<T: ObservableObject & HasRawAttachments & HasAttachments 
             )
         }
         .onMove {
-            print("notify change")
             owner.notifyChange()
         }
         .onAppear {
