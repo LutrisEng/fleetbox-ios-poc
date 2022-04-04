@@ -54,7 +54,7 @@ struct CollapsibleForEach<T: NSManagedObject & Sortable, V: View>: View {
 
     var buttonContent: LocalizedStringKey {
         if collapsed {
-            return "\(Image(systemName: "eye")) Show all"
+            return "\(Image(systemName: "eye")) Show all (showing 3 of \(objects.count))"
         } else {
             return "\(Image(systemName: "eye.slash")) Show fewer"
         }

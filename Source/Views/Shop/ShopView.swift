@@ -32,8 +32,7 @@ struct ShopView: View {
             Section(header: Text("Location")) {
                 TextEditor(text: convertToNonNilBinding(string: $shop.location))
             }
-            let vehicles = shop.vehicles
-            if !vehicles.isEmpty {
+            if !shop.vehicles.isEmpty {
                 Section(header: Text("Performed service on")) {
                     ForEachObjects(shop.vehicles, allowDelete: false, allowMove: false) { vehicle in
                         NavigationLink(
@@ -47,8 +46,7 @@ struct ShopView: View {
                     }
                 }
             }
-            let logItems = shop.logItems.inverseChrono
-            if !logItems.isEmpty {
+            if !shop.logItems.isEmpty {
                 Section(header: Text("Log items")) {
                     ForEach(shop.logItems.inverseChrono, id: \.self) { logItem in
                         NavigationLink(

@@ -110,7 +110,7 @@ struct LogItemView: View {
                     }
                 }
                 Section(header: Text("Line items")) {
-                    let lineItems = logItem.lineItems.sorted
+                    let lineItems = Array(logItem.lineItems)
                     if lineItems.isEmpty {
                         Text("No line items")
                             .foregroundColor(.secondary)

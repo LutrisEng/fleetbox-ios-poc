@@ -33,7 +33,7 @@ struct VehiclesView: View {
     var body: some View {
         EnsureNavigationView {
             List {
-                let vehicles = vehicles.map { $0 }
+                let vehicles = Array(vehicles)
                 ForEachObjects(vehicles) { vehicle in
                     NavigationLink(
                         destination: EnsureNavigationView {
