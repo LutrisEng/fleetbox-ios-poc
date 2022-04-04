@@ -126,12 +126,28 @@ protocol HasLineItems {
 extension HasLineItems {
     func lastLineItem(type: String) -> LineItem? {
         return lineItems.inverseChrono
-            .first(where: { $0.typeId == type })
+            .first { $0.typeId == type }
     }
 
     func lastLineItem(type: String, where pred: (LineItem) -> Bool) -> LineItem? {
         return lineItems.inverseChrono
-            .first(where: { $0.typeId == type && pred($0) })
+            .first { $0.typeId == type && pred($0) }
+    }
+
+    func lastLineItem(typeIn: Set<String>) -> LineItem? {
+        return lineItems.inverseChrono
+            .first {
+                guard let typeId = $0.typeId else { return false }
+                return typeIn.contains(typeId)
+            }
+    }
+
+    func lastLineItem(typeIn: Set<String>, where pred: (LineItem) -> Bool) -> LineItem? {
+        return lineItems.inverseChrono
+            .first {
+                guard let typeId = $0.typeId else { return false }
+                return typeIn.contains(typeId) && pred($0)
+            }
     }
 }
 

@@ -120,7 +120,10 @@ extension Vehicle: Sortable,
 
     var licensePlateNumber: String? {
         let licensePlateNumber = ignoreErrors {
-            try lastLineItem(type: "stateRegistration")?.getFieldValueString("licensePlateNumber")
+            try lastLineItem(
+                typeIn: ["stateRegistration", "vanityPlateMounted"],
+                where: { (try? $0.getFieldValueString("licensePlateNumber")) ?? nil != nil }
+            )?.getFieldValueString("licensePlateNumber")
         } ?? nil
         if licensePlateNumber == "" {
             return nil

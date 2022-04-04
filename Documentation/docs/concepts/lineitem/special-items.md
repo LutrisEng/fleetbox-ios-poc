@@ -28,4 +28,8 @@ Fleetbox uses the "Viscosity" field in the "Engine oil changed" line item type i
 
 ### Registered with state
 
-Fleetbox uses the "License plate number" field in the "Registered with state" line item type in order to determine what the vehicle's current license plate number is.
+Fleetbox uses the "License plate" field in the "Registered with state" line item type in order to determine what the vehicle's current license plate number is.
+
+### Vanity plate mounted
+
+Fleetbox uses the "License plate" field in the "Vanity plate mounted" line item type in order to determine what the vehicle's current license plate number is.
