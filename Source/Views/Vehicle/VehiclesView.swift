@@ -46,7 +46,9 @@ struct VehiclesView: View {
                 }
             }
             .onAppear {
-                vehicles.fixSortOrder()
+                if editable {
+                    vehicles.fixSortOrder()
+                }
             }
             .navigationTitle("Vehicles")
             .toolbar {
@@ -69,7 +71,6 @@ struct VehiclesView: View {
                     }
                 }
             }
-            Image(systemName: "car")
         }
     }
 

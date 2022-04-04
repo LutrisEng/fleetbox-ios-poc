@@ -30,22 +30,28 @@ struct AttachmentsView<T: ObservableObject & HasRawAttachments & HasAttachments 
     @State private var showCamera: Bool = false
 
     var body: some View {
-        let attachments = owner.attachments.sorted
-        ForEachObjects(attachments) { attachment in
-            NavigationLink(
-                destination: {
-                    AttachmentView(attachment: attachment)
-                },
-                label: {
-                    AttachmentLabelView(attachment: attachment)
+        if !owner.attachments.isEmpty {
+            let attachments = owner.attachments.sorted
+            ForEachObjects(attachments) { attachment in
+                NavigationLink(
+                    destination: {
+                        AttachmentView(attachment: attachment)
+                    },
+                    label: {
+                        AttachmentLabelView(attachment: attachment)
+                    }
+                )
+            }
+            .onMove {
+                owner.notifyChange()
+            }
+            .onAppear {
+                if editable {
+                    attachments.normalize()
                 }
-            )
-        }
-        .onMove {
-            owner.notifyChange()
-        }
-        .onAppear {
-            attachments.normalize()
+            }
+        } else if !editable {
+            Text("No attachments").foregroundColor(.secondary)
         }
         if adding {
             ProgressView()
