@@ -67,6 +67,7 @@ message Attachment {
 message Shop {
     optional string name = 1;
     optional string notes = 2;
+    optional string location = 3;
 }
 
 message TireSet {

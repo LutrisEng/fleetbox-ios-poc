@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E230" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Attachment" representedClassName="Attachment" syncable="YES" codeGenerationType="class">
         <attribute name="fileContents" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="fileExtension" optional="YES" attributeType="String"/>
@@ -42,6 +42,7 @@
         <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="odometerReadingsNs" inverseEntity="Vehicle"/>
     </entity>
     <entity name="Shop" representedClassName="Shop" syncable="YES" codeGenerationType="class">
+        <attribute name="location" attributeType="String" defaultValueString=""/>
         <attribute name="name" attributeType="String" defaultValueString="Maintenance Shop"/>
         <attribute name="notes" attributeType="String" defaultValueString=""/>
         <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -97,7 +98,7 @@
         <element name="LineItemField" positionX="270" positionY="36" width="128" height="104"/>
         <element name="LogItem" positionX="406.38671875" positionY="-9.95703125" width="128" height="149"/>
         <element name="OdometerReading" positionX="270" positionY="108" width="128" height="118"/>
-        <element name="Shop" positionX="279" positionY="45" width="128" height="89"/>
+        <element name="Shop" positionX="279" positionY="45" width="128" height="104"/>
         <element name="TireSet" positionX="279" positionY="63" width="128" height="328"/>
         <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="238"/>
         <element name="Warranty" positionX="270" positionY="135" width="128" height="119"/>

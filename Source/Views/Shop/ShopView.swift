@@ -29,6 +29,9 @@ struct ShopView: View {
             Section(header: Text("Notes")) {
                 TextEditor(text: convertToNonNilBinding(string: $shop.notes))
             }
+            Section(header: Text("Location")) {
+                TextEditor(text: convertToNonNilBinding(string: $shop.location))
+            }
             let vehicles = shop.vehicles
             if !vehicles.isEmpty {
                 Section(header: Text("Performed service on")) {

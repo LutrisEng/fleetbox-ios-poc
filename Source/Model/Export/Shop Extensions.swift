@@ -25,12 +25,16 @@ extension Fleetbox_Export_Shop {
         if let notes = shop.notes {
             self.notes = notes
         }
+        if let location = shop.location {
+            self.location = location
+        }
     }
 
     func importShop(context: NSManagedObjectContext) -> Shop {
         let shop = Shop(context: context)
         shop.name = name
         shop.notes = notes
+        shop.location = location
         return shop
     }
 }
