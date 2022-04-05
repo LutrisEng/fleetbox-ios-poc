@@ -255,10 +255,14 @@ class LineItemTypeComponent {
     let id: String
     let name: String
     let filter: String?
+    let milesLife: Int?
+    let monthsLife: Int?
 
     init(yaml: LineItemTypes.YamlComponent) {
         id = yaml.id
         name = yaml.name
         filter = yaml.filter
+        milesLife = yaml.milesLife
+        monthsLife = yaml.monthsLife
     }
 }

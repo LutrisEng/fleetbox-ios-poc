@@ -70,6 +70,10 @@ struct Formatter {
         return self.number.string(from: NSNumber(value: number)) ?? "\(number)"
     }
 
+    static func format(number: Int) -> String {
+        return self.number.string(from: NSNumber(value: number)) ?? "\(number)"
+    }
+
     static let wholeNumber: NumberFormatter = numberFormatter { formatter in
         formatter.maximumFractionDigits = 0
     }

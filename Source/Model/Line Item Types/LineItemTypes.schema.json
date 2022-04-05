@@ -171,6 +171,12 @@
         },
         "filter": {
           "type": "string"
+        },
+        "milesLife": {
+          "type": "number"
+        },
+        "monthsLife": {
+          "type": "number"
         }
       },
       "required": [

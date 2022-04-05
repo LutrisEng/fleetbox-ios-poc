@@ -33,21 +33,27 @@ struct PartOdometerFluidFilterView: View {
             PartOdometerRowView(
                 name: "\(fluid.name) & filter",
                 milesSince: milesSinceFluid,
-                timeSince: timeSinceFluid
+                timeSince: timeSinceFluid,
+                milesLife: min(fluid.milesLife, filter.milesLife),
+                monthsLife: min(fluid.monthsLife, filter.monthsLife)
             )
         } else {
             if milesSinceFluid != nil || timeSinceFluid != nil {
                 PartOdometerRowView(
                     name: fluid.name,
                     milesSince: milesSinceFluid,
-                    timeSince: timeSinceFluid
+                    timeSince: timeSinceFluid,
+                    milesLife: fluid.milesLife,
+                    monthsLife: filter.monthsLife
                 )
             }
             if milesSinceFilter != nil || timeSinceFilter != nil {
                 PartOdometerRowView(
                     name: filter.name,
                     milesSince: milesSinceFilter,
-                    timeSince: timeSinceFilter
+                    timeSince: timeSinceFilter,
+                    milesLife: fluid.milesLife,
+                    monthsLife: fluid.monthsLife
                 )
             }
         }
