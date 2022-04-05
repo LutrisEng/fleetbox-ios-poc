@@ -26,4 +26,15 @@ class LineItemTypeTest: XCTestCase {
     func testMiscExists() throws {
         XCTAssertNotNil(lineItemTypes.allTypesById["misc"])
     }
+
+    func testReplaceExists() throws {
+        for type in lineItemTypes.allTypes {
+            if let replaces = type.replaces {
+                XCTAssertNotNil(
+                    lineItemTypes.allComponentsById[replaces],
+                    "Type \(type.id) refers to nonexistent component \(replaces)"
+                )
+            }
+        }
+    }
 }

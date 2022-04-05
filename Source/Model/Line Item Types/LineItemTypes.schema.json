@@ -56,6 +56,9 @@
         "icon": {
           "$ref": "#/definitions/icon"
         },
+        "replaces": {
+          "type": "string"
+        },
         "fields": {
           "type": "array",
           "items": {
@@ -156,9 +159,33 @@
         "shortDisplayName",
         "type"
       ]
+    },
+    "component": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "filter": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "name"
+      ]
     }
   },
   "properties": {
+    "components": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/component"
+      }
+    },
     "categories": {
       "type": "array",
       "items": {
