@@ -16,6 +16,10 @@ const config = {
   organizationName: 'LutrisEng', // Usually your GitHub org/user name.
   projectName: 'fleetbox', // Usually your repo name.
 
+  clientModules: [
+    require.resolve('./src/sentry.ts')
+  ],
+
   presets: [
     [
       'classic',
