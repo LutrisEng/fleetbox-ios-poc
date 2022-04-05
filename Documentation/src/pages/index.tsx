@@ -8,6 +8,8 @@ import styles from './index.module.css';
 import DownloadOnTheAppStore from '@site/static/img/appstore.svg';
 import DownloadOnTheMacAppStore from '@site/static/img/macappstore.svg';
 
+const appstoreLink = 'https://apps.apple.com/us/app/fleetbox/id1617676419';
+
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -17,10 +19,10 @@ function HomepageHeader() {
         <p className={clsx('hero__subtitle', styles.heroSubtitle)}>{siteConfig.tagline}</p>
         <div className={styles.buttons}>
           <div className={styles.appstoreButtons}>
-            <Link to="about:blank">
+            <Link to={ appstoreLink }>
               <DownloadOnTheAppStore />
             </Link>
-            <Link to="about:blank">
+            <Link to={ appstoreLink }>
               <DownloadOnTheMacAppStore />
             </Link>
           </div>
