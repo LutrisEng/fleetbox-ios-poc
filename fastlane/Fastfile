@@ -26,12 +26,28 @@ platform :ios do
       key_filepath: "./connect_api_key.p8"
     ) if ci
     changelog = read_changelog
+    version = get_version_number
+    build_number = latest_testflight_build_number + 1
     increment_build_number(
       xcodeproj: "Fleetbox.xcodeproj",
-      build_number: latest_testflight_build_number + 1
+      build_number: build_number
     )
     match(type: "appstore", platform: "ios", readonly: ci)
     build_ios_app(scheme: "Fleetbox Release")
+    if ENV['SENTRY_AUTH_TOKEN'] then
+      sentry_upload_dif(
+        org_slug: 'lutriseng',
+        project_slug: 'fleetbox',
+        include_sources: true
+      )
+      sentry_create_release(
+        org_slug: 'lutriseng',
+        project_slug: 'fleetbox',
+        version: "#{version}+#{build_number}",
+        app_identifier: "engineering.lutris.fleetbox.ios",
+        finalize: true
+      )
+    end
     # match(type: "mac_installer_distribution", platform: "catalyst", readonly: is_ci)
     # build_mac_app(scheme: "Fleetbox Release")
     upload_to_testflight(
