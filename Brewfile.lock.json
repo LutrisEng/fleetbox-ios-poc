@@ -327,6 +327,15 @@
             }
           }
         }
+      },
+      "getsentry/tools/sentry-cli": {
+        "version": "1.74.3",
+        "bottle": false
+      }
+    },
+    "tap": {
+      "getsentry/tools": {
+        "revision": "9b8f6818aace4f1b510704cfe6b3760d281dd0f3"
       }
     }
   },
@@ -335,7 +344,7 @@
       "monterey": {
         "HOMEBREW_VERSION": "3.4.5-16-gf6ab300",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "5fe6211bf4195a0218c9d26fe5cbcc6eba74d0fe",
+        "Homebrew/homebrew-core": "d2f9844971dbe96ea49abb23c71bb1c13acc074f",
         "CLT": "13.3.0.0.1.1645755326",
         "Xcode": "13.3",
         "macOS": "12.3.1"
