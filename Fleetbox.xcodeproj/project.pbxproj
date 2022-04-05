@@ -119,6 +119,7 @@
 		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
 		86D2DA7227D081490083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7127D081490083254E /* Alamofire */; };
+		86E346B427FBDAD800593444 /* Advanced Fixtures.fleetboxvehicle in Resources */ = {isa = PBXBuildFile; fileRef = 86E346B227FBDAB600593444 /* Advanced Fixtures.fleetboxvehicle */; };
 		86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB569A27E171A0007FA2DD /* AboutView.swift */; };
 		86EC635F27F1503B00882C64 /* Warranty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC635E27F1503B00882C64 /* Warranty.swift */; };
 		86EE1BF327F3C6E1006417C0 /* EnsureNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE1BF127F3C6E1006417C0 /* EnsureNavigationView.swift */; };
@@ -285,6 +286,7 @@
 		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
 		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
+		86E346B227FBDAB600593444 /* Advanced Fixtures.fleetboxvehicle */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Advanced Fixtures.fleetboxvehicle"; sourceTree = "<group>"; };
 		86EB569A27E171A0007FA2DD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		86EB569C27E17681007FA2DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		86EB569D27E176AC007FA2DD /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
@@ -397,6 +399,7 @@
 				86500C8327DC09CE00A5111E /* Core Data Extensions */,
 				8664C24827DAAA1A00AE9ADB /* Export */,
 				86B17F8727D45DF1001E52C6 /* Line Item Types */,
+				86E346B227FBDAB600593444 /* Advanced Fixtures.fleetboxvehicle */,
 				861DAE0C27CDD59D00AFE972 /* Persistence.swift */,
 				861DAE0827CDD59D00AFE972 /* Fleetbox.xcdatamodeld */,
 			);
@@ -814,6 +817,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86E346B427FBDAD800593444 /* Advanced Fixtures.fleetboxvehicle in Resources */,
 				865D028827D9F622006C815D /* LineItemTypes.yml in Resources */,
 				861DAE3B27CDD59F00AFE972 /* Assets.xcassets in Resources */,
 			);

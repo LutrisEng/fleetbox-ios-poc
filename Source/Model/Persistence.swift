@@ -24,6 +24,17 @@ struct PersistenceController {
     static let managedObjectModel = NSManagedObjectModel(contentsOf: managedObjectModelURL)!
 
     #if DEBUG
+    private static let advancedFixturesURL = Bundle.main.url(
+        forResource: "Advanced Fixtures",
+        withExtension: "fleetboxvehicle"
+    )!
+
+    func useAdvancedFixtures() throws -> Vehicle {
+        let gzipped = try Data(contentsOf: PersistenceController.advancedFixturesURL)
+        let data = gzipped.isGzipped ? try gzipped.gunzipped() : gzipped
+        return try Vehicle.importData(data, context: container.viewContext)!
+    }
+
     struct Fixtures {
         let shop: Shop
         let vehicle: Vehicle

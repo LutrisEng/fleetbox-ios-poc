@@ -24,23 +24,34 @@ class ExportTest: TestEnvironmentTestCase {
         let exported = try fixtures.vehicle.export(settings: ExportSettings())!
         XCTAssertNotEqual(exported.count, 0)
     }
+    
+    func assertVehiclesSimilar(_ a: Vehicle, _ b: Vehicle) {
+        XCTAssertEqual(a.displayNameWithFallback, b.displayNameWithFallback)
+        XCTAssertEqual(a.odometer, b.odometer)
+        XCTAssertEqual(a.logItems.chrono.first!.at, b.logItems.chrono.first!.at)
+        XCTAssertEqual(
+            try a
+                .lastLineItem(type: "engineOilChange")!
+                .getFieldValueString("viscosity"),
+            try b
+                .lastLineItem(type: "engineOilChange")!
+                .getFieldValueString("viscosity")
+        )
+    }
 
     func testRoundtrip() throws {
         let fixtures = try env.addFixtures()
         let exported = try fixtures.vehicle.export(settings: ExportSettings())!
         let newEnvironment = TestEnvironment()
         let newVehicle = try Vehicle.importData(exported, context: newEnvironment.viewContext)!
+        assertVehiclesSimilar(fixtures.vehicle, newVehicle)
+    }
 
-        XCTAssertEqual(newVehicle.displayNameWithFallback, fixtures.vehicle.displayNameWithFallback)
-        XCTAssertEqual(newVehicle.odometer, fixtures.vehicle.odometer)
-        XCTAssertEqual(newVehicle.logItems.first!.at, fixtures.vehicle.logItems.first!.at)
-        XCTAssertEqual(
-            try newVehicle
-                .lastLineItem(type: "engineOilChange")!
-                .getFieldValueString("viscosity"),
-            try fixtures.vehicle
-                .lastLineItem(type: "engineOilChange")!
-                .getFieldValueString("viscosity")
-        )
+    func testAdvancedFixtures() throws {
+        let vehicle = try env.controller.useAdvancedFixtures()
+        let exported = try vehicle.export(settings: ExportSettings())!
+        let newEnvironment = TestEnvironment()
+        let newVehicle = try Vehicle.importData(exported, context: newEnvironment.viewContext)!
+        assertVehiclesSimilar(vehicle, newVehicle)
     }
 }
