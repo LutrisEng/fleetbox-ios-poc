@@ -46,6 +46,11 @@ platform :ios do
     setup_ci if ci
     # A sort of soft-lint of the changelog
     read_changelog
-    run_tests(scheme: "Fleetbox Debug", device: "iPhone 13", testplan: "Everything")
+    run_tests(
+      scheme: "Fleetbox Debug",
+      # Cover the whole spectrum, from small iPhone 8 to quite large to iPhone 13 Pro Max to much larger iPad
+      devices: ["iPhone 13 Pro Max", "iPad (9th generation)", "iPhone 8"],
+      testplan: "Everything"
+    )
   end
 end
