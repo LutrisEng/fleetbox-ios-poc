@@ -22,4 +22,8 @@ class LineItemTypeTest: XCTestCase {
     func testDeserializes() throws {
         _ = try LineItemTypes()
     }
+
+    func testMiscExists() throws {
+        XCTAssertNotNil(lineItemTypes.allTypesById["misc"])
+    }
 }

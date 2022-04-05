@@ -24,6 +24,17 @@ struct PersistenceController {
     static let managedObjectModel = NSManagedObjectModel(contentsOf: managedObjectModelURL)!
 
     #if DEBUG
+    private static let advancedFixturesURL = Bundle.main.url(
+        forResource: "Advanced Fixtures",
+        withExtension: "fleetboxvehicle"
+    )!
+
+    func useAdvancedFixtures() throws -> Vehicle {
+        let gzipped = try Data(contentsOf: PersistenceController.advancedFixturesURL)
+        let data = gzipped.isGzipped ? try gzipped.gunzipped() : gzipped
+        return try Vehicle.importData(data, context: container.viewContext)!
+    }
+
     struct Fixtures {
         let shop: Shop
         let vehicle: Vehicle
@@ -33,7 +44,7 @@ struct PersistenceController {
         let tireSet: TireSet
 
         // swiftlint:disable:next function_body_length
-        init(viewContext: NSManagedObjectContext) throws {
+        init(viewContext: NSManagedObjectContext, save: Bool = true) throws {
             vehicle = Vehicle(context: viewContext)
             vehicle.displayName = "The Mazda CX-5"
             vehicle.year = 2022
@@ -130,7 +141,9 @@ struct PersistenceController {
             laterOdometerReading.reading = 6871
             laterOdometerReading.at = Date(timeIntervalSince1970: 1646550183)
             laterOdometerReading.vehicle = vehicle
-            try viewContext.save()
+            if save {
+                try viewContext.save()
+            }
         }
     }
 

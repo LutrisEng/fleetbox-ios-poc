@@ -17,6 +17,7 @@
 
 import Foundation
 import CoreData
+import XCTest
 @testable import Fleetbox
 
 struct TestEnvironment {
@@ -29,6 +30,15 @@ struct TestEnvironment {
     }
 
     func addFixtures() throws -> PersistenceController.Fixtures {
-        try PersistenceController.Fixtures(viewContext: viewContext)
+        try PersistenceController.Fixtures(viewContext: viewContext, save: false)
+    }
+}
+
+class TestEnvironmentTestCase: XCTestCase {
+    var env: TestEnvironment = TestEnvironment()
+
+    override func setUp() {
+        super.setUp()
+        env = TestEnvironment()
     }
 }

@@ -18,16 +18,9 @@
 import XCTest
 @testable import Fleetbox
 
-class VehicleTest: XCTestCase {
-    var env: TestEnvironment = TestEnvironment()
-
-    override func setUpWithError() throws {
-        env = TestEnvironment()
-    }
-
+class VehicleTest: TestEnvironmentTestCase {
     func testCreateVehicle() throws {
         _ = Vehicle(context: env.viewContext)
-        try env.viewContext.save()
     }
 
     func testOdometer() throws {
@@ -43,6 +36,11 @@ class VehicleTest: XCTestCase {
         secondOdometerReading.vehicle = vehicle
         secondOdometerReading.reading = 1000
         XCTAssertEqual(vehicle.odometer, 1000)
-        try env.viewContext.save()
+        let logItem = LogItem(context: env.viewContext)
+        logItem.at = Date(timeIntervalSince1970: 3)
+        logItem.vehicle = vehicle
+        let logItemOdometerReading = OdometerReading(context: env.viewContext, logItem: logItem)
+        logItemOdometerReading.reading = 1500
+        XCTAssertEqual(vehicle.odometer, 1500)
     }
 }
