@@ -37,4 +37,15 @@ class LineItemTypeTest: XCTestCase {
             }
         }
     }
+
+    func testFilterExists() throws {
+        for component in lineItemTypes.allComponents {
+            if let filter = component.filter {
+                XCTAssertNotNil(
+                    lineItemTypes.allComponentsById[filter],
+                    "Component \(component.id) refers to nonexistent component \(filter) as filter"
+                )
+            }
+        }
+    }
 }

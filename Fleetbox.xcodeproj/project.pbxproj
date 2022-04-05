@@ -1148,9 +1148,9 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "AccentColor-Debug";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CODE_SIGN_ENTITLEMENTS = Source/Fleetbox.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = A8F3658DHX;
 				ENABLE_PREVIEWS = YES;
@@ -1172,8 +1172,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = engineering.lutris.fleetbox.ios.debug;
 				PRODUCT_MODULE_NAME = Fleetbox;
 				PRODUCT_NAME = "Fleetbox Debug";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development engineering.lutris.fleetbox.ios.debug";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "match Development engineering.lutris.fleetbox.ios.debug catalyst";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SDKROOT = iphoneos;
 				SUPPORTS_MACCATALYST = YES;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;

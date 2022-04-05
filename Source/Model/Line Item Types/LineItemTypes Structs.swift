@@ -253,12 +253,12 @@ enum LineItemTypeHierarchyItem: Identifiable {
 
 class LineItemTypeComponent {
     let id: String
-    let name: LocalizedStringKey
+    let name: String
     let filter: String?
 
     init(yaml: LineItemTypes.YamlComponent) {
         id = yaml.id
-        name = LocalizedStringKey(yaml.name)
+        name = yaml.name
         filter = yaml.filter
     }
 }
