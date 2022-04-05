@@ -25,7 +25,10 @@ platform :ios do
       issuer_id: "c8eeae79-a596-4238-9eb5-1181d75ae57a",
       key_filepath: "./connect_api_key.p8"
     ) if ci
-    increment_build_number(xcodeproj: "Fleetbox.xcodeproj")
+    increment_build_number(
+      xcodeproj: "Fleetbox.xcodeproj",
+      build_number: latest_testflight_build_number + 1
+    )
     match(type: "appstore", platform: "ios", readonly: ci)
     build_ios_app(scheme: "Fleetbox Release")
     # match(type: "mac_installer_distribution", platform: "catalyst", readonly: is_ci)
