@@ -48,8 +48,7 @@ platform :ios do
     read_changelog
     run_tests(
       scheme: "Fleetbox Debug",
-      # Cover the whole spectrum, from small iPhone 8 to quite large to iPhone 13 Pro Max to much larger iPad
-      devices: ["iPhone 13 Pro Max", "iPad (9th generation)", "iPhone 8"],
+      devices: "iPhone 8",
       testplan: "Everything"
     )
   end
