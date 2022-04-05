@@ -289,6 +289,7 @@
 		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
 		86E346B227FBDAB600593444 /* Advanced Fixtures.fleetboxvehicle */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Advanced Fixtures.fleetboxvehicle"; sourceTree = "<group>"; };
 		86E346B527FC096000593444 /* Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
+		86E346B727FD02C700593444 /* AppIcon Debug.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AppIcon Debug.afdesign"; sourceTree = "<group>"; };
 		86EB569A27E171A0007FA2DD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		86EB569C27E17681007FA2DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		86EB569D27E176AC007FA2DD /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
@@ -583,6 +584,7 @@
 			children = (
 				861DAE0D27CDD59F00AFE972 /* Assets.xcassets */,
 				86638D2C27D9870700149689 /* AppIcon.afdesign */,
+				86E346B727FD02C700593444 /* AppIcon Debug.afdesign */,
 			);
 			path = Design;
 			sourceTree = "<group>";
