@@ -186,7 +186,6 @@
 		8625125327F6469800FE0587 /* ForEachObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForEachObjects.swift; sourceTree = "<group>"; };
 		8625125527F6754E00FE0587 /* OdometerReadingLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReadingLabelView.swift; sourceTree = "<group>"; };
 		8625125727F6951600FE0587 /* AttachmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachmentsView.swift; sourceTree = "<group>"; };
-		864713F827F1374400A12A23 /* 0.1.0.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = 0.1.0.md; sourceTree = "<group>"; };
 		864713F927F13FF400A12A23 /* LineItemTypes Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LineItemTypes Structs.swift"; sourceTree = "<group>"; };
 		864713FB27F1455700A12A23 /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		864C731A27CDF54E00047165 /* Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
@@ -280,6 +279,7 @@
 		86C0620427F16E3600020C08 /* TireSetActionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TireSetActionsView.swift; sourceTree = "<group>"; };
 		86C0620827F16F4E00020C08 /* FormLinkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLinkLabel.swift; sourceTree = "<group>"; };
 		86C0620C27F187C200020C08 /* NewWarrantyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWarrantyView.swift; sourceTree = "<group>"; };
+		86C2A29127FBC99C005F4A8D /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
 		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
@@ -333,7 +333,7 @@
 			children = (
 				86EB569C27E17681007FA2DD /* README.md */,
 				86EB569D27E176AC007FA2DD /* LICENSE.md */,
-				864713F727F1372C00A12A23 /* Changelogs */,
+				86C2A29127FBC99C005F4A8D /* CHANGELOG.md */,
 				861DAE0727CDD59D00AFE972 /* Source */,
 				8664C23927D9FED600AE9ADB /* Test Plans */,
 				8690C7E827D9EBD90042F543 /* Unit Tests */,
@@ -385,14 +385,6 @@
 				8625125727F6951600FE0587 /* AttachmentsView.swift */,
 			);
 			path = Attachment;
-			sourceTree = "<group>";
-		};
-		864713F727F1372C00A12A23 /* Changelogs */ = {
-			isa = PBXGroup;
-			children = (
-				864713F827F1374400A12A23 /* 0.1.0.md */,
-			);
-			path = Changelogs;
 			sourceTree = "<group>";
 		};
 		864C731927CDF54000047165 /* Model */ = {

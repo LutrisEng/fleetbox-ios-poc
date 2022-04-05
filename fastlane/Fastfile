@@ -25,6 +25,7 @@ platform :ios do
       issuer_id: "c8eeae79-a596-4238-9eb5-1181d75ae57a",
       key_filepath: "./connect_api_key.p8"
     ) if ci
+    changelog = read_changelog
     increment_build_number(
       xcodeproj: "Fleetbox.xcodeproj",
       build_number: latest_testflight_build_number + 1
@@ -33,13 +34,18 @@ platform :ios do
     build_ios_app(scheme: "Fleetbox Release")
     # match(type: "mac_installer_distribution", platform: "catalyst", readonly: is_ci)
     # build_mac_app(scheme: "Fleetbox Release")
-    upload_to_testflight(app_platform: "ios")
+    upload_to_testflight(
+      app_platform: "ios",
+      changelog: changelog
+    )
     # upload_to_testflight(app_platform: "mac")
   end
 
   lane :tests do
     ci = is_ci
     setup_ci if ci
+    # A sort of soft-lint of the changelog
+    read_changelog
     run_tests(scheme: "Fleetbox Debug", device: "iPhone 13", testplan: "Everything")
   end
 end
