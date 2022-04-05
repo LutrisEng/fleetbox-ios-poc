@@ -21,7 +21,7 @@ platform :ios do
     ci = is_ci
     setup_ci if ci
     app_store_connect_api_key(
-      key_id: "W63DCTHP68",
+      key_id: "32WWM3HYG9",
       issuer_id: "c8eeae79-a596-4238-9eb5-1181d75ae57a",
       key_filepath: "./connect_api_key.p8"
     ) if ci
