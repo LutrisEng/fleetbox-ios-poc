@@ -10,7 +10,7 @@ src/generated:
 	mkdir -p "$@"
 
 src/generated/LineItemTypes.json: ../Source/Model/Line\ Item\ Types/LineItemTypes.yml src/generated
-	yq -o=json eval "$<" | jq -c . > "$@"
+	js-yaml "$<" > "$@"
 
 src/generated/LineItemTypes.ts: ../Source/Model/Line\ Item\ Types/LineItemTypes.schema.json src/generated
 	json2ts "$<" "$@"
