@@ -27,7 +27,6 @@ class VehicleTest: XCTestCase {
 
     func testCreateVehicle() throws {
         _ = Vehicle(context: env.viewContext)
-        try env.viewContext.save()
     }
 
     func testOdometer() throws {
@@ -43,6 +42,5 @@ class VehicleTest: XCTestCase {
         secondOdometerReading.vehicle = vehicle
         secondOdometerReading.reading = 1000
         XCTAssertEqual(vehicle.odometer, 1000)
-        try env.viewContext.save()
     }
 }
