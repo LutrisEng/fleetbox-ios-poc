@@ -19,20 +19,19 @@ import SwiftUI
 
 struct PartOdometerIndividualView: View {
     @ObservedObject var vehicle: Vehicle
-    let lineItemType: String
-    let name: String
+    let component: LineItemTypeComponent
 
     var milesSince: Int64? {
-        vehicle.approximateMilesSince(lineItemType: lineItemType)
+        vehicle.approximateMilesSince(replaces: component.id)
     }
 
     var timeSince: TimeInterval? {
-        vehicle.timeSince(lineItemType: lineItemType)
+        vehicle.timeSince(replaces: component.id)
     }
 
     var body: some View {
         if milesSince != nil || timeSince != nil {
-            PartOdometerRowView(name: name, milesSince: milesSince, timeSince: timeSince)
+            PartOdometerRowView(name: component.name, milesSince: milesSince, timeSince: timeSince)
         }
     }
 }
@@ -41,7 +40,10 @@ struct PartOdometerIndividualView: View {
 struct PartOdometerIndividualView_Previews: PreviewProvider {
     static var previews: some View {
         PreviewWrapper { fixtures in
-            PartOdometerIndividualView(vehicle: fixtures.vehicle, lineItemType: "engineOilChanged", name: "Oil")
+            PartOdometerIndividualView(
+                vehicle: fixtures.vehicle,
+                component: lineItemTypes.allComponentsById["engineOil"]!
+            )
         }
     }
 }

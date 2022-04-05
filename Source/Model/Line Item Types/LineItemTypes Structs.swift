@@ -126,6 +126,7 @@ class LineItemType: Identifiable {
     let categoryPath: [String]
     dynamic let displayName: String
     dynamic let description: String?
+    let replaces: String?
     let definedIcon: String?
     var icon: String {
         definedIcon ?? category.icon
@@ -134,11 +135,12 @@ class LineItemType: Identifiable {
     let fieldsById: [String: LineItemTypeField]
 
     init(category: LineItemTypeCategory, categoryPath: [String], yaml: LineItemTypes.YamlType) throws {
-        self.id = yaml.id
+        id = yaml.id
         self.category = category
         self.categoryPath = categoryPath
         displayName = yaml.displayName
         description = yaml.description
+        replaces = yaml.replaces
         definedIcon = yaml.icon?.sfsymbols
         fields = try (yaml.fields ?? []).map { try LineItemTypeField(yaml: $0) }
         var fieldsById: [String: LineItemTypeField] = [:]
@@ -246,5 +248,17 @@ enum LineItemTypeHierarchyItem: Identifiable {
             )
             return vals
         }
+    }
+}
+
+class LineItemTypeComponent {
+    let id: String
+    let name: String
+    let filter: String?
+
+    init(yaml: LineItemTypes.YamlComponent) {
+        id = yaml.id
+        name = yaml.name
+        filter = yaml.filter
     }
 }

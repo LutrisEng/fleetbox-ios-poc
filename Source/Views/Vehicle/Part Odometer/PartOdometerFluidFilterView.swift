@@ -19,34 +19,33 @@ import SwiftUI
 
 struct PartOdometerFluidFilterView: View {
     @ObservedObject var vehicle: Vehicle
-    let fluidLineItemType: String
-    let filterLineItemType: String
-    let fluidName: String
+    let fluid: LineItemTypeComponent
+    let filter: LineItemTypeComponent
 
     var body: some View {
-        let milesSinceFluid = vehicle.approximateMilesSince(lineItemType: fluidLineItemType)
-        let timeSinceFluid = vehicle.timeSince(lineItemType: fluidLineItemType)
-        let milesSinceFilter = vehicle.approximateMilesSince(lineItemType: filterLineItemType)
-        let timeSinceFilter = vehicle.timeSince(lineItemType: filterLineItemType)
+        let milesSinceFluid = vehicle.approximateMilesSince(replaces: fluid.id)
+        let timeSinceFluid = vehicle.timeSince(replaces: filter.id)
+        let milesSinceFilter = vehicle.approximateMilesSince(replaces: fluid.id)
+        let timeSinceFilter = vehicle.timeSince(replaces: filter.id)
         if milesSinceFluid != nil &&
             milesSinceFluid == milesSinceFilter &&
             (timeSinceFluid ?? 0) - (timeSinceFilter ?? 0) < 60 * 60 {
             PartOdometerRowView(
-                name: "\(fluidName) & filter",
+                name: "\(fluid.name) & filter",
                 milesSince: milesSinceFluid,
                 timeSince: timeSinceFluid
             )
         } else {
             if milesSinceFluid != nil || timeSinceFluid != nil {
                 PartOdometerRowView(
-                    name: fluidName,
+                    name: fluid.name,
                     milesSince: milesSinceFluid,
                     timeSince: timeSinceFluid
                 )
             }
             if milesSinceFilter != nil || timeSinceFilter != nil {
                 PartOdometerRowView(
-                    name: "\(fluidName) filter",
+                    name: filter.name,
                     milesSince: milesSinceFilter,
                     timeSince: timeSinceFilter
                 )
@@ -61,9 +60,8 @@ struct PartOdometerFluidFilterView_Previews: PreviewProvider {
         PreviewWrapper { fixtures in
             PartOdometerFluidFilterView(
                     vehicle: fixtures.vehicle,
-                    fluidLineItemType: "engineOilChanged",
-                    filterLineItemType: "engineOilFilterChanged",
-                    fluidName: "Oil"
+                    fluid: lineItemTypes.allComponentsById["engineOil"]!,
+                    filter: lineItemTypes.allComponentsById["engineOilFilter"]!
             )
         }
     }

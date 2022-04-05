@@ -166,17 +166,36 @@ extension HasLineItems {
             })?
             .getFieldWithoutCreating(id: field)
     }
+
+    func lastLineItem(replaces: String) -> LineItem? {
+        lineItems.inverseChrono
+            .first {
+                guard let type = $0.type else { return false }
+                guard let typeReplaces = type.replaces else { return false }
+                return typeReplaces == replaces
+            }
+    }
 }
 
 extension HasLineItems where Self: TracksMiles, Self: HasOdometerReadings {
-    func milesSince(lineItemType: String, odometerReading: Int64) -> Int64? {
-        guard let lineItem = lastLineItem(type: lineItemType) else { return nil }
-        guard let logItem = lineItem.logItem else { return nil }
+    func milesSince(logItem: LogItem, odometerReading: Int64) -> Int64 {
         if let reading = logItem.odometerReading?.reading {
             return odometer - reading
         } else {
             return odometer - closestOdometerReadingTo(date: logItem.performedAt ?? Date.distantPast)
         }
+    }
+
+    func milesSince(lineItemType: String, odometerReading: Int64) -> Int64? {
+        guard let lineItem = lastLineItem(type: lineItemType) else { return nil }
+        guard let logItem = lineItem.logItem else { return nil }
+        return milesSince(logItem: logItem, odometerReading: odometerReading)
+    }
+
+    func milesSince(replaces: String, odometerReading: Int64) -> Int64? {
+        guard let lineItem = lastLineItem(replaces: replaces) else { return nil }
+        guard let logItem = lineItem.logItem else { return nil }
+        return milesSince(logItem: logItem, odometerReading: odometerReading)
     }
 
     func milesSince(lineItemType: String) -> Int64? {
@@ -187,11 +206,25 @@ extension HasLineItems where Self: TracksMiles, Self: HasOdometerReadings {
         return milesSince(lineItemType: lineItemType, odometerReading: approximateOdometer)
     }
 
+    func approximateMilesSince(replaces: String) -> Int64? {
+        return milesSince(replaces: replaces, odometerReading: approximateOdometer)
+    }
+
+    func timeSince(logItem: LogItem) -> TimeInterval? {
+        guard let performedAt = logItem.performedAt else { return nil }
+        return Date.now.timeIntervalSinceReferenceDate - performedAt.timeIntervalSinceReferenceDate
+    }
+
     func timeSince(lineItemType: String) -> TimeInterval? {
         guard let lineItem = lastLineItem(type: lineItemType) else { return nil }
         guard let logItem = lineItem.logItem else { return nil }
-        guard let performedAt = logItem.performedAt else { return nil }
-        return Date.now.timeIntervalSinceReferenceDate - performedAt.timeIntervalSinceReferenceDate
+        return timeSince(logItem: logItem)
+    }
+
+    func timeSince(replaces: String) -> TimeInterval? {
+        guard let lineItem = lastLineItem(replaces: replaces) else { return nil }
+        guard let logItem = lineItem.logItem else { return nil }
+        return timeSince(logItem: logItem)
     }
 }
 

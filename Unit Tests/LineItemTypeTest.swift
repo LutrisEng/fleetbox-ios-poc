@@ -26,4 +26,26 @@ class LineItemTypeTest: XCTestCase {
     func testMiscExists() throws {
         XCTAssertNotNil(lineItemTypes.allTypesById["misc"])
     }
+
+    func testReplaceExists() throws {
+        for type in lineItemTypes.allTypes {
+            if let replaces = type.replaces {
+                XCTAssertNotNil(
+                    lineItemTypes.allComponentsById[replaces],
+                    "Type \(type.id) refers to nonexistent component \(replaces)"
+                )
+            }
+        }
+    }
+
+    func testFilterExists() throws {
+        for component in lineItemTypes.allComponents {
+            if let filter = component.filter {
+                XCTAssertNotNil(
+                    lineItemTypes.allComponentsById[filter],
+                    "Component \(component.id) refers to nonexistent component \(filter) as filter"
+                )
+            }
+        }
+    }
 }

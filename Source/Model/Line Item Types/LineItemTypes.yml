@@ -16,6 +16,57 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+components:
+  - id: wiperBlades
+    name: Wiper blades
+  - id: sparkPlugs
+    name: Spark plugs
+  - id: battery
+    name: 12V battery
+  - id: hvBattery
+    name: High-voltage battery
+  - id: frontBrakePads
+    name: Front brake pads
+  - id: rearBrakePads
+    name: Rear brake pads
+  - id: frontBrakeRotors
+    name: Front brake rotors
+  - id: rearBrakeRotors
+    name: Rear brake rotors
+  - id: engineOil
+    name: Engine oil
+    filter: engineOilFilter
+  - id: transmissionFluid
+    name: Transmission fluid
+  - id: frontDiffFluid
+    name: Front diff. fluid
+  - id: rearDiffFluid
+    name: Rear diff. fluid
+  - id: brakeFluid
+    name: Brake fluid
+  - id: coolant
+    name: Coolant
+  - id: washerFluid
+    name: Windshield washer fluid
+  - id: timingBelt
+    name: Timing belt
+  - id: serpentineBelt
+    name: Serpentine belt
+  - id: acBelt
+    name: Air conditioning belt
+  - id: alternatorBelt
+    name: Alternator belt
+  - id: psBelt
+    name: Power steering belt
+  - id: engineOilFilter
+    name: Engine oil filter
+  - id: transmissionFluidFilter
+    name: Transmission fluid filter
+  - id: engineAirFilter
+    name: Engine air filter
+  - id: cabinAirFilter
+    name: Cabin air filter
+
 categories:
   - id: inspection
     displayName: Inspections
@@ -208,6 +259,7 @@ categories:
         types:
           - id: wiperBladeChange
             displayName: Wiper blades replaced
+            replaces: wiperBlades
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -221,6 +273,7 @@ categories:
                 type: string
           - id: sparkPlugReplacement
             displayName: Spark plug(s) replaced
+            replaces: sparkPlugs
             icon:
               sfsymbols: bolt
             fields:
@@ -242,6 +295,7 @@ categories:
           - id: batteryReplacement
             displayName: Battery replaced
             description: Main 12V battery was replaced.
+            replaces: battery
             icon:
               sfsymbols: minus.plus.batteryblock
             fields:
@@ -262,6 +316,7 @@ categories:
           - id: hvBatteryReplacement
             displayName: HV battery replaced
             description: High-voltage (e.g. hybrid/traction) battery was replaced.
+            replaces: hvBattery
             icon:
               sfsymbols: minus.plus.batteryblock
             fields:
@@ -287,6 +342,7 @@ categories:
             types:
               - id: frontBrakePadChange
                 displayName: Front brake pads changed
+                replaces: frontBrakePads
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -300,6 +356,7 @@ categories:
                     type: string
               - id: rearBrakePadChange
                 displayName: Rear brake pads changed
+                replaces: rearBrakePads
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -313,6 +370,7 @@ categories:
                     type: string
               - id: frontBrakeRotorChange
                 displayName: Front brake rotors changed
+                replaces: frontBrakeRotors
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -325,7 +383,8 @@ categories:
                     longDisplayName: What is the new brake rotors' part number?
                     type: string
               - id: rearBrakeRotorChange
-                displayName: Front brake pads changed
+                displayName: Rear brake pads changed
+                replaces: rearBrakeRotors
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -345,6 +404,7 @@ categories:
           - id: engineOilChange
             displayName: Engine oil changed
             description: Engine oil was drained and refilled.
+            replaces: engineOil
             fields:
               - id: viscosity
                 shortDisplayName: Viscosity
@@ -365,6 +425,7 @@ categories:
           - id: transmissionFluidChange
             displayName: Transmission fluid changed
             description: Transmission fluid was drained and refilled.
+            replaces: transmissionFluid
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -379,6 +440,7 @@ categories:
           - id: frontDiffFluidChange
             displayName: Front differential fluid changed
             description: Front differential fluid was drained and refilled.
+            replaces: frontDiffFluid
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -393,6 +455,7 @@ categories:
           - id: rearDiffFluidChange
             displayName: Rear differential fluid changed
             description: Rear differential fluid was drained and refilled.
+            replaces: rearDiffFluid
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -407,6 +470,7 @@ categories:
           - id: brakeFluidChange
             displayName: Brake fluid changed
             description: Brake fluid was drained and refilled.
+            replaces: brakeFluid
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -421,6 +485,7 @@ categories:
           - id: coolantChange
             displayName: Coolant flushed
             description: Engine coolant was drained and refilled.
+            replaces: coolant
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -434,6 +499,7 @@ categories:
                 type: string
           - id: washerFluidTopOff
             displayName: Windshield washer fluid topped off
+            replaces: washerFluid
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -450,6 +516,7 @@ categories:
         types:
           - id: timingBeltChange
             displayName: Timing belt replaced
+            replaces: timingBelt
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -463,6 +530,7 @@ categories:
                 type: string
           - id: serpentineBeltChange
             displayName: Serpentine belt replaced
+            replaces: serpentineBelt
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -476,6 +544,7 @@ categories:
                 type: string
           - id: acBeltChange
             displayName: Air conditioning belt replaced
+            replaces: acBelt
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -489,6 +558,7 @@ categories:
                 type: string
           - id: alternatorBeltChange
             displayName: Alternator conditioning belt replaced
+            replaces: alternatorBelt
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -502,6 +572,7 @@ categories:
                 type: string
           - id: psBeltChange
             displayName: Power steering pump belt replaced
+            replaces: psBelt
             fields:
               - id: brand
                 shortDisplayName: Brand
@@ -523,6 +594,7 @@ categories:
             types:
               - id: engineOilFilterChange
                 displayName: Engine oil filter replaced
+                replaces: engineOilFilter
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -536,6 +608,7 @@ categories:
                     type: string
               - id: transmissionFluidFilterChange
                 displayName: Transmission fluid filter replaced
+                replaces: transmissionFluidFilter
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -554,6 +627,7 @@ categories:
             types:
               - id: engineAirFilterChange
                 displayName: Engine air filter replaced
+                replaces: engineAirFilter
                 fields:
                   - id: brand
                     shortDisplayName: Brand
@@ -567,6 +641,7 @@ categories:
                     type: string
               - id: cabinAirFilterChange
                 displayName: Cabin air filter replaced
+                replaces: cabinAirFilter
                 fields:
                   - id: brand
                     shortDisplayName: Brand

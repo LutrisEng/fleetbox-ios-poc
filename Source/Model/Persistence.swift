@@ -175,16 +175,22 @@ struct PersistenceController {
             managedObjectModel: PersistenceController.managedObjectModel
         )
         if inMemory {
-            container.persistentStoreDescriptions = [
-                NSPersistentStoreDescription(url: URL(fileURLWithPath: "/dev/null"))
-            ]
+            let description = NSPersistentStoreDescription(url: URL(fileURLWithPath: "/dev/null"))
+            description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            description.setOption(true as NSNumber, forKey: NSMigratePersistentStoresAutomaticallyOption)
+            description.setOption(true as NSNumber, forKey: NSInferMappingModelAutomaticallyOption)
+            container.persistentStoreDescriptions = [ description ]
         } else {
             let description = container.persistentStoreDescriptions.first!
             description.type = NSSQLiteStoreType
             description.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
             let remoteChangeKey = "NSPersistentStoreRemoteChangeNotificationOptionKey"
             description.setOption(true as NSNumber, forKey: remoteChangeKey)
-            if !debug {
+            description.setOption(true as NSNumber, forKey: NSMigratePersistentStoresAutomaticallyOption)
+            description.setOption(true as NSNumber, forKey: NSInferMappingModelAutomaticallyOption)
+            if debug {
+                description.cloudKitContainerOptions = nil
+            } else {
                 description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(
                     containerIdentifier: "iCloud.engineering.lutris.fleetbox"
                 )

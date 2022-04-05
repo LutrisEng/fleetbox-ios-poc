@@ -63,6 +63,7 @@ struct LineItemTypes {
         let id: String
         let displayName: String
         let description: String?
+        let replaces: String?
         let icon: YamlIcon?
         let fields: [YamlField]?
     }
@@ -75,8 +76,15 @@ struct LineItemTypes {
         let types: [YamlType]?
     }
 
+    struct YamlComponent: Codable {
+        let id: String
+        let name: String
+        let filter: String?
+    }
+
     struct YamlContents: Codable {
         let categories: [YamlCategory]
+        let components: [YamlComponent]
     }
 
     private let filePath = Bundle.main.url(forResource: "LineItemTypes", withExtension: "json")!
@@ -87,6 +95,8 @@ struct LineItemTypes {
     let allTypes: [LineItemType]
     let allCategoriesById: [String: LineItemTypeCategory]
     let allTypesById: [String: LineItemType]
+    let allComponents: [LineItemTypeComponent]
+    let allComponentsById: [String: LineItemTypeComponent]
     let hierarchyItems: [LineItemTypeHierarchyItem]
 
     init() throws {
@@ -105,6 +115,14 @@ struct LineItemTypes {
             typesById[type.id] = type
         }
         allTypesById = typesById
+        allComponents = yamlContents.components.map {
+            LineItemTypeComponent(yaml: $0)
+        }
+        var componentsById: [String: LineItemTypeComponent] = [:]
+        for component in allComponents {
+            componentsById[component.id] = component
+        }
+        allComponentsById = componentsById
         hierarchyItems = topLevelCategories.map { LineItemTypeHierarchyItem.category($0) }
     }
 
