@@ -36,7 +36,11 @@ platform :ios do
     # build_mac_app(scheme: "Fleetbox Release")
     upload_to_testflight(
       app_platform: "ios",
-      changelog: changelog
+      changelog: changelog,
+      distribute_external: true,
+      notify_external_testers: false,
+      groups: ["Fleetbox Internal Beta", "Fleetbox Private Beta"],
+      reject_build_waiting_for_review: true
     )
     # upload_to_testflight(app_platform: "mac")
   end
