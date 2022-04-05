@@ -1,10 +1,10 @@
-name: iOS/macOS
+name: App
 
 on: [push]
 
 jobs:
   test:
-    name: Test
+    name: Test App
     runs-on: macos-11
     steps:
       - uses: actions/checkout@v3
@@ -21,7 +21,7 @@ jobs:
       - name: Run tests
         run: bundle exec fastlane tests
   testflight:
-    name: Publish to TestFlight
+    name: Publish App to TestFlight
     concurrency: appstore-connect
     runs-on: macos-11
     # needs:
