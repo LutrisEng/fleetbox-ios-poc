@@ -33,7 +33,7 @@ struct PersistenceController {
         let tireSet: TireSet
 
         // swiftlint:disable:next function_body_length
-        init(viewContext: NSManagedObjectContext) throws {
+        init(viewContext: NSManagedObjectContext, save: Bool = true) throws {
             vehicle = Vehicle(context: viewContext)
             vehicle.displayName = "The Mazda CX-5"
             vehicle.year = 2022
@@ -130,7 +130,9 @@ struct PersistenceController {
             laterOdometerReading.reading = 6871
             laterOdometerReading.at = Date(timeIntervalSince1970: 1646550183)
             laterOdometerReading.vehicle = vehicle
-            try viewContext.save()
+            if save {
+                try viewContext.save()
+            }
         }
     }
 

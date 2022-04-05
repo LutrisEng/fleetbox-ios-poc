@@ -114,6 +114,7 @@
 		86C0620527F16E3600020C08 /* TireSetActionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620427F16E3600020C08 /* TireSetActionsView.swift */; };
 		86C0620927F16F4E00020C08 /* FormLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620827F16F4E00020C08 /* FormLinkLabel.swift */; };
 		86C0620D27F187C200020C08 /* NewWarrantyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620C27F187C200020C08 /* NewWarrantyView.swift */; };
+		86C2A29327FBD5AE005F4A8D /* ExportTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A29227FBD5AE005F4A8D /* ExportTest.swift */; };
 		86D2DA6827D07E5A0083254E /* VINDecoderResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */; };
 		86D2DA6B27D07F260083254E /* VINDecoderResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */; };
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
@@ -280,6 +281,7 @@
 		86C0620827F16F4E00020C08 /* FormLinkLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormLinkLabel.swift; sourceTree = "<group>"; };
 		86C0620C27F187C200020C08 /* NewWarrantyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWarrantyView.swift; sourceTree = "<group>"; };
 		86C2A29127FBC99C005F4A8D /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
+		86C2A29227FBD5AE005F4A8D /* ExportTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportTest.swift; sourceTree = "<group>"; };
 		86D2DA6727D07E5A0083254E /* VINDecoderResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResult.swift; sourceTree = "<group>"; };
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
 		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
@@ -617,6 +619,7 @@
 				8690C7B327D9E6290042F543 /* TestEnvironment.swift */,
 				8690C7B527D9E72A0042F543 /* VehicleTest.swift */,
 				86B5D09427D076B70040399C /* LineItemTypeTest.swift */,
+				86C2A29227FBD5AE005F4A8D /* ExportTest.swift */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -1001,6 +1004,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8690C7F027D9EBE90042F543 /* VehicleTest.swift in Sources */,
+				86C2A29327FBD5AE005F4A8D /* ExportTest.swift in Sources */,
 				8690C7F227D9EBE90042F543 /* TestEnvironment.swift in Sources */,
 				8690C7F127D9EBE90042F543 /* LineItemTypeTest.swift in Sources */,
 			);
