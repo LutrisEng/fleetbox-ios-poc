@@ -80,6 +80,8 @@ struct LineItemTypes {
         let id: String
         let name: String
         let filter: String?
+        let milesLife: Int?
+        let monthsLife: Int?
     }
 
     struct YamlContents: Codable {

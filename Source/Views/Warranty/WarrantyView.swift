@@ -31,7 +31,7 @@ struct WarrantyView: View {
             }
             FleetboxTextField(value: $warranty.months, name: "Valid for (time)", example: 36).unit("months")
             if let origin = warranty.underlyingOrigin {
-                let monthsSince = Warranty.monthsSince(origin: origin)
+                let monthsSince = monthsSince(origin: origin)
                 FormLinkLabel(
                     title: "Time elapsed",
                     value: "About \(Formatter.format(monthsLabel: Int(round(monthsSince))))"

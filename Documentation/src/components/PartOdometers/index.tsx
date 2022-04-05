@@ -20,8 +20,6 @@ for (const component of lineItemTypes.components) {
     componentsById[component.id] = component
 }
 
-console.log(types)
-
 export default function PartOdometers() {
     return (
         <ul>

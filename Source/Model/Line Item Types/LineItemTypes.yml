@@ -21,51 +21,79 @@ components:
     name: Wiper blades
   - id: sparkPlugs
     name: Spark plugs
+    milesLife: 60000
   - id: battery
     name: 12V battery
+    monthsLife: 60
   - id: hvBattery
     name: High-voltage battery
   - id: frontBrakePads
     name: Front brake pads
+    milesLife: 50000
   - id: rearBrakePads
     name: Rear brake pads
+    milesLife: 50000
   - id: frontBrakeRotors
     name: Front brake rotors
+    milesLife: 70000
   - id: rearBrakeRotors
     name: Rear brake rotors
+    milesLife: 70000
   - id: engineOil
     name: Engine oil
     filter: engineOilFilter
+    milesLife: 10000
+    monthsLife: 6
   - id: transmissionFluid
     name: Transmission fluid
+    milesLife: 70000
   - id: frontDiffFluid
     name: Front diff. fluid
+    milesLife: 50000
   - id: rearDiffFluid
     name: Rear diff. fluid
+    milesLife: 50000
   - id: brakeFluid
     name: Brake fluid
+    milesLife: 50000
+    monthsLife: 36
   - id: coolant
     name: Coolant
   - id: washerFluid
     name: Windshield washer fluid
   - id: timingBelt
     name: Timing belt
+    milesLife: 100000
+    monthsLife: 84
   - id: serpentineBelt
     name: Serpentine belt
+    milesLife: 100000
+    monthsLife: 60
   - id: acBelt
     name: Air conditioning belt
+    milesLife: 100000
+    monthsLife: 60
   - id: alternatorBelt
     name: Alternator belt
+    milesLife: 100000
+    monthsLife: 60
   - id: psBelt
     name: Power steering belt
+    milesLife: 100000
+    monthsLife: 60
   - id: engineOilFilter
     name: Engine oil filter
+    milesLife: 10000
+    monthsLife: 6
   - id: transmissionFluidFilter
     name: Transmission fluid filter
+    milesLife: 70000
   - id: engineAirFilter
     name: Engine air filter
+    milesLife: 30000
   - id: cabinAirFilter
     name: Cabin air filter
+    milesLife: 15000
 
 categories:
   - id: inspection

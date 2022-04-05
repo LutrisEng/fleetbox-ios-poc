@@ -21,33 +21,98 @@ struct PartOdometerRowView: View {
     let name: String
     let milesSince: Int64?
     let timeSince: TimeInterval?
+    let milesLife: Int?
+    let monthsLife: Int?
 
-    var formattedMilesSince: String {
+    init(name: String,
+         milesSince: Int64? = nil, timeSince: TimeInterval? = nil,
+         milesLife: Int? = nil, monthsLife: Int? = nil) {
+        self.name = name
+        self.milesSince = milesSince
+        self.timeSince = timeSince
+        self.milesLife = milesLife
+        self.monthsLife = monthsLife
+    }
+
+    var formattedLife: Text {
+        if let milesLife = milesLife, let monthsLife = monthsLife {
+            return (
+                Text("\nLife of \(Formatter.format(number: milesLife)) miles\n") +
+                Text("or \(Formatter.format(monthsLabel: monthsLife))")
+            )
+        } else if let milesLife = milesLife {
+            return Text("\nLife of \(Formatter.format(number: milesLife)) miles")
+        } else if let monthsLife = monthsLife {
+            return Text("\nLife of \(Formatter.format(monthsLabel: monthsLife))")
+        } else {
+            return Text("")
+        }
+    }
+
+    var formattedMilesSince: Text {
         if let milesSince = milesSince {
-            return "About \(Formatter.format(number: milesSince)) miles"
+            return Text("About \(Formatter.format(number: milesSince)) miles")
         } else {
-            return ""
+            return Text("")
         }
     }
 
-    var separator: String {
+    var separator: Text {
         if milesSince != nil && timeSince != nil {
-            return "\n"
+            return Text("\n")
         } else {
-            return ""
+            return Text("")
         }
     }
 
-    var formattedTimeSince: String {
+    var formattedTimeSince: Text {
         if let timeSince = timeSince {
-            return "\(Formatter.format(durationLabel: timeSince)) old"
+            return Text("\(Formatter.format(durationLabel: timeSince)) old")
         } else {
-            return ""
+            return Text("")
+        }
+    }
+
+    var milesProgress: Double? {
+        if let milesSince = milesSince, let milesLife = milesLife {
+            return Double(milesSince) / Double(milesLife)
+        } else {
+            return nil
+        }
+    }
+
+    var monthsProgress: Double? {
+        if let timeSince = timeSince, let monthsLife = monthsLife {
+            let monthsSince = toMonths(interval: timeSince)
+            return monthsSince / Double(monthsLife)
+        } else {
+            return nil
+        }
+    }
+
+    var progress: Double? {
+        max(milesProgress, monthsProgress)
+    }
+
+    var progressColor: Color? {
+        if let progress = progress {
+            if progress > 1 {
+                return .yellow
+            } else {
+                return .green
+            }
+        } else {
+            return nil
         }
     }
 
     var body: some View {
-        FormLinkLabel(title: name, value: formattedMilesSince + separator + formattedTimeSince)
+        FormLinkLabel(
+            title: Text(name) + formattedLife.foregroundColor(.secondary).font(.caption),
+            value: formattedMilesSince + separator + formattedTimeSince
+        )
+        .progress(progress)
+        .progressColor(progressColor)
     }
 }
 

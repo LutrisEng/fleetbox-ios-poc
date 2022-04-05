@@ -120,6 +120,7 @@
 		86D2DA6E27D080AF0083254E /* VINDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D2DA6D27D080AF0083254E /* VINDecoder.swift */; };
 		86D2DA7227D081490083254E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 86D2DA7127D081490083254E /* Alamofire */; };
 		86E346B427FBDAD800593444 /* Advanced Fixtures.fleetboxvehicle in Resources */ = {isa = PBXBuildFile; fileRef = 86E346B227FBDAB600593444 /* Advanced Fixtures.fleetboxvehicle */; };
+		86E346B627FC096000593444 /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E346B527FC096000593444 /* Numbers.swift */; };
 		86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB569A27E171A0007FA2DD /* AboutView.swift */; };
 		86EC635F27F1503B00882C64 /* Warranty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC635E27F1503B00882C64 /* Warranty.swift */; };
 		86EE1BF327F3C6E1006417C0 /* EnsureNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE1BF127F3C6E1006417C0 /* EnsureNavigationView.swift */; };
@@ -287,6 +288,7 @@
 		86D2DA6A27D07F260083254E /* VINDecoderResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoderResponse.swift; sourceTree = "<group>"; };
 		86D2DA6D27D080AF0083254E /* VINDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VINDecoder.swift; sourceTree = "<group>"; };
 		86E346B227FBDAB600593444 /* Advanced Fixtures.fleetboxvehicle */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Advanced Fixtures.fleetboxvehicle"; sourceTree = "<group>"; };
+		86E346B527FC096000593444 /* Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		86EB569A27E171A0007FA2DD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		86EB569C27E17681007FA2DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		86EB569D27E176AC007FA2DD /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 				86B189AE27EB0C6C001CFBD3 /* UIApplication Extensions.swift */,
 				864713FB27F1455700A12A23 /* Formatters.swift */,
 				866E70AF27FACB940051E712 /* String Extensions.swift */,
+				86E346B527FC096000593444 /* Numbers.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -890,6 +893,7 @@
 				868692B827FA7BAA001E1E2C /* LineItem Extensions.swift in Sources */,
 				86500C8927DC0D6E00A5111E /* VehicleDetailsView.swift in Sources */,
 				8690C7AA27D9A9180042F543 /* OdometerReading.swift in Sources */,
+				86E346B627FC096000593444 /* Numbers.swift in Sources */,
 				868692BC27FA7BCB001E1E2C /* Warranty Extensions.swift in Sources */,
 				8664C24127DA91BB00AE9ADB /* ShopsView.swift in Sources */,
 				864C731E27CDFA0A00047165 /* VehicleSpotlightDelegate.swift in Sources */,

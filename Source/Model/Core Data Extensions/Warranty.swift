@@ -37,17 +37,8 @@ extension Warranty: Sortable, HasRawAttachments, HasAttachments {
         return min(1, atMonths / Double(months))
     }
 
-    static func monthsSince(origin: Date) -> Double {
-        let components = Calendar.current.dateComponents([.month, .day], from: origin, to: Date.now)
-        // On average, there are 30.437 days in a month.
-        // See Britannica: https://www.britannica.com/science/time/Lengths-of-years-and-months
-        // This provides a good-enough approximation, we just want a progress bar to advance a bit
-        // on a daily basis.
-        return Double(components.month ?? 0) + (Double(components.day ?? 0) / 30.437)
-    }
-
     func calculateProgress(origin: Date) -> Double? {
-        return calculateProgress(atMonths: Warranty.monthsSince(origin: origin))
+        return calculateProgress(atMonths: monthsSince(origin: origin))
     }
 
     func calculateProgress(atMiles: Int64?, origin: Date?) -> Double? {

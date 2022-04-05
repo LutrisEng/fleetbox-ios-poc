@@ -31,7 +31,13 @@ struct PartOdometerIndividualView: View {
 
     var body: some View {
         if milesSince != nil || timeSince != nil {
-            PartOdometerRowView(name: component.name, milesSince: milesSince, timeSince: timeSince)
+            PartOdometerRowView(
+                name: component.name,
+                milesSince: milesSince,
+                timeSince: timeSince,
+                milesLife: component.milesLife,
+                monthsLife: component.monthsLife
+            )
         }
     }
 }
