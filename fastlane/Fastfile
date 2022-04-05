@@ -54,7 +54,6 @@ platform :ios do
       app_platform: "ios",
       changelog: changelog,
       distribute_external: true,
-      notify_external_testers: false,
       groups: ["Fleetbox Internal Beta", "Fleetbox Private Beta"],
       reject_build_waiting_for_review: true
     )
