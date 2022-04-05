@@ -22,6 +22,7 @@ jobs:
         run: bundle exec fastlane tests
   testflight:
     name: Publish to TestFlight
+    concurrency: appstore-connect
     runs-on: macos-11
     # needs:
     #   - test
