@@ -206,8 +206,7 @@ struct FleetboxAppMainWindow: View {
 
 @main
 struct FleetboxApp: App {
-
-    let persistenceController = PersistenceController.shared
+    @State private var persistenceController: PersistenceController?
 
     init() {
         #if !DEBUG
@@ -224,19 +223,24 @@ struct FleetboxApp: App {
 
     var body: some Scene {
         WindowGroup {
-            FleetboxAppMainWindow()
-                // Sometimes SwiftUI decides not to apply the accent color from the bundle
-                .onAppear {
-                    let window = UIApplication
-                        .shared
-                        .connectedScenes
-                        .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
-                        .first { $0.isKeyWindow }
-                    let tint = UIColor(named: debug ? "AccentColor-Debug" : "AccentColor")
-                    window?.tintColor = tint
+            if let persistenceController = persistenceController {
+                FleetboxAppMainWindow()
+                    // Sometimes SwiftUI decides not to apply the accent color from the bundle
+                    .onAppear {
+                        let window = UIApplication
+                            .shared
+                            .connectedScenes
+                            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+                            .first { $0.isKeyWindow }
+                        let tint = UIColor(named: debug ? "AccentColor-Debug" : "AccentColor")
+                        window?.tintColor = tint
+                    }
+                    .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            } else {
+                ProgressView().onAppear {
+                    persistenceController = PersistenceController.shared
                 }
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .navigationViewStyle(.columns)
+            }
         }
     }
 }
