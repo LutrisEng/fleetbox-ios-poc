@@ -20,6 +20,11 @@ platform :ios do
   lane :beta do
     ci = is_ci
     setup_ci if ci
+    app_store_connect_api_key(
+      key_id: "W63DCTHP68",
+      issuer_id: "c8eeae79-a596-4238-9eb5-1181d75ae57a",
+      key_filepath: "./connect_api_key.p8"
+    ) if ci
     increment_build_number(xcodeproj: "Fleetbox.xcodeproj")
     match(type: "appstore", platform: "ios", readonly: ci)
     build_ios_app(scheme: "Fleetbox Release")

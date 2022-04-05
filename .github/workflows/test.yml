@@ -47,8 +47,8 @@ jobs:
           xcode-version: '13.2.1'
       - name: Publish to TestFlight
         run: |
-          echo '${{ secrets.CONNECT_API_KEY }}' > connect_api_key.json
-          bundle exec fastlane beta --api_key_path connect_api_key.json
+          echo '${{ secrets.CONNECT_API_KEY }}' > connect_api_key.p8
+          bundle exec fastlane beta
         env:
           MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
           FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD: ${{ secrets.FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD }}
