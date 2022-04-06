@@ -10,7 +10,9 @@
   overflow: hidden;
 }
 
-.heroBanner, .heroTitle, .heroSubtitle {
+.heroBanner,
+.heroTitle,
+.heroSubtitle {
   color: white;
 }
 

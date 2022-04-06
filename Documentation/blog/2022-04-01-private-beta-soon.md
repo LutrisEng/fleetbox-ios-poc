@@ -2,7 +2,7 @@
 title: Fleetbox private beta coming soon!
 slug: private-beta-soon
 authors:
-    - piper
+  - piper
 tags: [private-beta]
 ---
 
