@@ -33,7 +33,7 @@ struct ForEachObjects<T: NSManagedObject & Sortable, V: View>: View {
         allowMove: Bool,
         @ViewBuilder content: @escaping (T) -> V
     ) {
-        self.objects = objects
+        self.objects = objects.sorted
         self.allowDelete = allowDelete
         self.allowMove = allowMove
         self.content = content

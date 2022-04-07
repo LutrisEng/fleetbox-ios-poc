@@ -28,3 +28,4 @@ and this project adheres to
 - The "Capture Image" button now no longer appears if a camera is not available.
   Previously, this button would crash the app if pressed with no camera
   available.
+- Sorting of line items should now work consistently.
