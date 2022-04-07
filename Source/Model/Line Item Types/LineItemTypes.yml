@@ -107,7 +107,9 @@ categories:
         types:
           - id: basicPreDrive
             displayName: Basic pre-drive inspection completed
-            description: A basic inspection intended to be completed in a couple minutes was completed.
+            description:
+              A basic inspection intended to be completed in a couple minutes
+              was completed.
             fields:
               - id: lowBeams
                 shortDisplayName: Low beams
@@ -153,7 +155,9 @@ categories:
                   false: Fail
               - id: visibility
                 shortDisplayName: Visibility
-                longDisplayName: There is adequate visibility out of the windshield, front windows, and mirrors.
+                longDisplayName:
+                  There is adequate visibility out of the windshield, front
+                  windows, and mirrors.
                 type: boolean
                 booleanFormat:
                   true: Pass
@@ -188,7 +192,8 @@ categories:
                   false: Fail
               - id: sound
                 shortDisplayName: Sound
-                longDisplayName: Vehicle does not make abnormal sounds while running.
+                longDisplayName:
+                  Vehicle does not make abnormal sounds while running.
                 type: boolean
                 booleanFormat:
                   true: Pass
@@ -342,7 +347,8 @@ categories:
                 type: string
           - id: hvBatteryReplacement
             displayName: HV battery replaced
-            description: High-voltage (e.g. hybrid/traction) battery was replaced.
+            description:
+              High-voltage (e.g. hybrid/traction) battery was replaced.
             replaces: hvBattery
             icon:
               sfsymbols: minus.plus.batteryblock
@@ -702,13 +708,22 @@ categories:
                 enumValues:
                   - id: forwardCross
                     displayName: Forward cross
-                    description: Typically used for front-wheel drive vehicles. Front tires moved to rear, and rear tires moved to opposite sides of front axle.
+                    description:
+                      Typically used for front-wheel drive vehicles. Front tires
+                      moved to rear, and rear tires moved to opposite sides of
+                      front axle.
                   - id: cross
                     displayName: Cross
-                    description: Typically used for front-wheel drive vehicles. Front tires moved to opposite sides of rear axle, and rear tires moved to opposite sides of front axle.
+                    description:
+                      Typically used for front-wheel drive vehicles. Front tires
+                      moved to opposite sides of rear axle, and rear tires moved
+                      to opposite sides of front axle.
                   - id: rearwardCross
                     displayName: Rearward cross
-                    description: Typically used for rear-wheel drive and all-wheel drive vehicles. Front tires moved to opposite sides of rear axle, and rear tires moved to front.
+                    description:
+                      Typically used for rear-wheel drive and all-wheel drive
+                      vehicles. Front tires moved to opposite sides of rear
+                      axle, and rear tires moved to front.
           - id: mountedTires
             displayName: Tire set mounted
             fields:
@@ -836,7 +851,8 @@ categories:
                     type: string
                   - id: partNumber
                     shortDisplayName: Part number
-                    longDisplayName: What is the part number of the ceramic wax product?
+                    longDisplayName:
+                      What is the part number of the ceramic wax product?
                     type: string
               - id: washSealant
                 displayName: Sealant applied
@@ -855,7 +871,8 @@ categories:
                     type: string
                   - id: warranty
                     shortDisplayName: Warranty
-                    longDisplayName: How many months is the sealant warrantied for?
+                    longDisplayName:
+                      How many months is the sealant warrantied for?
                     type: integer
                     unit: months
                     exampleInteger: 6
@@ -864,19 +881,23 @@ categories:
                 fields:
                   - id: brand
                     shortDisplayName: Brand
-                    longDisplayName: What is the brand of the ceramic coat product?
+                    longDisplayName:
+                      What is the brand of the ceramic coat product?
                     type: string
                   - id: productName
                     shortDisplayName: Product
-                    longDisplayName: What is the name of the ceramic coat product?
+                    longDisplayName:
+                      What is the name of the ceramic coat product?
                     type: string
                   - id: partNumber
                     shortDisplayName: Part number
-                    longDisplayName: What is the part number of the ceramic coat product?
+                    longDisplayName:
+                      What is the part number of the ceramic coat product?
                     type: string
                   - id: warranty
                     shortDisplayName: Warranty
-                    longDisplayName: How many years is the ceramic coat product warrantied for?
+                    longDisplayName:
+                      How many years is the ceramic coat product warrantied for?
                     type: integer
                     unit: years
                     exampleInteger: 4
@@ -902,7 +923,8 @@ categories:
                     type: string
                   - id: warranty
                     shortDisplayName: Warranty
-                    longDisplayName: How many months is the sealant warrantied for?
+                    longDisplayName:
+                      How many months is the sealant warrantied for?
                     type: integer
                     unit: months
                     exampleInteger: 6
@@ -911,19 +933,23 @@ categories:
                 fields:
                   - id: brand
                     shortDisplayName: Brand
-                    longDisplayName: What is the brand of the ceramic coat product?
+                    longDisplayName:
+                      What is the brand of the ceramic coat product?
                     type: string
                   - id: productName
                     shortDisplayName: Product
-                    longDisplayName: What is the name of the ceramic coat product?
+                    longDisplayName:
+                      What is the name of the ceramic coat product?
                     type: string
                   - id: partNumber
                     shortDisplayName: Part number
-                    longDisplayName: What is the part number of the ceramic coat product?
+                    longDisplayName:
+                      What is the part number of the ceramic coat product?
                     type: string
                   - id: warranty
                     shortDisplayName: Warranty
-                    longDisplayName: How many years is the ceramic coat product warrantied for?
+                    longDisplayName:
+                      How many years is the ceramic coat product warrantied for?
                     type: integer
                     unit: years
                     exampleInteger: 4
