@@ -144,6 +144,7 @@
 		86E346E527FE71E200593444 /* HasLineItemFieldLineItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E346E427FE71E200593444 /* HasLineItemFieldLineItems.swift */; };
 		86E346E727FE71EF00593444 /* Notifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E346E627FE71EF00593444 /* Notifiable.swift */; };
 		86E346E927FE71FC00593444 /* HasBreakin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E346E827FE71FC00593444 /* HasBreakin.swift */; };
+		86E346EB27FE9C8500593444 /* NewTireSetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E346EA27FE9C8500593444 /* NewTireSetView.swift */; };
 		86EB569B27E171A0007FA2DD /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EB569A27E171A0007FA2DD /* AboutView.swift */; };
 		86EC635F27F1503B00882C64 /* Warranty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC635E27F1503B00882C64 /* Warranty.swift */; };
 		86EE1BF327F3C6E1006417C0 /* EnsureNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EE1BF127F3C6E1006417C0 /* EnsureNavigationView.swift */; };
@@ -336,6 +337,7 @@
 		86E346E427FE71E200593444 /* HasLineItemFieldLineItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasLineItemFieldLineItems.swift; sourceTree = "<group>"; };
 		86E346E627FE71EF00593444 /* Notifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifiable.swift; sourceTree = "<group>"; };
 		86E346E827FE71FC00593444 /* HasBreakin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasBreakin.swift; sourceTree = "<group>"; };
+		86E346EA27FE9C8500593444 /* NewTireSetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTireSetView.swift; sourceTree = "<group>"; };
 		86EB569A27E171A0007FA2DD /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
 		86EB569C27E17681007FA2DD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		86EB569D27E176AC007FA2DD /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 				86C0620227F16E1800020C08 /* TireSetLogView.swift */,
 				86C0620427F16E3600020C08 /* TireSetActionsView.swift */,
 				868692A327F827F5001E1E2C /* TireSetLabelView.swift */,
+				86E346EA27FE9C8500593444 /* NewTireSetView.swift */,
 			);
 			path = "Tire Set";
 			sourceTree = "<group>";
@@ -995,6 +998,7 @@
 				86F8F80D27EE774200442694 /* NewVehicleView.swift in Sources */,
 				86E346DD27FE71B200593444 /* HasRawAttachments.swift in Sources */,
 				864C732727D06C6800047165 /* LineItem.swift in Sources */,
+				86E346EB27FE9C8500593444 /* NewTireSetView.swift in Sources */,
 				86E346D727FE718800593444 /* HasOdometerReadings.swift in Sources */,
 				86E346E527FE71E200593444 /* HasLineItemFieldLineItems.swift in Sources */,
 				86EE1BF327F3C6E1006417C0 /* EnsureNavigationView.swift in Sources */,

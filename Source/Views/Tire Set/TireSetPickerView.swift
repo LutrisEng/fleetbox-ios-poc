@@ -18,12 +18,15 @@
 import SwiftUI
 
 struct TireSetPickerView: View {
+    @Environment(\.editable) private var editable
     @Environment(\.dismiss) var dismiss
 
     @FetchRequest(
             sortDescriptors: [NSSortDescriptor(keyPath: \TireSet.sortOrder, ascending: true)],
             animation: .default)
     private var tireSets: FetchedResults<TireSet>
+
+    @State private var showHidden = false
 
     let selected: TireSet?
     let allowNone: Bool
@@ -35,6 +38,27 @@ struct TireSetPickerView: View {
         self.allowNone = allowNone
         self.exclude = exclude
         self.action = action
+    }
+
+    @ViewBuilder
+    func setList(_ sets: [TireSet]) -> some View {
+        ForEachObjects(sets) { tireSet in
+            Button(
+                action: {
+                    action(tireSet)
+                    dismiss()
+                }, label: {
+                    HStack {
+                        TireSetLabelView(tireSet: tireSet)
+                        if selected == tireSet {
+                            Spacer()
+                            Image(systemName: "checkmark")
+                                    .foregroundColor(.accentColor)
+                        }
+                    }
+                }
+            )
+        }
     }
 
     var body: some View {
@@ -64,22 +88,51 @@ struct TireSetPickerView: View {
                     Text("No eligible tire sets").foregroundColor(.secondary)
                 }
             }
-            ForEach(filteredTireSets, id: \.self) { tireSet in
+            let mounted = filteredTireSets.filter { $0.category == .mounted }
+            if !mounted.isEmpty {
+                Section(header: Text("Mounted")) {
+                    setList(mounted)
+                }
+            }
+            let unmounted = filteredTireSets.filter { $0.category == .unmounted }
+            if !unmounted.isEmpty {
+                Section(header: Text("Unmounted")) {
+                    setList(unmounted)
+                }
+            }
+            let hidden = filteredTireSets.filter { $0.category == .hidden }
+            if showHidden && !hidden.isEmpty {
+                Section(header: Text("Hidden")) {
+                    setList(hidden)
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(
                     action: {
-                        action(tireSet)
-                        dismiss()
-                    }, label: {
-                        HStack {
-                            TireSetLabelView(tireSet: tireSet)
-                            if selected == tireSet {
-                                Spacer()
-                                Image(systemName: "checkmark")
-                                        .foregroundColor(.accentColor)
-                            }
+                        withAnimation {
+                            showHidden.toggle()
+                        }
+                    },
+                    label: {
+                        if showHidden {
+                            Label("Show hidden items", systemImage: "eye")
+                        } else {
+                            Label("Hide hidden items", systemImage: "eye.slash")
                         }
                     }
                 )
+                if editable {
+                    NavigationLink(
+                        destination: EnsureNavigationView {
+                            NewTireSetView()
+                        },
+                        label: {
+                            Label("Add Tire Set", systemImage: "plus")
+                        }
+                    )
+                }
             }
         }
     }

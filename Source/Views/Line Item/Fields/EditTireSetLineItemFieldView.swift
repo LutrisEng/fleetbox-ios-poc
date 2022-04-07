@@ -20,20 +20,22 @@ import SwiftUI
 struct EditTireSetLineItemFieldView: View {
     @ObservedObject var field: LineItemField
     let type: LineItemTypeField
-    @State private var sheetPresented: Bool = false
+    @State private var presented: Bool = false
 
     var body: some View {
-        Button(action: { sheetPresented = true }, label: {
-            FormLinkLabel(title: type.shortDisplayNameLocal, value: field.tireSetValue?.displayName ?? "None")
-        })
-        .buttonStyle(.plain)
-        .sheet(isPresented: $sheetPresented) {
-            TireSetPickerView(selected: field.tireSetValue) { tireSet in
-                withAnimation {
-                    field.tireSetValue = tireSet
-                    sheetPresented = false
+        NavigationLink(
+            isActive: $presented,
+            destination: {
+                TireSetPickerView(selected: field.tireSetValue) { tireSet in
+                    withAnimation {
+                        field.tireSetValue = tireSet
+                        presented = false
+                    }
                 }
+            },
+            label: {
+                FormLinkLabel(title: type.shortDisplayNameLocal, value: field.tireSetValue?.displayName ?? "None")
             }
-        }
+        )
     }
 }
