@@ -65,6 +65,12 @@ const config = {
           },
           { to: "/blog", label: "Blog", position: "left" },
           {
+            type: "doc",
+            docId: "changelog",
+            position: "left",
+            label: "Changelog",
+          },
+          {
             href: "https://github.com/LutrisEng/fleetbox",
             label: "GitHub",
             position: "right",
