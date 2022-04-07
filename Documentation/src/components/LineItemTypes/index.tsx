@@ -89,17 +89,8 @@ function CategoryItem({
   category: Category;
   forceExpand: boolean;
 }) {
-  const [collapsed, setCollapsed] = useState(false);
-  const [collapsible, setCollapsible] = useState(false);
-  useEffect(() => {
-    if (!collapsible) {
-      setCollapsible(true);
-      setCollapsed(true);
-    }
-  });
-
+  const [collapsed, setCollapsed] = useState(true);
   const reallyCollapsed = collapsed && !forceExpand;
-  const reallyCollapsible = collapsible && !forceExpand;
 
   const types = category.types ?? [];
   const subcategories = category.subcategories ?? [];
@@ -146,7 +137,7 @@ function CategoryItem({
       <p>
         Internal ID: <code>{category.id}</code>
       </p>
-      {reallyCollapsible ? (
+      {!forceExpand ? (
         <a href="#" onClick={() => setCollapsed(!collapsed)}>
           {collapsed ? "Expand" : "Collapse"}
         </a>
@@ -160,7 +151,7 @@ function CategoryItem({
 }
 
 export default function LineItemTypes() {
-  const [forceExpand, setForceExpand] = useState(false);
+  const [forceExpand, setForceExpand] = useState(true);
   const [expandable, setExpandable] = useState(false);
   useEffect(() => {
     if (!expandable) {
