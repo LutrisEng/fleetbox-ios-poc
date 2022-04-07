@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import styles from "./styles.module.css";
 import {
   Category,
@@ -15,7 +15,7 @@ function getCategoryTypes(category: Category): Type[] {
   );
 }
 
-const types = lineItemTypes.categories.reduce(
+const types = lineItemTypes.categories.reduce<Type[]>(
   (acc, cat) => [...acc, ...getCategoryTypes(cat)],
   []
 );
@@ -26,14 +26,14 @@ for (const type of types) {
 }
 
 const componentsById = {};
-for (const component of lineItemTypes.components) {
+for (const component of lineItemTypes.components ?? []) {
   componentsById[component.id] = component;
 }
 
 export default function PartOdometers() {
   return (
     <ul>
-      {lineItemTypes.components.map((component) => (
+      {(lineItemTypes.components ?? []).map((component) => (
         <li className={styles.listitem} key={component.id}>
           <p>{component.name}</p>
           {component.filter ? (

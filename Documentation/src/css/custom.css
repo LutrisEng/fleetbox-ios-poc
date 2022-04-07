@@ -27,8 +27,14 @@
   background-color: rgba(0, 0, 0, 0.3);
 }
 
+@media (min-width: 500px) {
+  .markdown img {
+    max-width: 50vw;
+  }
+}
+
 @media (min-width: 997px) {
-  p > img {
+  .markdown img {
     max-width: 25vw;
   }
 }

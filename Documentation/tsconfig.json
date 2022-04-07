@@ -3,6 +3,10 @@
   "extends": "@tsconfig/docusaurus/tsconfig.json",
   "compilerOptions": {
     "baseUrl": ".",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["ESNext", "DOM"],
+    "strict": true
   }
 }

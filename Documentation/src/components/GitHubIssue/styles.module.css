@@ -1,0 +1,17 @@
+.issueLink {
+  padding: 0.25rem;
+  border: 1px solid gray;
+  border-radius: 0.5rem;
+}
+
+.issueLink.open {
+  background-color: #238636;
+  color: white;
+  border: 0;
+}
+
+.issueLink.closed {
+  background-color: #da3633;
+  color: white;
+  border: 0;
+}

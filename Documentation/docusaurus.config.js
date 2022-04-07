@@ -16,7 +16,7 @@ const config = {
   organizationName: "LutrisEng", // Usually your GitHub org/user name.
   projectName: "fleetbox", // Usually your repo name.
 
-  clientModules: [require.resolve("./src/sentry.ts")],
+  clientModules: [require.resolve("./src/clientModules/index.ts")],
 
   presets: [
     [
@@ -59,7 +59,7 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "intro",
+            docId: "intro/index",
             position: "left",
             label: "User Manual",
           },
