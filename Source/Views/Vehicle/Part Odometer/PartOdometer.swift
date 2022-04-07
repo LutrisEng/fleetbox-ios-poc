@@ -56,6 +56,23 @@ enum PartOdometer: Identifiable {
         }
     }
 
+    func shouldShow(vehicle: Vehicle) -> Bool {
+        switch self {
+        case .individual(let component):
+            return (
+                vehicle.approximateMilesSince(replaces: component.id) != nil ||
+                vehicle.timeSince(replaces: component.id) != nil
+            )
+        case .fluidFilter(let fluid, let filter):
+            return (
+                vehicle.approximateMilesSince(replaces: fluid.id) != nil ||
+                vehicle.timeSince(replaces: fluid.id) != nil ||
+                vehicle.approximateMilesSince(replaces: filter.id) != nil ||
+                vehicle.timeSince(replaces: filter.id) != nil
+            )
+        }
+    }
+
     @ViewBuilder
     func view(vehicle: Vehicle) -> some View {
         switch self {
