@@ -42,6 +42,9 @@ function FieldItem({ field, type }: { field: Field; type: Type }) {
       <p>
         <small>Alternatively, "{field.longDisplayName}"</small>
       </p>
+      <p>
+        Internal ID: <code>{field.id}</code>
+      </p>
     </li>
   );
 }
