@@ -25,11 +25,20 @@ function fieldTypeString(field: Field): string {
   }
 }
 
-function FieldItem({ field }: { field: Field }) {
+function Anchor({ type, id }: { type: string; id: string }) {
+  return (
+    <a className={styles.anchor} id={`${type}_${id}`} href={`#${type}_${id}`}>
+      #
+    </a>
+  );
+}
+
+function FieldItem({ field, type }: { field: Field; type: Type }) {
   return (
     <li className={styles.listitem}>
       <p>
         {field.shortDisplayName} ({fieldTypeString(field)})
+        <Anchor type="field" id={`${type.id}_${field.id}`} />
       </p>
       <p>
         <small>Alternatively, "{field.longDisplayName}"</small>
@@ -48,7 +57,7 @@ function TypeItem({ type }: { type: Type }) {
         <p>Fields:</p>
         <ul>
           {fields.map((field) => (
-            <FieldItem field={field} />
+            <FieldItem field={field} type={type} />
           ))}
         </ul>
       </>
@@ -58,7 +67,10 @@ function TypeItem({ type }: { type: Type }) {
 
   return (
     <li className={styles.listitem}>
-      <p>{type.displayName}</p>
+      <p>
+        {type.displayName}
+        <Anchor type="type" id={type.id} />
+      </p>
       <p>
         Internal ID: <code>{type.id}</code>
       </p>
@@ -105,7 +117,10 @@ function CategoryItem({ category }: { category: Category }) {
 
   return (
     <li className={styles.listitem}>
-      <p>{category.displayName}</p>
+      <p>
+        {category.displayName}
+        <Anchor type="category" id={category.id} />
+      </p>
       <p>
         Internal ID: <code>{category.id}</code>
       </p>
