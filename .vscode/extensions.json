@@ -1,7 +1,7 @@
 {
-    "recommendations": [
-        "mariomatheu.syntax-project-pbxproj",
-        "sswg.swift-lang",
-        "redhat.vscode-yaml"
-    ]
+  "recommendations": [
+    "mariomatheu.syntax-project-pbxproj",
+    "sswg.swift-lang",
+    "redhat.vscode-yaml"
+  ]
 }

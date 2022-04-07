@@ -1,0 +1,16 @@
+.listitem > p {
+  margin: 0 !important;
+}
+
+.anchor {
+  padding-left: 0.5rem;
+  color: gray;
+}
+
+.anchor:hover {
+  color: gray;
+}
+
+.hidden {
+  display: none;
+}
