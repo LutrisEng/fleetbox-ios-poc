@@ -13,6 +13,7 @@ and this project adheres to
 - Created Fleetbox.
 - Added lifetime meters for many part odometers, with somewhat arbitrary
   defaults.
+- Shops now have email, phone number, and URL fields.
 
 ### Changed
 

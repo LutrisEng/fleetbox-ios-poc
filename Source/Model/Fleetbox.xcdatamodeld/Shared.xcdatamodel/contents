@@ -43,10 +43,13 @@
         <relationship name="vehicle" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Vehicle" inverseName="odometerReadingsNs" inverseEntity="Vehicle"/>
     </entity>
     <entity name="Shop" representedClassName="Shop" syncable="YES" codeGenerationType="class">
+        <attribute name="email" optional="YES" attributeType="String"/>
         <attribute name="location" attributeType="String" defaultValueString=""/>
         <attribute name="name" attributeType="String" defaultValueString="Maintenance Shop"/>
         <attribute name="notes" attributeType="String" defaultValueString=""/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
         <attribute name="sortOrder" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
         <relationship name="logItemsNs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="LogItem" inverseName="shop" inverseEntity="LogItem"/>
     </entity>
     <entity name="TireSet" representedClassName="TireSet" syncable="YES" codeGenerationType="class">
@@ -100,7 +103,7 @@
         <element name="LineItemField" positionX="270" positionY="36" width="128" height="104"/>
         <element name="LogItem" positionX="406.38671875" positionY="-9.95703125" width="128" height="149"/>
         <element name="OdometerReading" positionX="270" positionY="108" width="128" height="118"/>
-        <element name="Shop" positionX="279" positionY="45" width="128" height="104"/>
+        <element name="Shop" positionX="279" positionY="45" width="128" height="149"/>
         <element name="TireSet" positionX="279" positionY="63" width="128" height="328"/>
         <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="238"/>
         <element name="Warranty" positionX="270" positionY="135" width="128" height="134"/>
