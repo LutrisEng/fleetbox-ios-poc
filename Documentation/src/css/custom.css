@@ -29,12 +29,12 @@
 
 @media (min-width: 500px) {
   .markdown img {
-    max-width: 50vw;
+    max-width: 50vw !important;
   }
 }
 
 @media (min-width: 997px) {
   .markdown img {
-    max-width: 25vw;
+    max-width: 25vw !important;
   }
 }
