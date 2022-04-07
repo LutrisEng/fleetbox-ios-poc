@@ -1,5 +1,5 @@
 project: Fleetbox.xcodeproj
 schemes:
-- Fleetbox Debug
+  - Fleetbox Debug
 targets:
-- Fleetbox
+  - Fleetbox

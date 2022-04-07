@@ -1,23 +1,23 @@
 {
-  "images" : [
+  "images": [
     {
-      "filename" : "AppIcon128pt.png",
-      "idiom" : "universal",
-      "scale" : "1x"
+      "filename": "AppIcon128pt.png",
+      "idiom": "universal",
+      "scale": "1x"
     },
     {
-      "filename" : "AppIcon@2x128pt.png",
-      "idiom" : "universal",
-      "scale" : "2x"
+      "filename": "AppIcon@2x128pt.png",
+      "idiom": "universal",
+      "scale": "2x"
     },
     {
-      "filename" : "AppIcon@3x128pt.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename": "AppIcon@3x128pt.png",
+      "idiom": "universal",
+      "scale": "3x"
     }
   ],
-  "info" : {
-    "author" : "xcode",
-    "version" : 1
+  "info": {
+    "author": "xcode",
+    "version": 1
   }
 }
