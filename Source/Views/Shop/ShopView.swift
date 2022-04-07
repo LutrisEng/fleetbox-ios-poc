@@ -28,6 +28,15 @@ struct ShopView: View {
                 .textInputAutocapitalization(.words)
             FleetboxTextField(value: $shop.location, name: "Location", example: "Anytown, USA")
                 .textInputAutocapitalization(.words)
+            FleetboxTextField(value: $shop.email, name: "Email Address", example: "quicklube@example.com")
+                .textInputAutocapitalization(.none)
+                .keyboard(.emailAddress)
+            FleetboxTextField(value: $shop.phoneNumber, name: "Phone Number", example: "123-555-9876")
+                .textInputAutocapitalization(.none)
+                .keyboard(.phonePad)
+            FleetboxTextField(value: $shop.url, name: "Website", example: "https://quicklube.example.com")
+                .textInputAutocapitalization(.none)
+                .keyboard(.URL)
             Section(header: Text("Notes")) {
                 TextEditor(text: convertToNonNilBinding(string: $shop.notes))
             }
