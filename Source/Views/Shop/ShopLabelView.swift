@@ -17,27 +17,19 @@
 
 import SwiftUI
 
-struct TireSetLabelView: View {
-    @ObservedObject var tireSet: TireSet
+struct ShopLabelView: View {
+    @ObservedObject var shop: Shop
 
-    var makeModel: String {
-        if let makeModel = tireSet.makeModel {
-            return "\(makeModel)\n"
+    private var location: Text {
+        if let location = shop.location?.normalized {
+            return (Text("\nin ") + Text(location)).foregroundColor(.secondary)
         } else {
-            return ""
+            return Text("")
         }
     }
 
     var body: some View {
-        if let userDisplayName = tireSet.userDisplayName {
-            Text(userDisplayName).foregroundColor(.primary).font(.headline) +
-                Text("\n") +
-                Text(makeModel).foregroundColor(.secondary) +
-                Text(tireSet.specs).foregroundColor(.secondary)
-        } else {
-            Text(tireSet.makeModel ?? "Unknown tires").foregroundColor(.primary).font(.headline) +
-                Text("\n") +
-                Text(tireSet.specs).foregroundColor(.secondary)
-        }
+        Text(shop.name ?? "Unknown shop").foregroundColor(.primary) +
+            location
     }
 }

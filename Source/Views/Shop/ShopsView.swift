@@ -33,9 +33,11 @@ struct ShopsView: View {
                 let shops = shops.map { $0 }
                 ForEachObjects(shops) { shop in
                     NavigationLink(
-                            shop.name ?? "Unknown shop",
                             destination: EnsureNavigationView {
                                 ShopView(shop: shop)
+                            },
+                            label: {
+                                ShopLabelView(shop: shop)
                             }
                     )
                 }
@@ -44,20 +46,19 @@ struct ShopsView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     if editable {
-                        Button(action: addShop) {
-                            Label("Add Shop", systemImage: "plus")
-                        }
+                        NavigationLink(
+                            destination: EnsureNavigationView {
+                                NewShopView()
+                            },
+                            label: {
+                                Label("Add Shop", systemImage: "plus")
+                            }
+                        )
                         EditButton()
                     }
                 }
             }
             Text("Select a shop")
-        }
-    }
-
-    private func addShop() {
-        withAnimation {
-            _ = Shop(context: viewContext)
         }
     }
 }

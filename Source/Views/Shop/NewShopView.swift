@@ -17,27 +17,21 @@
 
 import SwiftUI
 
-struct TireSetLabelView: View {
-    @ObservedObject var tireSet: TireSet
-
-    var makeModel: String {
-        if let makeModel = tireSet.makeModel {
-            return "\(makeModel)\n"
-        } else {
-            return ""
-        }
-    }
+struct NewShopView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @State private var shop: Shop?
 
     var body: some View {
-        if let userDisplayName = tireSet.userDisplayName {
-            Text(userDisplayName).foregroundColor(.primary).font(.headline) +
-                Text("\n") +
-                Text(makeModel).foregroundColor(.secondary) +
-                Text(tireSet.specs).foregroundColor(.secondary)
+        if let shop = shop {
+            ShopView(shop: shop)
         } else {
-            Text(tireSet.makeModel ?? "Unknown tires").foregroundColor(.primary).font(.headline) +
-                Text("\n") +
-                Text(tireSet.specs).foregroundColor(.secondary)
+            ProgressView().onAppear {
+                if shop == nil {
+                    withAnimation {
+                        shop = Shop(context: viewContext)
+                    }
+                }
+            }
         }
     }
 }

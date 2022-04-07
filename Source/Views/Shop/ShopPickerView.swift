@@ -18,7 +18,8 @@
 import SwiftUI
 
 struct ShopPickerView: View {
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.editable) private var editable
+    @Environment(\.dismiss) private var dismiss
 
     @FetchRequest(
             sortDescriptors: [NSSortDescriptor(keyPath: \Shop.sortOrder, ascending: true)],
@@ -52,14 +53,26 @@ struct ShopPickerView: View {
                             dismiss()
                         }, label: {
                             HStack {
-                                Text(shop.name ?? "Unknown shop")
-                                        .foregroundColor(.primary)
+                                ShopLabelView(shop: shop)
                                 if selected == shop {
-                                    Spacer()
                                     Image(systemName: "checkmark")
                                             .foregroundColor(.accentColor)
                                 }
                             }
+                        }
+                    )
+                }
+            }
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                if editable {
+                    NavigationLink(
+                        destination: EnsureNavigationView {
+                            NewShopView()
+                        },
+                        label: {
+                            Label("Add Shop", systemImage: "plus")
                         }
                     )
                 }

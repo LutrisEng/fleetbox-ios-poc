@@ -83,9 +83,14 @@ struct TireSetsView: View {
                         }
                     )
                     if editable {
-                        Button(action: addTireSet) {
-                            Label("Add Tire Set", systemImage: "plus")
-                        }
+                        NavigationLink(
+                            destination: EnsureNavigationView {
+                                NewTireSetView()
+                            },
+                            label: {
+                                Label("Add Tire Set", systemImage: "plus")
+                            }
+                        )
                         EditButton()
                     }
                 }
