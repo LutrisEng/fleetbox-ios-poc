@@ -23,14 +23,25 @@ func dateDifference(_ first: Date?, _ second: Date?) -> Double {
 
 func monthsSince(origin: Date) -> Double {
     let components = Calendar.current.dateComponents([.month, .day], from: origin, to: Date.now)
-    // On average, there are 30.437 days in a month.
-    // See Britannica: https://www.britannica.com/science/time/Lengths-of-years-and-months
-    // This provides a good-enough approximation, we just want a progress bar to advance a bit
-    // on a daily basis.
-    return Double(components.month ?? 0) + (Double(components.day ?? 0) / 30.437)
+    return Double(components.month ?? 0) + (Double(components.day ?? 0) / daysPerMonth)
 }
 
 func toMonths(interval: TimeInterval) -> Double {
     let origin = Date(timeIntervalSinceReferenceDate: Date.now.timeIntervalSinceReferenceDate - interval)
     return monthsSince(origin: origin)
+}
+
+let secondsPerMinute: Double = 60
+let minutesPerHour: Double = 60
+let secondsPerHour: Double = secondsPerMinute * minutesPerHour
+let hoursPerDay: Double = 24
+let secondsPerDay: Double = secondsPerHour * hoursPerDay
+// On average, there are 30.437 days in a month.
+// See Britannica: https://www.britannica.com/science/time/Lengths-of-years-and-months
+// This provides a good-enough approximation for most purposes
+let daysPerMonth: Double = 30.437
+let daysPerYear: Double = 365.2425
+
+func toDays(interval: TimeInterval) -> Double {
+    return interval * secondsPerDay
 }
