@@ -57,7 +57,7 @@ function TypeItem({ type }: { type: Type }) {
         <p>Fields:</p>
         <ul>
           {fields.map((field) => (
-            <FieldItem field={field} type={type} />
+            <FieldItem key={field.id} field={field} type={type} />
           ))}
         </ul>
       </>
@@ -83,7 +83,12 @@ function TypeItem({ type }: { type: Type }) {
 function CategoryItem({ category }: { category: Category }) {
   const [collapsed, setCollapsed] = useState(false);
   const [collapsible, setCollapsible] = useState(false);
-  useEffect(() => setCollapsible(true));
+  useEffect(() => {
+    if (!collapsible) {
+      setCollapsible(true);
+      setCollapsed(true);
+    }
+  });
 
   const types = category.types ?? [];
   const subcategories = category.subcategories ?? [];
@@ -94,7 +99,7 @@ function CategoryItem({ category }: { category: Category }) {
         <p>Types:</p>
         <ul>
           {(category.types ?? []).map((type) => (
-            <TypeItem type={type} />
+            <TypeItem key={type.id} type={type} />
           ))}
         </ul>
       </>
@@ -107,7 +112,7 @@ function CategoryItem({ category }: { category: Category }) {
         <p>Subcategories:</p>
         <ul>
           {(category.subcategories ?? []).map((category) => (
-            <CategoryItem category={category} />
+            <CategoryItem key={category.id} category={category} />
           ))}
         </ul>
       </>
@@ -153,7 +158,7 @@ export default function LineItemTypes() {
   return (
     <ul>
       {categories.map((category) => (
-        <CategoryItem category={category} />
+        <CategoryItem key={category.id} category={category} />
       ))}
     </ul>
   );
