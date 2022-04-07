@@ -28,6 +28,15 @@ extension Fleetbox_Export_Shop {
         if let location = shop.location {
             self.location = location
         }
+        if let email = shop.email {
+            self.email = email
+        }
+        if let phoneNumber = shop.phoneNumber {
+            self.phoneNumber = phoneNumber
+        }
+        if let url = shop.url {
+            self.url = url
+        }
     }
 
     func importShop(context: NSManagedObjectContext) -> Shop {
@@ -35,6 +44,9 @@ extension Fleetbox_Export_Shop {
         shop.name = name
         shop.notes = notes
         shop.location = location
+        shop.email = email
+        shop.phoneNumber = phoneNumber
+        shop.url = url
         return shop
     }
 }

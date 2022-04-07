@@ -36,6 +36,8 @@ struct FleetboxTextField: View {
     private var _progress: Double?
     private var _progressColor: Color?
     private var _autocapitalization: TextInputAutocapitalization?
+    private var _keyboardType: UIKeyboardType = .default
+    private var _autocorrection: Bool = true
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: Textable? = nil) {
         wrappedValue = convertToNonNilBinding(string: value)
@@ -53,6 +55,7 @@ struct FleetboxTextField: View {
         )
         number = true
         previewAsNumber = true
+        _keyboardType = .numberPad
     }
 
     init(value: Binding<Int16>, name: LocalizedStringKey?, example: Int16, description: Textable? = nil) {
@@ -64,6 +67,7 @@ struct FleetboxTextField: View {
         )
         number = true
         previewAsNumber = true
+        _keyboardType = .numberPad
     }
 
     func unit<Unit: Textable>(_ unit: Unit) -> Self {
@@ -106,9 +110,21 @@ struct FleetboxTextField: View {
         return view
     }
 
-    func textInputAutocapitalization(_ autocapitalization: TextInputAutocapitalization?) -> Self {
+    func autocapitalization(_ autocapitalization: TextInputAutocapitalization?) -> Self {
         var view = self
         view._autocapitalization = autocapitalization
+        return view
+    }
+
+    func keyboard(_ type: UIKeyboardType) -> Self {
+        var view = self
+        view._keyboardType = type
+        return view
+    }
+
+    func autocorrection(_ autocorrection: Bool) -> Self {
+        var view = self
+        view._autocorrection = autocorrection
         return view
     }
 
@@ -180,7 +196,8 @@ struct FleetboxTextField: View {
                                 .onSubmit {
                                     pageShown = false
                                 }
-                                .keyboardType(number ? .decimalPad : .default)
+                                .keyboardType(_keyboardType)
+                                .disableAutocorrection(!_autocorrection)
                                 if !tempValue.isEmpty {
                                     Button(
                                         action: {

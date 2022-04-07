@@ -22,7 +22,7 @@ struct ShopLabelView: View {
 
     private var location: Text {
         if let location = shop.location?.normalized {
-            return (Text("\nin ") + Text(location)).foregroundColor(.secondary)
+            return Text("\n\(location)").foregroundColor(.secondary)
         } else {
             return Text("")
         }

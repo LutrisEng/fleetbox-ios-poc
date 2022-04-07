@@ -84,6 +84,9 @@ message Shop {
     optional string name = 1;
     optional string notes = 2;
     optional string location = 3;
+    optional string email = 4;
+    optional string phoneNumber = 5;
+    optional string url = 6;
 }
 
 message TireSet {

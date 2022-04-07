@@ -40,18 +40,18 @@ struct TireSetSpecView: View {
     var specForm: some View {
         FleetboxTextField(value: $tireSet.vehicleType, name: "Vehicle Type", example: "P")
             .caption(tireSet.vehicleTypeDescription)
-            .textInputAutocapitalization(.characters)
+            .autocapitalization(.characters)
         FleetboxTextField(value: $tireSet.width, name: "Width", example: 225)
         FleetboxTextField(value: $tireSet.aspectRatio, name: "Aspect Ratio", example: 70)
         FleetboxTextField(value: $tireSet.construction, name: "Construction", example: "R")
             .caption(tireSet.constructionDescription)
-            .textInputAutocapitalization(.characters)
+            .autocapitalization(.characters)
         FleetboxTextField(value: $tireSet.diameter, name: "Rim Diameter", example: 16)
         FleetboxTextField(value: $tireSet.loadIndex, name: "Load Index", example: 91)
             .caption(loadCapacityCaption)
         FleetboxTextField(value: $tireSet.speedRating, name: "Speed Rating", example: "S")
             .caption(topSpeedCaption)
-            .textInputAutocapitalization(.characters)
+            .autocapitalization(.characters)
     }
 
     var body: some View {

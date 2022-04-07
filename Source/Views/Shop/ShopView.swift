@@ -18,6 +18,7 @@
 import SwiftUI
 
 struct ShopView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.editable) private var editable
 
     @ObservedObject var shop: Shop
@@ -25,9 +26,84 @@ struct ShopView: View {
     var body: some View {
         Form {
             FleetboxTextField(value: $shop.name, name: "Name", example: "Quick Lube of Anytown USA")
-                .textInputAutocapitalization(.words)
-            FleetboxTextField(value: $shop.location, name: "Location", example: "Anytown, USA")
-                .textInputAutocapitalization(.words)
+                .autocapitalization(.words)
+            HStack {
+                FleetboxTextField(value: $shop.location, name: "Location", example: "Anytown, USA")
+                    .autocapitalization(.words)
+                if let mapURL = shop.mapURL {
+                    Link(
+                        destination: mapURL,
+                        label: {
+                            Label("Open map", systemImage: "map")
+                                .labelStyle(.iconOnly)
+                                .foregroundColor(.accentColor)
+                        }
+                    )
+                    .buttonStyle(.plain)
+                }
+            }
+            HStack {
+                FleetboxTextField(value: $shop.email, name: "Email Address", example: "quicklube@example.com")
+                    .autocapitalization(.never)
+                    .keyboard(.emailAddress)
+                    .autocorrection(false)
+                if let emailURL = shop.emailURL {
+                    Link(
+                        destination: emailURL,
+                        label: {
+                            Label("Send an email", systemImage: "envelope")
+                                .labelStyle(.iconOnly)
+                                .foregroundColor(.accentColor)
+                        }
+                    )
+                    .buttonStyle(.plain)
+                }
+            }
+            HStack {
+                FleetboxTextField(value: $shop.phoneNumber, name: "Phone Number", example: "123-555-9876")
+                    .autocapitalization(.never)
+                    .keyboard(.phonePad)
+                    .autocorrection(false)
+                if let phoneURL = shop.phoneURL {
+                    Link(
+                        destination: phoneURL,
+                        label: {
+                            Label("Call", systemImage: "phone")
+                                .labelStyle(.iconOnly)
+                                .foregroundColor(.accentColor)
+                        }
+                    )
+                    .buttonStyle(.plain)
+                }
+                if let smsURL = shop.smsURL {
+                    Link(
+                        destination: smsURL,
+                        label: {
+                            Label("Send a message", systemImage: "bubble.left")
+                                .labelStyle(.iconOnly)
+                                .foregroundColor(.accentColor)
+                        }
+                    )
+                    .buttonStyle(.plain)
+                }
+            }
+            HStack {
+                FleetboxTextField(value: $shop.url, name: "Website", example: "https://quicklube.example.com")
+                    .autocapitalization(.never)
+                    .keyboard(.URL)
+                    .autocorrection(false)
+                if let url = shop.urlURL {
+                    Link(
+                        destination: url,
+                        label: {
+                            Label("Visit website", systemImage: "globe")
+                                .labelStyle(.iconOnly)
+                                .foregroundColor(.accentColor)
+                        }
+                    )
+                    .buttonStyle(.plain)
+                }
+            }
             Section(header: Text("Notes")) {
                 TextEditor(text: convertToNonNilBinding(string: $shop.notes))
             }
@@ -65,9 +141,12 @@ struct ShopView: View {
                         ShopPickerView(
                             selected: nil,
                             exclude: [shop]
-                        ) { shop in
+                        ) { other in
                             withAnimation {
-                                shop.mergeWith(shop)
+                                shop.mergeWith(other)
+                                ignoreErrors {
+                                    try viewContext.save()
+                                }
                             }
                         }
                         .navigationTitle("Merge shops")

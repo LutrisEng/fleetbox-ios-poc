@@ -189,11 +189,15 @@ extension TireSet: Sortable,
     }
 
     func mergeWith(_ other: TireSet) {
-        if other == self { return }
+        if other.objectID == objectID {
+            print("Refusing to merge tire set with itself")
+            SentrySDK.capture(message: "Refusing to merge tire set with itself")
+            return
+        }
         for field in other.fieldsSet {
             field.tireSetValue = self
         }
-        if let context = managedObjectContext {
+        if let context = other.managedObjectContext {
             context.delete(other)
         }
     }

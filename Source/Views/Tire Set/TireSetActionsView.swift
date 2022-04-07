@@ -18,6 +18,7 @@
 import SwiftUI
 
 struct TireSetActionsView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @Environment(\.editable) private var editable
 
     @ObservedObject var tireSet: TireSet
@@ -30,8 +31,13 @@ struct TireSetActionsView: View {
                         selected: nil,
                         allowNone: false,
                         exclude: [tireSet]
-                    ) {
-                        tireSet.mergeWith($0!)
+                    ) { other in
+                        withAnimation {
+                            tireSet.mergeWith(other!)
+                            ignoreErrors {
+                                try viewContext.save()
+                            }
+                        }
                     }
                     .navigationTitle("Merge tire sets")
                     .navigationBarTitleDisplayMode(.inline)

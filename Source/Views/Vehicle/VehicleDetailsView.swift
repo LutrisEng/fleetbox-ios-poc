@@ -27,9 +27,9 @@ struct VehicleDetailsView: View {
             FleetboxTextField(value: $vehicle.year, name: "Year", example: 2020)
                 .previewAsString()
             FleetboxTextField(value: $vehicle.make, name: "Make", example: dummyData.vehicleMake)
-                .textInputAutocapitalization(.words)
+                .autocapitalization(.words)
             FleetboxTextField(value: $vehicle.model, name: "Model", example: dummyData.vehicleModel)
-                .textInputAutocapitalization(.words)
+                .autocapitalization(.words)
             if let licensePlateNumber = vehicle.licensePlateNumber {
                 FormLinkLabel(title: "License plate", value: licensePlateNumber)
             }
