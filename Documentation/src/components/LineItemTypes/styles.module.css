@@ -10,3 +10,7 @@
 .anchor:hover {
   color: gray;
 }
+
+.hidden {
+  display: none;
+}

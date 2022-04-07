@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import classNames from "classnames";
 import { categories, allComponentsById } from "@site/src/lib/lineItemTypes";
 import { Category, Field, Type } from "@site/src/generated/LineItemTypes";
 import styles from "./styles.module.css";
-import { useState } from "react";
-import { useEffect } from "react";
 
 function enumValuesString(enumValues: { displayName: string }[]): string {
   const lf = new Intl.ListFormat("en", { type: "disjunction" });
@@ -80,7 +79,13 @@ function TypeItem({ type }: { type: Type }) {
   );
 }
 
-function CategoryItem({ category }: { category: Category }) {
+function CategoryItem({
+  category,
+  forceExpand,
+}: {
+  category: Category;
+  forceExpand: boolean;
+}) {
   const [collapsed, setCollapsed] = useState(false);
   const [collapsible, setCollapsible] = useState(false);
   useEffect(() => {
@@ -90,14 +95,17 @@ function CategoryItem({ category }: { category: Category }) {
     }
   });
 
+  const reallyCollapsed = collapsed && !forceExpand;
+  const reallyCollapsible = collapsible && !forceExpand;
+
   const types = category.types ?? [];
   const subcategories = category.subcategories ?? [];
 
   const typeList =
     types.length > 0 ? (
       <>
-        <p>Types:</p>
-        <ul>
+        <p className={classNames(reallyCollapsed && styles.hidden)}>Types:</p>
+        <ul className={classNames(reallyCollapsed && styles.hidden)}>
           {(category.types ?? []).map((type) => (
             <TypeItem key={type.id} type={type} />
           ))}
@@ -109,10 +117,16 @@ function CategoryItem({ category }: { category: Category }) {
   const subcategoryList =
     subcategories.length > 0 ? (
       <>
-        <p>Subcategories:</p>
-        <ul>
+        <p className={classNames(reallyCollapsed && styles.hidden)}>
+          Subcategories:
+        </p>
+        <ul className={classNames(reallyCollapsed && styles.hidden)}>
           {(category.subcategories ?? []).map((category) => (
-            <CategoryItem key={category.id} category={category} />
+            <CategoryItem
+              key={category.id}
+              category={category}
+              forceExpand={forceExpand}
+            />
           ))}
         </ul>
       </>
@@ -129,37 +143,46 @@ function CategoryItem({ category }: { category: Category }) {
       <p>
         Internal ID: <code>{category.id}</code>
       </p>
-      {collapsed ? (
-        collapsible ? (
-          <a href="#" onClick={() => setCollapsed(false)}>
-            Expand
-          </a>
-        ) : (
-          ""
-        )
+      {reallyCollapsible ? (
+        <a href="#" onClick={() => setCollapsed(!collapsed)}>
+          {collapsed ? "Expand" : "Collapse"}
+        </a>
       ) : (
-        <>
-          {collapsible ? (
-            <a href="#" onClick={() => setCollapsed(true)}>
-              Collapse
-            </a>
-          ) : (
-            ""
-          )}
-          {typeList}
-          {subcategoryList}
-        </>
+        ""
       )}
+      {typeList}
+      {subcategoryList}
     </li>
   );
 }
 
 export default function LineItemTypes() {
+  const [forceExpand, setForceExpand] = useState(false);
+  const [expandable, setExpandable] = useState(false);
+  useEffect(() => {
+    if (!expandable) {
+      setExpandable(true);
+    }
+  });
+
   return (
-    <ul>
-      {categories.map((category) => (
-        <CategoryItem key={category.id} category={category} />
-      ))}
-    </ul>
+    <>
+      {expandable ? (
+        <a href="#" onClick={() => setForceExpand(!forceExpand)}>
+          {forceExpand ? "Disable show all" : "Show all"}
+        </a>
+      ) : (
+        ""
+      )}
+      <ul>
+        {categories.map((category) => (
+          <CategoryItem
+            key={category.id}
+            category={category}
+            forceExpand={forceExpand}
+          />
+        ))}
+      </ul>
+    </>
   );
 }
