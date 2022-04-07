@@ -254,10 +254,6 @@ protocol HasOdometerReadings {
     var odometerReadings: Set<OdometerReading> { get }
 }
 
-let daysPerYear: Double = 365.2425
-let hoursPerDay: Double = 24
-let secondsPerHour: Double = 3600
-
 extension HasOdometerReadings {
     var calculatedAverageMilesPerSecond: Double? {
         let readings = odometerReadings.chrono
@@ -303,12 +299,13 @@ extension HasOdometerReadings where Self: TracksMiles {
     }
 
     var approximateOdometerOffset: Int64 {
-        if let averageMilesPerSecond = averageMilesPerSecond {
-            guard let lastOdometerReading = odometerReadings.inverseChrono.first(where: { $0.at != nil }) else {
-                return 0
-            }
-            let timeSinceLastOdometer = Date.now.timeIntervalSinceReferenceDate -
-                lastOdometerReading.at!.timeIntervalSinceReferenceDate
+        guard let lastOdometerReading = odometerReadings.inverseChrono.first(where: { $0.at != nil }) else {
+            return 0
+        }
+        let timeSinceLastOdometer = Date.now.timeIntervalSinceReferenceDate -
+            lastOdometerReading.at!.timeIntervalSinceReferenceDate
+        let daysSinceLastOdometer = toDays(interval: timeSinceLastOdometer)
+        if daysSinceLastOdometer > 1, let averageMilesPerSecond = averageMilesPerSecond {
             let approxMilesSinceLastOdometer = averageMilesPerSecond * timeSinceLastOdometer
             return Int64(round(approxMilesSinceLastOdometer))
         } else {
