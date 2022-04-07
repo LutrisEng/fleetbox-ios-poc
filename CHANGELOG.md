@@ -14,6 +14,8 @@ and this project adheres to
 - Added lifetime meters for many part odometers, with somewhat arbitrary
   defaults.
 - Shops now have email, phone number, and URL fields.
+  - These fields have actions which let you open a map, send an email, make a
+    phone call, send a text message, or open a website.
 
 ### Changed
 

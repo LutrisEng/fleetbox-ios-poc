@@ -17,14 +17,64 @@
 
 import Foundation
 import CoreData
+import Sentry
 
 extension Shop: Sortable, HasRawLogItems, HasLogItems {
+    var mapURL: URL? {
+        if let location = location?.normalized, var url = URLComponents(string: "http://maps.apple.com/") {
+            url.queryItems = [URLQueryItem(name: "q", value: location)]
+            return url.url
+        } else {
+            return nil
+        }
+    }
+
+    var emailURL: URL? {
+        if let email = email?.normalized {
+            return URL(string: "mailto:\(email)")
+        } else {
+            return nil
+        }
+    }
+
+    var phoneURL: URL? {
+        if let phoneNumber = phoneNumber?.normalized {
+            return URL(string: "tel:\(phoneNumber)")
+        } else {
+            return nil
+        }
+    }
+
+    var smsURL: URL? {
+        if let phoneNumber = phoneNumber?.normalized {
+            return URL(string: "sms:\(phoneNumber)")
+        } else {
+            return nil
+        }
+    }
+
+    var urlURL: URL? {
+        if let url = url?.normalized {
+            if url.starts(with: "http://") || url.starts(with: "https://") {
+                return URL(string: url)
+            } else {
+                return URL(string: "http://\(url)")
+            }
+        } else {
+            return nil
+        }
+    }
+
     func mergeWith(_ other: Shop) {
-        if other == self { return }
+        if other.objectID == objectID {
+            print("Refusing to merge shop with itself")
+            SentrySDK.capture(message: "Refusing to merge shop with itself")
+            return
+        }
         for item in other.logItems {
             item.shop = self
         }
-        if let context = managedObjectContext {
+        if let context = other.managedObjectContext {
             context.delete(other)
         }
     }

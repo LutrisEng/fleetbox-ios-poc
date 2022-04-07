@@ -37,6 +37,7 @@ struct FleetboxTextField: View {
     private var _progressColor: Color?
     private var _autocapitalization: TextInputAutocapitalization?
     private var _keyboardType: UIKeyboardType = .default
+    private var _autocorrection: Bool = true
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: Textable? = nil) {
         wrappedValue = convertToNonNilBinding(string: value)
@@ -109,7 +110,7 @@ struct FleetboxTextField: View {
         return view
     }
 
-    func textInputAutocapitalization(_ autocapitalization: TextInputAutocapitalization?) -> Self {
+    func autocapitalization(_ autocapitalization: TextInputAutocapitalization?) -> Self {
         var view = self
         view._autocapitalization = autocapitalization
         return view
@@ -118,6 +119,12 @@ struct FleetboxTextField: View {
     func keyboard(_ type: UIKeyboardType) -> Self {
         var view = self
         view._keyboardType = type
+        return view
+    }
+
+    func autocorrection(_ autocorrection: Bool) -> Self {
+        var view = self
+        view._autocorrection = autocorrection
         return view
     }
 
@@ -190,6 +197,7 @@ struct FleetboxTextField: View {
                                     pageShown = false
                                 }
                                 .keyboardType(_keyboardType)
+                                .disableAutocorrection(!_autocorrection)
                                 if !tempValue.isEmpty {
                                     Button(
                                         action: {
