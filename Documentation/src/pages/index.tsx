@@ -1,34 +1,39 @@
-import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import styles from './index.module.css';
+import React from "react";
+import clsx from "clsx";
+import Layout from "@theme/Layout";
+import Link from "@docusaurus/Link";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import styles from "./index.module.css";
 // import HomepageFeatures from '@site/src/components/HomepageFeatures';
-import DownloadOnTheAppStore from '@site/static/img/appstore.svg';
-import DownloadOnTheMacAppStore from '@site/static/img/macappstore.svg';
+import DownloadOnTheAppStore from "@site/static/img/appstore.svg";
+import DownloadOnTheMacAppStore from "@site/static/img/macappstore.svg";
 
-const appstoreLink = 'https://apps.apple.com/us/app/fleetbox/id1617676419';
+const appstoreLink = "https://apps.apple.com/us/app/fleetbox/id1617676419";
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
+    <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
-        <h1 className={clsx('hero__title', styles.heroTitle)}>{siteConfig.title}</h1>
-        <p className={clsx('hero__subtitle', styles.heroSubtitle)}>{siteConfig.tagline}</p>
+        <h1 className={clsx("hero__title", styles.heroTitle)}>
+          {siteConfig.title}
+        </h1>
+        <p className={clsx("hero__subtitle", styles.heroSubtitle)}>
+          {siteConfig.tagline}
+        </p>
         <div className={styles.buttons}>
           <div className={styles.appstoreButtons}>
-            <Link to={ appstoreLink }>
+            <Link to={appstoreLink}>
               <DownloadOnTheAppStore />
             </Link>
-            <Link to={ appstoreLink }>
+            <Link to={appstoreLink}>
               <DownloadOnTheMacAppStore />
             </Link>
           </div>
           <Link
             className="button button--secondary button--lg"
-            to="/docs/intro">
+            to="/docs/intro"
+          >
             User Manual
           </Link>
         </div>
@@ -38,11 +43,9 @@ function HomepageHeader() {
 }
 
 export default function Home(): JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
-    <Layout
-      title="Home"
-      description={siteConfig.tagline}>
+    <Layout title="Home" description={siteConfig.tagline}>
       <HomepageHeader />
       <main className={styles.video}>
         {/* <HomepageFeatures /> */}

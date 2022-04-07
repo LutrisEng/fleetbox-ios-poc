@@ -1,0 +1,215 @@
+---
+sidebar_position: 1
+---
+
+import Image from "@theme/IdealImage";
+import MailtoLink from "@site/src/components/MailtoLink";
+import GitHubIssue from "@site/src/components/GitHubIssue";
+import { multiLineToSingleLine } from "@site/src/lib/multilineHelper";
+
+# Getting Started with Fleetbox
+
+<blockquote>
+  This documentation assumes you are a part of the Fleetbox Private Beta. To
+  request to join the Fleetbox Private Beta, send an email to{" "}
+  <MailtoLink
+    address="beta@fleetbox.io"
+    properties={{
+      subject: "Request to join",
+      body: multiLineToSingleLine(`
+        Hi there, Fleetbox team! I'd like to join the Fleetbox Private Beta. I
+        currently use (a spreadsheet/CarFax Car Care/something else) to keep
+        track of my vehicles, but using Fleetbox would help me (keep track of
+        modifications/track my mileage/something else) better than my previous
+        solution can.
+      `),
+    }}
+  />
+  . Let us know how you currently track your vehicles' maintenance log(s), and how
+  Fleetbox would simplify that process!
+</blockquote>
+
+## Downloading Fleetbox
+
+After being added to the Fleetbox Private Beta, you should have received an
+email from TestFlight.
+
+<Image
+  img={require("./invite.jpg")}
+  alt={
+    'Invite from TestFlight, with the subject line "Lutris, Inc has invited you to test Fleetbox."'
+  }
+/>
+
+The "View in TestFlight" button should either:
+
+- Take you to the App Store page for TestFlight, or
+- Take you to TestFlight, if you already have it installed
+
+Download and install TestFlight if you haven't already, then install Fleetbox
+from inside TestFlight.
+
+### Using TestFlight
+
+#### Updates
+
+By default, TestFlight will automatically update you to the latest version of
+the Fleetbox Private Beta. New versions are pushed out to Private Beta users as
+soon as we make a change to the Fleetbox code.
+
+#### Downgrades
+
+Since Private Beta updates come out so soon after we make a change, major bugs
+might occasionally make it through to a Private Beta build. If there's a major
+bug preventing you from using Fleetbox:
+
+1. Let us know - we can't fix a bug we don't know about!
+2. Downgrade to a known-good version of Fleetbox using TestFlight using the
+   "Previous Builds" function
+
+<Image
+  img={require("./previous-builds.jpg")}
+  alt={
+    'The top of the "Previous Builds" page, listing two previous builds of Fleetbox'
+  }
+/>
+
+### Feedback
+
+<p>
+  If you have feedback, whether that be a bug report, feature request, or
+  anything else, you can either send an email to{" "}
+  <MailtoLink
+    address="beta@fleetbox.io"
+    properties={{
+      subject: "Feedback",
+      body: multiLineToSingleLine(`
+        Hi there, Fleetbox team! I have some feedback about Fleetbox. (XYZ is
+        broken/It would be cool if XYZ existed/Competitor A does XYZ, but I
+        can't figure out how to do that in Fleetbox/etc)
+      `),
+    }}
+  />{" "}
+  or send feedback through TestFlight. With TestFlight, you are also able to
+  send a screenshot to let us know exactly what you're giving feedback on.
+</p>
+
+<Image
+  img={require("./testflight-feedback.jpg")}
+  alt={multiLineToSingleLine(`
+    The TestFlight feedback screen, explaining that feedback submitted through
+    TestFlight includes both your feedback and your device information, and will
+    be linked with your email address.
+  `)}
+/>
+
+If you're a bit more technically inclined, you can also submit bug reports and
+feature requests to our
+[GitHub issue tracker](https://github.com/LutrisEng/fleetbox/issues). That issue
+tracker also contains prioritization for existing bugs and features, and bug
+reports and feature requests submitted through other channels typically
+eventually trickle down to the GitHub issue tracker.
+
+## First Launch
+
+<p>
+  Currently, Fleetbox just dumps you into a blank vehicle list on your first
+  launch. We'll eventually have a first-launch tutorial to guide through your
+  first vehicle (tracked in <GitHubIssue issue={20} />
+  ), but that isn't ready yet. For now, this tutorial will have to suffice.
+</p>
+
+<Image
+  img={require("./first-launch.png")}
+  alt="An empty vehicles list from a user's first launch of Fleetbox"
+/>
+
+### Adding Your Vehicle
+
+For this tutorial, I'll be filling out information for a fictional 2018 Toyota
+Corolla, with the fictional VIN `5YFBURHEXJP000000`.
+
+<Image
+  img={require("./fictional-corolla.jpg")}
+  alt="A (probably somewhere around 2018) Toyota Corolla parked on a beach"
+/>
+
+Photo by
+[Bestami Sarıkaya](https://unsplash.com/@bbestamis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+on
+[Unsplash](https://unsplash.com/s/photos/toyota-corolla?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+
+Start off by adding your first vehicle using the "Add" (+) button at the top of
+your screen. This will bring you to your vehicle's details screen.
+
+<Image
+  img={require("./new-vehicle.png")}
+  alt={'Fleetbox showing a new vehicle, with the title "Unknown Vehicle"'}
+/>
+
+Under the "Details" section, fill in whatever information you know about the
+vehicle. For the name, you can give your vehicle whatever nickname you want! For
+most vehicles, Fleetbox is able to automatically fill in the year, make, and
+model using the VIN. After entering your VIN, a button will appear on the right
+side of the VIN field. Press that button, and Fleetbox will try to decode your
+VIN into a year, make, and model.
+
+<Image
+  img={require("./vin-decoded.png")}
+  alt="A dialog bog indicating that decoding a VIN was successful"
+/>
+
+### Taking an Odometer Reading
+
+Once you have your vehicle's details filled out, it's time to take your first
+odometer reading! There are two methods, through the "Odometer" menu and through
+a shortcut. For now, let's go with the shortcut so we don't overcomplicate
+anything. At the top of your screen, there should be a button with "123"
+surrounded by a rounded rectangle. Pressing that button takes you to the "New
+Odometer Reading" screen.
+
+<Image
+  img={require("./new-odometer-reading.png")}
+  alt={
+    'A screen showing a form field for "Current reading" and with a title of "Odometer reading"'
+  }
+/>
+
+Hop in your car and check what the odometer currently reads, and enter that
+reading into the "Current reading" field on this "New Odometer Reading screen."
+Once you're done, press the "Save" button in the top right corner of your
+screen, and you should be brought back to your vehicle's screen. If you look at
+the "Break-in period" and "Odometer" sections, they should now be updated with
+your new odometer reading!
+
+<Image
+  img={require("./after-saving-odometer-reading.png")}
+  alt="Fleetbox showing our fictional Corolla, with the break-in period showing as complete and the odometer showing as about 10,000 miles"
+/>
+
+It's a good idea to take an odometer reading every now and then so that Fleetbox
+has an accurate estimate for how many miles are on your vehicle's odometer at
+any given time.
+
+### Adding an Image
+
+To add a bit of flair to your vehicle's record, you can add an image. Simply
+press "Add image," and Fleetbox will prompt you to select an image from your
+Camera Roll.
+
+<Image
+  img={require("./added-image.png")}
+  alt="Fleetbox showing our fictional Corolla with a new snazzy image"
+/>
+
+This image is also used in your vehicle list to better differentiate vehicles
+from each other.
+
+<Image
+  img={require("./image-in-list.png")}
+  alt="Our fictional Corolla in the vehicles list with a new snazzy image"
+/>
+
+To change the image, just tap it and Fleetbox will prompt you to choose a new
+image. You can also remove the image entirely by pressing the red "X" in the top
+right corner of the image.

@@ -94,6 +94,20 @@ struct AboutView: View {
                         "TestFlight or by sending an email to beta@fleetbox.io."
                     )
                 }
+                Section(header: Text("Documentation")) {
+                    Link(destination: URL(string: "https://fleetbox.io/")!) {
+                        Text("Fleetbox Website")
+                    }
+                    Link(destination: URL(string: "https://fleetbox.io/docs/intro")!) {
+                        Text("Getting Started with Fleetbox")
+                    }
+                    Link(destination: URL(string: "https://fleetbox.io/docs/concepts")!) {
+                        Text("Useful Concepts")
+                    }
+                    Link(destination: URL(string: "https://fleetbox.io/docs/changelog")!) {
+                        Text("Changelog")
+                    }
+                }
                 Section(header: Text("Open-source projects")) {
                     Text(
                         "Not only is Fleetbox open-source, we depend on the work done by a " +

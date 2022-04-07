@@ -1,85 +1,85 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Fleetbox',
-  tagline: 'Keep track of your vehicle maintenance.',
-  url: 'https://fleetbox.io',
-  baseUrl: '/',
-  onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
-  organizationName: 'LutrisEng', // Usually your GitHub org/user name.
-  projectName: 'fleetbox', // Usually your repo name.
+  title: "Fleetbox",
+  tagline: "Keep track of your vehicle maintenance.",
+  url: "https://fleetbox.io",
+  baseUrl: "/",
+  onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
+  favicon: "img/favicon.ico",
+  organizationName: "LutrisEng", // Usually your GitHub org/user name.
+  projectName: "fleetbox", // Usually your repo name.
 
-  clientModules: [
-    require.resolve('./src/sentry.ts')
-  ],
+  clientModules: [require.resolve("./src/clientModules/index.ts")],
 
   presets: [
     [
-      'classic',
+      "classic",
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
-          editUrl: 'https://github.com/LutrisEng/fleetbox/tree/main/Documentation/',
+          editUrl:
+            "https://github.com/LutrisEng/fleetbox/tree/main/Documentation/",
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/LutrisEng/fleetbox/tree/main/Documentation/',
+          editUrl:
+            "https://github.com/LutrisEng/fleetbox/tree/main/Documentation/",
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
+          customCss: require.resolve("./src/css/custom.css"),
         },
       }),
     ],
   ],
 
   plugins: [
-    '@docusaurus/plugin-ideal-image',
-    '@cmfcmf/docusaurus-search-local'
+    "@docusaurus/plugin-ideal-image",
+    "@cmfcmf/docusaurus-search-local",
   ],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'Fleetbox',
+        title: "Fleetbox",
         logo: {
-          alt: 'Fleetbox Logo',
-          src: 'img/logo.png',
+          alt: "Fleetbox Logo",
+          src: "img/logo.png",
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'User Manual',
+            type: "doc",
+            docId: "intro/index",
+            position: "left",
+            label: "User Manual",
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: "/blog", label: "Blog", position: "left" },
           {
-            href: 'https://github.com/LutrisEng/fleetbox',
-            label: 'GitHub',
-            position: 'right',
+            href: "https://github.com/LutrisEng/fleetbox",
+            label: "GitHub",
+            position: "right",
           },
         ],
       },
       footer: {
-        style: 'dark',
+        style: "dark",
         links: [
           {
-            title: 'Docs',
+            title: "Docs",
             items: [
               {
-                label: 'User Manual',
-                to: '/docs/intro',
+                label: "User Manual",
+                to: "/docs/intro",
               },
             ],
           },
@@ -101,15 +101,15 @@ const config = {
           //   ],
           // },
           {
-            title: 'More',
+            title: "More",
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
+                label: "Blog",
+                to: "/blog",
               },
               {
-                label: 'GitHub',
-                href: 'https://github.com/LutrisEng/fleetbox',
+                label: "GitHub",
+                href: "https://github.com/LutrisEng/fleetbox",
               },
             ],
           },
