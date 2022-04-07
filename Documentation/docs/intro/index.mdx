@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-import Image from "@theme/IdealImage";
+import Image from "@site/src/components/Image";
 import MailtoLink from "@site/src/components/MailtoLink";
 import GitHubIssue from "@site/src/components/GitHubIssue";
 import { multiLineToSingleLine } from "@site/src/lib/multilineHelper";
@@ -36,6 +36,7 @@ email from TestFlight.
 
 <Image
   img={require("./invite.jpg")}
+  className="image"
   alt={
     'Invite from TestFlight, with the subject line "Lutris, Inc has invited you to test Fleetbox."'
   }

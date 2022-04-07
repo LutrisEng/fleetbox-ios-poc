@@ -1,0 +1,19 @@
+.image {
+  width: 100%;
+}
+
+.image img {
+  width: 100%;
+}
+
+@media (min-width: 500px) {
+  .image {
+    max-width: 50vw;
+  }
+}
+
+@media (min-width: 997px) {
+  .image {
+    max-width: 25vw;
+  }
+}
