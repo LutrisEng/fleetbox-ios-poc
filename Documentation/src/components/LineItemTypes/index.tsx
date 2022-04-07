@@ -43,7 +43,9 @@ function FieldItem({ field, type }: { field: Field; type: Type }) {
         <small>Alternatively, "{field.longDisplayName}"</small>
       </p>
       <p>
-        Internal ID: <code>{field.id}</code>
+        <small>
+          Internal ID: <code>{field.id}</code>
+        </small>
       </p>
     </li>
   );
@@ -74,7 +76,9 @@ function TypeItem({ type }: { type: Type }) {
         <Anchor type="type" id={type.id} />
       </p>
       <p>
-        Internal ID: <code>{type.id}</code>
+        <small>
+          Internal ID: <code>{type.id}</code>
+        </small>
       </p>
       {replacesLine}
       {fieldsList}
@@ -135,7 +139,9 @@ function CategoryItem({
         <Anchor type="category" id={category.id} />
       </p>
       <p>
-        Internal ID: <code>{category.id}</code>
+        <small>
+          Internal ID: <code>{category.id}</code>
+        </small>
       </p>
       {!forceExpand ? (
         <a href="#" onClick={() => setCollapsed(!collapsed)}>
