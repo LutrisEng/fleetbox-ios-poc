@@ -70,11 +70,13 @@ struct AttachmentsView<T: ObservableObject & HasRawAttachments & HasAttachments 
             .sheet(isPresented: $showImagePicker) {
                 ImagePickerView(sourceType: .photoLibrary, onImagePicked: addImage)
             }
-            Button("\(Image(systemName: "camera")) Capture image") {
-                showCamera = true
-            }
-            .sheet(isPresented: $showCamera) {
-                ImagePickerView(sourceType: .camera, onImagePicked: addImage)
+            if UIImagePickerController.isSourceTypeAvailable(.camera) {
+                Button("\(Image(systemName: "camera")) Capture image") {
+                    showCamera = true
+                }
+                .sheet(isPresented: $showCamera) {
+                    ImagePickerView(sourceType: .camera, onImagePicked: addImage)
+                }
             }
         }
     }

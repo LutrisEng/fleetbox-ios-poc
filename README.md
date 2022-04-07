@@ -6,8 +6,8 @@ Fleetbox is currently in active, unstable development. Do not use it yet.
 
 All contributors must sign a CLA assigning rights to their contribution to
 Lutris, Inc. This ensures we can distribute Fleetbox on the Apple App Store
-without violating the GPL, as we own the code and can therefore license it
-under the Apple App Store EULA.
+without violating the GPL, as we own the code and can therefore license it under
+the Apple App Store EULA.
 
 ## License
 

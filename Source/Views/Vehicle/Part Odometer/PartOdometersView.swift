@@ -105,6 +105,7 @@ struct PartOdometersView: View {
             // Cache the vehicle odometer to reduce time spent calculating it
             _vehicleOdometer = newOdometer
         }
+        let partOdometers = partOdometers.filter { $0.shouldShow(vehicle: vehicle) }
         if vehicle.currentTireSet != nil || !partOdometers.isEmpty {
             Section(header: Text("Part Odometers")) {
                 if let tires = vehicle.currentTireSet {
