@@ -26,6 +26,7 @@
 		8625125427F6469800FE0587 /* ForEachObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8625125327F6469800FE0587 /* ForEachObjects.swift */; };
 		8625125627F6754E00FE0587 /* OdometerReadingLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8625125527F6754E00FE0587 /* OdometerReadingLabelView.swift */; };
 		8625125827F6951600FE0587 /* AttachmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8625125727F6951600FE0587 /* AttachmentsView.swift */; };
+		8631C3B127FFFA3300B35CA5 /* VehicleKit in Frameworks */ = {isa = PBXBuildFile; productRef = 8631C3B027FFFA3300B35CA5 /* VehicleKit */; };
 		864713FA27F13FF400A12A23 /* LineItemTypes Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864713F927F13FF400A12A23 /* LineItemTypes Structs.swift */; };
 		864713FC27F1455700A12A23 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864713FB27F1455700A12A23 /* Formatters.swift */; };
 		864C731B27CDF54E00047165 /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864C731A27CDF54E00047165 /* Vehicle.swift */; };
@@ -360,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86B189A527EAFD0F001CFBD3 /* FilePicker in Frameworks */,
+				8631C3B127FFFA3300B35CA5 /* VehicleKit in Frameworks */,
 				86F8F81027EE827800442694 /* Introspect in Frameworks */,
 				86B189B227EB0F6B001CFBD3 /* Gzip in Frameworks */,
 				8612CD6927E1A68B00976E8F /* ImagePickerView in Frameworks */,
@@ -810,6 +812,7 @@
 				86B189B127EB0F6B001CFBD3 /* Gzip */,
 				86F8F80F27EE827800442694 /* Introspect */,
 				86F8F81727EE99DC00442694 /* SwiftProtobuf */,
+				8631C3B027FFFA3300B35CA5 /* VehicleKit */,
 			);
 			productName = "Fleetbox (iOS)";
 			productReference = 861DAE1227CDD59F00AFE972 /* Fleetbox Debug.app */;
@@ -891,6 +894,7 @@
 				86B189B027EB0F6B001CFBD3 /* XCRemoteSwiftPackageReference "GzipSwift" */,
 				86F8F80E27EE827800442694 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				86F8F81627EE99DC00442694 /* XCRemoteSwiftPackageReference "swift-protobuf" */,
+				8631C3AF27FFFA3300B35CA5 /* XCRemoteSwiftPackageReference "VehicleKit" */,
 			);
 			productRefGroup = 861DAE1327CDD59F00AFE972 /* Products */;
 			projectDirPath = "";
@@ -1500,6 +1504,14 @@
 				version = 7.13.0;
 			};
 		};
+		8631C3AF27FFFA3300B35CA5 /* XCRemoteSwiftPackageReference "VehicleKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LutrisEng/VehicleKit.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		86B189A327EAFD0F001CFBD3 /* XCRemoteSwiftPackageReference "FilePicker" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/markrenaud/FilePicker";
@@ -1552,6 +1564,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 861DAE4C27CDDAD700AFE972 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
 			productName = Sentry;
+		};
+		8631C3B027FFFA3300B35CA5 /* VehicleKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8631C3AF27FFFA3300B35CA5 /* XCRemoteSwiftPackageReference "VehicleKit" */;
+			productName = VehicleKit;
 		};
 		86B189A427EAFD0F001CFBD3 /* FilePicker */ = {
 			isa = XCSwiftPackageProductDependency;
