@@ -19,6 +19,7 @@ import Foundation
 import CoreData
 import Sentry
 import UIKit
+import VehicleKit
 
 extension Vehicle: Sortable,
     TracksTime, TracksMiles, TracksApproximateMiles, HasBreakin,
@@ -117,6 +118,14 @@ extension Vehicle: Sortable,
             typeIn: ["stateRegistration", "vanityPlateMounted"],
             field: "licensePlateNumber"
         )?.stringValue?.normalized
+    }
+
+    var possibleAPIs: [VKAPIDirectory.API] {
+        if let make = make {
+            return VKAPIDirectory.apis(forMake: make)
+        } else {
+            return []
+        }
     }
 
     func export(settings: ExportSettings) throws -> Data? {
