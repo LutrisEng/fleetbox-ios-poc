@@ -279,6 +279,7 @@ categories:
             displayName: Timing belt check
           - id: serpentineBeltCheck
             displayName: Serpentine belt check
+
   - id: maintenance
     displayName: Maintenance
     icon:
@@ -953,6 +954,30 @@ categories:
                     type: integer
                     unit: years
                     exampleInteger: 4
+
+  - id: mods
+    displayName: Modifications
+    icon:
+      sfsymbols: pencil
+    subcategories:
+      - id: windowMods
+        displayName: Windows
+        types:
+          - id: tintApplied
+            displayName: Window tint applied
+            fields:
+              - id: brand
+                shortDisplayName: Brand
+                longDisplayName: What is the brand of the tint film?
+                type: string
+              - id: vlt
+                shortDisplayName: VLT
+                longDisplayName: What is the VLT of the tint film?
+                type: string
+              - id: windows
+                shortDisplayName: Windows
+                longDisplayName: Which windows were tinted?
+                type: string
 
   - id: misc
     displayName: Miscellaneous
