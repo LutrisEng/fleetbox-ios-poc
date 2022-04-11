@@ -44,6 +44,7 @@ struct ShopView: View {
             }
             HStack {
                 FleetboxTextField(value: $shop.email, name: "Email Address", example: "quicklube@example.com")
+                    .allowNewline(false)
                     .autocapitalization(.never)
                     .keyboard(.emailAddress)
                     .autocorrection(false)
@@ -60,10 +61,15 @@ struct ShopView: View {
                 }
             }
             HStack {
-                FleetboxTextField(value: $shop.phoneNumber, name: "Phone Number", example: "123-555-9876")
-                    .autocapitalization(.never)
-                    .keyboard(.phonePad)
-                    .autocorrection(false)
+                FleetboxTextField(
+                    value: phoneNumberBinding(string: $shop.phoneNumber),
+                    name: "Phone Number",
+                    example: "123-555-9876"
+                )
+                .allowNewline(false)
+                .autocapitalization(.never)
+                .keyboard(.phonePad)
+                .autocorrection(false)
                 if let phoneURL = shop.phoneURL {
                     Link(
                         destination: phoneURL,
@@ -89,6 +95,7 @@ struct ShopView: View {
             }
             HStack {
                 FleetboxTextField(value: $shop.url, name: "Website", example: "https://quicklube.example.com")
+                    .allowNewline(false)
                     .autocapitalization(.never)
                     .keyboard(.URL)
                     .autocorrection(false)

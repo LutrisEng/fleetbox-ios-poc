@@ -39,7 +39,7 @@ extension Shop: Sortable, HasRawLogItems, HasLogItems {
 
     var phoneURL: URL? {
         if let phoneNumber = phoneNumber?.normalized {
-            return URL(string: "tel:\(phoneNumber)")
+            return URL(string: "tel:\(phoneNumber.filter { $0.isNumber })")
         } else {
             return nil
         }

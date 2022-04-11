@@ -29,3 +29,5 @@ and this project adheres to
   Previously, this button would crash the app if pressed with no camera
   available.
 - Sorting of line items should now work consistently.
+- Email addresses, phone numbers, and URLs no longer line wrap.
+- Phone numbers are automatically formatted

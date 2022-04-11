@@ -50,6 +50,7 @@ struct FormLinkLabel: View {
     private var _badge: Badge?
     private var _progress: Double?
     private var _progressColor: Color?
+    private var _allowNewline: Bool = true
 
     init<Title: Textable, Value: Textable>(title: Title, value: Value) {
         self.title = title.text
@@ -94,6 +95,12 @@ struct FormLinkLabel: View {
         return view
     }
 
+    func allowNewline(_ allowNewline: Bool = true) -> Self {
+        var view = self
+        view._allowNewline = allowNewline
+        return view
+    }
+
     var maybeTitleCaption: Text {
         if let titleCaption = _titleCaption {
             return Text("\n") + titleCaption
@@ -120,6 +127,7 @@ struct FormLinkLabel: View {
             (value + maybeCaption)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.trailing)
+                .lineLimit(_allowNewline ? nil : 1)
                 .fixedSize(horizontal: false, vertical: true)
             if let badge = _badge {
                 badge
