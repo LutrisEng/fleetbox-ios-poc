@@ -61,11 +61,15 @@ struct ShopView: View {
                 }
             }
             HStack {
-                FleetboxTextField(value: $shop.phoneNumber, name: "Phone Number", example: "123-555-9876")
-                    .allowNewline(false)
-                    .autocapitalization(.never)
-                    .keyboard(.phonePad)
-                    .autocorrection(false)
+                FleetboxTextField(
+                    value: phoneNumberBinding(string: $shop.phoneNumber),
+                    name: "Phone Number",
+                    example: "123-555-9876"
+                )
+                .allowNewline(false)
+                .autocapitalization(.never)
+                .keyboard(.phonePad)
+                .autocorrection(false)
                 if let phoneURL = shop.phoneURL {
                     Link(
                         destination: phoneURL,

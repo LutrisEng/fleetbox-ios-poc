@@ -96,3 +96,60 @@ func convertToNonNilBinding(string: Binding<String?>) -> Binding<String> {
         }
     )
 }
+
+extension String {
+    func index(from: Int) -> Index {
+        return self.index(startIndex, offsetBy: from)
+    }
+
+    func substring(from: Int) -> String {
+        let fromIndex = index(from: from)
+        return String(self[fromIndex...])
+    }
+
+    // swiftlint:disable:next identifier_name
+    func substring(to: Int) -> String {
+        let toIndex = index(from: to)
+        return String(self[..<toIndex])
+    }
+
+    // swiftlint:disable:next identifier_name
+    func substring(with r: Range<Int>) -> String {
+        let startIndex = index(from: r.lowerBound)
+        let endIndex = index(from: r.upperBound)
+        return String(self[startIndex..<endIndex])
+    }
+}
+
+func formatPhoneNumber(phoneNumber: String) -> String {
+    let filtered = phoneNumber.filter { $0.isNumber }
+    switch filtered.count {
+    case 0: return ""
+    case 1, 2: return "(\(filtered)"
+    case 3: return "(\(filtered))"
+    case 4, 5: return "(\(filtered.substring(to: 3)) \(filtered.substring(from: 3))"
+    case 6: return "(\(filtered.substring(to: 3))) \(filtered.substring(from: 3)) "
+    // swiftlint:disable:next line_length
+    case 7, 8, 9, 10: return "(\(filtered.substring(to: 3))) \(filtered.substring(with: 3..<6))-\(filtered.substring(from: 6))"
+    default: return phoneNumber
+    }
+}
+
+func phoneNumberBinding(string: Binding<String?>) -> Binding<String?> {
+    Binding<String?>(
+        get: {
+            if let value = string.wrappedValue {
+                return formatPhoneNumber(phoneNumber: value)
+            } else {
+                return nil
+            }
+        },
+        set: {
+            if let newValue = $0 {
+                string.wrappedValue = formatPhoneNumber(phoneNumber: newValue)
+            } else {
+                string.wrappedValue = nil
+            }
+        }
+    )
+}
