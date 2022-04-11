@@ -38,6 +38,7 @@ struct FleetboxTextField: View {
     private var _autocapitalization: TextInputAutocapitalization?
     private var _keyboardType: UIKeyboardType = .default
     private var _autocorrection: Bool = true
+    private var _allowNewline: Bool = true
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: Textable? = nil) {
         wrappedValue = convertToNonNilBinding(string: value)
@@ -128,6 +129,12 @@ struct FleetboxTextField: View {
         return view
     }
 
+    func allowNewline(_ allowNewline: Bool = true) -> Self {
+        var view = self
+        view._allowNewline = allowNewline
+        return view
+    }
+
     private var maybeUnitName: Text {
         if let unitName = unitName, !wrappedValue.wrappedValue.isEmpty {
             return (Text(" ") + unitName)
@@ -169,6 +176,7 @@ struct FleetboxTextField: View {
             .progress(_progress)
             .progressColor(_progressColor)
             .badge(_badge)
+            .allowNewline(_allowNewline)
     }
 
     var body: some View {
