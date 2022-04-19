@@ -188,13 +188,9 @@ struct PersistenceController {
             description.setOption(true as NSNumber, forKey: remoteChangeKey)
             description.setOption(true as NSNumber, forKey: NSMigratePersistentStoresAutomaticallyOption)
             description.setOption(true as NSNumber, forKey: NSInferMappingModelAutomaticallyOption)
-            if debug {
-                description.cloudKitContainerOptions = nil
-            } else {
-                description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(
-                    containerIdentifier: "iCloud.engineering.lutris.fleetbox"
-                )
-            }
+            description.cloudKitContainerOptions = NSPersistentCloudKitContainerOptions(
+                containerIdentifier: "iCloud.engineering.lutris.fleetbox"
+            )
         }
         container.viewContext.automaticallyMergesChangesFromParent = true
         container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
