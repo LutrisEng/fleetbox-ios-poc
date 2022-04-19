@@ -66,13 +66,14 @@ extension HasOdometerReadings where Self: TracksMiles {
     }
 
     var approximateOdometerOffset: Int64 {
+        guard let averageMilesPerSecond = averageMilesPerSecond else { return 0 }
         guard let lastOdometerReading = odometerReadings.inverseChrono.first(where: { $0.at != nil }) else {
             return 0
         }
         let timeSinceLastOdometer = Date.now.timeIntervalSinceReferenceDate -
             lastOdometerReading.at!.timeIntervalSinceReferenceDate
         let daysSinceLastOdometer = toDays(interval: timeSinceLastOdometer)
-        if daysSinceLastOdometer > 1, let averageMilesPerSecond = averageMilesPerSecond {
+        if daysSinceLastOdometer > 3 {
             let approxMilesSinceLastOdometer = averageMilesPerSecond * timeSinceLastOdometer
             return Int64(round(approxMilesSinceLastOdometer))
         } else {

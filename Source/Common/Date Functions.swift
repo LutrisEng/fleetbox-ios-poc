@@ -43,5 +43,5 @@ let daysPerMonth: Double = 30.437
 let daysPerYear: Double = 365.2425
 
 func toDays(interval: TimeInterval) -> Double {
-    return interval * secondsPerDay
+    return interval / secondsPerDay
 }
