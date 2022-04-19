@@ -18,8 +18,11 @@
 import Foundation
 import Alamofire
 
+struct VINDecodeError: Error {}
+
 func decodeVIN(_ vin: String) async throws -> VINDecoderResult {
-    let url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/\(vin)?format=json"
-    let response = try await AF.request(url).serializingDecodable(VINDecoderResponse.self).value
-    return response.toResult()
+    throw VINDecodeError()
+//    let url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/\(vin)?format=json"
+//    let response = try await AF.request(url).serializingDecodable(VINDecoderResponse.self).value
+//    return response.toResult()
 }
