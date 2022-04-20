@@ -57,7 +57,12 @@ extension Vehicle: Sortable,
         }
     }
 
-    var fullModelName: String {
+    static func generateFullModelName(
+        year: Int64,
+        make: String?,
+        model: String?,
+        fallback: String = "Unknown Vehicle"
+    ) -> String {
         if let make = make {
             if let model = model {
                 if year != 0 {
@@ -75,8 +80,12 @@ extension Vehicle: Sortable,
                 return model
             }
         } else {
-            return "Unknown Vehicle"
+            return fallback
         }
+    }
+
+    var fullModelName: String {
+        Vehicle.generateFullModelName(year: year, make: make, model: model)
     }
 
     var displayNameWithFallback: String {

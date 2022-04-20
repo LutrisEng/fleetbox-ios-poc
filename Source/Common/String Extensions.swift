@@ -35,4 +35,8 @@ extension Optional where Wrapped == String {
     var denormalized: String {
         self ?? ""
     }
+
+    var normalized: String? {
+        self?.normalized
+    }
 }

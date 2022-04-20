@@ -18,12 +18,52 @@
 import Foundation
 import Sentry
 
+#if DEBUG
+let debug = true
+#else
+let debug = false
+#endif
+
+func getInfoDictionaryKey(key: String) -> String {
+    Bundle.main.object(forInfoDictionaryKey: key) as? String ?? "unknown"
+}
+
+func getSentryRelease() -> String {
+    let package = getInfoDictionaryKey(key: "CFBundleIdentifier")
+    let version = getInfoDictionaryKey(key: "CFBundleShortVersionString")
+    let buildIdentifier = getInfoDictionaryKey(key: "CFBundleVersion")
+    let debugPart = debug ? "-debug" : ""
+    return "\(package)@\(version)+\(buildIdentifier)\(debugPart)"
+}
+
+func initSentry() {
+    #if !DEBUG
+    SentrySDK.start { options in
+        options.dsn = "https://2d3e25e0c99347c3b8bd0a3a8908bcdd@o1155807.ingest.sentry.io/6236540"
+        options.tracesSampleRate = 1.0
+        options.releaseName = getSentryRelease()
+        options.enableFileIOTracking = true
+        options.enableAutoPerformanceTracking = true
+        options.debug = debug
+    }
+    #endif
+}
+
+func sentryCapture(error: Error) {
+    print("Captured error: ", error)
+    SentrySDK.capture(error: error)
+}
+
+func sentryCapture(message: String) {
+    print("Captured error message: ", message)
+    SentrySDK.capture(message: message)
+}
+
 func ignoreErrorsImpl<T>(_ closure: () throws -> T) -> T? {
     do {
         return try closure()
     } catch {
-        SentrySDK.capture(error: error)
-        print("error", error)
+        sentryCapture(error: error)
         return nil
     }
 }
@@ -40,8 +80,7 @@ func ignoreErrorsImpl<T>(_ asyncClosure: () async throws -> T) async -> T? {
     do {
         return try await asyncClosure()
     } catch {
-        SentrySDK.capture(error: error)
-        print("error", error)
+        sentryCapture(error: error)
         return nil
     }
 }

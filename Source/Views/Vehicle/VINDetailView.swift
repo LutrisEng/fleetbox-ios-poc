@@ -17,6 +17,7 @@
 
 import SwiftUI
 import Sentry
+import VehicleKit
 
 struct VINDetailView: View {
     @Environment(\.editable) private var editable
@@ -24,37 +25,42 @@ struct VINDetailView: View {
     @ObservedObject var vehicle: Vehicle
     @State private var state: ViewState = .base
     @State private var err: Bool = false
-    @State private var success: Bool = false
+    @State private var successDialog: Bool = false
+    @State private var successMessage: String?
 
     private func setState(_ newState: ViewState) async {
         state = newState
         switch newState {
-        case .ok:
+        case .ok(let year, let make, let model):
             err = false
-            success = true
+            successMessage = Vehicle.generateFullModelName(
+                year: year ?? 0,
+                make: make,
+                model: model,
+                fallback: "No information was available"
+            )
+            successDialog = true
             await ignoreErrors {
                 try await Task.sleep(nanoseconds: 3 * UInt64(NSEC_PER_SEC))
             }
             await setState(.base)
         case .err:
             err = true
-            success = false
             await ignoreErrors {
                 try await Task.sleep(nanoseconds: 3 * UInt64(NSEC_PER_SEC))
             }
             await setState(.base)
         case .base:
             err = false
-            success = false
         case .loading:
             err = false
-            success = false
         }
     }
 
     enum ViewState {
+        case base, loading, err
         // swiftlint:disable:next identifier_name
-        case base, loading, ok, err
+        case ok(year: Int64?, make: String?, model: String?)
     }
 
     var body: some View {
@@ -91,8 +97,8 @@ struct VINDetailView: View {
                 }
             }
         }
-        .alert("VIN decoded!", isPresented: $success, actions: {}, message: {
-            Text("The VIN was successfully decoded into year, make, and/or model.")
+        .alert("VIN decoded!", isPresented: $successDialog, actions: {}, message: {
+            Text("Your VIN was successfully decoded!\n\(successMessage ?? "")")
         })
         .alert("Failed to decode VIN", isPresented: $err, actions: {}, message: {
             Text(
@@ -106,24 +112,25 @@ struct VINDetailView: View {
         if let vin = vehicle.vin, vin != "" {
             Task.init {
                 await setState(.loading)
+                var year: Int64?
+                var make: String?
+                var model: String?
                 do {
-                    let decoderResult = try await decodeVIN(vin)
-                    if decoderResult.errorCode != 0 {
-                        print("error code", decoderResult.errorCode)
-                        await setState(.err)
-                        return
+                    let decoderResult = try await VKVINDecoder.decode(vin: vin)
+                    if let modelYear = decoderResult.ModelYear.normalized {
+                        year = Int64(modelYear)
+                        vehicle.year = year ?? vehicle.year
                     }
-                    if let modelYear = decoderResult.modelYear {
-                        vehicle.year = Int64(modelYear)
-                    }
-                    vehicle.make = decoderResult.make ?? vehicle.make
-                    vehicle.model = decoderResult.model ?? vehicle.model
+                    make = decoderResult.Make.normalized
+                    vehicle.make = make ?? vehicle.make
+                    model = decoderResult.Model.normalized
+                    vehicle.model = model ?? vehicle.model
                 } catch {
-                    SentrySDK.capture(error: error)
+                    sentryCapture(error: error)
                     await setState(.err)
                     return
                 }
-                await setState(.ok)
+                await setState(.ok(year: year, make: make, model: model))
             }
         }
     }
