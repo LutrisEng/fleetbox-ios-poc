@@ -115,6 +115,8 @@
 		86C0620927F16F4E00020C08 /* FormLinkLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620827F16F4E00020C08 /* FormLinkLabel.swift */; };
 		86C0620D27F187C200020C08 /* NewWarrantyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C0620C27F187C200020C08 /* NewWarrantyView.swift */; };
 		86C2A29327FBD5AE005F4A8D /* ExportTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C2A29227FBD5AE005F4A8D /* ExportTest.swift */; };
+		86C89366280FA4950068C19D /* VehicleKitAuthenticationPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C89365280FA4950068C19D /* VehicleKitAuthenticationPromptView.swift */; };
+		86C89368280FA4B10068C19D /* VehicleKitAuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C89367280FA4B10068C19D /* VehicleKitAuthenticationView.swift */; };
 		86E346B427FBDAD800593444 /* Advanced Fixtures.fleetboxvehicle in Resources */ = {isa = PBXBuildFile; fileRef = 86E346B227FBDAB600593444 /* Advanced Fixtures.fleetboxvehicle */; };
 		86E346B627FC096000593444 /* Numbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E346B527FC096000593444 /* Numbers.swift */; };
 		86E346BB27FE709500593444 /* Sortable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E346BA27FE709500593444 /* Sortable.swift */; };
@@ -306,6 +308,8 @@
 		86C0620C27F187C200020C08 /* NewWarrantyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWarrantyView.swift; sourceTree = "<group>"; };
 		86C2A29127FBC99C005F4A8D /* CHANGELOG.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CHANGELOG.md; sourceTree = "<group>"; };
 		86C2A29227FBD5AE005F4A8D /* ExportTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportTest.swift; sourceTree = "<group>"; };
+		86C89365280FA4950068C19D /* VehicleKitAuthenticationPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleKitAuthenticationPromptView.swift; sourceTree = "<group>"; };
+		86C89367280FA4B10068C19D /* VehicleKitAuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleKitAuthenticationView.swift; sourceTree = "<group>"; };
 		86E346B227FBDAB600593444 /* Advanced Fixtures.fleetboxvehicle */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Advanced Fixtures.fleetboxvehicle"; sourceTree = "<group>"; };
 		86E346B527FC096000593444 /* Numbers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numbers.swift; sourceTree = "<group>"; };
 		86E346B727FD02C700593444 /* AppIcon Debug.afdesign */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AppIcon Debug.afdesign"; sourceTree = "<group>"; };
@@ -466,6 +470,8 @@
 				8612CD6527E1A58300976E8F /* VehicleImageView.swift */,
 				86F8F80C27EE774200442694 /* NewVehicleView.swift */,
 				86B299D927F6B5E200311957 /* VehicleLabelView.swift */,
+				86C89365280FA4950068C19D /* VehicleKitAuthenticationPromptView.swift */,
+				86C89367280FA4B10068C19D /* VehicleKitAuthenticationView.swift */,
 			);
 			path = Vehicle;
 			sourceTree = "<group>";
@@ -1022,6 +1028,7 @@
 				86E346DF27FE71BD00593444 /* HasAttachments.swift in Sources */,
 				86500C7227DBED3D00A5111E /* LineItemTypePickerView.swift in Sources */,
 				86500C9327DC0E3200A5111E /* PartOdometerIndividualView.swift in Sources */,
+				86C89366280FA4950068C19D /* VehicleKitAuthenticationPromptView.swift in Sources */,
 				861DAE3327CDD59F00AFE972 /* Fleetbox.xcdatamodeld in Sources */,
 				86B189A727EAFEBE001CFBD3 /* QuickViewController.swift in Sources */,
 				86E346BF27FE70BA00593444 /* MaybeTimed.swift in Sources */,
@@ -1046,6 +1053,7 @@
 				86B189AF27EB0C6C001CFBD3 /* UIApplication Extensions.swift in Sources */,
 				868692AC27FA7B53001E1E2C /* Shop Extensions.swift in Sources */,
 				86C061FB27F16BF200020C08 /* WarrantyView.swift in Sources */,
+				86C89368280FA4B10068C19D /* VehicleKitAuthenticationView.swift in Sources */,
 				86C0620527F16E3600020C08 /* TireSetActionsView.swift in Sources */,
 				86E346C127FE70CA00593444 /* TracksMiles.swift in Sources */,
 				86638D2627D9721500149689 /* LineItemLabelView.swift in Sources */,
@@ -1485,7 +1493,7 @@
 			repositoryURL = "https://github.com/LutrisEng/VehicleKit.git";
 			requirement = {
 				kind = revision;
-				revision = 0495e902f9facd0a569dcfb411874fec7ef0f0f2;
+				revision = 607d3228ffb79d41ab6031305693f72897a70b55;
 			};
 		};
 		86B189A327EAFD0F001CFBD3 /* XCRemoteSwiftPackageReference "FilePicker" */ = {

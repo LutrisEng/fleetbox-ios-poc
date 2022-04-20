@@ -19,8 +19,15 @@ import SwiftUI
 import CoreData
 
 extension TextField {
-    @ViewBuilder
-    func firstResponder() -> some View {
+    @ViewBuilder func firstResponder() -> some View {
+        introspectTextField { textField in
+            textField.becomeFirstResponder()
+        }
+    }
+}
+
+extension SecureField {
+    @ViewBuilder func firstResponder() -> some View {
         introspectTextField { textField in
             textField.becomeFirstResponder()
         }
