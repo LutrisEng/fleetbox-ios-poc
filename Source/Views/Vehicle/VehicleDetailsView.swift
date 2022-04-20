@@ -20,16 +20,30 @@ import SwiftUI
 struct VehicleDetailsView: View {
     @ObservedObject var vehicle: Vehicle
 
+    @ViewBuilder var coreDetails: some View {
+        FleetboxTextField(value: $vehicle.displayName, name: "Name", example: dummyData.vehicleName)
+        VINDetailView(vehicle: vehicle)
+        FleetboxTextField(value: $vehicle.year, name: "Year", example: 2020)
+            .previewAsString()
+        FleetboxTextField(value: $vehicle.make, name: "Make", example: dummyData.vehicleMake)
+            .autocapitalization(.words)
+        FleetboxTextField(value: $vehicle.model, name: "Model", example: dummyData.vehicleModel)
+            .autocapitalization(.words)
+    }
+
     var body: some View {
         Section(header: Text("Details")) {
-            FleetboxTextField(value: $vehicle.displayName, name: "Name", example: dummyData.vehicleName)
-            VINDetailView(vehicle: vehicle)
-            FleetboxTextField(value: $vehicle.year, name: "Year", example: 2020)
-                .previewAsString()
-            FleetboxTextField(value: $vehicle.make, name: "Make", example: dummyData.vehicleMake)
-                .autocapitalization(.words)
-            FleetboxTextField(value: $vehicle.model, name: "Model", example: dummyData.vehicleModel)
-                .autocapitalization(.words)
+            coreDetails
+            if let api = vehicle.possibleAPIs.first {
+                NavigationLink(
+                    destination: {
+                        Text("Coming soon!")
+                    },
+                    label: {
+                        Text("Connect to \(api.name)")
+                    }
+                )
+            }
             if let licensePlateNumber = vehicle.licensePlateNumber {
                 FormLinkLabel(title: "License plate", value: licensePlateNumber)
             }

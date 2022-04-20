@@ -16,7 +16,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import SwiftUI
-import Sentry
 import Gzip
 
 enum ExportError: Error {
@@ -144,7 +143,7 @@ struct VehicleView: View {
                     }
                 }
             } catch {
-                SentrySDK.capture(error: error)
+                sentryCapture(error: error)
                 withAnimation {
                     exporting = false
                 }

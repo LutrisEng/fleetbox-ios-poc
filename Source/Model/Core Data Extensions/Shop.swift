@@ -67,8 +67,7 @@ extension Shop: Sortable, HasRawLogItems, HasLogItems {
 
     func mergeWith(_ other: Shop) {
         if other.objectID == objectID {
-            print("Refusing to merge shop with itself")
-            SentrySDK.capture(message: "Refusing to merge shop with itself")
+            sentryCapture(message: "Refusing to merge shop with itself")
             return
         }
         for item in other.logItems {

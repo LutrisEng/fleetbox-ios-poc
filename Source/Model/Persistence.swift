@@ -198,7 +198,7 @@ struct PersistenceController {
         let coordinator = container.persistentStoreCoordinator
         container.loadPersistentStores(completionHandler: { (description, error) in
             if let error = error as NSError? {
-                SentrySDK.capture(error: error)
+                sentryCapture(error: error)
             } else if !inMemory {
                 let indexer = VehicleSpotlightDelegate(forStoreWith: description, coordinator: coordinator)
                 indexer.startSpotlightIndexing()

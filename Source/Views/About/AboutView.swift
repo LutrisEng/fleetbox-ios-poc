@@ -34,6 +34,11 @@ let osProjects: [OSProject] = [
         license: "GPL-3.0-or-later"
     ),
     OSProject(
+        name: "VehicleKit",
+        url: URL(string: "https://github.com/LutrisEng/VehicleKit")!,
+        license: "BlueOak-1.0.0"
+    ),
+    OSProject(
         name: "Alamofire",
         url: URL(string: "https://github.com/Alamofire/Alamofire")!,
         license: "MIT"
@@ -61,6 +66,31 @@ let osProjects: [OSProject] = [
     OSProject(
         name: "SwiftUI-Introspect",
         url: URL(string: "https://github.com/siteline/SwiftUI-Introspect")!,
+        license: "MIT"
+    ),
+    OSProject(
+        name: "PromiseKit",
+        url: URL(string: "https://github.com/mxcl/PromiseKit")!,
+        license: "MIT"
+    ),
+    OSProject(
+        name: "RxSwift",
+        url: URL(string: "https://github.com/ReactiveX/RxSwift")!,
+        license: "MIT"
+    ),
+    OSProject(
+        name: "Starscream",
+        url: URL(string: "https://github.com/daltoniam/Starscream")!,
+        license: "Apache-2.0"
+    ),
+    OSProject(
+        name: "swift-protobuf",
+        url: URL(string: "https://github.com/apple/swift-protobuf")!,
+        license: "Apache-2.0"
+    ),
+    OSProject(
+        name: "TeslaSwift",
+        url: URL(string: "https://github.com/jonasman/TeslaSwift")!,
         license: "MIT"
     )
 ]

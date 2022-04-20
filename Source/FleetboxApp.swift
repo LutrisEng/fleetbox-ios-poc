@@ -16,25 +16,6 @@
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import SwiftUI
-import Sentry
-
-#if DEBUG
-let debug = true
-#else
-let debug = false
-#endif
-
-func getInfoDictionaryKey(key: String) -> String {
-    Bundle.main.object(forInfoDictionaryKey: key) as? String ?? "unknown"
-}
-
-func getSentryRelease() -> String {
-    let package = getInfoDictionaryKey(key: "CFBundleIdentifier")
-    let version = getInfoDictionaryKey(key: "CFBundleShortVersionString")
-    let buildIdentifier = getInfoDictionaryKey(key: "CFBundleVersion")
-    let debugPart = debug ? "-debug" : ""
-    return "\(package)@\(version)+\(buildIdentifier)\(debugPart)"
-}
 
 enum ImportError: Error {
     case invalidData
@@ -148,8 +129,7 @@ struct FleetboxAppMainWindow: View {
                         )
                     }
                 } catch {
-                    SentrySDK.capture(error: error)
-                    print("error importing", error)
+                    sentryCapture(error: error)
                     DispatchQueue.main.async {
                         url.stopAccessingSecurityScopedResource()
                         previewError = true
@@ -178,11 +158,9 @@ struct FleetboxAppMainWindow: View {
                     let json = gzipped.isGzipped ? try gzipped.gunzipped() : gzipped
                     DispatchQueue.main.async {
                         withAnimation {
-                            do {
+                            ignoreErrors {
                                 _ = try Vehicle.importData(json, context: viewContext)
                                 try viewContext.save()
-                            } catch {
-                                SentrySDK.capture(error: error)
                             }
                             previewImportState.url.stopAccessingSecurityScopedResource()
                             self.previewImportState = nil
@@ -192,8 +170,7 @@ struct FleetboxAppMainWindow: View {
                         }
                     }
                 } catch {
-                    SentrySDK.capture(error: error)
-                    print("import error", error)
+                    sentryCapture(error: error)
                     DispatchQueue.main.async {
                         previewImportState.url.stopAccessingSecurityScopedResource()
                         importing = false
@@ -209,16 +186,7 @@ struct FleetboxApp: App {
     @State private var persistenceController: PersistenceController?
 
     init() {
-        #if !DEBUG
-        SentrySDK.start { options in
-            options.dsn = "https://2d3e25e0c99347c3b8bd0a3a8908bcdd@o1155807.ingest.sentry.io/6236540"
-            options.tracesSampleRate = 1.0
-            options.releaseName = getSentryRelease()
-            options.enableFileIOTracking = true
-            options.enableAutoPerformanceTracking = true
-            options.debug = debug
-        }
-        #endif
+        initSentry()
     }
 
     var body: some Scene {

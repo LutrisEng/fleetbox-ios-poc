@@ -19,6 +19,7 @@ import Foundation
 import CoreData
 import Sentry
 import UIKit
+import VehicleKit
 
 extension Vehicle: Sortable,
     TracksTime, TracksMiles, TracksApproximateMiles, HasBreakin,
@@ -56,7 +57,12 @@ extension Vehicle: Sortable,
         }
     }
 
-    var fullModelName: String {
+    static func generateFullModelName(
+        year: Int64,
+        make: String?,
+        model: String?,
+        fallback: String = "Unknown Vehicle"
+    ) -> String {
         if let make = make {
             if let model = model {
                 if year != 0 {
@@ -74,8 +80,12 @@ extension Vehicle: Sortable,
                 return model
             }
         } else {
-            return "Unknown Vehicle"
+            return fallback
         }
+    }
+
+    var fullModelName: String {
+        Vehicle.generateFullModelName(year: year, make: make, model: model)
     }
 
     var displayNameWithFallback: String {
@@ -117,6 +127,14 @@ extension Vehicle: Sortable,
             typeIn: ["stateRegistration", "vanityPlateMounted"],
             field: "licensePlateNumber"
         )?.stringValue?.normalized
+    }
+
+    var possibleAPIs: [VKAPIDirectory.API] {
+        if let make = make {
+            return VKAPIDirectory.apis(forMake: make)
+        } else {
+            return []
+        }
     }
 
     func export(settings: ExportSettings) throws -> Data? {
