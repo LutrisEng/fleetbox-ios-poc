@@ -1484,8 +1484,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/LutrisEng/VehicleKit.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = revision;
+				revision = 0495e902f9facd0a569dcfb411874fec7ef0f0f2;
 			};
 		};
 		86B189A327EAFD0F001CFBD3 /* XCRemoteSwiftPackageReference "FilePicker" */ = {
