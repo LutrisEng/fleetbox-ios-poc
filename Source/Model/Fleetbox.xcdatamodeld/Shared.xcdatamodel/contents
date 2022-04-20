@@ -88,6 +88,9 @@
         <relationship name="odometerReadingsNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="OdometerReading" inverseName="vehicle" inverseEntity="OdometerReading"/>
         <relationship name="warrantiesNs" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Warranty" inverseName="vehicle" inverseEntity="Warranty"/>
     </entity>
+    <entity name="VehicleKitCredentials" representedClassName="VehicleKitCredentials" syncable="YES" codeGenerationType="class">
+        <attribute name="credentials" optional="YES" attributeType="Binary" allowsCloudEncryption="YES"/>
+    </entity>
     <entity name="Warranty" representedClassName="Warranty" syncable="YES" codeGenerationType="class">
         <attribute name="miles" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="months" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -107,5 +110,6 @@
         <element name="TireSet" positionX="279" positionY="63" width="128" height="328"/>
         <element name="Vehicle" positionX="133.68359375" positionY="-22.00390625" width="128" height="238"/>
         <element name="Warranty" positionX="270" positionY="135" width="128" height="134"/>
+        <element name="VehicleKitCredentials" positionX="270" positionY="135" width="128" height="44"/>
     </elements>
 </model>

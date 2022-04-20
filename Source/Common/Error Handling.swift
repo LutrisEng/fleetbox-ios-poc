@@ -50,12 +50,13 @@ func initSentry() {
 }
 
 func sentryCapture(error: Error) {
-    print("Captured error: ", error)
+    print("Captured error:", error.localizedDescription)
+    print(error)
     SentrySDK.capture(error: error)
 }
 
 func sentryCapture(message: String) {
-    print("Captured error message: ", message)
+    print("Captured error message:", message)
     SentrySDK.capture(message: message)
 }
 

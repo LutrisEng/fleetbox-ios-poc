@@ -37,7 +37,7 @@ struct VehicleDetailsView: View {
             if let api = vehicle.possibleAPIs.first {
                 NavigationLink(
                     destination: {
-                        Text("Coming soon!")
+                        VehicleKitAuthenticationView(vehicle: vehicle, api: api)
                     },
                     label: {
                         Text("Connect to \(api.name)")

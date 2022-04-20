@@ -39,6 +39,7 @@ struct FleetboxTextField: View {
     private var _keyboardType: UIKeyboardType = .default
     private var _autocorrection: Bool = true
     private var _allowNewline: Bool = true
+    private var _password: Bool = false
 
     init(value: Binding<String?>, name: LocalizedStringKey?, example: String?, description: Textable? = nil) {
         wrappedValue = convertToNonNilBinding(string: value)
@@ -135,6 +136,12 @@ struct FleetboxTextField: View {
         return view
     }
 
+    func password(_ password: Bool = true) -> Self {
+        var view = self
+        view._password = password
+        return view
+    }
+
     private var maybeUnitName: Text {
         if let unitName = unitName, !wrappedValue.wrappedValue.isEmpty {
             return (Text(" ") + unitName)
@@ -171,7 +178,7 @@ struct FleetboxTextField: View {
 
     @ViewBuilder
     private var label: some View {
-        FormLinkLabel(title: name ?? "", value: Text(previewValue) + maybeUnitName)
+        FormLinkLabel(title: name ?? "", value: _password ? Text("") : (Text(previewValue) + maybeUnitName))
             .caption(_caption)
             .progress(_progress)
             .progressColor(_progressColor)
@@ -192,20 +199,38 @@ struct FleetboxTextField: View {
                         }
                         HStack {
                             ZStack(alignment: .trailing) {
-                                TextField(
-                                    example ?? "",
-                                    text: tempValueBinding
-                                )
-                                .firstResponder()
-                                .introspectTextField { textField in
-                                    textField.text = tempValueBinding.wrappedValue
+                                if _password {
+                                    SecureField(
+                                        example ?? "",
+                                        text: tempValueBinding
+                                    )
+                                    .firstResponder()
+                                    .introspectTextField { textField in
+                                        textField.text = tempValueBinding.wrappedValue
+                                    }
+                                    .textInputAutocapitalization(_autocapitalization)
+                                    .onSubmit {
+                                        pageShown = false
+                                    }
+                                    .keyboardType(_keyboardType)
+                                    .disableAutocorrection(!_autocorrection)
+                                    .textContentType(.password)
+                                } else {
+                                    TextField(
+                                        example ?? "",
+                                        text: tempValueBinding
+                                    )
+                                    .firstResponder()
+                                    .introspectTextField { textField in
+                                        textField.text = tempValueBinding.wrappedValue
+                                    }
+                                    .textInputAutocapitalization(_autocapitalization)
+                                    .onSubmit {
+                                        pageShown = false
+                                    }
+                                    .keyboardType(_keyboardType)
+                                    .disableAutocorrection(!_autocorrection)
                                 }
-                                .textInputAutocapitalization(_autocapitalization)
-                                .onSubmit {
-                                    pageShown = false
-                                }
-                                .keyboardType(_keyboardType)
-                                .disableAutocorrection(!_autocorrection)
                                 if !tempValue.isEmpty {
                                     Button(
                                         action: {
